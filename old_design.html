@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Community Church</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Glide.js Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.5.0/css/glide.core.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gold: #ffd166;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9fafb;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .navbar-brand span {
+            color: var(--secondary);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .hero-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,128C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .btn-church {
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-church:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: #ffc44d;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            margin-bottom: 25px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .devotion-card {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .announcement-card {
+            border-top: 4px solid var(--gold);
+        }
+        
+        .audio-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .audio-card .btn-download {
+            background: var(--success);
+            color: white;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .executive-card {
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .executive-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .executive-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .executive-card:hover .executive-img img {
+            transform: scale(1.1);
+        }
+        
+        .executive-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(67, 97, 238, 0.9) 0%, transparent 100%);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+        }
+        
+        .executive-card:hover .executive-overlay {
+            transform: translateY(0);
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 5px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 0 0;
+        }
+        
+        .footer h5 {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .footer h5:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            background: rgba(0,0,0,0.1);
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        .glide__slide {
+            padding: 20px;
+        }
+        
+        .banner-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+        
+        .banner-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 30px;
+            color: white;
+        }
+        
+        .service-times {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .service-times h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        
+        .service-day {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-nav {
+                background: white;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Grace<span>Community</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Ministries</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sermons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Give</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <div class="hero-content">
+                        <h1>Welcome to Grace Community Church</h1>
+                        <p>Where faith, hope, and love come together to transform lives and communities through the grace of Jesus Christ.</p>
+                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                            <button class="btn btn-church">Plan Your Visit</button>
+                            <button class="btn btn-outline-light rounded-pill px-4">Watch Online</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="service-times">
+                        <h4>Service Times</h4>
+                        <div class="service-item">
+                            <div class="service-day">Sunday Morning Worship</div>
+                            <div class="service-time">8:30 AM & 10:30 AM</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-day">Sunday School</div>
+                            <div class="service-time">9:45 AM</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-day">Wednesday Bible Study</div>
+                            <div class="service-time">7:00 PM</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-day">Youth Fellowship</div>
+                            <div class="service-time">Friday, 6:30 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banners Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <div class="glide__slides">
+                        <div class="glide__slide">
+                            <div class="banner-card position-relative">
+                                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80" alt="Baptism Event">
+                                <div class="banner-content">
+                                    <h3>Baptism Sunday</h3>
+                                    <p>June 30th, 2024 | 10:30 AM Service</p>
+                                    <button class="btn btn-sm btn-light">Learn More</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glide__slide">
+                            <div class="banner-card position-relative">
+                                <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1200&q=80" alt="Youth Camp">
+                                <div class="banner-content">
+                                    <h3>Youth Summer Camp</h3>
+                                    <p>July 15-20, 2024 | Registration Open</p>
+                                    <button class="btn btn-sm btn-light">Register Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glide__slide">
+                            <div class="banner-card position-relative">
+                                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80" alt="Worship Night">
+                                <div class="banner-content">
+                                    <h3>Night of Worship</h3>
+                                    <p>July 5th, 2024 | 7:00 PM Sanctuary</p>
+                                    <button class="btn btn-sm btn-light">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-chevron-left"></i></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Devotion Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Daily Devotion</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card devotion-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-primary text-white rounded p-2 me-3">
+                                    <div class="text-center">
+                                        <div class="fs-1 fw-bold">23</div>
+                                        <div class="fs-6">JUN</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">Walking in Faith</h3>
+                                    <p class="mb-0 text-muted">John 3:16</p>
+                                </div>
+                            </div>
+                            <p class="lead">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
+                            <p>In this powerful verse, we are reminded of the depth of God's love for us. It's a love that sacrifices, that gives without expecting return, that reaches out to the unworthy and makes them worthy through Christ.</p>
+                            <p>Today, let this truth sink deep into your heart. You are loved with an everlasting love, a love that sent Jesus to the cross for your redemption. This love is not based on your performance but on God's character. Walk in this assurance today.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle me-2" width="40" height="40" alt="Pastor">
+                                    <div>
+                                        <div class="fw-bold">Pastor Michael Johnson</div>
+                                        <small class="text-muted">Senior Pastor</small>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-primary">Read Full Devotion</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title">Church Announcements</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card announcement-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-primary">Important</span>
+                                <small class="text-muted">June 20, 2024</small>
+                            </div>
+                            <h4>Church Picnic Day</h4>
+                            <p>Join us this Sunday after service for our annual church picnic at Riverside Park. Food and activities provided. Bring a dessert to share!</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card announcement-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-success">New</span>
+                                <small class="text-muted">June 18, 2024</small>
+                            </div>
+                            <h4>Mission Trip Meeting</h4>
+                            <p>Informational meeting for our summer mission trip to Guatemala will be held this Wednesday at 7 PM in Fellowship Hall.</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card announcement-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-warning">Reminder</span>
+                                <small class="text-muted">June 15, 2024</small>
+                            </div>
+                            <h4>Building Fund Update</h4>
+                            <p>We've reached 75% of our building fund goal! Thank you for your generous contributions. Final push needed to complete renovations.</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Donate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Messages Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Sermon Audio</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card audio-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-primary">Latest</span>
+                                <small class="text-muted">June 16, 2024</small>
+                            </div>
+                            <h4>The Power of Forgiveness</h4>
+                            <p class="text-muted">Pastor Michael Johnson</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <audio controls style="width: 100%">
+                                    <source src="#" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button class="btn btn-download"><i class="fas fa-download me-2"></i> Download MP3</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card audio-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-secondary">Series</span>
+                                <small class="text-muted">June 9, 2024</small>
+                            </div>
+                            <h4>Walking in Faith: Part 3</h4>
+                            <p class="text-muted">Pastor Sarah Williams</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <audio controls style="width: 100%">
+                                    <source src="#" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button class="btn btn-download"><i class="fas fa-download me-2"></i> Download MP3</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card audio-card animate-on-scroll">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-success">Popular</span>
+                                <small class="text-muted">June 2, 2024</small>
+                            </div>
+                            <h4>Hope in Hard Times</h4>
+                            <p class="text-muted">Pastor Robert Davis</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <audio controls style="width: 100%">
+                                    <source src="#" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button class="btn btn-download"><i class="fas fa-download me-2"></i> Download MP3</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary">View All Sermons</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Church Executives Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title">Church Leadership</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card executive-card animate-on-scroll">
+                        <div class="executive-img">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Pastor Michael Johnson">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="mb-1">Michael Johnson</h4>
+                            <p class="text-muted mb-2">Senior Pastor</p>
+                            <div class="executive-overlay">
+                                <h5 class="mb-2">Michael Johnson</h5>
+                                <p class="mb-3">Pastor since 2008</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card executive-card animate-on-scroll">
+                        <div class="executive-img">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Pastor Sarah Williams">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="mb-1">Sarah Williams</h4>
+                            <p class="text-muted mb-2">Associate Pastor</p>
+                            <div class="executive-overlay">
+                                <h5 class="mb-2">Sarah Williams</h5>
+                                <p class="mb-3">Pastor since 2015</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card executive-card animate-on-scroll">
+                        <div class="executive-img">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Robert Davis">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="mb-1">Robert Davis</h4>
+                            <p class="text-muted mb-2">Youth Pastor</p>
+                            <div class="executive-overlay">
+                                <h5 class="mb-2">Robert Davis</h5>
+                                <p class="mb-3">Pastor since 2019</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card executive-card animate-on-scroll">
+                        <div class="executive-img">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Jennifer Adams">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="mb-1">Jennifer Adams</h4>
+                            <p class="text-muted mb-2">Worship Director</p>
+                            <div class="executive-overlay">
+                                <h5 class="mb-2">Jennifer Adams</h5>
+                                <p class="mb-3">Director since 2017</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">View All Leadership <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h3 class="mb-4">Grace Community Church</h3>
+                    <p>Where faith, hope, and love come together to transform lives and communities through the grace of Jesus Christ.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="btn btn-light btn-sm rounded-circle me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-light btn-sm rounded-circle me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-light btn-sm rounded-circle me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-light btn-sm rounded-circle"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links ps-0">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Ministries</a></li>
+                        <li><a href="#">Sermons</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="footer-links ps-0">
+                        <li><a href="#">Bible Study</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                        <li><a href="#">Online Giving</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5>Contact Information</h5>
+                    <ul class="footer-links ps-0">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Church Street, Anytown, USA</li>
+                        <li><i class="fas fa-phone me-2"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@gracecommunity.org</li>
+                        <li><i class="fas fa-clock me-2"></i> Office Hours: Mon-Fri 9AM-5PM</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-outline-light"><i class="fas fa-donate me-2"></i> Give Online</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container text-center">
+                    <p class="mb-0">&copy; 2024 Grace Community Church. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.5.0/glide.min.js"></script>
+    <script>
+        // Initialize Glide Carousel
+        new Glide('.glide', {
+            type: 'carousel',
+            perView: 1,
+            gap: 30,
+            breakpoints: {
+                768: {
+                    perView: 1
+                }
+            }
+        }).mount();
+        
+        // Animate on scroll functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.padding = '10px 0';
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                } else {
+                    navbar.style.padding = '15px 0';
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
