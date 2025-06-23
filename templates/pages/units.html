@@ -1,0 +1,415 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!-- Hero Section -->
+<section class="units-hero">
+    <div class="container">
+        <h1>Church Units</h1>
+        <p>Discover our diverse ministry units, each dedicated to serving our community and growing together in faith. Find your place to serve and connect.</p>
+    </div>
+</section>
+
+<!-- Units Section -->
+<section class="units-container">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Ministry Units</h2>
+            <p>Explore the various units that make up our church community</p>
+        </div>
+        
+        <div class="unit-filters">
+            <button class="filter-btn active" data-filter="all">All Units</button>
+            <button class="filter-btn" data-filter="worship">Worship</button>
+            <button class="filter-btn" data-filter="outreach">Outreach</button>
+            <button class="filter-btn" data-filter="youth">Youth</button>
+            <button class="filter-btn" data-filter="support">Support</button>
+        </div>
+        
+        <div class="units-grid">
+            <!-- Unit 1 -->
+            <div class="unit-card visible" data-category="worship">
+                <div class="unit-header">
+                    <h3 class="unit-name">Worship & Music Ministry</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 25 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> Weekly Rehearsals</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Leading the congregation in worship through music and creative arts, creating an atmosphere where people can connect with God.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Commit to regular rehearsals and services</li>
+                            <li>Maintain spiritual discipline and personal devotion</li>
+                            <li>Exhibit humility and team spirit in all activities</li>
+                            <li>Respect leadership and follow direction</li>
+                            <li>Maintain excellence in musical preparation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">JA</div>
+                                <div class="coordinator-info">
+                                    <h5>Jennifer Adams</h5>
+                                    <p>Worship Director</p>
+                                </div>
+                            </div>
+                            <div class="coordinator">
+                                <div class="coordinator-img">DM</div>
+                                <div class="coordinator-info">
+                                    <h5>David Mitchell</h5>
+                                    <p>Music Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i> worship@church.org
+                    </a>
+                    <a href="#" class="unit-join-btn">
+                        Join This Unit <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Unit 2 -->
+            <div class="unit-card visible" data-category="outreach">
+                <div class="unit-header">
+                    <h3 class="unit-name">Community Outreach</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 42 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> Monthly Projects</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Extending God's love beyond our walls through service projects, community support, and partnership with local organizations.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Serve with compassion and without discrimination</li>
+                            <li>Represent Christ in all interactions</li>
+                            <li>Respect confidentiality of those we serve</li>
+                            <li>Work collaboratively with community partners</li>
+                            <li>Maintain accountability for resources</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">SW</div>
+                                <div class="coordinator-info">
+                                    <h5>Sarah Williams</h5>
+                                    <p>Outreach Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i> outreach@church.org
+                    </a>
+                    <a href="#" class="unit-join-btn">
+                        Join This Unit <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Unit 3 -->
+            <div class="unit-card visible" data-category="youth">
+                <div class="unit-header">
+                    <h3 class="unit-name">Youth Ministry</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 18 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> Weekly Meetings</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Empowering the next generation to grow in their faith, build strong relationships, and discover their purpose in Christ.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Be a positive role model at all times</li>
+                            <li>Maintain appropriate boundaries with youth</li>
+                            <li>Complete required background checks</li>
+                            <li>Attend all training and safety briefings</li>
+                            <li>Promote inclusivity and acceptance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">RD</div>
+                                <div class="coordinator-info">
+                                    <h5>Robert Davis</h5>
+                                    <p>Youth Pastor</p>
+                                </div>
+                            </div>
+                            <div class="coordinator">
+                                <div class="coordinator-img">EC</div>
+                                <div class="coordinator-info">
+                                    <h5>Emma Carter</h5>
+                                    <p>Youth Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i> youth@church.org
+                    </a>
+                    <a href="#" class="unit-join-btn">
+                        Join This Unit <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Unit 4 -->
+            <div class="unit-card visible" data-category="support">
+                <div class="unit-header">
+                    <h3 class="unit-name">Prayer & Support</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 35 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> Daily Prayer Chain</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Providing prayer support, counseling, and care for members of our congregation and community during times of need.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Maintain strict confidentiality</li>
+                            <li>Pray consistently for prayer requests</li>
+                            <li>Provide compassionate, non-judgmental support</li>
+                            <li>Refer complex issues to pastoral staff</li>
+                            <li>Respect boundaries in counseling situations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">MJ</div>
+                                <div class="coordinator-info">
+                                    <h5>Michael Johnson</h5>
+                                    <p>Senior Pastor</p>
+                                </div>
+                            </div>
+                            <div class="coordinator">
+                                <div class="coordinator-img">LP</div>
+                                <div class="coordinator-info">
+                                    <h5>Linda Peterson</h5>
+                                    <p>Prayer Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i> prayer@church.org
+                    </a>
+                    <a href="#" class="unit-join-btn">
+                        Join This Unit <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Unit 5 -->
+            <div class="unit-card visible" data-category="worship">
+                <div class="unit-header">
+                    <h3 class="unit-name">Media & Technology</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 12 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> Weekly Support</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Enhancing worship experiences and extending our reach through technology, live streaming, and multimedia production.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Maintain professionalism during services</li>
+                            <li>Ensure technical excellence in all productions</li>
+                            <li>Arrive early for setup and testing</li>
+                            <li>Continually develop technical skills</li>
+                            <li>Protect church equipment and resources</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">MT</div>
+                                <div class="coordinator-info">
+                                    <h5>Mark Thompson</h5>
+                                    <p>Tech Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i> media@church.org
+                    </a>
+                    <a href="#" class="unit-join-btn">
+                        Join This Unit <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Unit 6 -->
+            <div class="unit-card visible" data-category="outreach">
+                <div class="unit-header">
+                    <h3 class="unit-name">Missions & Evangelism</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 28 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> Quarterly Trips</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Spreading the Gospel locally and globally through mission trips, evangelism training, and supporting missionaries.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Respect cultural differences in mission fields</li>
+                            <li>Share faith with gentleness and respect</li>
+                            <li>Follow leadership directives during trips</li>
+                            <li>Maintain financial accountability</li>
+                            <li>Commit to regular team meetings and training</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">TG</div>
+                                <div class="coordinator-info">
+                                    <h5>Thomas Green</h5>
+                                    <p>Missions Director</p>
+                                </div>
+                            </div>
+                            <div class="coordinator">
+                                <div class="coordinator-img">RS</div>
+                                <div class="coordinator-info">
+                                    <h5>Rachel Simmons</h5>
+                                    <p>Evangelism Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i> missions@church.org
+                    </a>
+                    <a href="#" class="unit-join-btn">
+                        Join This Unit <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    // Filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const unitCards = document.querySelectorAll('.unit-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.dataset.filter;
+                
+                // Filter units
+                unitCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 10);
+                    } else {
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        unitCards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+
+{% endblock content %}

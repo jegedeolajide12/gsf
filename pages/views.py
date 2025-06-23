@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from django.shortcuts import render
 
 
 class HomePageView(TemplateView):
@@ -7,3 +8,8 @@ class HomePageView(TemplateView):
 
 class AboutPageView(TemplateView):
     template_name = "pages/about.html"
+
+
+def units(request):
+    context = {}
+    return render(request, "pages/units.html", context)
