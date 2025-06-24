@@ -1,0 +1,361 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">TECHNICAL UNIT NAVIGATION</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-microphone-alt"></i>
+                Sermon Management
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-bullhorn"></i>
+                Announcements
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                Audio Equipment
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-video"></i>
+                Livestream Setup
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-tools"></i>
+                Technical Support
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Technical Unit Dashboard</h1>
+                    <p>Manage all technical operations including audio systems, sermon recordings, announcements, and live streaming. Your work ensures seamless worship experiences.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Technical Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-audio"></i>
+                        </div>
+                        <h3 class="card-title">Upload Audio Sermons</h3>
+                        <p class="card-desc">Upload and manage high-quality audio recordings of sermons and special messages.</p>
+                        <button class="card-btn">Upload Sermon <i class="fas fa-upload"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="card-title">Publish Announcements</h3>
+                        <p class="card-desc">Create and publish technical announcements and service updates for the congregation.</p>
+                        <button class="card-btn">Create Announcement <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3 class="card-title">Manage Audio Systems</h3>
+                        <p class="card-desc">Configure and maintain sanctuary audio equipment and mixing consoles.</p>
+                        <button class="card-btn">System Settings <i class="fas fa-cog"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="card-title">Livestream Management</h3>
+                        <p class="card-desc">Control and monitor live streaming services for worship services and events.</p>
+                        <button class="card-btn">Stream Dashboard <i class="fas fa-broadcast-tower"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="card-title">Lighting Control</h3>
+                        <p class="card-desc">Manage sanctuary lighting systems and create presets for different services.</p>
+                        <button class="card-btn">Lighting Console <i class="fas fa-lightbulb"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="card-title">Equipment Maintenance</h3>
+                        <p class="card-desc">Track equipment status, schedule maintenance, and manage inventory.</p>
+                        <button class="card-btn">Maintenance Log <i class="fas fa-wrench"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Upload Panel -->
+            <div class="upload-panel">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h2>Quick Upload</h2>
+                    </div>
+                </div>
+                <div class="upload-options">
+                    <div class="upload-card" id="audioUploadCard">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-audio"></i>
+                        </div>
+                        <div class="upload-title">Upload Audio Sermon</div>
+                        <div class="upload-desc">Upload MP3 or WAV files of recorded sermons</div>
+                        <button class="card-btn">Select Files <i class="fas fa-upload"></i></button>
+                    </div>
+                    
+                    <div class="upload-card" id="announcementUploadCard">
+                        <div class="upload-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="upload-title">Create Announcement</div>
+                        <div class="upload-desc">Publish technical updates and service notices</div>
+                        <button class="card-btn">Create Now <i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Technical Metrics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-audio"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">142</div>
+                            <div class="stat-label">Sermons Uploaded</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">24.7K</div>
+                            <div class="stat-label">Audio Downloads</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Stream Uptime</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Pending Repairs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="activity-section">
+                <div class="section-title">
+                    <i class="fas fa-history"></i>
+                    <h2>Recent Technical Activity</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-audio"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Uploaded Sunday Sermon Audio</div>
+                            <div class="activity-desc">"The Power of Faith" - Pastor James Wilson (MP3, 45MB)</div>
+                            <div class="activity-time">Today, 4:15 PM</div>
+                            <span class="status-badge status-complete">Published</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Published Technical Announcement</div>
+                            <div class="activity-desc">Sound system maintenance this Thursday</div>
+                            <div class="activity-time">Yesterday, 10:45 AM</div>
+                            <span class="status-badge status-complete">Active</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Repaired Sanctuary Mixer</div>
+                            <div class="activity-desc">Channel 3 input replaced and tested</div>
+                            <div class="activity-time">June 30, 2024</div>
+                            <span class="status-badge status-complete">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Scheduled Livestream Test</div>
+                            <div class="activity-desc">Test stream for Youth Conference scheduled</div>
+                            <div class="activity-time">June 28, 2024</div>
+                            <span class="status-badge status-pending">Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Technical Support</a>
+                <a href="#">Equipment Manuals</a>
+                <a href="#">Training Resources</a>
+                <a href="#">Contact Pastoral Staff</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Button interactions
+    document.querySelectorAll('.card-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const card = this.closest('.permission-card') || this.closest('.upload-card');
+            const title = card.querySelector('.card-title')?.textContent || 
+                            card.querySelector('.upload-title')?.textContent;
+            
+            // Add a loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Opening ${title} interface...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Special handling for audio upload
+                if (title.includes("Audio Sermon")) {
+                    document.getElementById('audioUploadCard').classList.add('highlight');
+                    setTimeout(() => {
+                        document.getElementById('audioUploadCard').classList.remove('highlight');
+                    }, 2000);
+                }
+            }, 1000);
+        });
+    });
+    
+    // Card click interactions
+    document.querySelectorAll('.permission-card, .upload-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const btn = this.querySelector('.card-btn');
+            if (btn) {
+                btn.click();
+            }
+        });
+    });
+    
+    // Nav item interactions
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelector('.nav-item.active').classList.remove('active');
+            this.classList.add('active');
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const originalValue = stat.textContent;
+        const target = originalValue.includes('%') ? 
+            parseInt(originalValue) : 
+            parseInt(originalValue.replace('K', '000'));
+        
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = originalValue.includes('%') ? 
+                    count + '%' : 
+                    (count > 1000 ? (count/1000).toFixed(1) + 'K' : count);
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = originalValue;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+    
+    // Audio upload simulation
+    document.getElementById('audioUploadCard').addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#06d6a0';
+        this.style.backgroundColor = 'rgba(6, 214, 160, 0.1)';
+    });
+    
+    document.getElementById('audioUploadCard').addEventListener('dragleave', function() {
+        this.style.borderColor = '#e1e5eb';
+        this.style.backgroundColor = '';
+    });
+    
+    document.getElementById('audioUploadCard').addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#e1e5eb';
+        this.style.backgroundColor = '';
+        alert('Audio files ready for upload!');
+    });
+</script>
+{% endblock %}

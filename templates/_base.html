@@ -14,7 +14,7 @@
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo">
+            <a href="{% url "pages:home" %}" class="logo">
                 <div class="logo-icon floating">
                     <i class="fas fa-church"></i>
                 </div>
@@ -27,44 +27,24 @@
             
             <nav>
                 <ul id="navMenu">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="{% url "units" %}">Units</a></li>
-                    <li><a href="#">Sermons</a></li>
-                    <li><a href="#">Events</a></li>
+                    <li><a href="{% url "pages:home" %}" class="active">Home</a></li>
+                    <li><a href="{% url "pages:units" %}">Units</a></li>
+                    <li><a href="{% url "pages:sermons" %}">Sermons</a></li>
+                    <li><a href="{% url "pages:events" %}">Events</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Connect</a></li>
+                    <li><a href="#">Give</a></li>
                 </ul>
             </nav>
             
-            <button class="nav-btn">Give</button>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="{% url "account_login" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Log In</a>
+                <a href="{% url "account_signup" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Sign up</a>
+            </div>
         </div>
     </header>
 
-    <section class="hero-carousel">
-        <div class="hero-slides">
-            <!-- Slide 1 -->
-            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80')">
-                
-            </div>
-            
-            <!-- Slide 2 -->
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80')">
-                
-            </div>
-            
-            <!-- Slide 3 -->
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1200&q=80')">
-                
-            </div>
-        </div>
-        
-        <!-- Hero Indicators -->
-        <div class="hero-indicators">
-            <div class="hero-indicator active" data-slide="0"></div>
-            <div class="hero-indicator" data-slide="1"></div>
-            <div class="hero-indicator" data-slide="2"></div>
-        </div>
-    </section>
+    
 
     {% block content %}
 
@@ -122,74 +102,73 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-        
-        // Hero carousel functionality
-        const heroSlides = document.querySelectorAll('.hero-slide');
-        const heroIndicators = document.querySelectorAll('.hero-indicator');
-        let currentSlide = 0;
-        
-        function showHeroSlide(index) {
-            // Hide all slides
-            heroSlides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-            
-            // Remove active class from indicators
-            heroIndicators.forEach(indicator => {
-                indicator.classList.remove('active');
-            });
-            
-            // Show selected slide
-            heroSlides[index].classList.add('active');
-            heroIndicators[index].classList.add('active');
-            currentSlide = index;
-        }
-        
-        // Set up indicators
-        heroIndicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                showHeroSlide(index);
-            });
-        });
-        
-        // Auto slide
-        function nextHeroSlide() {
-            let next = currentSlide + 1;
-            if (next >= heroSlides.length) next = 0;
-            showHeroSlide(next);
-        }
-        
-        // Start auto slider
-        setInterval(nextHeroSlide, 6000);
-    </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // --- MOBILE MENU (Single Instance) ---
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+  menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-    <script>
-        // Initialize animations on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create observer for animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeUp 0.8s forwards';
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            // Observe elements
-            document.querySelectorAll('.section-title, .devotion-card, .announcement-card, .audio-card, .executive-card').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
+  // --- HERO CAROUSEL ---
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroIndicators = document.querySelectorAll('.hero-indicator');
+  let heroCurrent = 0;
+  
+  const showHeroSlide = (index) => {
+    heroSlides.forEach(slide => slide.classList.remove('active'));
+    heroIndicators.forEach(indicator => indicator.classList.remove('active'));
+    heroSlides[index].classList.add('active');
+    heroIndicators[index].classList.add('active');
+    heroCurrent = index;
+  };
+  
+  heroIndicators.forEach((indicator, i) => {
+    indicator.addEventListener('click', () => showHeroSlide(i));
+  });
+  
+  showHeroSlide(0); // Initialize first slide
+  setInterval(() => showHeroSlide((heroCurrent + 1) % heroSlides.length), 6000);
+
+  // --- BANNER CAROUSEL ---
+  const bannerSlides = document.querySelectorAll('.banner-slide');
+  const bannerIndicators = document.querySelectorAll('.indicator');
+  let bannerCurrent = 0;
+  
+  const showBannerSlide = (index) => {
+    bannerSlides.forEach(slide => slide.classList.remove('active'));
+    bannerIndicators.forEach(indicator => indicator.classList.remove('active'));
+    bannerSlides[index].classList.add('active');
+    bannerIndicators[index].classList.add('active');
+    bannerCurrent = index;
+  };
+  
+  bannerIndicators.forEach((indicator, i) => {
+    indicator.addEventListener('click', () => showBannerSlide(i));
+  });
+  
+  showBannerSlide(0); // Initialize first slide
+  setInterval(() => showBannerSlide((bannerCurrent + 1) % bannerSlides.length), 5000);
+
+  // --- SCROLL ANIMATIONS (Single Observer) ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeUp 0.8s forwards';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  // Observe all elements at once
+  document.querySelectorAll(
+    '.section-title, .devotion-card, .announcement-card, .audio-card, .executive-card, .link-card, .visitors-content, .visitors-image'
+  ).forEach(el => observer.observe(el));
+
+  // --- HEADER SCROLL EFFECT ---
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 100);
+  });
+});
+</script>
 </body>
 </html>

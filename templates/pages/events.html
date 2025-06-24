@@ -1,0 +1,233 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<div class="events-container">
+    <!-- Hero Section -->
+    <section class="events-hero">
+        <h1>Church Events & Gatherings</h1>
+        <p>Join us for worship, fellowship, and community events throughout the year</p>
+        
+        <a href="#" class="trimester-btn">
+            View Semester Calendar
+            <i class="fas fa-calendar-alt"></i>
+        </a>
+    </section>
+    <br>
+    <br>
+    <!-- Events Grid -->
+    <div class="events-grid">
+        <!-- Event 1 -->
+        <div class="event-card visible">
+            <div class="event-image">
+                <img src="{% static "images/image1.jpg" %}" alt="Summer Picnic">
+                <div class="event-date">
+                    <i class="fas fa-calendar"></i> June 30, 2024
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <h2 class="event-title">Annual Church Picnic</h2>
+                
+                <div class="event-meta">
+                    <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Riverside Park</span>
+                </div>
+                
+                <p class="event-description">
+                    Join us for our much-anticipated annual church picnic! Enjoy food, games, and fellowship in the beautiful outdoors. All are welcome - bring a dish to share!
+                </p>
+                
+                <div class="event-footer">
+                    <span class="event-category">Fellowship</span>
+                    <a href="#" class="event-cta">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 2 -->
+        <div class="event-card visible">
+            <div class="event-image">
+                <img src="{% static "images/image2.jpg" %}" alt="Worship Night">
+                <div class="event-date">
+                    <i class="fas fa-calendar"></i> July 5, 2024
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <h2 class="event-title">Night of Worship</h2>
+                
+                <div class="event-meta">
+                    <span><i class="fas fa-clock"></i> 7:00 PM - 9:00 PM</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Church Sanctuary</span>
+                </div>
+                
+                <p class="event-description">
+                    An evening of powerful worship, prayer, and spiritual renewal. Featuring special guest worship leaders and our full worship team. Come expecting an encounter with God!
+                </p>
+                
+                <div class="event-footer">
+                    <span class="event-category">Worship</span>
+                    <a href="#" class="event-cta">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 3 -->
+        <div class="event-card visible">
+            <div class="event-image">
+                <img src="{% static "images/image3.jpg" %}" alt="Youth Camp">
+                <div class="event-date">
+                    <i class="fas fa-calendar"></i> July 15-20, 2024
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <h2 class="event-title">Youth Summer Camp</h2>
+                
+                <div class="event-meta">
+                    <span><i class="fas fa-clock"></i> All Day</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Mountain Retreat Center</span>
+                </div>
+                
+                <p class="event-description">
+                    Our annual youth camp for ages 12-18. A week of adventure, spiritual growth, and building lifelong friendships. Registration now open - spaces limited!
+                </p>
+                
+                <div class="event-footer">
+                    <span class="event-category">Youth</span>
+                    <a href="#" class="event-cta">
+                        Register Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 4 -->
+        <div class="event-card visible">
+            <div class="event-image">
+                <img src="{% static "images/image4.jpg" %}" alt="Marriage Conference">
+                <div class="event-date">
+                    <i class="fas fa-calendar"></i> August 10-11, 2024
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <h2 class="event-title">Marriage Enrichment Conference</h2>
+                
+                <div class="event-meta">
+                    <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Fellowship Hall</span>
+                </div>
+                
+                <p class="event-description">
+                    A special weekend designed to strengthen marriages. Featuring nationally renowned speakers, workshops, and couple activities. Childcare provided.
+                </p>
+                
+                <div class="event-footer">
+                    <span class="event-category">Family</span>
+                    <a href="#" class="event-cta">
+                        Register Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 5 -->
+        <div class="event-card visible">
+            <div class="event-image">
+                <img src="{% static "images/image5.jpg" %}" alt="Community Service">
+                <div class="event-date">
+                    <i class="fas fa-calendar"></i> August 24, 2024
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <h2 class="event-title">Community Service Day</h2>
+                
+                <div class="event-meta">
+                    <span><i class="fas fa-clock"></i> 8:00 AM - 12:00 PM</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Citywide Locations</span>
+                </div>
+                
+                <p class="event-description">
+                    Join us as we serve our community through various projects - park cleanup, food distribution, home repairs for elderly, and more. All ages welcome!
+                </p>
+                
+                <div class="event-footer">
+                    <span class="event-category">Outreach</span>
+                    <a href="#" class="event-cta">
+                        Volunteer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 6 -->
+        <div class="event-card visible">
+            <div class="event-image">
+                <img src="{% static "images/image6.jpg" %}" alt="Bible Study">
+                <div class="event-date">
+                    <i class="fas fa-calendar"></i> Every Wednesday
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <h2 class="event-title">Bible Study Fellowship</h2>
+                
+                <div class="event-meta">
+                    <span><i class="fas fa-clock"></i> 7:00 PM - 8:30 PM</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Room 203</span>
+                </div>
+                
+                <p class="event-description">
+                    Join our weekly Bible study exploring the Book of Acts. Deepen your understanding of Scripture and grow in fellowship with other believers. No prior experience needed.
+                </p>
+                
+                <div class="event-footer">
+                    <span class="event-category">Study</span>
+                    <a href="#" class="event-cta">
+                        Join Us <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Calendar Banner -->
+    <div class="calendar-banner">
+        <div class="banner-content">
+            <h2>Never Miss an Event</h2>
+            <p>Download our trimester calendar to keep track of all upcoming church events, services, and special programs</p>
+            <a href="#" class="trimester-btn">
+                Download Semester Calendar
+                <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const eventCards = document.querySelectorAll('.event-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        eventCards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+{% endblock %}
