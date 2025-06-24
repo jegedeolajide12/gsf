@@ -1,0 +1,572 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!-- Outreach icons floating in background -->
+<div class="outreach-icon icon-1">✝️</div>
+<div class="outreach-icon icon-2">❤️</div>
+<div class="outreach-icon icon-3">✝️</div>
+<div class="outreach-icon icon-4">❤️</div>
+
+<!-- Header -->
+<header class="admin-header evangelism-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="logo-text">
+                    Grace Community Church
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <div class="user-name">David Thompson</div>
+                    <div class="user-role">Evangelism Coordinator</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Dashboard -->
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">EVANGELISM NAVIGATION</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                Outreach Teams
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                Field Reports
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-map-marked-alt"></i>
+                Mission Areas
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                Event Schedule
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-church"></i>
+                Church Plants
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Evangelism Unit Dashboard</h1>
+                    <p>Coordinate outreach efforts, form evangelism teams, and document testimonies as we spread the Gospel in our community and beyond.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Evangelism Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card evangelism-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3 class="card-title">Form Outreach Groups</h3>
+                        <p class="card-desc">Create and manage evangelism teams for community outreach and mission trips.</p>
+                        <button class="card-btn">Manage Groups <i class="fas fa-users"></i></button>
+                    </div>
+                    
+                    <div class="permission-card evangelism-card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <h3 class="card-title">Submit Field Reports</h3>
+                        <p class="card-desc">Document outreach activities, testimonies, and evangelism outcomes.</p>
+                        <button class="card-btn">Create Report <i class="fas fa-file-upload"></i></button>
+                    </div>
+                    
+                    <div class="permission-card evangelism-card">
+                        <div class="card-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="card-title">Map Mission Areas</h3>
+                        <p class="card-desc">Identify and map strategic locations for focused evangelism efforts.</p>
+                        <button class="card-btn">View Mission Map <i class="fas fa-map"></i></button>
+                    </div>
+                    
+                    <div class="permission-card evangelism-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="card-title">Schedule Outreach</h3>
+                        <p class="card-desc">Plan and coordinate evangelism events and community outreach programs.</p>
+                        <button class="card-btn">Schedule Events <i class="fas fa-calendar-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Management Section -->
+            <div class="group-manager">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-user-friends"></i>
+                        <h2>Outreach Groups</h2>
+                    </div>
+                    <button class="card-btn" id="createGroupBtn">
+                        <i class="fas fa-plus"></i> New Group
+                    </button>
+                </div>
+                <div class="group-grid">
+                    <div class="group-card">
+                        <div class="group-header">
+                            <div class="group-title">Downtown Street Evangelism</div>
+                            <div class="group-size">8 Members</div>
+                        </div>
+                        <div class="group-details">
+                            Focuses on reaching homeless and urban communities in the city center.
+                        </div>
+                        <div class="group-members">
+                            <div class="member-avatar">DT</div>
+                            <div class="member-avatar">MJ</div>
+                            <div class="member-avatar">SP</div>
+                            <div class="member-avatar">KL</div>
+                            <div class="member-avatar">+4</div>
+                        </div>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Manage</button>
+                    </div>
+                    
+                    <div class="group-card">
+                        <div class="group-header">
+                            <div class="group-title">Campus Ministry Team</div>
+                            <div class="group-size">6 Members</div>
+                        </div>
+                        <div class="group-details">
+                            Engages with students at City University through events and personal evangelism.
+                        </div>
+                        <div class="group-members">
+                            <div class="member-avatar">BT</div>
+                            <div class="member-avatar">RS</div>
+                            <div class="member-avatar">AC</div>
+                            <div class="member-avatar">+3</div>
+                        </div>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Manage</button>
+                    </div>
+                    
+                    <div class="group-card">
+                        <div class="group-header">
+                            <div class="group-title">Suburban Outreach</div>
+                            <div class="group-size">5 Members</div>
+                        </div>
+                        <div class="group-details">
+                            Focuses on neighborhood evangelism and community events in residential areas.
+                        </div>
+                        <div class="group-members">
+                            <div class="member-avatar">DG</div>
+                            <div class="member-avatar">MP</div>
+                            <div class="member-avatar">+3</div>
+                        </div>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Manage</button>
+                    </div>
+                    
+                    <div class="group-card">
+                        <div class="group-header">
+                            <div class="group-title">Prison Ministry</div>
+                            <div class="group-size">7 Members</div>
+                        </div>
+                        <div class="group-details">
+                            Brings the Gospel to correctional facilities and supports families of inmates.
+                        </div>
+                        <div class="group-members">
+                            <div class="member-avatar">DM</div>
+                            <div class="member-avatar">JT</div>
+                            <div class="member-avatar">LP</div>
+                            <div class="member-avatar">+4</div>
+                        </div>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Manage</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Submission Section -->
+            <div class="report-form">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-file-medical"></i>
+                        <h2>Submit Field Report</h2>
+                    </div>
+                </div>
+                <form id="reportForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reportTitle">Report Title</label>
+                            <input type="text" id="reportTitle" class="form-control" placeholder="Downtown Outreach Results" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reportGroup">Associated Group</label>
+                            <select id="reportGroup" class="form-control">
+                                <option value="">Select Group</option>
+                                <option value="downtown">Downtown Street Evangelism</option>
+                                <option value="campus">Campus Ministry Team</option>
+                                <option value="suburban">Suburban Outreach</option>
+                                <option value="prison">Prison Ministry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reportDate">Date of Outreach</label>
+                            <input type="date" id="reportDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reportLocation">Location</label>
+                            <input type="text" id="reportLocation" class="form-control" placeholder="City Center Plaza" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="reportSummary">Outreach Summary</label>
+                            <textarea id="reportSummary" class="form-control" placeholder="Describe the outreach activities, people encountered, and overall experience..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="reportTestimonies">Testimonies and Results</label>
+                            <textarea id="reportTestimonies" class="form-control" placeholder="Share specific testimonies, conversions, and spiritual breakthroughs..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactsMade">Contacts Made</label>
+                            <input type="number" id="contactsMade" class="form-control" placeholder="25" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="decisionsMade">Decisions for Christ</label>
+                            <input type="number" id="decisionsMade" class="form-control" placeholder="3" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="followUpNeeded">Follow-up Needed</label>
+                            <input type="number" id="followUpNeeded" class="form-control" placeholder="8" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reportPhoto">Add Photos (Optional)</label>
+                            <input type="file" id="reportPhoto" class="form-control" accept="image/*">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button type="reset" class="cancel-btn">Clear Form</button>
+                        <button type="submit" class="submit-btn">Submit Report <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Recent Reports Section -->
+            <div class="report-list">
+                <div class="section-title">
+                    <i class="fas fa-history"></i>
+                    <h2>Recent Field Reports</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div class="report-title">University Campus Outreach</div>
+                            <div class="report-meta">July 12, 2024 | Campus Ministry Team</div>
+                        </div>
+                        <div class="report-content">
+                            <p>Engaged with students during orientation week. Set up an information booth and had meaningful conversations with over 50 students. Distributed 120 copies of the Gospel of John.</p>
+                            <p><strong>Notable Testimony:</strong> Sarah, a freshman biology major, shared that she's been searching for meaning and was open to learning more about Jesus. Scheduled a follow-up meeting.</p>
+                        </div>
+                        <div class="report-stats">
+                            <div class="stat-badge">
+                                <i class="fas fa-handshake"></i> 52 Contacts
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-pray"></i> 4 Decisions
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-calendar-check"></i> 7 Follow-ups
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div class="report-title">Homeless Ministry at City Park</div>
+                            <div class="report-meta">July 8, 2024 | Downtown Street Evangelism</div>
+                        </div>
+                        <div class="report-content">
+                            <p>Distributed 45 care packages containing food, water, and hygiene products. Shared the Gospel with 18 individuals. Prayed with 9 who requested prayer for various needs.</p>
+                            <p><strong>Notable Testimony:</strong> James, who has been homeless for 3 years, tearfully accepted Christ after hearing the Gospel. Connected him with a local shelter and recovery program.</p>
+                        </div>
+                        <div class="report-stats">
+                            <div class="stat-badge">
+                                <i class="fas fa-handshake"></i> 18 Contacts
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-pray"></i> 2 Decisions
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-utensils"></i> 45 Packages
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div class="report-title">Neighborhood BBQ Outreach</div>
+                            <div class="report-meta">July 3, 2024 | Suburban Outreach</div>
+                        </div>
+                        <div class="report-content">
+                            <p>Hosted a community BBQ at Maple Street Park. Served meals to approximately 120 neighbors. Shared the Gospel through personal conversations and a short message after the meal.</p>
+                            <p><strong>Notable Testimony:</strong> The Johnson family, new to the neighborhood, expressed gratitude for the warm welcome and asked about our church services. They plan to visit this Sunday.</p>
+                        </div>
+                        <div class="report-stats">
+                            <div class="stat-badge">
+                                <i class="fas fa-users"></i> 120 Attended
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-handshake"></i> 35 Gospel Shares
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-church"></i> 5 Visitors Expected
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Statistics -->
+            <div class="stats-section impact-stats">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Evangelism Impact</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">1,248</div>
+                            <div class="stat-label">Gospel Shares</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-pray"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">87</div>
+                            <div class="stat-label">Decisions for Christ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">32</div>
+                            <div class="stat-label">Outreach Groups</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">64</div>
+                            <div class="stat-label">Outreach Events</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Training Resources</a>
+                <a href="#">Evangelism Tools</a>
+                <a href="#">Testimony Archive</a>
+                <a href="#">Contact Pastors</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Report form submission
+    document.getElementById('reportForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const reportTitle = document.getElementById('reportTitle').value;
+        
+        // Show loading state on button
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        submitBtn.disabled = true;
+        
+        // Simulate submission
+        setTimeout(() => {
+            alert(`"${reportTitle}" report submitted successfully!`);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.reset();
+            
+            // Add to report list temporarily
+            const reportList = document.querySelector('.report-list .activity-list');
+            const newReport = document.createElement('div');
+            newReport.className = 'report-item highlight-card';
+            newReport.innerHTML = `
+                <div class="report-header">
+                    <div class="report-title">${reportTitle}</div>
+                    <div class="report-meta">Today | New Report</div>
+                </div>
+                <div class="report-content">
+                    <p>${document.getElementById('reportSummary').value.substring(0, 150)}...</p>
+                </div>
+                <div class="report-stats">
+                    <div class="stat-badge">
+                        <i class="fas fa-handshake"></i> ${document.getElementById('contactsMade').value || '0'} Contacts
+                    </div>
+                    <div class="stat-badge">
+                        <i class="fas fa-pray"></i> ${document.getElementById('decisionsMade').value || '0'} Decisions
+                    </div>
+                </div>
+            `;
+            reportList.prepend(newReport);
+            
+            // Remove highlight after animation
+            setTimeout(() => {
+                newReport.classList.remove('highlight-card');
+            }, 2000);
+            
+            // Update stats
+            const gospelShares = document.querySelector('.impact-stats .stat-number:first-child');
+            gospelShares.textContent = parseInt(gospelShares.textContent) + parseInt(document.getElementById('contactsMade').value || 0);
+            
+            const decisions = document.querySelectorAll('.impact-stats .stat-number')[1];
+            decisions.textContent = parseInt(decisions.textContent) + parseInt(document.getElementById('decisionsMade').value || 0);
+        }, 1500);
+    });
+    
+    // Create new group
+    document.getElementById('createGroupBtn').addEventListener('click', function() {
+        const groupName = prompt("Enter a name for the new outreach group:");
+        if (groupName) {
+            // Add new group card
+            const groupGrid = document.querySelector('.group-grid');
+            const newGroup = document.createElement('div');
+            newGroup.className = 'group-card highlight-card';
+            newGroup.innerHTML = `
+                <div class="group-header">
+                    <div class="group-title">${groupName}</div>
+                    <div class="group-size">0 Members</div>
+                </div>
+                <div class="group-details">
+                    New group - add details and members
+                </div>
+                <div class="group-members">
+                    <div class="member-avatar add-member"><i class="fas fa-plus"></i></div>
+                </div>
+                <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Manage</button>
+            `;
+            groupGrid.appendChild(newGroup);
+            
+            // Highlight new card
+            setTimeout(() => {
+                newGroup.classList.remove('highlight-card');
+            }, 2000);
+            
+            // Update stats
+            const groupsStat = document.querySelectorAll('.impact-stats .stat-number')[2];
+            groupsStat.textContent = parseInt(groupsStat.textContent) + 1;
+            
+            alert(`"${groupName}" has been created. You can now add members and details.`);
+        }
+    });
+    
+    // Permission card interactions
+    document.querySelectorAll('.evangelism-card .card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.permission-card');
+            const title = card.querySelector('.card-title').textContent;
+            
+            // Add loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Opening ${title} interface...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Special handling for different permissions
+                if (title.includes("Groups")) {
+                    document.querySelector('.group-manager').classList.add('highlight-card');
+                    setTimeout(() => {
+                        document.querySelector('.group-manager').classList.remove('highlight-card');
+                    }, 2000);
+                } else if (title.includes("Reports")) {
+                    document.querySelector('.report-form').classList.add('highlight-card');
+                    setTimeout(() => {
+                        document.querySelector('.report-form').classList.remove('highlight-card');
+                    }, 2000);
+                }
+            }, 1000);
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+</script>
+{% endblock %}

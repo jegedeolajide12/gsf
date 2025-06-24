@@ -20,3 +20,8 @@ def bible_study_dashboard(request):
 def kpt_dashboard(request):
     context = {}
     return render(request, 'account/admin/kpt_dashboard.html', context)
+
+
+def evangelism_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/evangelism_dashboard.html', context)
