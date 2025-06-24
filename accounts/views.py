@@ -25,3 +25,9 @@ def kpt_dashboard(request):
 def evangelism_dashboard(request):
     context = {}
     return render(request, 'account/admin/evangelism_dashboard.html', context)
+
+
+
+def ushering_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/ushering_dashboard.html', context)

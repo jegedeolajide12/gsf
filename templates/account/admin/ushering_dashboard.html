@@ -1,0 +1,497 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!-- Dashboard -->
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">USHERING NAVIGATION</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                Service Schedule
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-clipboard-list"></i>
+                Attendance Records
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                Usher Team
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-door-open"></i>
+                Seating Management
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-book"></i>
+                Usher Manual
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Ushering Unit Dashboard</h1>
+                    <p>Manage service attendance, coordinate usher assignments, and ensure smooth operations during worship services.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Ushering Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card ushering-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="card-title">Post Attendance</h3>
+                        <p class="card-desc">Record and submit attendance numbers for each service.</p>
+                        <button class="card-btn" id="postAttendanceBtn">Post Attendance <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="permission-card ushering-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="card-title">View Service Schedule</h3>
+                        <p class="card-desc">Access the complete schedule of upcoming services and events.</p>
+                        <button class="card-btn" id="viewScheduleBtn">View Schedule <i class="fas fa-calendar"></i></button>
+                    </div>
+                    
+                    <div class="permission-card ushering-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <h3 class="card-title">Assign Work Schedules</h3>
+                        <p class="card-desc">Create and manage usher assignments for all services.</p>
+                        <button class="card-btn" id="assignScheduleBtn">Assign Schedules <i class="fas fa-tasks"></i></button>
+                    </div>
+                    
+                    <div class="permission-card ushering-card">
+                        <div class="card-icon">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <h3 class="card-title">Manage Seating</h3>
+                        <p class="card-desc">Oversee seating arrangements and capacity management.</p>
+                        <button class="card-btn">Seating Plan <i class="fas fa-chair"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Panel -->
+            <div class="attendance-panel">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Service Attendance</h2>
+                    </div>
+                </div>
+                <div class="attendance-actions">
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="action-title">Record Attendance</div>
+                        <div class="action-desc">Submit attendance numbers for completed services</div>
+                        <button class="card-btn">Record Now <i class="fas fa-pen"></i></button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="action-title">View Attendance Trends</div>
+                        <div class="action-desc">Analyze attendance patterns over time</div>
+                        <button class="card-btn">View Reports <i class="fas fa-chart-bar"></i></button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <div class="action-title">Export Attendance Data</div>
+                        <div class="action-desc">Download attendance records for reporting</div>
+                        <button class="card-btn">Export Data <i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Management -->
+            <div class="schedule-manager">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Service Schedule</h2>
+                    </div>
+                    <div class="week-navigation">
+                        <div class="week-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="current-week">July 15 - July 21, 2024</div>
+                        <div class="week-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-grid">
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-title">Sunday</div>
+                            <div class="day-date">July 15</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-time">8:00 AM - 9:30 AM</div>
+                            <div class="service-title">First Service</div>
+                            <div class="service-assignments">
+                                <div class="assignment">
+                                    <div class="assignment-role">Lead Usher</div>
+                                    <div class="assignment-name">Robert Johnson</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                                <div class="assignment">
+                                    <div class="assignment-role">Doors</div>
+                                    <div class="assignment-name">Sarah Williams</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                                <div class="assignment">
+                                    <div class="assignment-role">Seating</div>
+                                    <div class="assignment-name">Michael Chen</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-time">11:00 AM - 12:30 PM</div>
+                            <div class="service-title">Second Service</div>
+                            <div class="service-assignments">
+                                <div class="assignment">
+                                    <div class="assignment-role">Lead Usher</div>
+                                    <div class="assignment-name">David Thompson</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                                <div class="assignment">
+                                    <div class="assignment-role">Doors</div>
+                                    <div class="assignment-name">Emily Rodriguez</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-title">Wednesday</div>
+                            <div class="day-date">July 18</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-time">7:00 PM - 8:30 PM</div>
+                            <div class="service-title">Midweek Service</div>
+                            <div class="service-assignments">
+                                <div class="assignment">
+                                    <div class="assignment-role">Lead Usher</div>
+                                    <div class="assignment-name">Jennifer Lee</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                                <div class="assignment">
+                                    <div class="assignment-role">Doors</div>
+                                    <div class="assignment-name">Thomas Brown</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-title">Saturday</div>
+                            <div class="day-date">July 21</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-time">6:00 PM - 8:00 PM</div>
+                            <div class="service-title">Youth Service</div>
+                            <div class="service-assignments">
+                                <div class="assignment">
+                                    <div class="assignment-role">Lead Usher</div>
+                                    <div class="assignment-name">Marcus Green</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                                <div class="assignment">
+                                    <div class="assignment-role">Doors</div>
+                                    <div class="assignment-name">Olivia White</div>
+                                    <div class="assignment-actions">
+                                        <div class="assignment-btn"><i class="fas fa-edit"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignment Form -->
+            <div class="assignment-form">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-user-clock"></i>
+                        <h2>Assign Usher Schedule</h2>
+                    </div>
+                </div>
+                <form id="assignmentForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="assignService">Select Service</label>
+                            <select id="assignService" class="form-control" required>
+                                <option value="">Choose a service</option>
+                                <option value="sun-am">Sunday 8:00 AM Service</option>
+                                <option value="sun-pm">Sunday 11:00 AM Service</option>
+                                <option value="wed">Wednesday 7:00 PM Service</option>
+                                <option value="sat-youth">Saturday 6:00 PM Youth Service</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="assignUsher">Select Usher</label>
+                            <select id="assignUsher" class="form-control" required>
+                                <option value="">Choose an usher</option>
+                                <option value="rj">Robert Johnson</option>
+                                <option value="sw">Sarah Williams</option>
+                                <option value="mc">Michael Chen</option>
+                                <option value="dt">David Thompson</option>
+                                <option value="er">Emily Rodriguez</option>
+                                <option value="jl">Jennifer Lee</option>
+                                <option value="tb">Thomas Brown</option>
+                                <option value="mg">Marcus Green</option>
+                                <option value="ow">Olivia White</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="assignRole">Role</label>
+                            <select id="assignRole" class="form-control" required>
+                                <option value="">Select role</option>
+                                <option value="lead">Lead Usher</option>
+                                <option value="doors">Doors</option>
+                                <option value="seating">Seating</option>
+                                <option value="offering">Offering Collection</option>
+                                <option value="info">Information Desk</option>
+                                <option value="safety">Safety & Security</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="assignDate">Service Date</label>
+                            <input type="date" id="assignDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="assignNotes">Special Instructions</label>
+                            <textarea id="assignNotes" class="form-control" placeholder="Any special instructions for this assignment..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button type="reset" class="cancel-btn">Clear Form</button>
+                        <button type="submit" class="submit-btn">Assign Schedule <i class="fas fa-check-circle"></i></button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section ushering-stats">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Ushering Metrics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">18</div>
+                            <div class="stat-label">Usher Team Members</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Services This Month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">64</div>
+                            <div class="stat-label">Assigned Roles</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">96%</div>
+                            <div class="stat-label">Schedule Completion</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Usher Guidelines</a>
+                <a href="#">Training Materials</a>
+                <a href="#">Service Calendar</a>
+                <a href="#">Contact Coordinator</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Permission buttons functionality
+    document.getElementById('postAttendanceBtn').addEventListener('click', function() {
+        // Scroll to attendance panel
+        document.querySelector('.attendance-panel').scrollIntoView({ behavior: 'smooth' });
+        
+        // Highlight panel
+        const panel = document.querySelector('.attendance-panel');
+        panel.classList.add('highlight-card');
+        setTimeout(() => {
+            panel.classList.remove('highlight-card');
+        }, 2000);
+    });
+    
+    document.getElementById('viewScheduleBtn').addEventListener('click', function() {
+        // Scroll to schedule manager
+        document.querySelector('.schedule-manager').scrollIntoView({ behavior: 'smooth' });
+        
+        // Highlight panel
+        const panel = document.querySelector('.schedule-manager');
+        panel.classList.add('highlight-card');
+        setTimeout(() => {
+            panel.classList.remove('highlight-card');
+        }, 2000);
+    });
+    
+    document.getElementById('assignScheduleBtn').addEventListener('click', function() {
+        // Scroll to assignment form
+        document.querySelector('.assignment-form').scrollIntoView({ behavior: 'smooth' });
+        
+        // Highlight form
+        const form = document.querySelector('.assignment-form');
+        form.classList.add('highlight-card');
+        setTimeout(() => {
+            form.classList.remove('highlight-card');
+        }, 2000);
+    });
+    
+    // Assignment form submission
+    document.getElementById('assignmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const usher = document.getElementById('assignUsher').selectedOptions[0].text;
+        const role = document.getElementById('assignRole').selectedOptions[0].text;
+        
+        // Show loading state on button
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Assigning...';
+        submitBtn.disabled = true;
+        
+        // Simulate submission
+        setTimeout(() => {
+            alert(`${usher} has been assigned as ${role} for the selected service!`);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.reset();
+            
+            // Update stats
+            const assignmentsStat = document.querySelector('.ushering-stats .stat-icon + .stat-content .stat-number:nth-child(3)');
+            assignmentsStat.textContent = parseInt(assignmentsStat.textContent) + 1;
+        }, 1500);
+    });
+    
+    // Week navigation
+    const weekBtns = document.querySelectorAll('.week-btn');
+    const currentWeekEl = document.querySelector('.current-week');
+    
+    weekBtns[0].addEventListener('click', () => {
+        // Previous week logic
+        alert("Loading previous week's schedule...");
+    });
+    
+    weekBtns[1].addEventListener('click', () => {
+        // Next week logic
+        alert("Loading next week's schedule...");
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+</script>
+{% endblock %}

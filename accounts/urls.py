@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
     publicity_dashboard, technical_dashboard, bible_study_dashboard, kpt_dashboard,
-    evangelism_dashboard
+    evangelism_dashboard, ushering_dashboard
 )
 
 app_name = 'accounts'
@@ -13,5 +13,6 @@ urlpatterns = [
     path('accounts/bible-study-unit/dashboard/', bible_study_dashboard, name="bible_study_dashboard"),
     path('accounts/kpt-unit/dashboard/', kpt_dashboard, name="kpt_dashboard"),
     path('accounts/evangelism-unit/dashboard/', evangelism_dashboard, name="evangelism_dashboard"),
+    path('accounts/ushering-unit/dashboard/', ushering_dashboard, name="ushering_dashboard"),
 
 ]
