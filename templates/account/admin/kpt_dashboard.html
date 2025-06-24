@@ -1,0 +1,428 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+
+{% block content %}
+<!-- Dashboard -->
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">CHOIR NAVIGATION</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-list-music"></i>
+                Song Repository
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                Service Schedule
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-microphone-alt"></i>
+                Soloist Assignments
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-file-audio"></i>
+                Recordings
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                Choir Members
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Choir Unit Dashboard</h1>
+                    <p>Lead worship through music by managing the choir's repertoire, publishing song lists, and sharing lyrics with the congregation.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Choir Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card choir-card">
+                        <div class="card-icon">
+                            <i class="fas fa-list-music"></i>
+                        </div>
+                        <h3 class="card-title">Publish Song Lists</h3>
+                        <p class="card-desc">Create and publish song lists for upcoming services, events, and special programs.</p>
+                        <button class="card-btn">Manage Song Lists <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="permission-card choir-card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="card-title">Share Lyrics</h3>
+                        <p class="card-desc">Upload and share song lyrics with the congregation for worship participation.</p>
+                        <button class="card-btn">Manage Lyrics <i class="fas fa-file-upload"></i></button>
+                    </div>
+                    
+                    <div class="permission-card choir-card">
+                        <div class="card-icon">
+                            <i class="fas fa-folder-plus"></i>
+                        </div>
+                        <h3 class="card-title">Build Repertoire</h3>
+                        <p class="card-desc">Add new songs to the choir's repertoire library for future services.</p>
+                        <button class="card-btn">Add New Songs <i class="fas fa-plus-circle"></i></button>
+                    </div>
+                    
+                    <div class="permission-card choir-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="card-title">Service Planning</h3>
+                        <p class="card-desc">Plan and schedule songs for regular services and special events.</p>
+                        <button class="card-btn">Plan Services <i class="fas fa-calendar-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Song Manager -->
+            <div class="song-manager">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-plus-circle"></i>
+                        <h2>Add New Song</h2>
+                    </div>
+                </div>
+                <form class="song-form" id="songForm">
+                    <div class="form-group">
+                        <label for="songTitle">Song Title</label>
+                        <input type="text" id="songTitle" class="form-control" placeholder="Amazing Grace" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="songArtist">Artist/Composer</label>
+                        <input type="text" id="songArtist" class="form-control" placeholder="John Newton">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="songCategory">Category</label>
+                        <select id="songCategory" class="form-control">
+                            <option value="">Select Category</option>
+                            <option value="hymn">Hymn</option>
+                            <option value="contemporary">Contemporary</option>
+                            <option value="gospel">Gospel</option>
+                            <option value="chorus">Chorus</option>
+                            <option value="special">Special Music</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="songKey">Musical Key</label>
+                        <input type="text" id="songKey" class="form-control" placeholder="C Major">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="songLyrics">Lyrics</label>
+                        <textarea id="songLyrics" class="form-control" placeholder="Enter song lyrics line by line..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="songSheetMusic">Sheet Music (Optional)</label>
+                        <input type="file" id="songSheetMusic" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="songAudio">Audio Reference (Optional)</label>
+                        <input type="file" id="songAudio" class="form-control" accept="audio/*">
+                    </div>
+                    
+                    <div class="submit-section">
+                        <button type="reset" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="publish-btn">Publish Song <i class="fas fa-cloud-upload-alt"></i></button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Published Songs Section -->
+            <div class="song-list">
+                <div class="section-title">
+                    <i class="fas fa-list-music"></i>
+                    <h2>Published Songs</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="song-item">
+                        <div class="song-header">
+                            <div class="song-title">Amazing Grace</div>
+                            <div class="song-meta">Traditional Hymn | Key: G Major</div>
+                        </div>
+                        <div class="song-meta">Composer: John Newton | Published: June 15, 2024</div>
+                        <div class="song-lyrics">
+                            Amazing grace! How sweet the sound<br>
+                            That saved a wretch like me!<br>
+                            I once was lost, but now am found;<br>
+                            Was blind, but now I see.
+                        </div>
+                        <div class="song-actions">
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-header">
+                            <div class="song-title">How Great Is Our God</div>
+                            <div class="song-meta">Contemporary Worship | Key: D Major</div>
+                        </div>
+                        <div class="song-meta">Composer: Chris Tomlin | Published: June 10, 2024</div>
+                        <div class="song-lyrics">
+                            The splendor of a King, clothed in majesty<br>
+                            Let all the earth rejoice, all the earth rejoice<br>
+                            He wraps Himself in light, and darkness tries to hide<br>
+                            And trembles at His voice, trembles at His voice
+                        </div>
+                        <div class="song-actions">
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-header">
+                            <div class="song-title">Great Is Thy Faithfulness</div>
+                            <div class="song-meta">Classic Hymn | Key: F Major</div>
+                        </div>
+                        <div class="song-meta">Composer: Thomas Chisholm | Published: June 5, 2024</div>
+                        <div class="song-lyrics">
+                            Great is Thy faithfulness, O God my Father<br>
+                            There is no shadow of turning with Thee<br>
+                            Thou changest not, Thy compassions, they fail not<br>
+                            As Thou hast been, Thou forever will be
+                        </div>
+                        <div class="song-actions">
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section repertoire-stats">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Repertoire Statistics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">142</div>
+                            <div class="stat-label">Songs in Library</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">87</div>
+                            <div class="stat-label">Lyrics Published</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Services Planned</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">32</div>
+                            <div class="stat-label">Choir Members</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Music Resources</a>
+                <a href="#">Copyright Info</a>
+                <a href="#">Practice Schedules</a>
+                <a href="#">Contact Director</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Song form submission
+    document.getElementById('songForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const songTitle = document.getElementById('songTitle').value;
+        
+        // Show loading state on button
+        const submitBtn = this.querySelector('.publish-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+        submitBtn.disabled = true;
+        
+        // Simulate publishing
+        setTimeout(() => {
+            alert(`"${songTitle}" has been added to the choir repertoire!`);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.reset();
+            
+            // Add to song list temporarily
+            const songList = document.querySelector('.song-list .activity-list');
+            const newSong = document.createElement('div');
+            newSong.className = 'song-item highlight-card';
+            newSong.innerHTML = `
+                <div class="song-header">
+                    <div class="song-title">${songTitle}</div>
+                    <div class="song-meta">New Song | Key: ${document.getElementById('songKey').value || 'Not specified'}</div>
+                </div>
+                <div class="song-meta">Composer: ${document.getElementById('songArtist').value || 'Unknown'} | Published: Just now</div>
+                <div class="song-lyrics">${document.getElementById('songLyrics').value.substring(0, 100)}...</div>
+                <div class="song-actions">
+                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            `;
+            songList.prepend(newSong);
+            
+            // Remove highlight after animation
+            setTimeout(() => {
+                newSong.classList.remove('highlight-card');
+            }, 2000);
+            
+            // Update stats
+            const songCount = document.querySelector('.repertoire-stats .stat-number:first-child');
+            songCount.textContent = parseInt(songCount.textContent) + 1;
+        }, 1500);
+    });
+    
+    // Song deletion
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const songItem = this.closest('.song-item');
+            const songTitle = songItem.querySelector('.song-title').textContent;
+            
+            if (confirm(`Are you sure you want to delete "${songTitle}" from the repertoire?`)) {
+                songItem.classList.add('highlight-card');
+                setTimeout(() => {
+                    songItem.style.opacity = '0';
+                    setTimeout(() => {
+                        songItem.remove();
+                        
+                        // Update stats
+                        const songCount = document.querySelector('.repertoire-stats .stat-number:first-child');
+                        songCount.textContent = parseInt(songCount.textContent) - 1;
+                    }, 500);
+                }, 1000);
+            }
+        });
+    });
+    
+    // Song editing
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const songItem = this.closest('.song-item');
+            const songTitle = songItem.querySelector('.song-title').textContent;
+            
+            // Fill form with song data (simulated)
+            document.getElementById('songTitle').value = songTitle;
+            document.getElementById('songLyrics').value = "Amazing grace! How sweet the sound\nThat saved a wretch like me!\nI once was lost, but now am found;\nWas blind, but now I see.";
+            
+            // Scroll to form
+            document.querySelector('.song-manager').scrollIntoView({ behavior: 'smooth' });
+            
+            // Highlight form
+            const form = document.querySelector('.song-manager');
+            form.classList.add('highlight-card');
+            setTimeout(() => {
+                form.classList.remove('highlight-card');
+            }, 2000);
+        });
+    });
+    
+    // Permission card interactions
+    document.querySelectorAll('.choir-card .card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.permission-card');
+            const title = card.querySelector('.card-title').textContent;
+            
+            // Add loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Opening ${title} management interface...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Special handling for song lists permission
+                if (title.includes("Song Lists")) {
+                    document.querySelector('.song-list').classList.add('highlight-card');
+                    setTimeout(() => {
+                        document.querySelector('.song-list').classList.remove('highlight-card');
+                    }, 2000);
+                }
+            }, 1000);
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+</script>
+{% endblock %}

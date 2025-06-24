@@ -4231,3 +4231,442 @@ label {
 .permission-card:nth-child(3) { animation-delay: 0.2s; }
 .upload-card:nth-child(1) { animation-delay: 0.1s; }
 .upload-card:nth-child(2) { animation-delay: 0.2s; }
+
+
+
+
+/* BIBLE-STUDY DASHBOARD */
+
+
+/* New Styles for Bible Study Dashboard */
+.bible-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+}
+
+.bible-card .card-icon {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--accent);
+}
+
+.bible-card .card-btn {
+    background: var(--accent);
+}
+
+.bible-card .card-btn:hover {
+    background: var(--primary-dark);
+}
+
+.quick-post-panel {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.post-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.post-option {
+    border: 2px solid #e1e5eb;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.post-option:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.post-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.discussion-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.discussion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.discussion-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.discussion-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(42, 157, 143, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-right: 15px;
+}
+
+.discussion-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+.discussion-meta {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.discussion-content {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.comment-section {
+    background: #f9fbfd;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.comment-form {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.comment-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 2px solid #e1e5eb;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+}
+
+.comment-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.comment-btn:hover {
+    background: var(--primary-dark);
+}
+
+.bible-stats .stat-icon {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--accent);
+}
+
+.bible-stats .stat-number {
+    color: var(--primary-dark);
+}
+
+.highlight-card {
+    animation: highlightPulse 2s ease-in-out;
+}
+
+@keyframes highlightPulse {
+    0% { box-shadow: 0 0 0 0 rgba(42, 157, 143, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(42, 157, 143, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(42, 157, 143, 0); }
+}
+
+.resource-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: rgba(233, 196, 106, 0.15);
+    color: #d4a017;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .comment-form {
+        flex-direction: column;
+    }
+    
+    .comment-btn {
+        padding: 12px;
+    }
+}
+
+
+/* KPT DASHBOARD */
+.choir-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+}
+
+.choir-card .card-icon {
+    background: rgba(106, 13, 173, 0.1);
+    color: var(--primary);
+}
+
+.choir-card .card-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.choir-card .card-btn:hover {
+    background: var(--primary-dark);
+}
+
+.song-manager {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.song-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e1e5eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: var(--transition);
+    background: var(--light);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-section {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.song-list {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.song-item {
+    padding: 20px;
+    border-radius: 12px;
+    background: #fbf9ff;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-light);
+    transition: var(--transition);
+}
+
+.song-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(106, 13, 173, 0.1);
+}
+
+.song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.song-title {
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.song-meta {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.song-lyrics {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f5ff;
+    border-radius: 8px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.song-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.edit-btn {
+    background: rgba(147, 112, 219, 0.1);
+    color: var(--primary);
+}
+
+.edit-btn:hover {
+    background: var(--primary-light);
+    color: white;
+}
+
+.delete-btn {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+.publish-btn {
+    background: var(--primary);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.publish-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+}
+
+.cancel-btn {
+    background: #e1e5eb;
+    color: #6c757d;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background: #d1d5db;
+}
+
+.repertoire-stats .stat-icon {
+    background: rgba(106, 13, 173, 0.1);
+    color: var(--primary);
+}
+
+.repertoire-stats .stat-number {
+    color: var(--primary-dark);
+}
+
+.highlight-card {
+    animation: highlightPulse 2s ease-in-out;
+}
+
+@keyframes highlightPulse {
+    0% { box-shadow: 0 0 0 0 rgba(106, 13, 173, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(106, 13, 173, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(106, 13, 173, 0); }
+}
+
+.musical-note {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    animation: floatNote 8s infinite ease-in-out;
+}
+
+@keyframes floatNote {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(10deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.musical-note-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.musical-note-2 { top: 40%; right: 15%; animation-delay: 1s; }
+.musical-note-3 { bottom: 30%; left: 20%; animation-delay: 2s; }
+.musical-note-4 { bottom: 15%; right: 25%; animation-delay: 3s; }
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .song-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group.full-width, .submit-section {
+        grid-column: span 1;
+    }
+}

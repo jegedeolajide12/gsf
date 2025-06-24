@@ -12,3 +12,11 @@ def publicity_dashboard(request):
 def technical_dashboard(request):
     context = {}
     return render(request, 'account/admin/technical_dashboard.html', context)
+
+def bible_study_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/bible_study_dashboard.html', context)
+
+def kpt_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/kpt_dashboard.html', context)

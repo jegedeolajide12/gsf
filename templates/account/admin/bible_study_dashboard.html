@@ -1,0 +1,409 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">BIBLE STUDY NAVIGATION</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-book-open"></i>
+                Study Materials
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-pray"></i>
+                Devotionals
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                Discussion Groups
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                Sunday School
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-history"></i>
+                Study Archive
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Bible Study Unit Dashboard</h1>
+                    <p>Deepen the congregation's understanding of Scripture through study guides, devotionals, and meaningful discussions. Equip believers for spiritual growth.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-cross"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Study Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card bible-card">
+                        <div class="card-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="card-title">Post Study Guides</h3>
+                        <p class="card-desc">Create and publish in-depth Bible study guides for small groups and individual study.</p>
+                        <button class="card-btn">Create Guide <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="permission-card bible-card">
+                        <div class="card-icon">
+                            <i class="fas fa-praying-hands"></i>
+                        </div>
+                        <h3 class="card-title">Publish Devotionals</h3>
+                        <p class="card-desc">Write and share daily devotionals to encourage spiritual growth throughout the week.</p>
+                        <button class="card-btn">Write Devotional <i class="fas fa-feather-alt"></i></button>
+                    </div>
+                    
+                    <div class="permission-card bible-card">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="card-title">Create Discussion Outlines</h3>
+                        <p class="card-desc">Develop discussion frameworks for Bible study groups and fellowship meetings.</p>
+                        <button class="card-btn">Build Outline <i class="fas fa-list-ul"></i></button>
+                    </div>
+                    
+                    <div class="permission-card bible-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chalkboard"></i>
+                        </div>
+                        <h3 class="card-title">Upload Sunday School Materials</h3>
+                        <p class="card-desc">Provide age-appropriate Bible lessons and teaching resources for Sunday School.</p>
+                        <button class="card-btn">Upload Materials <i class="fas fa-file-upload"></i></button>
+                    </div>
+                    
+                    <div class="permission-card bible-card">
+                        <div class="card-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3 class="card-title">Participate in Discussions</h3>
+                        <p class="card-desc">Engage with study group discussions, answer questions, and provide spiritual guidance.</p>
+                        <button class="card-btn">Join Discussion <i class="fas fa-comments"></i></button>
+                    </div>
+                    
+                    <div class="permission-card bible-card">
+                        <div class="card-icon">
+                            <i class="fas fa-archive"></i>
+                        </div>
+                        <h3 class="card-title">Manage Study Archive</h3>
+                        <p class="card-desc">Organize and maintain a library of past studies, devotionals, and teaching materials.</p>
+                        <button class="card-btn">View Archive <i class="fas fa-box-open"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Post Panel -->
+            <div class="quick-post-panel">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-plus-circle"></i>
+                        <h2>Quick Create</h2>
+                    </div>
+                </div>
+                <div class="post-options">
+                    <div class="post-option" id="studyGuideOption">
+                        <div class="post-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="upload-title">New Study Guide</div>
+                        <div class="upload-desc">Create a new Bible study guide</div>
+                    </div>
+                    
+                    <div class="post-option" id="devotionalOption">
+                        <div class="post-icon">
+                            <i class="fas fa-praying-hands"></i>
+                        </div>
+                        <div class="upload-title">New Devotional</div>
+                        <div class="upload-desc">Write a daily devotional</div>
+                    </div>
+                    
+                    <div class="post-option" id="discussionOption">
+                        <div class="post-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="upload-title">Discussion Outline</div>
+                        <div class="upload-desc">Create group discussion guide</div>
+                    </div>
+                    
+                    <div class="post-option" id="sundaySchoolOption">
+                        <div class="post-icon">
+                            <i class="fas fa-chalkboard"></i>
+                        </div>
+                        <div class="upload-title">Sunday School</div>
+                        <div class="upload-desc">Upload lesson materials</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Discussions Section -->
+            <div class="activity-section">
+                <div class="section-title">
+                    <i class="fas fa-comments"></i>
+                    <h2>Active Discussions</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="discussion-card">
+                        <div class="discussion-header">
+                            <div class="discussion-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div class="discussion-title">Understanding Romans 8</div>
+                                <div class="discussion-meta">Posted by Pastor James | 2 days ago</div>
+                            </div>
+                        </div>
+                        <div class="discussion-content">
+                            <p>This week we're exploring Paul's powerful message in Romans 8 about life in the Spirit. What does it mean to be "more than conquerors" through Christ?</p>
+                            <div>
+                                <span class="resource-badge">Study Guide Attached</span>
+                                <span class="resource-badge">12 Participants</span>
+                            </div>
+                        </div>
+                        <div class="comment-section">
+                            <div class="activity-item">
+                                <div class="activity-details">
+                                    <div class="activity-title">Sarah Johnson <span class="activity-time">- Yesterday at 4:32 PM</span></div>
+                                    <div class="activity-desc">I've always found verse 28 particularly comforting during difficult times. How do we reconcile God working all things for good with the suffering we experience?</div>
+                                </div>
+                            </div>
+                            
+                            <div class="comment-form">
+                                <input type="text" class="comment-input" placeholder="Add your thoughts to the discussion...">
+                                <button class="comment-btn">Comment <i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="discussion-card">
+                        <div class="discussion-header">
+                            <div class="discussion-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div class="discussion-title">The Parables of Jesus</div>
+                                <div class="discussion-meta">Posted by Dr. Benjamin Carter | 5 days ago</div>
+                            </div>
+                        </div>
+                        <div class="discussion-content">
+                            <p>This month's study focuses on Jesus' teaching through parables. Which parable has had the most significant impact on your spiritual journey and why?</p>
+                            <div>
+                                <span class="resource-badge">Discussion Outline</span>
+                                <span class="resource-badge">22 Participants</span>
+                            </div>
+                        </div>
+                        <div class="comment-section">
+                            <div class="activity-item">
+                                <div class="activity-details">
+                                    <div class="activity-title">Michael Thompson <span class="activity-time">- 3 days ago at 9:15 AM</span></div>
+                                    <div class="activity-desc">The Prodigal Son story transformed my understanding of God's forgiveness. I'd love to hear how others have applied this to family relationships.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-details">
+                                    <div class="activity-title">Emily Rodriguez <span class="activity-time">- 2 days ago at 3:47 PM</span></div>
+                                    <div class="activity-desc">The Good Samaritan challenges me daily to see people through God's eyes. How can we overcome our biases to truly love our neighbors?</div>
+                                </div>
+                            </div>
+                            
+                            <div class="comment-form">
+                                <input type="text" class="comment-input" placeholder="Add your thoughts to the discussion...">
+                                <button class="comment-btn">Comment <i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section bible-stats">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Study Engagement</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">1,428</div>
+                            <div class="stat-label">Study Materials</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">327</div>
+                            <div class="stat-label">Active Participants</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">2,843</div>
+                            <div class="stat-label">Discussion Comments</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">5.7K</div>
+                            <div class="stat-label">Resources Downloaded</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Study Resources</a>
+                <a href="#">Bible Translations</a>
+                <a href="#">Theological Library</a>
+                <a href="#">Contact Pastors</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Quick create interactions
+    document.querySelectorAll('.post-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const type = this.id;
+            let title = '';
+            
+            if (type === 'studyGuideOption') title = 'Study Guide';
+            if (type === 'devotionalOption') title = 'Devotional';
+            if (type === 'discussionOption') title = 'Discussion Outline';
+            if (type === 'sundaySchoolOption') title = 'Sunday School Material';
+            
+            // Highlight the card briefly
+            this.classList.add('highlight-card');
+            setTimeout(() => {
+                this.classList.remove('highlight-card');
+            }, 2000);
+            
+            // Show creation modal
+            alert(`Opening editor to create a new ${title}...`);
+        });
+    });
+    
+    // Permission card interactions
+    document.querySelectorAll('.bible-card .card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.permission-card');
+            const title = card.querySelector('.card-title').textContent;
+            
+            // Add loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Taking you to the ${title} management page...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Special handling for discussion permission
+                if (title.includes("Participate")) {
+                    document.querySelector('.discussion-card').classList.add('highlight-card');
+                    setTimeout(() => {
+                        document.querySelector('.discussion-card').classList.remove('highlight-card');
+                    }, 2000);
+                }
+            }, 1000);
+        });
+    });
+    
+    // Comment submission
+    document.querySelectorAll('.comment-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            const comment = input.value.trim();
+            
+            if (comment) {
+                // Add loading effect
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                
+                // Simulate submission
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    input.value = '';
+                    alert('Your comment has been posted!');
+                }, 800);
+            } else {
+                alert('Please enter your comment before posting.');
+            }
+        });
+    });
+    
+    // Press Enter to submit comment
+    document.querySelectorAll('.comment-input').forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                this.nextElementSibling.click();
+            }
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const originalValue = stat.textContent;
+        const target = parseInt(originalValue.replace('K', '000'));
+        
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count > 1000 ? (count/1000).toFixed(1) + 'K' : count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = originalValue;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+</script>
+{% endblock %}
