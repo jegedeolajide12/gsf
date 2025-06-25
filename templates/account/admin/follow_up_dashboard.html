@@ -1,0 +1,555 @@
+{% extends "_base.html" %}
+{% block title %}Follow-up Unit Dashboard{% endblock %}
+{% load static %}
+
+{% block content %}
+<!-- Dashboard -->
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">FOLLOW-UP NAVIGATION</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-address-book"></i>
+                Member Directory
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-tasks"></i>
+                Follow-up Tasks
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-history"></i>
+                Activity History
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                Follow-up Schedule
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                Engagement Metrics
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Follow-up Unit Dashboard</h1>
+                    <p>Connect with members, track spiritual growth, and ensure everyone feels cared for through intentional follow-up and discipleship.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Your Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="card-title">Manage Member Information</h3>
+                        <p class="card-desc">Access and update contact details, spiritual status, and notes for church members.</p>
+                        <button class="card-btn">Access Directory <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="card-title">Record Follow-up Activities</h3>
+                        <p class="card-desc">Document follow-up interactions, spiritual progress, and care provided to members.</p>
+                        <button class="card-btn">Log Activity <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3 class="card-title">Follow-up Task Management</h3>
+                        <p class="card-desc">Create and assign follow-up tasks to team members with deadlines and priorities.</p>
+                        <button class="card-btn">Manage Tasks <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">View Engagement Metrics</h3>
+                        <p class="card-desc">Track member engagement trends, follow-up effectiveness, and spiritual growth patterns.</p>
+                        <button class="card-btn">View Reports <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Follow-up Impact</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(6, 214, 160, 0.1); color: var(--teal);">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">142</div>
+                            <div class="stat-label">Follow-ups This Month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(6, 214, 160, 0.1); color: var(--teal);">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">32</div>
+                            <div class="stat-label">New Members Engaged</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(6, 214, 160, 0.1); color: var(--teal);">
+                            <i class="fas fa-pray"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">67</div>
+                            <div class="stat-label">Prayer Requests</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(6, 214, 160, 0.1); color: var(--teal);">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">18</div>
+                            <div class="stat-label">New Disciples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Management Section -->
+            <div class="member-manager">
+                <div class="section-title">
+                    <i class="fas fa-users"></i>
+                    <h2>Member Directory</h2>
+                </div>
+                
+                <div class="member-search">
+                    <input type="text" class="search-input" placeholder="Search members by name, phone, or email...">
+                    <button class="search-btn">Search</button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="member-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Status</th>
+                                <th>Last Contact</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Sarah Johnson</strong>
+                                    <div>New Believer</div>
+                                </td>
+                                <td>
+                                    sarah.j@example.com<br>
+                                    (555) 123-4567
+                                </td>
+                                <td>
+                                    <span style="background: rgba(6, 214, 160, 0.1); color: var(--teal); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Active Follow-up</span>
+                                </td>
+                                <td>Today</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Mark Davis</strong>
+                                    <div>Member - 5 years</div>
+                                </td>
+                                <td>
+                                    mark.d@example.com<br>
+                                    (555) 987-6543
+                                </td>
+                                <td>
+                                    <span style="background: rgba(66, 153, 225, 0.1); color: #4299e1; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Regular Attender</span>
+                                </td>
+                                <td>2 days ago</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Jennifer Kim</strong>
+                                    <div>Visitor - 2 visits</div>
+                                </td>
+                                <td>
+                                    j.kim@example.com<br>
+                                    (555) 234-5678
+                                </td>
+                                <td>
+                                    <span style="background: rgba(255, 209, 102, 0.1); color: #d97706; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Needs Contact</span>
+                                </td>
+                                <td>1 week ago</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Robert Taylor</strong>
+                                    <div>Member - 3 years</div>
+                                </td>
+                                <td>
+                                    rtaylor@example.com<br>
+                                    (555) 345-6789
+                                </td>
+                                <td>
+                                    <span style="background: rgba(134, 239, 172, 0.1); color: #065f46; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Regular Attender</span>
+                                </td>
+                                <td>3 days ago</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Amanda Chen</strong>
+                                    <div>New Member</div>
+                                </td>
+                                <td>
+                                    a.chen@example.com<br>
+                                    (555) 456-7890
+                                </td>
+                                <td>
+                                    <span style="background: rgba(249, 168, 212, 0.1); color: #9d174d; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Baptism Scheduled</span>
+                                </td>
+                                <td>Yesterday</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Follow-up Form Section -->
+            <div class="followup-form">
+                <div class="section-title">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h2>Record Follow-up Activity</h2>
+                </div>
+                <form id="followupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="memberSelect">Member</label>
+                            <select id="memberSelect" class="form-control" required>
+                                <option value="">Select Member</option>
+                                <option value="sarah">Sarah Johnson</option>
+                                <option value="mark">Mark Davis</option>
+                                <option value="jennifer">Jennifer Kim</option>
+                                <option value="robert">Robert Taylor</option>
+                                <option value="amanda">Amanda Chen</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activityDate">Date of Contact</label>
+                            <input type="date" id="activityDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMethod">Contact Method</label>
+                            <select id="contactMethod" class="form-control" required>
+                                <option value="">Select Method</option>
+                                <option value="phone">Phone Call</option>
+                                <option value="email">Email</option>
+                                <option value="in-person">In Person</option>
+                                <option value="video">Video Call</option>
+                                <option value="text">Text Message</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactPerson">Contact Person</label>
+                            <input type="text" id="contactPerson" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="contactSummary">Contact Summary</label>
+                            <textarea id="contactSummary" class="form-control" placeholder="Briefly describe the purpose and content of the follow-up..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="spiritualNotes">Spiritual Notes</label>
+                            <textarea id="spiritualNotes" class="form-control" placeholder="Record spiritual state, prayer requests, growth areas, etc..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nextStep">Next Step</label>
+                            <select id="nextStep" class="form-control" required>
+                                <option value="">Select Next Step</option>
+                                <option value="call">Schedule Call</option>
+                                <option value="meet">Schedule Meeting</option>
+                                <option value="resource">Send Resource</option>
+                                <option value="pray">Prayer Support</option>
+                                <option value="connect">Connect with Ministry</option>
+                                <option value="none">No Action Needed</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nextDate">Follow-up Date</label>
+                            <input type="date" id="nextDate" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button type="reset" class="cancel-btn">Clear Form</button>
+                        <button type="submit" class="submit-btn">Submit Activity <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Recent Activities Section -->
+            <div class="activity-section">
+                <div class="section-title">
+                    <i class="fas fa-history"></i>
+                    <h2>Recent Follow-up Activities</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Phone Follow-up</div>
+                            <div class="activity-desc">Called to check on Sarah after her baptism decision. She's excited and has questions about discipleship.</div>
+                            <div class="activity-time">Today, 10:30 AM</div>
+                            <div class="member-tag">Sarah Johnson</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Coffee Meeting</div>
+                            <div class="activity-desc">Met with Robert to discuss his spiritual growth and involvement in men's ministry.</div>
+                            <div class="activity-time">Yesterday, 2:00 PM</div>
+                            <div class="member-tag">Robert Taylor</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Email Follow-up</div>
+                            <div class="activity-desc">Sent Jennifer resources about small groups and invited her to newcomers dinner.</div>
+                            <div class="activity-time">June 30, 2024</div>
+                            <div class="member-tag">Jennifer Kim</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-hands-praying"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Prayer Support</div>
+                            <div class="activity-desc">Prayed with Mark over the phone for job interview and family situation.</div>
+                            <div class="activity-time">June 28, 2024</div>
+                            <div class="member-tag">Mark Davis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Welcome Package</div>
+                            <div class="activity-desc">Delivered welcome package to Amanda and discussed baptism preparation.</div>
+                            <div class="activity-time">June 27, 2024</div>
+                            <div class="member-tag">Amanda Chen</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Care Guidelines</a>
+                <a href="#">Discipleship Resources</a>
+                <a href="#">Contact Pastors</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Button interactions
+    document.querySelectorAll('.card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const cardTitle = this.closest('.permission-card').querySelector('.card-title').textContent;
+            
+            // Add a loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Taking you to the ${cardTitle} management page...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Highlight the relevant section
+                if (cardTitle.includes("Member Information")) {
+                    document.querySelector('.member-manager').classList.add('highlight-card');
+                    setTimeout(() => {
+                        document.querySelector('.member-manager').classList.remove('highlight-card');
+                    }, 2000);
+                } else if (cardTitle.includes("Follow-up Activities")) {
+                    document.querySelector('.followup-form').classList.add('highlight-card');
+                    setTimeout(() => {
+                        document.querySelector('.followup-form').classList.remove('highlight-card');
+                    }, 2000);
+                }
+            }, 1000);
+        });
+    });
+    
+    // Nav item interactions
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelector('.nav-item.active').classList.remove('active');
+            this.classList.add('active');
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+    
+    // Follow-up form submission
+    document.getElementById('followupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const memberName = document.getElementById('memberSelect').options[document.getElementById('memberSelect').selectedIndex].text;
+        
+        // Show loading state on button
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        submitBtn.disabled = true;
+        
+        // Simulate submission
+        setTimeout(() => {
+            alert(`Follow-up activity for ${memberName} submitted successfully!`);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.reset();
+            
+            // Add to activity list temporarily
+            const activityList = document.querySelector('.activity-list');
+            const newActivity = document.createElement('div');
+            newActivity.className = 'activity-item highlight-card';
+            newActivity.innerHTML = `
+                <div class="activity-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="activity-details">
+                    <div class="activity-title">New Follow-up Recorded</div>
+                    <div class="activity-desc">${document.getElementById('contactSummary').value.substring(0, 100)}...</div>
+                    <div class="activity-time">Just now</div>
+                    <div class="member-tag">${memberName}</div>
+                </div>
+            `;
+            activityList.prepend(newActivity);
+            
+            // Remove highlight after animation
+            setTimeout(() => {
+                newActivity.classList.remove('highlight-card');
+            }, 2000);
+            
+            // Update stats
+            const followupStat = document.querySelector('.stat-number:first-child');
+            followupStat.textContent = parseInt(followupStat.textContent) + 1;
+        }, 1500);
+    });
+    
+    // Search functionality
+    document.querySelector('.search-btn').addEventListener('click', function() {
+        const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+        const rows = document.querySelectorAll('.member-table tbody tr');
+        
+        rows.forEach(row => {
+            const name = row.querySelector('td:first-child strong').textContent.toLowerCase();
+            if (name.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

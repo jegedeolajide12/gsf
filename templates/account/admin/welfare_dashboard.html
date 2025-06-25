@@ -1,0 +1,537 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    <!-- Dashboard -->
+    <div class="container">
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-title">WELFARE NAVIGATION</div>
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    Welfare Requests
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-bullhorn"></i>
+                    Announcements
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-users"></i>
+                    Volunteers
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Events
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-box-open"></i>
+                    Resources
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="welcome-text">
+                        <h1>Welfare Unit Dashboard</h1>
+                        <p>Coordinate care initiatives, respond to needs, and support our community through compassionate service and effective resource management.</p>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                </div>
+
+                <!-- Permissions Section -->
+                <div class="permissions-section">
+                    <div class="section-title">
+                        <i class="fas fa-key"></i>
+                        <h2>Your Permissions</h2>
+                    </div>
+                    <div class="permissions-grid">
+                        <div class="permission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h3 class="card-title">Manage Welfare Requests</h3>
+                            <p class="card-desc">Review and respond to requests for assistance, support, and resources.</p>
+                            <button class="card-btn">View Requests <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        
+                        <div class="permission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3 class="card-title">Post Announcements</h3>
+                            <p class="card-desc">Share updates, events, and important information with the congregation.</p>
+                            <button class="card-btn">Create Announcement <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        
+                        <div class="permission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <h3 class="card-title">Organize Welfare Events</h3>
+                            <p class="card-desc">Plan and coordinate community support events and volunteer activities.</p>
+                            <button class="card-btn">Manage Events <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        
+                        <div class="permission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="card-title">Manage Volunteers</h3>
+                            <p class="card-desc">Coordinate volunteers, assign tasks, and track participation.</p>
+                            <button class="card-btn">View Volunteers <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="section-title">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>Welfare Impact</h2>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(249, 115, 22, 0.1); color: var(--primary);">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">128</div>
+                                <div class="stat-label">Requests This Month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(249, 115, 22, 0.1); color: var(--primary);">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">42</div>
+                                <div class="stat-label">Active Volunteers</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(249, 115, 22, 0.1); color: var(--primary);">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">Upcoming Events</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(249, 115, 22, 0.1); color: var(--primary);">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">87</div>
+                                <div class="stat-label">Requests Resolved</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Welfare Requests Section -->
+                <div class="welfare-requests">
+                    <div class="section-title">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h2>Welfare Requests</h2>
+                    </div>
+                    
+                    <div class="request-filters">
+                        <button class="filter-btn active">All Requests</button>
+                        <button class="filter-btn">New Requests</button>
+                        <button class="filter-btn">In Progress</button>
+                        <button class="filter-btn">Completed</button>
+                        <button class="filter-btn">Urgent</button>
+                    </div>
+                    
+                    <div class="request-list">
+                        <div class="request-card">
+                            <div class="request-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="request-details">
+                                <div class="request-status status-new">NEW</div>
+                                <h3 class="request-title">Food Assistance Needed</h3>
+                                <div class="request-meta">
+                                    <div><i class="fas fa-user"></i> Sarah Johnson</div>
+                                    <div><i class="fas fa-phone"></i> (555) 123-4567</div>
+                                    <div><i class="fas fa-calendar"></i> Today</div>
+                                </div>
+                                <p>Single mother of three recently lost job. Needs groceries and essentials for the next two weeks until new job starts.</p>
+                                <div class="request-actions">
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i> View Details</button>
+                                    <button class="action-btn respond-btn"><i class="fas fa-comment"></i> Respond</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="request-card">
+                            <div class="request-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="request-details">
+                                <div class="request-status status-inprogress">IN PROGRESS</div>
+                                <h3 class="request-title">Temporary Housing Needed</h3>
+                                <div class="request-meta">
+                                    <div><i class="fas fa-user"></i> Robert Chen</div>
+                                    <div><i class="fas fa-phone"></i> (555) 987-6543</div>
+                                    <div><i class="fas fa-calendar"></i> 2 days ago</div>
+                                </div>
+                                <p>Apartment flooded due to storm damage. Needs temporary housing for family of four for 1-2 weeks while repairs are completed.</p>
+                                <div class="request-actions">
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i> View Details</button>
+                                    <button class="action-btn respond-btn"><i class="fas fa-comment"></i> Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="request-card">
+                            <div class="request-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="request-details">
+                                <div class="request-status status-new">NEW</div>
+                                <h3 class="request-title">Transportation to Medical Appointments</h3>
+                                <div class="request-meta">
+                                    <div><i class="fas fa-user"></i> Martha Williams</div>
+                                    <div><i class="fas fa-phone"></i> (555) 234-5678</div>
+                                    <div><i class="fas fa-calendar"></i> Yesterday</div>
+                                </div>
+                                <p>Elderly member needs transportation to weekly chemotherapy appointments for the next month. Cannot drive herself.</p>
+                                <div class="request-actions">
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i> View Details</button>
+                                    <button class="action-btn respond-btn"><i class="fas fa-comment"></i> Respond</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="request-card">
+                            <div class="request-icon">
+                                <i class="fas fa-briefcase-medical"></i>
+                            </div>
+                            <div class="request-details">
+                                <div class="request-status status-completed">COMPLETED</div>
+                                <h3 class="request-title">Medical Bill Assistance</h3>
+                                <div class="request-meta">
+                                    <div><i class="fas fa-user"></i> David Miller</div>
+                                    <div><i class="fas fa-phone"></i> (555) 345-6789</div>
+                                    <div><i class="fas fa-calendar"></i> 1 week ago</div>
+                                </div>
+                                <p>Unexpected surgery resulted in high medical bills. Needs assistance with payment plan negotiation and partial bill coverage.</p>
+                                <div class="request-actions">
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i> View Details</button>
+                                    <button class="action-btn respond-btn"><i class="fas fa-comment"></i> Follow-up</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Announcement Form -->
+                <div class="announcement-form">
+                    <div class="section-title">
+                        <i class="fas fa-bullhorn"></i>
+                        <h2>Create New Announcement</h2>
+                    </div>
+                    <form id="announcementForm">
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="announcementTitle">Announcement Title</label>
+                                <input type="text" id="announcementTitle" class="form-control" placeholder="Community Food Drive This Saturday" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementDate">Publish Date</label>
+                                <input type="date" id="announcementDate" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementCategory">Category</label>
+                                <select id="announcementCategory" class="form-control" required>
+                                    <option value="">Select Category</option>
+                                    <option value="event">Event</option>
+                                    <option value="update">Update</option>
+                                    <option value="request">Volunteer Request</option>
+                                    <option value="resource">Resource Available</option>
+                                    <option value="urgent">Urgent Need</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="announcementContent">Announcement Content</label>
+                                <textarea id="announcementContent" class="form-control" placeholder="Write your announcement details here..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementImage">Add Image (Optional)</label>
+                                <input type="file" id="announcementImage" class="form-control" accept="image/*">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementAudience">Target Audience</label>
+                                <select id="announcementAudience" class="form-control">
+                                    <option value="all">All Members</option>
+                                    <option value="volunteers">Volunteers Only</option>
+                                    <option value="new">New Members</option>
+                                    <option value="seniors">Senior Members</option>
+                                    <option value="families">Families</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <button type="reset" class="cancel-btn">Clear Form</button>
+                            <button type="submit" class="submit-btn">Publish Announcement <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Recent Announcements Section -->
+                <div class="announcements-section">
+                    <div class="section-title">
+                        <i class="fas fa-history"></i>
+                        <h2>Recent Announcements</h2>
+                    </div>
+                    <div class="announcements-list">
+                        <div class="announcement-card">
+                            <div class="announcement-header">
+                                <h3 class="announcement-title">Community Food Drive - July 20th</h3>
+                                <div class="announcement-date">Posted: July 10, 2024</div>
+                            </div>
+                            <div class="announcement-content">
+                                <p>Join us this Saturday from 9am-2pm for our monthly community food drive. We're collecting non-perishable food items to support families in need. Volunteers needed for sorting and distribution.</p>
+                                <p>Most needed items: canned vegetables, pasta, rice, cereal, peanut butter, and baby formula.</p>
+                            </div>
+                            <div class="announcement-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-tag"></i> Event
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i> 142 Views
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i> 24 Volunteers Signed Up
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="announcement-card">
+                            <div class="announcement-header">
+                                <h3 class="announcement-title">Free Financial Counseling Available</h3>
+                                <div class="announcement-date">Posted: July 5, 2024</div>
+                            </div>
+                            <div class="announcement-content">
+                                <p>Our financial counseling team is available every Tuesday evening to help with budgeting, debt management, and financial planning. This free service is available to all church members facing financial challenges.</p>
+                                <p>Appointments can be scheduled through the church office or via our online portal.</p>
+                            </div>
+                            <div class="announcement-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-tag"></i> Resource
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i> 98 Views
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar-check"></i> 12 Appointments Made
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="announcement-card">
+                            <div class="announcement-header">
+                                <h3 class="announcement-title">Furniture Donations Needed</h3>
+                                <div class="announcement-date">Posted: June 28, 2024</div>
+                            </div>
+                            <div class="announcement-content">
+                                <p>We're collecting gently used furniture for two families who lost their homes in the recent apartment fire. Needed items: sofas, dining tables, beds (especially twin size), and kitchen essentials.</p>
+                                <p>Please contact the welfare office if you can donate items or help with transportation.</p>
+                            </div>
+                            <div class="announcement-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-tag"></i> Urgent Need
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i> 187 Views
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-hands-helping"></i> 34 Donations Received
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2024 Grace Community Church. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Welfare Resources</a>
+                    <a href="#">Volunteer Portal</a>
+                    <a href="#">Community Partners</a>
+                    <a href="#">Contact Pastors</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Button interactions
+        document.querySelectorAll('.card-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const cardTitle = this.closest('.permission-card').querySelector('.card-title').textContent;
+                
+                // Add a loading effect
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                this.disabled = true;
+                
+                // Simulate loading
+                setTimeout(() => {
+                    alert(`Taking you to the ${cardTitle} management page...`);
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    
+                    // Highlight the relevant section
+                    if (cardTitle.includes("Welfare Requests")) {
+                        document.querySelector('.welfare-requests').classList.add('highlight-card');
+                        setTimeout(() => {
+                            document.querySelector('.welfare-requests').classList.remove('highlight-card');
+                        }, 2000);
+                    } else if (cardTitle.includes("Post Announcements")) {
+                        document.querySelector('.announcement-form').classList.add('highlight-card');
+                        setTimeout(() => {
+                            document.querySelector('.announcement-form').classList.remove('highlight-card');
+                        }, 2000);
+                    }
+                }, 1000);
+            });
+        });
+        
+        // Nav item interactions
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.nav-item.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+        
+        // Stats counter animation
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.textContent);
+            let count = 0;
+            stat.textContent = count;
+            
+            const updateCount = () => {
+                const increment = Math.ceil(target / 50);
+                count += increment;
+                if (count < target) {
+                    stat.textContent = count;
+                    setTimeout(updateCount, 30);
+                } else {
+                    stat.textContent = target;
+                }
+            };
+            
+            setTimeout(updateCount, 1000);
+        });
+        
+        // Announcement form submission
+        document.getElementById('announcementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const announcementTitle = document.getElementById('announcementTitle').value;
+            
+            // Show loading state on button
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+            submitBtn.disabled = true;
+            
+            // Simulate submission
+            setTimeout(() => {
+                alert(`"${announcementTitle}" announcement published successfully!`);
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                this.reset();
+                
+                // Add to announcements list temporarily
+                const announcementsList = document.querySelector('.announcements-list');
+                const newAnnouncement = document.createElement('div');
+                newAnnouncement.className = 'announcement-card highlight-card';
+                newAnnouncement.innerHTML = `
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">${announcementTitle}</h3>
+                        <div class="announcement-date">Posted: Today</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>${document.getElementById('announcementContent').value.substring(0, 150)}...</p>
+                    </div>
+                    <div class="announcement-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-tag"></i> ${document.getElementById('announcementCategory').options[document.getElementById('announcementCategory').selectedIndex].text}
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-eye"></i> 0 Views
+                        </div>
+                    </div>
+                `;
+                announcementsList.prepend(newAnnouncement);
+                
+                // Remove highlight after animation
+                setTimeout(() => {
+                    newAnnouncement.classList.remove('highlight-card');
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                this.classList.add('active');
+                
+                const filterType = this.textContent;
+                const requestCards = document.querySelectorAll('.request-card');
+                
+                if (filterType === "All Requests") {
+                    requestCards.forEach(card => card.style.display = 'flex');
+                } else {
+                    requestCards.forEach(card => {
+                        if (card.querySelector('.request-status').textContent.includes(filterType)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Respond to welfare request
+        document.querySelectorAll('.respond-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const requestTitle = this.closest('.request-card').querySelector('.request-title').textContent;
+                alert(`Opening response form for: ${requestTitle}`);
+            });
+        });
+    </script>
+{% endblock %}

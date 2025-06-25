@@ -1,0 +1,476 @@
+{% extends "_base.html" %}
+{% block title %}Prayer Dashboard{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">ACADEMIC MINISTRY</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-book"></i>
+                Academic Resources
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                Tutorial Schedules
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-bullhorn"></i>
+                Announcements
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-file-upload"></i>
+                Educational Materials
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                Academic Team
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Academic Ministry Dashboard</h1>
+                    <p>Foster intellectual and spiritual growth through educational resources, academic support, and faith-based learning initiatives.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Academic Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="card-title">Academic Posts & Articles</h3>
+                        <p class="card-desc">Create and publish scholarly articles, research papers, and educational content.</p>
+                        <button class="card-btn">Create Content <i class="fas fa-pen"></i></button>
+                    </div>
+                    
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="card-title">Academic Announcements</h3>
+                        <p class="card-desc">Share important updates, deadlines, and news for the academic community.</p>
+                        <button class="card-btn">Post Announcements <i class="fas fa-megaphone"></i></button>
+                    </div>
+                    
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="card-title">Motivational Write-ups</h3>
+                        <p class="card-desc">Create inspiring content to encourage students in their academic journey.</p>
+                        <button class="card-btn">Write Inspiration <i class="fas fa-feather-alt"></i></button>
+                    </div>
+                    
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <h3 class="card-title">Educational Materials</h3>
+                        <p class="card-desc">Upload study guides, lecture notes, and learning resources for students.</p>
+                        <button class="card-btn">Upload Resources <i class="fas fa-cloud-upload-alt"></i></button>
+                    </div>
+                    
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="card-title">Tutorial Timetables</h3>
+                        <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
+                        <button class="card-btn">Manage Schedules <i class="fas fa-clock"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Manager -->
+            <div class="content-manager">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-edit"></i>
+                        <h2>Content Creation</h2>
+                    </div>
+                </div>
+                <div class="content-tabs">
+                    <div class="content-tab active">Academic Article</div>
+                    <div class="content-tab">Announcement</div>
+                    <div class="content-tab">Motivational Write-up</div>
+                </div>
+                <div class="editor-container">
+                    <input type="text" class="editor-title" placeholder="Enter title here..." value="The Integration of Faith and Science in Modern Education">
+                    <div class="editor-content" contenteditable="true">
+                        <h3>Introduction</h3>
+                        <p>In today's educational landscape, the perceived conflict between faith and science continues to challenge both educators and students. This article explores how a holistic approach to education can bridge these seemingly disparate worlds, fostering intellectual growth while nurturing spiritual development.</p>
+                        
+                        <h3>Historical Context</h3>
+                        <p>Throughout history, many of the greatest scientific minds were deeply religious individuals who saw their work as exploring God's creation. Figures like Isaac Newton, Gregor Mendel, and Georges Lemaître demonstrated that faith and scientific inquiry can coexist harmoniously.</p>
+                        
+                        <h3>Current Challenges</h3>
+                        <p>Modern educational systems often create artificial boundaries between scientific and spiritual knowledge. This fragmentation can lead to:</p>
+                        <ul>
+                            <li>Cognitive dissonance for religious students in science classes</li>
+                            <li>Lack of ethical frameworks in scientific education</li>
+                            <li>Reduced appreciation for the wonder of creation</li>
+                        </ul>
+                        
+                        <h3>Practical Integration Strategies</h3>
+                        <p>Educators can implement several approaches to create harmony:</p>
+                        <ol>
+                            <li>Highlight the historical contributions of religious scientists</li>
+                            <li>Discuss ethical implications of scientific discoveries</li>
+                            <li>Explore the wonder and complexity of creation as evidence of design</li>
+                            <li>Encourage questions about purpose and meaning in scientific contexts</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="submit-section">
+                    <button class="cancel-btn">Save Draft</button>
+                    <button class="submit-btn">Publish Content <i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Material Upload Section -->
+            <div class="content-manager">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-file-upload"></i>
+                        <h2>Upload Educational Materials</h2>
+                    </div>
+                </div>
+                <div class="material-upload" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drag & Drop Files Here</h3>
+                    <p>or click to browse your computer</p>
+                    <p class="upload-desc">Supported formats: PDF, DOCX, PPTX, XLSX, JPG, PNG</p>
+                </div>
+                <div class="recent-uploads">
+                    <h4>Recently Uploaded Materials</h4>
+                    <div class="request-list">
+                        <div class="request-item">
+                            <div class="request-header">
+                                <div class="request-title">Biblical Archaeology Study Guide</div>
+                                <div class="request-meta">Uploaded: Today at 10:15 AM</div>
+                            </div>
+                            <div class="request-content">
+                                Comprehensive guide to archaeological evidence supporting biblical accounts, with maps, timelines, and discussion questions.
+                            </div>
+                        </div>
+                        
+                        <div class="request-item">
+                            <div class="request-header">
+                                <div class="request-title">Christian Ethics Syllabus</div>
+                                <div class="request-meta">Uploaded: July 16 at 3:30 PM</div>
+                            </div>
+                            <div class="request-content">
+                                Course outline for 12-week study on applying Christian principles to modern ethical dilemmas.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timetable Management -->
+            <div class="content-manager">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Tutorial Timetables</h2>
+                    </div>
+                    <button class="card-btn">
+                        <i class="fas fa-plus"></i> New Timetable
+                    </button>
+                </div>
+                <div class="timetable-grid">
+                    <div class="timetable-card">
+                        <div class="timetable-header">
+                            <div class="timetable-title">Bible Study Methods</div>
+                            <div class="timetable-date">July 22-26, 2024</div>
+                        </div>
+                        <div class="timetable-list">
+                            <div class="timetable-item">
+                                <div class="timetable-time">Mon 10am</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Historical Context</div>
+                                    <div class="timetable-instructor">Dr. Rebecca Johnson</div>
+                                </div>
+                            </div>
+                            <div class="timetable-item">
+                                <div class="timetable-time">Wed 2pm</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Literary Analysis</div>
+                                    <div class="timetable-instructor">Prof. David Chen</div>
+                                </div>
+                            </div>
+                            <div class="timetable-item">
+                                <div class="timetable-time">Fri 11am</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Application Workshop</div>
+                                    <div class="timetable-instructor">Dr. Rebecca Johnson</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action-btn update-btn">Edit Schedule <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="timetable-card">
+                        <div class="timetable-header">
+                            <div class="timetable-title">Theology Foundations</div>
+                            <div class="timetable-date">July 29-Aug 2, 2024</div>
+                        </div>
+                        <div class="timetable-list">
+                            <div class="timetable-item">
+                                <div class="timetable-time">Tue 9am</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Doctrine of God</div>
+                                    <div class="timetable-instructor">Dr. Michael Thompson</div>
+                                </div>
+                            </div>
+                            <div class="timetable-item">
+                                <div class="timetable-time">Thu 3pm</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Christology</div>
+                                    <div class="timetable-instructor">Dr. Sarah Williams</div>
+                                </div>
+                            </div>
+                            <div class="timetable-item">
+                                <div class="timetable-time">Sat 10am</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Soteriology</div>
+                                    <div class="timetable-instructor">Dr. Michael Thompson</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action-btn update-btn">Edit Schedule <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="timetable-card">
+                        <div class="timetable-header">
+                            <div class="timetable-title">Apologetics Workshop</div>
+                            <div class="timetable-date">August 5-9, 2024</div>
+                        </div>
+                        <div class="timetable-list">
+                            <div class="timetable-item">
+                                <div class="timetable-time">Mon 1pm</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Evidence for Faith</div>
+                                    <div class="timetable-instructor">Dr. Benjamin Carter</div>
+                                </div>
+                            </div>
+                            <div class="timetable-item">
+                                <div class="timetable-time">Wed 11am</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Answering Tough Questions</div>
+                                    <div class="timetable-instructor">Dr. Benjamin Carter</div>
+                                </div>
+                            </div>
+                            <div class="timetable-item">
+                                <div class="timetable-time">Fri 2pm</div>
+                                <div class="timetable-desc">
+                                    <div class="timetable-subject">Practice Session</div>
+                                    <div class="timetable-instructor">Dr. Elizabeth Morgan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action-btn update-btn">Edit Schedule <i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section academic-stats">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Academic Impact</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">84</div>
+                            <div class="stat-label">Academic Articles</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">127</div>
+                            <div class="stat-label">Learning Materials</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">243</div>
+                            <div class="stat-label">Students Enrolled</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">18</div>
+                            <div class="stat-label">Active Courses</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Academic Resources</a>
+                <a href="#">Research Library</a>
+                <a href="#">Scholarship Info</a>
+                <a href="#">Contact Academic Team</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Tab functionality
+    document.querySelectorAll('.content-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelector('.content-tab.active').classList.remove('active');
+            this.classList.add('active');
+            
+            // Update editor placeholder based on tab
+            const editorTitle = document.querySelector('.editor-title');
+            const editorContent = document.querySelector('.editor-content');
+            
+            if (this.textContent.includes("Article")) {
+                editorTitle.placeholder = "Enter article title...";
+                editorContent.innerHTML = "<h3>Introduction</h3><p>Begin your scholarly article here...</p>";
+            } else if (this.textContent.includes("Announcement")) {
+                editorTitle.placeholder = "Announcement title...";
+                editorContent.innerHTML = "<p>Share important academic news and updates with the community...</p>";
+            } else if (this.textContent.includes("Write-up")) {
+                editorTitle.placeholder = "Inspirational title...";
+                editorContent.innerHTML = "<p>Write motivational content to encourage students in their academic journey...</p>";
+            }
+        });
+    });
+    
+    // File upload functionality
+    const uploadArea = document.getElementById('uploadArea');
+    
+    uploadArea.addEventListener('click', () => {
+        alert("Opening file browser to select educational materials...");
+    });
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = "#2980b9";
+        uploadArea.style.backgroundColor = "#eaf2f8";
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.borderColor = "#e1e5eb";
+        uploadArea.style.backgroundColor = "#f8fafc";
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = "#e1e5eb";
+        uploadArea.style.backgroundColor = "#f8fafc";
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            const fileName = files[0].name;
+            alert(`"${fileName}" ready for upload!`);
+        }
+    });
+    
+    // Permission card interactions
+    document.querySelectorAll('.academic-card .card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.permission-card');
+            const title = card.querySelector('.card-title').textContent;
+            
+            // Add loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Opening ${title} interface...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Scroll to relevant section
+                if (title.includes("Posts & Articles") || title.includes("Write-ups")) {
+                    document.querySelector('.content-manager').scrollIntoView({ behavior: 'smooth' });
+                } else if (title.includes("Announcements")) {
+                    // Activate announcements tab
+                    document.querySelectorAll('.content-tab')[1].click();
+                    document.querySelector('.content-manager').scrollIntoView({ behavior: 'smooth' });
+                } else if (title.includes("Materials")) {
+                    document.querySelectorAll('.content-manager')[1].scrollIntoView({ behavior: 'smooth' });
+                } else if (title.includes("Timetables")) {
+                    document.querySelectorAll('.content-manager')[2].scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000);
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+</script>
+{% endblock %}

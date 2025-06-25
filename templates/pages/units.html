@@ -249,7 +249,7 @@
             <!-- Unit 5 -->
             <div class="unit-card visible" data-category="worship">
                 <div class="unit-header">
-                    <h3 class="unit-name">Evangelism Unit</h3>
+                    <h3 class="unit-name">Prayer Unit</h3>
                     <div class="unit-meta">
                         <span><i class="fas fa-users"></i> 12 Members</span>
                         <span><i class="fas fa-calendar-alt"></i> Weekly Meeting</span>
@@ -293,9 +293,9 @@
                 
                 <div class="unit-footer">
                     <a href="#" class="unit-contact">
-                        <i class="fas fa-envelope"></i> media@church.org
+                        <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="#" class="unit-join-btn">
+                    <a href="{% url "accounts:prayer_dashboard" %}" class="unit-join-btn">
                         View More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -359,7 +359,7 @@
             <!-- Unit 5 -->
             <div class="unit-card visible" data-category="worship">
                 <div class="unit-header">
-                    <h3 class="unit-name">Evangelism Unit</h3>
+                    <h3 class="unit-name">Academic Unit</h3>
                     <div class="unit-meta">
                         <span><i class="fas fa-users"></i> 12 Members</span>
                         <span><i class="fas fa-calendar-alt"></i> Weekly Meeting</span>
@@ -403,9 +403,9 @@
                 
                 <div class="unit-footer">
                     <a href="#" class="unit-contact">
-                        <i class="fas fa-envelope"></i> media@church.org
+                        <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="#" class="unit-join-btn">
+                    <a href="{% url 'accounts:academic_dashboard' %}" class="unit-join-btn">
                         View More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -414,7 +414,7 @@
             <!-- Unit 5 -->
             <div class="unit-card visible" data-category="worship">
                 <div class="unit-header">
-                    <h3 class="unit-name">Evangelism Unit</h3>
+                    <h3 class="unit-name">Follow-Up Unit</h3>
                     <div class="unit-meta">
                         <span><i class="fas fa-users"></i> 12 Members</span>
                         <span><i class="fas fa-calendar-alt"></i> Weekly Meeting</span>
@@ -458,9 +458,9 @@
                 
                 <div class="unit-footer">
                     <a href="#" class="unit-contact">
-                        <i class="fas fa-envelope"></i> media@church.org
+                        <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="#" class="unit-join-btn">
+                    <a href="{% url 'accounts:follow_up_dashboard' %}" class="unit-join-btn">
                         View More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -521,10 +521,10 @@
                 </div>
             </div>
 
-            <!-- Unit 6 -->
-            <div class="unit-card visible" data-category="outreach">
+            <!-- unit 7 -->
+             <div class="unit-card visible" data-category="outreach">
                 <div class="unit-header">
-                    <h3 class="unit-name">Follow-Up</h3>
+                    <h3 class="unit-name">Welfare Unit</h3>
                     <div class="unit-meta">
                         <span><i class="fas fa-users"></i> 28 Members</span>
                         <span><i class="fas fa-calendar-alt"></i> House Visits</span>
@@ -568,9 +568,64 @@
                 
                 <div class="unit-footer">
                     <a href="#" class="unit-contact">
-                        <i class="fas fa-envelope"></i> missions@church.org
+                        <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="#" class="unit-join-btn">
+                    <a href="{% url 'accounts:welfare_dashboard' %}" class="unit-join-btn">
+                        More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Unit 8 -->
+             <div class="unit-card visible" data-category="outreach">
+                <div class="unit-header">
+                    <h3 class="unit-name">Drama Unit</h3>
+                    <div class="unit-meta">
+                        <span><i class="fas fa-users"></i> 28 Members</span>
+                        <span><i class="fas fa-calendar-alt"></i> House Visits</span>
+                    </div>
+                </div>
+                
+                <div class="unit-content">
+                    <div class="unit-section">
+                        <h4>Our Mission</h4>
+                        <p class="unit-description">Spreading the Gospel locally and globally through mission trips, evangelism training, and supporting missionaries.</p>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Code of Conduct</h4>
+                        <ul class="conduct-list">
+                            <li>Respect cultural differences in mission fields</li>
+                            <li>Share faith with gentleness and respect</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="unit-section">
+                        <h4>Unit Coordinators</h4>
+                        <div class="coordinators">
+                            <div class="coordinator">
+                                <div class="coordinator-img">TG</div>
+                                <div class="coordinator-info">
+                                    <h5>Tolani Green</h5>
+                                    <p>Unit Coordinator</p>
+                                </div>
+                            </div>
+                            <div class="coordinator">
+                                <div class="coordinator-img">RS</div>
+                                <div class="coordinator-info">
+                                    <h5>Rachel Sanusi</h5>
+                                    <p>Assistant Unit Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-footer">
+                    <a href="#" class="unit-contact">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="{% url 'accounts:drama_dashboard' %}" class="unit-join-btn">
                         More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>

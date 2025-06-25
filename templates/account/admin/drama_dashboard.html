@@ -1,0 +1,322 @@
+{% extends "_base.html" %}
+{% block title %}Drama Unit Dashboard{% endblock %}
+
+{% block content %}
+    <!-- Dashboard -->
+    <div class="container">
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-title">DRAMA UNIT NAVIGATION</div>
+                <div class="nav-item active">
+                    <i class="fas fa-scroll"></i>
+                    Announcements
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Production Calendar
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-script"></i>
+                    Script Library
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-users"></i>
+                    Cast & Crew
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-video"></i>
+                    Media Gallery
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-lightbulb"></i>
+                    Creative Ideas
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="spotlight"></div>
+                    <div class="welcome-text">
+                        <h1>Drama Unit Dashboard</h1>
+                        <p>Share the transformative power of storytelling through announcements that inspire, inform, and engage our congregation. Your words set the stage for our ministry.</p>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                </div>
+
+                <!-- Permissions Section -->
+                <div class="permissions-section">
+                    <div class="section-title">
+                        <i class="fas fa-key"></i>
+                        <h2>Your Creative Platform</h2>
+                    </div>
+                    <div class="permissions-grid">
+                        <div class="permission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3 class="card-title">Drama Announcements</h3>
+                            <p class="card-desc">Create and publish announcements for upcoming productions, auditions, rehearsals, and drama ministry events.</p>
+                            <button class="card-btn">Create Announcement <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Announcement Form -->
+                <div class="announcement-form">
+                    <div class="section-title">
+                        <i class="fas fa-feather-alt"></i>
+                        <h2>Create New Announcement</h2>
+                    </div>
+                    <form id="announcementForm">
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="announcementTitle"><i class="fas fa-heading"></i> Announcement Title</label>
+                                <input type="text" id="announcementTitle" class="form-control" placeholder="Auditions for Christmas Production" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementDate"><i class="fas fa-calendar-day"></i> Publish Date</label>
+                                <input type="date" id="announcementDate" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementCategory"><i class="fas fa-tag"></i> Category</label>
+                                <select id="announcementCategory" class="form-control" required>
+                                    <option value="">Select Category</option>
+                                    <option value="audition">Auditions</option>
+                                    <option value="performance">Performance</option>
+                                    <option value="rehearsal">Rehearsal</option>
+                                    <option value="workshop">Workshop</option>
+                                    <option value="general">General Announcement</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="announcementContent"><i class="fas fa-align-left"></i> Announcement Content</label>
+                                <textarea id="announcementContent" class="form-control" placeholder="Write your dramatic announcement here..." required>Our annual Christmas production is coming! We're looking for actors, singers, dancers, and backstage crew. This year's show is "The Gift of Love," an original musical celebrating the true meaning of Christmas. Auditions will be held on November 15th and 16th in the church auditorium. All experience levels welcome!</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementImage"><i class="fas fa-image"></i> Add Image (Optional)</label>
+                                <input type="file" id="announcementImage" class="form-control" accept="image/*">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="announcementAudience"><i class="fas fa-users"></i> Target Audience</label>
+                                <select id="announcementAudience" class="form-control">
+                                    <option value="all">All Members</option>
+                                    <option value="youth">Youth Group</option>
+                                    <option value="adults">Adults</option>
+                                    <option value="volunteers">Volunteers Only</option>
+                                    <option value="drama">Drama Team</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <button type="reset" class="cancel-btn">Clear Form</button>
+                            <button type="submit" class="submit-btn">Publish Announcement <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Announcements Section -->
+                <div class="announcements-section">
+                    <div class="section-title">
+                        <i class="fas fa-history"></i>
+                        <h2>Recent Announcements</h2>
+                    </div>
+                    <div class="announcements-list">
+                        <div class="announcement-card">
+                            <div class="curtain"></div>
+                            <div class="announcement-header">
+                                <h3 class="announcement-title">Fall Drama Workshop</h3>
+                                <div class="announcement-date">Oct 15, 2024</div>
+                            </div>
+                            <div class="announcement-content">
+                                <p>Join us for a 4-week drama workshop starting October 20th! Learn acting techniques, improvisation, and stage presence. Perfect for beginners and experienced actors alike.</p>
+                                <p><strong>When:</strong> Sundays after service, 1-3 PM</p>
+                                <p><strong>Where:</strong> Church Auditorium</p>
+                            </div>
+                            <div class="announcement-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-tag"></i> Workshop
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i> 142 Views
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user-check"></i> 18 Registered
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="announcement-card">
+                            <div class="curtain"></div>
+                            <div class="announcement-header">
+                                <h3 class="announcement-title">Auditions: Easter Production</h3>
+                                <div class="announcement-date">Feb 28, 2024</div>
+                            </div>
+                            <div class="announcement-content">
+                                <p>Auditions for our Easter production "Resurrection Dawn" are coming up! We need actors, singers, and dancers of all ages. No experience necessary - just a heart for ministry!</p>
+                                <p><strong>Audition Dates:</strong> March 10-11, 6-9 PM</p>
+                                <p>Prepare a 1-minute monologue or song.</p>
+                            </div>
+                            <div class="announcement-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-tag"></i> Auditions
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i> 210 Views
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> 32 Auditioned
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="announcement-card">
+                            <div class="curtain"></div>
+                            <div class="announcement-header">
+                                <h3 class="announcement-title">Backstage Crew Needed</h3>
+                                <div class="announcement-date">Sep 5, 2024</div>
+                            </div>
+                            <div class="announcement-content">
+                                <p>We're looking for volunteers to join our backstage crew for the upcoming Christmas production. Positions available in set design, costumes, lighting, sound, and stage management.</p>
+                                <p>No experience needed - training provided! Contact Olivia to join our creative team.</p>
+                            </div>
+                            <div class="announcement-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-tag"></i> Volunteers
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i> 98 Views
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-hands-helping"></i> 12 Volunteers
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2024 Grace Community Church. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Drama Resources</a>
+                    <a href="#">Script Library</a>
+                    <a href="#">Production Calendar</a>
+                    <a href="#">Contact Pastors</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Spotlight effect
+        document.addEventListener('mousemove', (e) => {
+            document.getElementById('spotlight').style.setProperty('--x', `${e.clientX}px`);
+            document.getElementById('spotlight').style.setProperty('--y', `${e.clientY}px`);
+        });
+
+        // Curtain rise effect
+        setTimeout(() => {
+            document.querySelector('.curtain-rise').style.display = 'none';
+        }, 1500);
+
+        // Announcement form submission
+        document.getElementById('announcementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const announcementTitle = document.getElementById('announcementTitle').value;
+            
+            // Show loading state on button
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+            submitBtn.disabled = true;
+            
+            // Create spotlight flash effect
+            const spotlightFlash = document.createElement('div');
+            spotlightFlash.className = 'spotlight-flash';
+            document.body.appendChild(spotlightFlash);
+            
+            // Simulate submission
+            setTimeout(() => {
+                // Remove spotlight effect
+                spotlightFlash.remove();
+                
+                alert(`"${announcementTitle}" published successfully! The congregation will see your announcement.`);
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                this.reset();
+                
+                // Add to announcements list temporarily
+                const announcementsList = document.querySelector('.announcements-list');
+                const newAnnouncement = document.createElement('div');
+                newAnnouncement.className = 'announcement-card';
+                newAnnouncement.innerHTML = `
+                    <div class="curtain"></div>
+                    <div class="announcement-header">
+                        <h3 class="announcement-title">${announcementTitle}</h3>
+                        <div class="announcement-date">Today</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>${document.getElementById('announcementContent').value.substring(0, 150)}...</p>
+                    </div>
+                    <div class="announcement-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-tag"></i> ${document.getElementById('announcementCategory').options[document.getElementById('announcementCategory').selectedIndex].text}
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-eye"></i> 0 Views
+                        </div>
+                    </div>
+                `;
+                announcementsList.prepend(newAnnouncement);
+                
+                // Scroll to the new announcement
+                newAnnouncement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 1500);
+        });
+        
+        // Nav item interactions
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.nav-item.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+        
+        // Card button interaction
+        document.querySelector('.card-btn').addEventListener('click', function() {
+            document.querySelector('.announcement-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Add flash effect
+            this.classList.add('flash-effect');
+            setTimeout(() => {
+                this.classList.remove('flash-effect');
+            }, 1000);
+        });
+        
+        // Add curtain effect to all announcement cards
+        document.querySelectorAll('.announcement-card').forEach(card => {
+            const curtain = document.createElement('div');
+            curtain.className = 'curtain';
+            card.appendChild(curtain);
+        });
+    </script>
+{% endblock %}

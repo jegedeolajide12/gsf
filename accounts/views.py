@@ -31,3 +31,32 @@ def evangelism_dashboard(request):
 def ushering_dashboard(request):
     context = {}
     return render(request, 'account/admin/ushering_dashboard.html', context)
+
+
+def prayer_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/prayer_dashboard.html', context)
+
+def academic_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/academic_dashboard.html', context)
+
+def follow_up_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/follow_up_dashboard.html', context)
+
+def welfare_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/welfare_dashboard.html', context)
+
+def drama_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/drama_dashboard.html', context)
+
+def gen_sec_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/gen_sec_dashboard.html', context)
+
+def workers_sec_dashboard(request):
+    context = {}
+    return render(request, 'account/admin/workers_sec_dashboard.html', context)

@@ -1,0 +1,442 @@
+{% extends "_base.html" %}
+{% block title %}Gen-Sec Dashboard{% endblock %}
+
+{% block content %}
+<!-- Dashboard -->
+    <div class="container">
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-title">ADMIN NAVIGATION</div>
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-bullhorn"></i>
+                    Announcements
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Calendar Management
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    Reports & Submissions
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    Communications
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-vote-yea"></i>
+                    Elections
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-users"></i>
+                    Leadership
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    System Settings
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="welcome-text">
+                        <h1>General Secretary Dashboard</h1>
+                        <p>Manage church operations, communications, and administration from this central hub. Your leadership ensures the smooth functioning of our ministry.</p>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(52, 152, 219, 0.1); color: var(--accent);">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">Pending Approvals</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(231, 76, 60, 0.1); color: var(--red);">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Urgent Matters</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(46, 204, 113, 0.1); color: var(--green);">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">42</div>
+                                <div class="stat-label">Completed Tasks</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(241, 196, 15, 0.1); color: var(--gold);">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">Upcoming Events</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permissions Section -->
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Administrative Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <!-- Column 1 -->
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3 class="card-title">Approve/Reject Announcements</h3>
+                        </div>
+                        <p class="card-desc">Review and approve or reject announcement requests from all church units before publication.</p>
+                        <button class="card-btn">Manage Announcements <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-vote-yea"></i>
+                            </div>
+                            <h3 class="card-title">Create Election Forms</h3>
+                        </div>
+                        <p class="card-desc">Design and publish executive election forms for church leadership positions.</p>
+                        <button class="card-btn">Create Form <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="card-title">Order of Service</h3>
+                        </div>
+                        <p class="card-desc">Create and manage orders of service for different service types (Sunday, midweek, special events).</p>
+                        <button class="card-btn">Manage Services <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <!-- Column 2 -->
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                            <h3 class="card-title">Anonymous Questions</h3>
+                        </div>
+                        <p class="card-desc">Receive and reply to anonymous questions from church workers and members.</p>
+                        <button class="card-btn">View Questions <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3 class="card-title">Official Announcements</h3>
+                        </div>
+                        <p class="card-desc">Edit and update the church's official announcements and communications.</p>
+                        <button class="card-btn">Manage Announcements <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="card-title">Unit Reports</h3>
+                        </div>
+                        <p class="card-desc">View and manage all reports submitted by different church units and departments.</p>
+                        <button class="card-btn">Access Reports <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <!-- Column 3 -->
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3 class="card-title">Semester Calendar</h3>
+                        </div>
+                        <p class="card-desc">Create and update the church's semester calendar with all events and activities.</p>
+                        <button class="card-btn">Manage Calendar <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <h3 class="card-title">Leadership Circulars</h3>
+                        </div>
+                        <p class="card-desc">Create and distribute circulars to church leadership and ministry heads.</p>
+                        <button class="card-btn">Create Circular <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <h3 class="card-title">Unit Submissions</h3>
+                        </div>
+                        <p class="card-desc">Approve or reject submissions from different church units (budgets, events, reports).</p>
+                        <button class="card-btn">Review Submissions <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <!-- Column 4 -->
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <h3 class="card-title">Calendar & Scheduling</h3>
+                        </div>
+                        <p class="card-desc">Access and manage the church's master calendar and scheduling tools.</p>
+                        <button class="card-btn">Access Calendar <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-mail-bulk"></i>
+                            </div>
+                            <h3 class="card-title">Site-wide Messages</h3>
+                        </div>
+                        <p class="card-desc">Send newsletters and important messages to all church members and staff.</p>
+                        <button class="card-btn">Compose Message <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="card-title">Administrative Tools</h3>
+                        </div>
+                        <p class="card-desc">Access all administrative tools and settings for church management.</p>
+                        <button class="card-btn">Access Tools <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Pending Approvals Section -->
+                <div class="pending-section">
+                    <div class="section-title">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Pending Approvals & Tasks</h2>
+                    </div>
+                    <div class="pending-grid">
+                        <div class="pending-card urgent">
+                            <h3 class="pending-title">Announcement Request <span class="priority-badge priority-high">URGENT</span></h3>
+                            <div class="pending-meta">
+                                <span><i class="fas fa-user"></i> Music Unit</span>
+                                <span><i class="fas fa-clock"></i> Today</span>
+                            </div>
+                            <p class="pending-desc">Request to publish choir rehearsal schedule changes for the holiday season.</p>
+                            <div class="pending-actions">
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="action-btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pending-card">
+                            <h3 class="pending-title">Budget Submission <span class="priority-badge priority-medium">MEDIUM</span></h3>
+                            <div class="pending-meta">
+                                <span><i class="fas fa-user"></i> Youth Ministry</span>
+                                <span><i class="fas fa-clock"></i> 2 days ago</span>
+                            </div>
+                            <p class="pending-desc">Q4 budget proposal for youth retreat and outreach activities.</p>
+                            <div class="pending-actions">
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="action-btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pending-card">
+                            <h3 class="pending-title">Event Request <span class="priority-badge priority-low">LOW</span></h3>
+                            <div class="pending-meta">
+                                <span><i class="fas fa-user"></i> Women's Fellowship</span>
+                                <span><i class="fas fa-clock"></i> 3 days ago</span>
+                            </div>
+                            <p class="pending-desc">Request to use main auditorium for annual women's conference in November.</p>
+                            <div class="pending-actions">
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="action-btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Section -->
+                <div class="activity-section">
+                    <div class="section-title">
+                        <i class="fas fa-history"></i>
+                        <h2>Recent Administrative Activity</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Approved Evangelism Report</div>
+                                <div class="activity-desc">Q3 outreach report from Evangelism Unit</div>
+                                <div class="activity-time">Today, 10:30 AM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-mail-bulk"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Sent Leadership Circular</div>
+                                <div class="activity-desc">October leadership meeting agenda and materials</div>
+                                <div class="activity-time">Yesterday, 3:15 PM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Updated Church Calendar</div>
+                                <div class="activity-desc">Added Christmas events and special services</div>
+                                <div class="activity-time">October 2, 2024</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Replied to Anonymous Question</div>
+                                <div class="activity-desc">Regarding childcare policy during evening services</div>
+                                <div class="activity-time">October 1, 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2024 Grace Community Church. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Admin Handbook</a>
+                    <a href="#">Policy Documents</a>
+                    <a href="#">Leadership Resources</a>
+                    <a href="#">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Button interactions
+        document.querySelectorAll('.card-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const cardTitle = this.closest('.permission-card').querySelector('.card-title').textContent;
+                
+                // Add a loading effect
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                this.disabled = true;
+                
+                // Simulate loading
+                setTimeout(() => {
+                    alert(`Opening ${cardTitle} interface...`);
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 1000);
+            });
+        });
+        
+        // Nav item interactions
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.nav-item.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+        
+        // Approve/Reject buttons
+        document.querySelectorAll('.approve-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.pending-card');
+                const title = card.querySelector('.pending-title').textContent;
+                alert(`Approved: ${title}`);
+                card.classList.add('completed');
+                card.classList.remove('urgent');
+            });
+        });
+        
+        document.querySelectorAll('.reject-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.pending-card');
+                const title = card.querySelector('.pending-title').textContent;
+                const reason = prompt("Please enter reason for rejection:");
+                if (reason) {
+                    alert(`Rejected: ${title}\nReason: ${reason}`);
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Update stats numbers with animation
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.textContent);
+            let count = 0;
+            stat.textContent = count;
+            
+            const updateCount = () => {
+                const increment = Math.ceil(target / 50);
+                count += increment;
+                if (count < target) {
+                    stat.textContent = count;
+                    setTimeout(updateCount, 30);
+                } else {
+                    stat.textContent = target;
+                }
+            };
+            
+            setTimeout(updateCount, 1000);
+        });
+    </script>
+{% endblock %}

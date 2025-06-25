@@ -1,0 +1,476 @@
+{% extends "_base.html" %}
+{% block title %}Prayer Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">PRAYER MINISTRY</div>
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-cross"></i>
+                Prayer Points
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-hands-praying"></i>
+                Prayer Requests
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-book-bible"></i>
+                Prayer Guides
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                Prayer Events
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                Prayer Warriors
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Prayer Ministry Dashboard</h1>
+                    <p>Facilitate the prayer life of our church by publishing prayer resources, managing requests, and organizing prayer events.</p>
+                </div>
+                <div class="banner-icon">
+                    <i class="fas fa-praying-hands"></i>
+                </div>
+            </div>
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Prayer Ministry Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card prayer-card">
+                        <div class="card-icon">
+                            <i class="fas fa-cross"></i>
+                        </div>
+                        <h3 class="card-title">Publish Prayer Points</h3>
+                        <p class="card-desc">Create and share daily and weekly prayer points for the congregation.</p>
+                        <button class="card-btn">Create Points <i class="fas fa-plus"></i></button>
+                    </div>
+                    
+                    <div class="permission-card prayer-card">
+                        <div class="card-icon">
+                            <i class="fas fa-hands-praying"></i>
+                        </div>
+                        <h3 class="card-title">Manage Prayer Requests</h3>
+                        <p class="card-desc">View, organize, and respond to prayer requests from the congregation.</p>
+                        <button class="card-btn">Manage Requests <i class="fas fa-inbox"></i></button>
+                    </div>
+                    
+                    <div class="permission-card prayer-card">
+                        <div class="card-icon">
+                            <i class="fas fa-book-bible"></i>
+                        </div>
+                        <h3 class="card-title">Post Prayer Guides</h3>
+                        <p class="card-desc">Create and publish prayer guides and devotionals for spiritual growth.</p>
+                        <button class="card-btn">Create Guides <i class="fas fa-pen"></i></button>
+                    </div>
+                    
+                    <div class="permission-card prayer-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="card-title">Manage Prayer Events</h3>
+                        <p class="card-desc">Organize and promote prayer meetings, vigils, and special prayer events.</p>
+                        <button class="card-btn">Manage Events <i class="fas fa-calendar-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prayer Points Section -->
+            <div class="prayer-points">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-cross"></i>
+                        <h2>Prayer Points</h2>
+                    </div>
+                </div>
+                <div class="prayer-tabs">
+                    <div class="prayer-tab active">Daily Prayer Points</div>
+                    <div class="prayer-tab">Weekly Prayer Focus</div>
+                    <div class="prayer-tab">Monthly Prayer Themes</div>
+                    <div class="prayer-tab">Special Prayer Needs</div>
+                </div>
+                <div class="prayer-editor" contenteditable="true">
+                    <h3>Today's Prayer Points - July 18, 2024</h3>
+                    <ul>
+                        <li>Pray for our church leadership as they make important decisions this week</li>
+                        <li>Lift up our missionaries serving in difficult regions around the world</li>
+                        <li>Intercede for families in our congregation facing financial challenges</li>
+                        <li>Pray for healing for those battling illness (see prayer requests)</li>
+                        <li>Ask God for wisdom as we plan our upcoming community outreach</li>
+                    </ul>
+                </div>
+                <div class="submit-section">
+                    <button class="cancel-btn">Save Draft</button>
+                    <button class="submit-btn">Publish Prayer Points <i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Prayer Requests Section -->
+            <div class="prayer-requests">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-hands-praying"></i>
+                        <h2>Prayer Requests</h2>
+                    </div>
+                </div>
+                <div class="request-filters">
+                    <div class="filter-btn active">All Requests</div>
+                    <div class="filter-btn">New (12)</div>
+                    <div class="filter-btn">Answered</div>
+                    <div class="filter-btn">Urgent</div>
+                    <div class="filter-btn">Healing</div>
+                    <div class="filter-btn">Family</div>
+                </div>
+                <div class="request-list">
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div class="request-title">Healing for John Matthews</div>
+                            <div class="request-meta">Submitted: Today at 9:42 AM</div>
+                        </div>
+                        <div class="request-content">
+                            John was diagnosed with stage 3 cancer last week. Please pray for healing, wisdom for doctors, and peace for his family during this difficult time. The family is trusting God for a miracle.
+                        </div>
+                        <div class="request-actions">
+                            <button class="action-btn pray-btn"><i class="fas fa-pray"></i> Mark as Prayed</button>
+                            <button class="action-btn update-btn"><i class="fas fa-edit"></i> Update Status</button>
+                        </div>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div class="request-title">Marriage Restoration</div>
+                            <div class="request-meta">Submitted: Yesterday at 3:15 PM</div>
+                        </div>
+                        <div class="request-content">
+                            Our marriage is in crisis and we're separated. Please pray for God to heal our relationship, restore trust, and help us rebuild our marriage on a foundation of faith. We believe nothing is impossible with God.
+                        </div>
+                        <div class="request-actions">
+                            <button class="action-btn pray-btn"><i class="fas fa-pray"></i> Mark as Prayed</button>
+                            <button class="action-btn update-btn"><i class="fas fa-edit"></i> Update Status</button>
+                        </div>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div class="request-title">Job Provision</div>
+                            <div class="request-meta">Submitted: July 16 at 11:30 AM</div>
+                        </div>
+                        <div class="request-content">
+                            After 6 months of unemployment, I need God's provision and the right job opportunity. Pray for doors to open and for God to sustain my family financially during this season.
+                        </div>
+                        <div class="request-actions">
+                            <button class="action-btn pray-btn"><i class="fas fa-pray"></i> Mark as Prayed</button>
+                            <button class="action-btn update-btn"><i class="fas fa-edit"></i> Update Status</button>
+                        </div>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-header">
+                            <div class="request-title">College Decision</div>
+                            <div class="request-meta">Submitted: July 14 at 8:22 PM</div>
+                        </div>
+                        <div class="request-content">
+                            I've been accepted to three universities and need wisdom to choose the right one. Pray for clear guidance about where God wants me to study and serve Him.
+                        </div>
+                        <div class="request-actions">
+                            <button class="action-btn pray-btn"><i class="fas fa-pray"></i> Mark as Prayed</button>
+                            <button class="action-btn update-btn"><i class="fas fa-edit"></i> Update Status</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prayer Guides Section -->
+            <div class="prayer-guides">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-book-bible"></i>
+                        <h2>Prayer Guides & Devotionals</h2>
+                    </div>
+                    <button class="card-btn">
+                        <i class="fas fa-plus"></i> New Guide
+                    </button>
+                </div>
+                <div class="guide-grid">
+                    <div class="guide-card">
+                        <div class="guide-title">30 Days of Spiritual Warfare</div>
+                        <div class="guide-meta">Published: July 10, 2024 | 12 min read</div>
+                        <div class="guide-excerpt">
+                            This comprehensive guide provides daily prayers and Scriptures to help you stand firm against spiritual attacks and walk in victory through Christ.
+                        </div>
+                        <button class="action-btn pray-btn">Edit Guide <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="guide-card">
+                        <div class="guide-title">Praying for Your Children</div>
+                        <div class="guide-meta">Published: June 28, 2024 | 8 min read</div>
+                        <div class="guide-excerpt">
+                            Scriptural prayers and practical guidance for interceding for your children's spiritual growth, protection, and future.
+                        </div>
+                        <button class="action-btn pray-btn">Edit Guide <i class="fas fa-edit"></i></button>
+                    </div>
+                    
+                    <div class="guide-card">
+                        <div class="guide-title">Hearing God's Voice in Prayer</div>
+                        <div class="guide-meta">Published: June 15, 2024 | 10 min read</div>
+                        <div class="guide-excerpt">
+                            Learn to recognize God's voice through Scripture, discernment, and the Holy Spirit's guidance during your prayer time.
+                        </div>
+                        <button class="action-btn pray-btn">Edit Guide <i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prayer Events Section -->
+            <div class="prayer-events">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Upcoming Prayer Events</h2>
+                    </div>
+                    <button class="card-btn">
+                        <i class="fas fa-plus"></i> New Event
+                    </button>
+                </div>
+                <div class="event-list">
+                    <div class="event-item">
+                        <div class="event-date">
+                            <div class="event-day">20</div>
+                            <div class="event-month">July</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-title">All-Night Prayer Vigil</div>
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i> 10:00 PM - 6:00 AM
+                            </div>
+                            <div class="event-time">
+                                <i class="fas fa-map-marker-alt"></i> Main Sanctuary
+                            </div>
+                            <div class="event-desc">
+                                Join us for a powerful night of prayer, worship, and seeking God's face. We'll be praying for revival, our city, and breakthrough in key areas.
+                            </div>
+                            <button class="action-btn pray-btn">Manage Event <i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-date">
+                            <div class="event-day">24</div>
+                            <div class="event-month">July</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-title">Women's Prayer Breakfast</div>
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i> 8:30 AM - 10:30 AM
+                            </div>
+                            <div class="event-time">
+                                <i class="fas fa-map-marker-alt"></i> Fellowship Hall
+                            </div>
+                            <div class="event-desc">
+                                A special time of prayer, fellowship, and encouragement for the women of our church. Topic: "Praying with Authority and Grace."
+                            </div>
+                            <button class="action-btn pray-btn">Manage Event <i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-date">
+                            <div class="event-day">28</div>
+                            <div class="event-month">July</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-title">Youth Prayer & Worship Night</div>
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i> 7:00 PM - 9:30 PM
+                            </div>
+                            <div class="event-time">
+                                <i class="fas fa-map-marker-alt"></i> Youth Chapel
+                            </div>
+                            <div class="event-desc">
+                                A night of passionate worship and prayer for our youth. Focus: Praying for schools, friendships, and God's purpose for their lives.
+                            </div>
+                            <button class="action-btn pray-btn">Manage Event <i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section prayer-stats">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Prayer Ministry Metrics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hands-praying"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">142</div>
+                            <div class="stat-label">Prayer Requests</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">67</div>
+                            <div class="stat-label">Answered Prayers</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">28</div>
+                            <div class="stat-label">Prayer Warriors</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">9</div>
+                            <div class="stat-label">Upcoming Events</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 Grace Community Church. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Prayer Resources</a>
+                <a href="#">Scripture Promises</a>
+                <a href="#">Prayer Chain</a>
+                <a href="#">Contact Pastors</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Tab functionality
+    document.querySelectorAll('.prayer-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelector('.prayer-tab.active').classList.remove('active');
+            this.classList.add('active');
+        });
+    });
+    
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            this.classList.add('active');
+        });
+    });
+    
+    // Mark as prayed functionality
+    document.querySelectorAll('.pray-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const requestItem = this.closest('.request-item');
+            const requestTitle = requestItem.querySelector('.request-title').textContent;
+            
+            // Change button to "prayed" state
+            this.innerHTML = '<i class="fas fa-check"></i> Prayed';
+            this.style.background = '#4CAF50';
+            this.style.color = 'white';
+            this.disabled = true;
+            
+            // Update stats
+            const answeredStat = document.querySelector('.prayer-stats .stat-icon + .stat-content .stat-number:nth-child(2)');
+            answeredStat.textContent = parseInt(answeredStat.textContent) + 1;
+            
+            // Show confirmation
+            setTimeout(() => {
+                alert(`"${requestTitle}" has been marked as prayed for!`);
+            }, 500);
+        });
+    });
+    
+    // Permission card interactions
+    document.querySelectorAll('.prayer-card .card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.permission-card');
+            const title = card.querySelector('.card-title').textContent;
+            
+            // Add loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                alert(`Opening ${title} interface...`);
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Scroll to relevant section
+                if (title.includes("Prayer Points")) {
+                    document.querySelector('.prayer-points').scrollIntoView({ behavior: 'smooth' });
+                } else if (title.includes("Prayer Requests")) {
+                    document.querySelector('.prayer-requests').scrollIntoView({ behavior: 'smooth' });
+                } else if (title.includes("Prayer Guides")) {
+                    document.querySelector('.prayer-guides').scrollIntoView({ behavior: 'smooth' });
+                } else if (title.includes("Prayer Events")) {
+                    document.querySelector('.prayer-events').scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000);
+        });
+    });
+    
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let count = 0;
+        stat.textContent = count;
+        
+        const updateCount = () => {
+            const increment = Math.ceil(target / 50);
+            count += increment;
+            if (count < target) {
+                stat.textContent = count;
+                setTimeout(updateCount, 30);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        setTimeout(updateCount, 1000);
+    });
+</script>
+
+{% endblock %}
