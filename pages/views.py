@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
 
+from .models import Unit, HomePageHero, HomePageBanner
+
 
 class HomePageView(TemplateView):
     template_name = "pages/home.html"
@@ -11,7 +13,8 @@ class AboutPageView(TemplateView):
 
 
 def units(request):
-    context = {}
+    units = Unit.objects.all()
+    context = {'units':units}
     return render(request, "pages/units.html", context)
 
 def sermons(request):

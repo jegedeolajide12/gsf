@@ -52,8 +52,13 @@
             </nav>
             
             <div style="display: flex; gap: 12px; align-items: center;">
-                <a href="{% url "account_login" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Log In</a>
-                <a href="{% url "account_signup" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Sign up</a>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url "account_logout" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Logout</a>
+                    <a href="#" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Dashboard</a>
+                {% else %}
+                    <a href="{% url "account_login" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Log In</a>
+                    <a href="{% url "account_signup" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Sign up</a>
+                {% endif %}
             </div>
         </div>
     </header>
