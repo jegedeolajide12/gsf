@@ -88,3 +88,6 @@ def events(request):
     context = {}
     return render(request, "pages/events.html", context)
 
+def give(request):
+    context = {}
+    return render(request, "pages/give.html", context)

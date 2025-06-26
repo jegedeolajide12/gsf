@@ -46,7 +46,7 @@
                         <a href="#" class="{% if request.resolver_match.url_name == 'connect' %}active{% endif %}">Connect</a>
                     </li>
                     <li>
-                        <a href="#" class="{% if request.resolver_match.url_name == 'give' %}active{% endif %}">Give</a>
+                        <a href="{% url "pages:give" %}" class="{% if request.resolver_match.url_name == 'give' %}active{% endif %}">Give</a>
                     </li>
                 </ul>
             </nav>
