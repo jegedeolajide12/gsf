@@ -1,0 +1,287 @@
+{% extends '_base.html' %}
+
+{% block title %}About page{% endblock %}
+
+{% block content %}
+
+</head>
+<body>
+    <div class="upload-container">
+        <div class="upload-header">
+            <i class="fas fa-microphone-alt header-icon"></i>
+            <h1>Upload New Sermon</h1>
+            <p>Share God's word with the congregation. Fill out the form below to upload your sermon recording and details.</p>
+        </div>
+        
+        <div class="upload-content">
+            <div class="upload-form">
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-info-circle"></i>
+                        <h2>Sermon Information</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Sermon Title <span class="required">*</span></label>
+                            <input type="text" class="form-control" placeholder="Enter sermon title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Preacher <span class="required">*</span></label>
+                            <select class="form-control" required>
+                                <option value="">Select preacher</option>
+                                <option value="1">Pastor James Wilson</option>
+                                <option value="2">Pastor Sarah Johnson</option>
+                                <option value="3">Elder Michael Brown</option>
+                                <option value="4">Guest Speaker</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Date Preached <span class="required">*</span></label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Service Type <span class="required">*</span></label>
+                            <select class="form-control" required>
+                                <option value="">Select service type</option>
+                                <option value="sunday-am">Sunday Morning Service</option>
+                                <option value="sunday-pm">Sunday Evening Service</option>
+                                <option value="wednesday">Wednesday Bible Study</option>
+                                <option value="special">Special Event</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bible Passage (Optional)</label>
+                        <input type="text" class="form-control" placeholder="e.g., John 3:16-18">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sermon Description</label>
+                        <textarea class="form-control" placeholder="Briefly describe the sermon content..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sermon Series (Optional)</label>
+                        <input type="text" class="form-control" placeholder="Enter series name">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-file-audio"></i>
+                        <h2>Media Files</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Audio File <span class="required">*</span></label>
+                            <div class="file-upload" id="audioUpload">
+                                <i class="fas fa-file-audio"></i>
+                                <h3>Upload Audio File</h3>
+                                <p>MP3, WAV, AAC (Max 500MB)</p>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-upload"></i> Select File
+                                </button>
+                                <input type="file" class="file-input" accept="audio/*" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Video File (Optional)</label>
+                            <div class="file-upload" id="videoUpload">
+                                <i class="fas fa-file-video"></i>
+                                <h3>Upload Video File</h3>
+                                <p>MP4, MOV, AVI (Max 2GB)</p>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-upload"></i> Select File
+                                </button>
+                                <input type="file" class="file-input" accept="video/*">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Thumbnail Image (Optional)</label>
+                        <div class="file-upload" id="imageUpload">
+                            <i class="fas fa-file-image"></i>
+                            <h3>Upload Thumbnail</h3>
+                            <p>JPG, PNG (Recommended: 1280×720)</p>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-upload"></i> Select Image
+                            </button>
+                            <input type="file" class="file-input" accept="image/*">
+                        </div>
+                    </div>
+                    
+                    <div class="uploaded-files">
+                        <div class="file-item">
+                            <div class="file-icon">
+                                <i class="fas fa-file-audio"></i>
+                            </div>
+                            <div class="file-details">
+                                <h4>Finding_Hope.mp3</h4>
+                                <p>48.7 MB • Uploaded successfully</p>
+                            </div>
+                            <div class="file-actions">
+                                <button><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-eye"></i>
+                        <h2>Visibility Settings</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Visibility</label>
+                            <select class="form-control">
+                                <option value="published">Published (Visible to everyone)</option>
+                                <option value="members">Members Only</option>
+                                <option value="draft">Draft (Not visible)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Publish Date</label>
+                            <input type="datetime-local" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Sermon
+                    </button>
+                </div>
+            </div>
+            
+            <div class="upload-sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Upload Tips</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Audio Quality</h3>
+                            <p>Record in a quiet environment. Use a quality microphone for best results.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>File Formats</h3>
+                            <p>Preferred formats: MP3 for audio, MP4 for video, JPG/PNG for images.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Tagging</h3>
+                            <p>Add relevant tags to help members find your sermon later.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-bible"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Scripture References</h3>
+                            <p>Include Bible passages to provide context for your sermon.</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Storage Usage</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">12.4 GB of 19 GB used</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload interactions
+        document.querySelectorAll('.file-upload').forEach(uploadArea => {
+            const fileInput = uploadArea.querySelector('.file-input');
+            const uploadButton = uploadArea.querySelector('.btn');
+            
+            // Trigger file input when clicking anywhere in the upload area
+            uploadArea.addEventListener('click', function(e) {
+                if (e.target !== uploadButton) {
+                    fileInput.click();
+                }
+            });
+            
+            // Trigger file input when clicking the button
+            uploadButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                fileInput.click();
+            });
+            
+            // Handle file selection
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    uploadArea.style.borderColor = '#4caf50';
+                    uploadArea.style.backgroundColor = 'rgba(76, 175, 80, 0.05)';
+                    uploadArea.querySelector('h3').textContent = this.files[0].name;
+                    uploadArea.querySelector('p').textContent = formatFileSize(this.files[0].size);
+                }
+            });
+        });
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Remove uploaded file
+        document.querySelector('.file-actions button').addEventListener('click', function() {
+            const fileItem = this.closest('.file-item');
+            fileItem.style.animation = 'fadeOut 0.3s forwards';
+            setTimeout(() => {
+                fileItem.remove();
+            }, 300);
+        });
+        
+        // Add animation for file removal
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+{% endblock %}
