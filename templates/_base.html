@@ -40,7 +40,7 @@
                         <a href="{% url 'pages:events' %}" class="{% if request.resolver_match.url_name == 'events' %}active{% endif %}">Events</a>
                     </li>
                     <li>
-                        <a href="#" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+                        <a href="{% url 'pages:about_page' %}" class="{% if request.resolver_match.url_name == 'about_page' %}active{% endif %}">About Us</a>
                     </li>
                     <li>
                         <a href="#" class="{% if request.resolver_match.url_name == 'connect' %}active{% endif %}">Connect</a>

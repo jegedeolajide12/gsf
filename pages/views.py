@@ -25,8 +25,14 @@ def home(request):
     return render(request, 'pages/home.html', context)
 
 
-class AboutPageView(TemplateView):
-    template_name = "pages/about.html"
+def about_page(request):
+    context = {
+        'hero': HomePageHero.objects.first(),
+        'banner': HomePageBanner.objects.first(),
+        'units': Unit.objects.all(),
+        'user_units': request.user.units.all() if request.user.is_authenticated else None,
+    }
+    return render(request, "pages/about.html", context)
 
 
 def units(request):
@@ -71,7 +77,6 @@ def unit_dashboard(request, unit_slug):
         return render(request, "account/admin/follow_up_dashboard.html", context)
     if user_unit.slug == 'welfare-unit':
         return render(request, "account/admin/welfare-unit_dashboard.html", context)
-    
     
     return render(request, "404.html", status=404)
 

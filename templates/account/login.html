@@ -36,7 +36,8 @@
                 <p>Enter your credentials to continue</p>
             </div>
             
-            <form class="login-form" id="loginForm">
+            <form class="login-form" id="loginForm" method="post" action="{% url 'account_login' %}">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="loginEmail">Email Address</label>
                     <div class="input-group">
@@ -115,21 +116,39 @@
         // Get form values
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
-        
-        // In a real app, you would authenticate with a server here
-        if (email && password) {
-            // Show loading effect on button
-            const submitBtn = this.querySelector('.submit-btn');
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                alert(`Welcome back! You've been successfully signed in.`);
-                submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
-                submitBtn.disabled = false;
-            }, 1500);
-        }
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const submitBtn = this.querySelector('.submit-btn');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+        submitBtn.disabled = true;
+
+        fetch("{% url 'account_login' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": csrfToken,
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: new URLSearchParams({
+                login: email,
+                password: password,
+                csrfmiddlewaretoken: csrfToken
+            })
+        })
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url; // Django may redirect on success
+            } else if (response.ok) {
+                // If not redirected, manually redirect to home
+                window.location.href = "{% url 'pages:home' %}";
+            } else {
+                return response.text().then(text => { throw new Error(text); });
+            }
+        })
+        .catch(error => {
+            alert("Login failed. Please check your credentials.");
+            submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+            submitBtn.disabled = false;
+        });
     });
 
     // Social login buttons
