@@ -2,8 +2,7 @@ from turtle import mode
 from django.db import models
 
 from django.contrib.auth import get_user_model
-
-User = get_user_model()
+from django.urls import reverse
 
 # Create your models here.
 
@@ -38,11 +37,14 @@ class UnitCodeOfConduct(models.Model):
 
 class Unit(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, max_length=100, null=True, blank=True)
     description = models.TextField()
     mission = models.TextField()
-    coordinator = models.OneToOneField( User, on_delete=models.CASCADE, related_name='unit_coordinator', null=True, blank=True)
-    assistant_coordinator = models.OneToOneField(User, on_delete=models.CASCADE, related_name='unit_assistant_coordinator', null=True, blank=True)
-    members = models.ManyToManyField(User, related_name='unit_members', blank=True)
+    coordinator = models.OneToOneField( 'accounts.CustomUser', on_delete=models.CASCADE, related_name='unit_coordinator', null=True, blank=True)
+    assistant_coordinator = models.OneToOneField('accounts.CustomUser', on_delete=models.CASCADE, related_name='unit_assistant_coordinator', null=True, blank=True)
+
+    def get_dashboard_url(self):
+        return reverse('pages:unit_dashboard', kwargs={'unit_slug': self.slug})
 
 
     def __str__(self):
