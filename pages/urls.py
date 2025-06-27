@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
                     home, units, sermons, events, 
-                    unit_dashboard, about_page, give, upload_sermon
+                    unit_dashboard, about_page, give
                 )
 
 from accounts.views import logout_confirm
@@ -19,5 +19,4 @@ urlpatterns = [
     path('logout/confirm/', logout_confirm, name="confirm_logout"),
     path('about/', about_page, name='about_page'),
     path('give/', give, name='give'),
-    path('upload-sermon/', upload_sermon, name='upload_sermon'),
 ]

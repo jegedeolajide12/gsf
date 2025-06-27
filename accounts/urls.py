@@ -4,7 +4,7 @@ from .views import (
     publicity_dashboard, technical_dashboard, bible_study_dashboard, kpt_dashboard,
     evangelism_dashboard, ushering_dashboard, prayer_dashboard, academic_dashboard,
     follow_up_dashboard, welfare_dashboard, drama_dashboard, gen_sec_dashboard,
-    workers_sec_dashboard
+    workers_sec_dashboard, upload_sermon, upload_banners
 )
 
 app_name = 'accounts'
@@ -23,5 +23,10 @@ urlpatterns = [
     path('accounts/drama-unit/dashboard/', drama_dashboard, name="drama_dashboard"),
     path('accounts/gen-sec-unit/dashboard/', gen_sec_dashboard, name="gen_sec_dashboard"),
     path('accounts/workers-sec-unit/dashboard/', workers_sec_dashboard, name="workers_sec_dashboard"),
+
+
+    path('upload-sermon/', upload_sermon, name='upload_sermon'),
+    path('upload-banners/', upload_banners, name='upload_banners'),
+
 
 ]

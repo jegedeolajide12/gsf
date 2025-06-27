@@ -91,7 +91,3 @@ def events(request):
 def give(request):
     context = {}
     return render(request, "pages/give.html", context)
-
-def upload_sermon(request):
-    context = {}
-    return render(request, "account/publicity/upload_sermon_form.html", context)

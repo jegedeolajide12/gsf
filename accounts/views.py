@@ -9,6 +9,15 @@ def publicity_dashboard(request):
     context = {}
     return render(request, 'account/admin/publicity_dashboard.html', context)
 
+
+def upload_sermon(request):
+    context = {}
+    return render(request, "account/publicity/upload_sermon_form.html", context)
+
+def upload_banners(request):
+    context = {}
+    return render(request, "account/publicity/upload_banner.html", context)
+
 def technical_dashboard(request):
     context = {}
     return render(request, 'account/admin/technical_dashboard.html', context)
@@ -60,3 +69,4 @@ def gen_sec_dashboard(request):
 def workers_sec_dashboard(request):
     context = {}
     return render(request, 'account/admin/workers_sec_dashboard.html', context)
+
