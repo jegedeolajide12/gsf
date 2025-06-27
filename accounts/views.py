@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,11 +13,15 @@ def publicity_dashboard(request):
 
 def upload_sermon(request):
     context = {}
-    return render(request, "account/publicity/upload_sermon_form.html", context)
+    return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
 def upload_banners(request):
     context = {}
-    return render(request, "account/publicity/upload_banner.html", context)
+    return render(request, "account/admin/publicity/upload_banner.html", context)
+
+def upload_announcements(request):
+    context = {}
+    return render(request, "account/admin/publicity/upload_announcement_form.html", context)
 
 def technical_dashboard(request):
     context = {}
