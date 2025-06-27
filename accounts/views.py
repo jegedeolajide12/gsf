@@ -23,6 +23,10 @@ def upload_announcements(request):
     context = {}
     return render(request, "account/admin/publicity/upload_announcement_form.html", context)
 
+def upload_photo_drives(request):
+    context = {}
+    return render(request, "account/admin/publicity/upload_photo_drives.html", context)
+
 def technical_dashboard(request):
     context = {}
     return render(request, 'account/admin/technical_dashboard.html', context)

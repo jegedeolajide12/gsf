@@ -1,0 +1,336 @@
+{% extends '_base.html' %}
+
+{% block title %}About page{% endblock %}
+
+{% block content %}
+    <div class="photo-drive-container">
+        <div class="photo-drive-header">
+            <i class="fas fa-images photo-drive-header-icon"></i>
+            <h1>Manage Photo Drive</h1>
+            <p>Share Google Drive photo albums with your congregation. Create shareable links to event photos.</p>
+        </div>
+        
+        <div class="photo-drive-content">
+            <div class="photo-drive-form">
+                <div class="drive-section">
+                    <div class="drive-section-title">
+                        <i class="fas fa-link"></i>
+                        <h2>Add New Photo Drive Link</h2>
+                    </div>
+                    
+                    <div class="drive-group">
+                        <label>Link Title <span class="required">*</span></label>
+                        <input type="text" class="drive-control" placeholder="E.g. Summer Retreat 2024 Photos" required>
+                    </div>
+                    
+                    <div class="drive-group">
+                        <label>Google Drive Link <span class="required">*</span></label>
+                        <input type="url" class="drive-control" placeholder="https://drive.google.com/drive/folders/..." required>
+                    </div>
+                    
+                    <div class="drive-group">
+                        <label>Description</label>
+                        <textarea class="drive-control" placeholder="Add a brief description of these photos..."></textarea>
+                    </div>
+                    
+                    <div class="drive-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                        <div class="drive-group">
+                            <label>Associated Event</label>
+                            <select class="drive-control">
+                                <option value="">Select event</option>
+                                <option value="1">Summer Youth Retreat</option>
+                                <option value="2">Baptism Sunday</option>
+                                <option value="3">Easter Service</option>
+                                <option value="4">Christmas Celebration</option>
+                                <option value="5">Community Outreach</option>
+                            </select>
+                        </div>
+                        
+                        <div class="drive-group">
+                            <label>Visibility</label>
+                            <select class="drive-control">
+                                <option value="public">Public (Anyone with link)</option>
+                                <option value="members">Church Members Only</option>
+                                <option value="private">Private (Specific people)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="drive-form-actions">
+                        <button class="drive-btn drive-btn-outline">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="drive-btn drive-btn-primary">
+                            <i class="fas fa-plus-circle"></i> Add Photo Link
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="existing-links-section">
+                    <div class="drive-section-title">
+                        <i class="fas fa-history"></i>
+                        <h2>Existing Photo Links</h2>
+                    </div>
+                    
+                    <table class="links-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Event</th>
+                                <th>Date Added</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="link-title">Baptism Sunday Photos</div>
+                                    <a href="#" class="link-url">https://drive.google.com/drive/folders/abc123</a>
+                                </td>
+                                <td>
+                                    <span class="link-event">Baptism Sunday</span>
+                                </td>
+                                <td>
+                                    <div class="link-date">June 15, 2024</div>
+                                </td>
+                                <td>
+                                    <div class="link-actions">
+                                        <button class="link-action-btn" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Copy Link">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="link-title">Youth Retreat 2024</div>
+                                    <a href="#" class="link-url">https://drive.google.com/drive/folders/def456</a>
+                                </td>
+                                <td>
+                                    <span class="link-event">Summer Youth Retreat</span>
+                                </td>
+                                <td>
+                                    <div class="link-date">May 28, 2024</div>
+                                </td>
+                                <td>
+                                    <div class="link-actions">
+                                        <button class="link-action-btn" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Copy Link">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="link-title">Easter Service</div>
+                                    <a href="#" class="link-url">https://drive.google.com/drive/folders/ghi789</a>
+                                </td>
+                                <td>
+                                    <span class="link-event">Easter Sunday</span>
+                                </td>
+                                <td>
+                                    <div class="link-date">April 5, 2024</div>
+                                </td>
+                                <td>
+                                    <div class="link-actions">
+                                        <button class="link-action-btn" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Copy Link">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="link-title">Community Outreach</div>
+                                    <a href="#" class="link-url">https://drive.google.com/drive/folders/jkl012</a>
+                                </td>
+                                <td>
+                                    <span class="link-event">Community Service Day</span>
+                                </td>
+                                <td>
+                                    <div class="link-date">March 20, 2024</div>
+                                </td>
+                                <td>
+                                    <div class="link-actions">
+                                        <button class="link-action-btn" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Copy Link">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button class="link-action-btn" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="drive-sidebar">
+                <div class="drive-sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Photo Drive Tips</h2>
+                </div>
+                
+                <ul class="drive-tips-list">
+                    <li>
+                        <div class="drive-tip-icon">
+                            <i class="fab fa-google-drive"></i>
+                        </div>
+                        <div class="drive-tip-content">
+                            <h3>Sharing Settings</h3>
+                            <p>Set Google Drive folder to "Anyone with link can view" for public sharing.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="drive-tip-icon">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="drive-tip-content">
+                            <h3>Organize by Event</h3>
+                            <p>Create separate folders for each event to keep photos organized.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="drive-tip-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="drive-tip-content">
+                            <h3>Privacy Considerations</h3>
+                            <p>Get permission before sharing photos of congregation members.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="drive-tip-icon">
+                            <i class="fas fa-sort-alpha-down"></i>
+                        </div>
+                        <div class="drive-tip-content">
+                            <h3>Naming Convention</h3>
+                            <p>Use consistent naming: "YYYY-MM-DD Event Name Photos"</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="drive-progress-section">
+                    <div class="drive-progress-label">
+                        <span>Active Photo Links</span>
+                        <span>8/15</span>
+                    </div>
+                    <div class="drive-progress-bar">
+                        <div class="drive-progress-fill" style="width: 53%;"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">You have 7 photo links remaining</p>
+                </div>
+                
+                <div class="drive-progress-section">
+                    <div class="drive-progress-label">
+                        <span>Storage Usage</span>
+                        <span>42%</span>
+                    </div>
+                    <div class="drive-progress-bar">
+                        <div class="drive-progress-fill" style="width: 42%; background: var(--accent);"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">8.2 GB of 19 GB used</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form submission
+        document.querySelector('.drive-btn-primary').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+            this.disabled = true;
+            
+            // Simulate save process
+            setTimeout(() => {
+                alert('Photo Drive link added successfully!');
+                this.innerHTML = originalText;
+                this.disabled = false;
+                
+                // Reset form
+                document.querySelector('.photo-drive-form').reset();
+            }, 1500);
+        });
+        
+        // Copy link functionality
+        document.querySelectorAll('.link-action-btn .fa-copy').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const link = this.closest('tr').querySelector('.link-url').href;
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(link).then(() => {
+                    // Show confirmation
+                    const originalHtml = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalHtml;
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Delete functionality
+        document.querySelectorAll('.link-action-btn .fa-trash').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const row = this.closest('tr');
+                
+                if (confirm('Are you sure you want to delete this photo link?')) {
+                    row.style.backgroundColor = '#ffebee';
+                    row.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        row.remove();
+                    }, 500);
+                }
+            });
+        });
+        
+        // Edit functionality
+        document.querySelectorAll('.link-action-btn .fa-edit').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const row = this.closest('tr');
+                const title = row.querySelector('.link-title').textContent;
+                const url = row.querySelector('.link-url').textContent;
+                
+                // Fill form with existing values
+                document.querySelector('.drive-control[type="text"]').value = title;
+                document.querySelector('.drive-control[type="url"]').value = url;
+                
+                // Scroll to form
+                document.querySelector('.drive-section-title').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+{% endblock %}
