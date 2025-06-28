@@ -17,14 +17,18 @@ def publicity_dashboard(request):
 
 def upload_sermon(request):
     sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
+
     if request.method == 'POST':
         if sermon_form.is_valid():
+            print("Accepted service_type:", sermon_form.cleaned_data.get('sermon_type'))
             sermon_form.save()
             context = {'form': sermon_form, 'success': 'Sermon uploaded successfully!'}
             return render(request, "account/admin/publicity/upload_sermon_form.html", context)
         else:
+            
             sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
             context = {'form': sermon_form, 'errors': sermon_form.errors}
+            print("Form errors:", sermon_form.errors)
             return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
     sermon_form = SermonUploadForm()

@@ -1,9 +1,10 @@
+import re
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from .models import CustomUser, UploadSermon
 
 
 class CustomUserAdmin(UserAdmin):
@@ -29,5 +30,10 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('username', 'email')
     ordering = ('username',)
 
+@admin.register(UploadSermon)
+class UploadSermonAdmin(admin.ModelAdmin):
+    list_display = ('title', 'preacher', 'date_preached', 'sermon_type', 'uploaded_at')
+    list_filter = ('sermon_type', 'date_preached')
+    search_fields = ('title', 'preacher', 'bible_reference')
 
 admin.site.register(CustomUser, CustomUserAdmin)

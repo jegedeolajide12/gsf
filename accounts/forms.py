@@ -33,7 +33,7 @@ class SermonUploadForm(forms.ModelForm):
             'date_preached': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': True, 'placeholder': 'Select date', }),
             'bible_reference': forms.TextInput(attrs={'placeholder': 'e.g. John 3:16', 'class': 'form-control', 'required': True, 'placeholder': 'John 3:16'}),
             'preacher': forms.TextInput(attrs={'placeholder': 'Preacher Name', 'class': 'form-control', 'required': True, 'placeholder': 'Enter preacher\'s name'}),
-            'sermon_type': forms.Select(attrs={'class': 'form-control', 'required': True}, choices=[('', 'Select sermon type')] + list(UploadSermon.ServiceType.choices)),
+            'sermon_type': forms.Select(attrs={'class': 'form-control'}, choices=[('', 'Select sermon type')] + list(UploadSermon.ServiceType.choices)),
             'bible_text': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Enter the Bible text here...', 'class': 'form-control', 'required': True, 'placeholder': 'For God so loved the world...'}),
             'title': forms.TextInput(attrs={'placeholder': 'Sermon Title', 'class': 'form-control', 'required': True, 'placeholder': 'Enter sermon title'}),
             'description': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Sermon Description', 'class': 'form-control', 'required': True, 'placeholder': 'Enter a brief description of the sermon'}),
