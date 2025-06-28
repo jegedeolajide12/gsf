@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Workers Assignment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --accent: #4cc9f0;
+            --light-blue: #e6f0ff;
+            --gold: #f9c74f;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --light-gray: #f0f2f5;
+            --gray: #6c757d;
+            --dark: #212529;
+            --success: #4caf50;
+            --error: #f44336;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .workers-assignment-page {
+            max-width: 1400px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        /* Header Styles */
+        .workers-assignment-page .assignment-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workers-assignment-page .assignment-header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .workers-assignment-page .assignment-header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .workers-assignment-page .assignment-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .workers-assignment-page .assignment-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .workers-assignment-page .assignment-header-icon {
+            font-size: 5rem;
+            opacity: 0.15;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        /* Main Layout */
+        .workers-assignment-page .assignment-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        /* Assignment Section */
+        .workers-assignment-page .assignment-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .workers-assignment-page .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+            color: var(--primary-dark);
+        }
+
+        .workers-assignment-page .section-title i {
+            font-size: 1.6rem;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        .workers-assignment-page .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        /* Search and Filters */
+        .workers-assignment-page .search-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .workers-assignment-page .search-box {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .workers-assignment-page .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border: 2px solid #e1e5f1;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .workers-assignment-page .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+        }
+
+        .workers-assignment-page .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .workers-assignment-page .filter-select {
+            min-width: 180px;
+            padding: 14px 20px;
+            border: 2px solid #e1e5f1;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            background: var(--light);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234361ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+        }
+
+        /* Workers List */
+        .workers-assignment-page .workers-list {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .workers-assignment-page .worker-card {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .workers-assignment-page .worker-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .workers-assignment-page .worker-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .workers-assignment-page .worker-info {
+            flex-grow: 1;
+        }
+
+        .workers-assignment-page .worker-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .workers-assignment-page .worker-email {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .workers-assignment-page .worker-units {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .workers-assignment-page .unit-tag {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .workers-assignment-page .unit-tag i {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .workers-assignment-page .assignment-controls {
+            display: flex;
+            gap: 15px;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .workers-assignment-page .unit-select {
+            min-width: 200px;
+            padding: 10px 15px;
+            border: 2px solid #e1e5f1;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            background: var(--white);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234361ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+        }
+
+        .workers-assignment-page .assign-btn {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .workers-assignment-page .assign-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Units Section */
+        .workers-assignment-page .units-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-top: 30px;
+        }
+
+        .workers-assignment-page .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .workers-assignment-page .unit-card {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            padding: 25px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .workers-assignment-page .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .workers-assignment-page .unit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .workers-assignment-page .unit-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(76, 201, 240, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .workers-assignment-page .unit-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .workers-assignment-page .members-count {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .workers-assignment-page .members-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .workers-assignment-page .member-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .workers-assignment-page .member-item:last-child {
+            border-bottom: none;
+        }
+
+        .workers-assignment-page .member-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .workers-assignment-page .member-name {
+            font-size: 0.95rem;
+            color: var(--dark);
+            flex-grow: 1;
+        }
+
+        .workers-assignment-page .remove-btn {
+            color: var(--error);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .workers-assignment-page .remove-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Sidebar */
+        .workers-assignment-page .assignment-sidebar {
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 2px solid rgba(67, 97, 238, 0.1);
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }
+
+        .workers-assignment-page .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .workers-assignment-page .stat-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .workers-assignment-page .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .workers-assignment-page .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .workers-assignment-page .assignment-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .workers-assignment-page .assignment-sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .workers-assignment-page .assignment-header {
+                padding: 30px 20px;
+            }
+            
+            .workers-assignment-page .assignment-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .workers-assignment-page .search-section {
+                flex-direction: column;
+            }
+            
+            .workers-assignment-page .worker-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .workers-assignment-page .assignment-controls {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .workers-assignment-page .unit-select {
+                flex-grow: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .workers-assignment-page .assignment-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .workers-assignment-page .assignment-header p {
+                font-size: 1rem;
+            }
+            
+            .workers-assignment-page .units-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="workers-assignment-page">
+        <div class="assignment-header">
+            <i class="fas fa-users assignment-header-icon"></i>
+            <h1>Assign Workers to Units</h1>
+            <p>Organize your church volunteers and staff by assigning them to ministry units</p>
+        </div>
+        
+        <div class="assignment-content">
+            <div class="main-content">
+                <div class="assignment-section">
+                    <div class="section-title">
+                        <i class="fas fa-user-friends"></i>
+                        <h2>Workers Assignment</h2>
+                    </div>
+                    
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search workers by name...">
+                        </div>
+                        <select class="filter-select">
+                            <option>All Units</option>
+                            <option>Worship Team</option>
+                            <option>Children's Ministry</option>
+                            <option>Youth Ministry</option>
+                            <option>Hospitality</option>
+                            <option>Technical Team</option>
+                            <option>Outreach</option>
+                        </select>
+                    </div>
+                    
+                    <div class="workers-list">
+                        <!-- Worker 1 -->
+                        <div class="worker-card">
+                            <div class="worker-avatar">JD</div>
+                            <div class="worker-info">
+                                <div class="worker-name">John Doe</div>
+                                <div class="worker-email">john.doe@church.org</div>
+                                <div class="worker-units">
+                                    <div class="unit-tag">
+                                        Worship Team <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                    <div class="unit-tag">
+                                        Technical Team <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assignment-controls">
+                                <select class="unit-select">
+                                    <option value="">Select a unit</option>
+                                    <option value="worship">Worship Team</option>
+                                    <option value="children">Children's Ministry</option>
+                                    <option value="youth">Youth Ministry</option>
+                                    <option value="hospitality">Hospitality</option>
+                                    <option value="tech">Technical Team</option>
+                                    <option value="outreach">Outreach</option>
+                                </select>
+                                <button class="assign-btn">Assign</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Worker 2 -->
+                        <div class="worker-card">
+                            <div class="worker-avatar">MS</div>
+                            <div class="worker-info">
+                                <div class="worker-name">Mary Smith</div>
+                                <div class="worker-email">mary.smith@church.org</div>
+                                <div class="worker-units">
+                                    <div class="unit-tag">
+                                        Children's Ministry <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assignment-controls">
+                                <select class="unit-select">
+                                    <option value="">Select a unit</option>
+                                    <option value="worship">Worship Team</option>
+                                    <option value="children">Children's Ministry</option>
+                                    <option value="youth">Youth Ministry</option>
+                                    <option value="hospitality">Hospitality</option>
+                                    <option value="tech">Technical Team</option>
+                                    <option value="outreach">Outreach</option>
+                                </select>
+                                <button class="assign-btn">Assign</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Worker 3 -->
+                        <div class="worker-card">
+                            <div class="worker-avatar">RJ</div>
+                            <div class="worker-info">
+                                <div class="worker-name">Robert Johnson</div>
+                                <div class="worker-email">robert.j@church.org</div>
+                                <div class="worker-units">
+                                    <div class="unit-tag">
+                                        Technical Team <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assignment-controls">
+                                <select class="unit-select">
+                                    <option value="">Select a unit</option>
+                                    <option value="worship">Worship Team</option>
+                                    <option value="children">Children's Ministry</option>
+                                    <option value="youth">Youth Ministry</option>
+                                    <option value="hospitality">Hospitality</option>
+                                    <option value="tech">Technical Team</option>
+                                    <option value="outreach">Outreach</option>
+                                </select>
+                                <button class="assign-btn">Assign</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Worker 4 -->
+                        <div class="worker-card">
+                            <div class="worker-avatar">ES</div>
+                            <div class="worker-info">
+                                <div class="worker-name">Emily Stevens</div>
+                                <div class="worker-email">emily.s@church.org</div>
+                                <div class="worker-units">
+                                    <div class="unit-tag">
+                                        Hospitality <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                    <div class="unit-tag">
+                                        Outreach <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assignment-controls">
+                                <select class="unit-select">
+                                    <option value="">Select a unit</option>
+                                    <option value="worship">Worship Team</option>
+                                    <option value="children">Children's Ministry</option>
+                                    <option value="youth">Youth Ministry</option>
+                                    <option value="hospitality">Hospitality</option>
+                                    <option value="tech">Technical Team</option>
+                                    <option value="outreach">Outreach</option>
+                                </select>
+                                <button class="assign-btn">Assign</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Worker 5 -->
+                        <div class="worker-card">
+                            <div class="worker-avatar">DW</div>
+                            <div class="worker-info">
+                                <div class="worker-name">David Wilson</div>
+                                <div class="worker-email">david.w@church.org</div>
+                                <div class="worker-units">
+                                    <div class="unit-tag">
+                                        Youth Ministry <i class="fas fa-times remove-tag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assignment-controls">
+                                <select class="unit-select">
+                                    <option value="">Select a unit</option>
+                                    <option value="worship">Worship Team</option>
+                                    <option value="children">Children's Ministry</option>
+                                    <option value="youth">Youth Ministry</option>
+                                    <option value="hospitality">Hospitality</option>
+                                    <option value="tech">Technical Team</option>
+                                    <option value="outreach">Outreach</option>
+                                </select>
+                                <button class="assign-btn">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="units-section">
+                    <div class="section-title">
+                        <i class="fas fa-sitemap"></i>
+                        <h2>Ministry Units</h2>
+                    </div>
+                    
+                    <div class="units-grid">
+                        <!-- Unit 1 -->
+                        <div class="unit-card">
+                            <div class="unit-header">
+                                <div class="unit-icon">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="unit-title">Worship Team</div>
+                                <div class="members-count">4 members</div>
+                            </div>
+                            <ul class="members-list">
+                                <li class="member-item">
+                                    <div class="member-avatar">JD</div>
+                                    <div class="member-name">John Doe</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">MS</div>
+                                    <div class="member-name">Mary Smith</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">RJ</div>
+                                    <div class="member-name">Robert Johnson</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">ES</div>
+                                    <div class="member-name">Emily Stevens</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Unit 2 -->
+                        <div class="unit-card">
+                            <div class="unit-header">
+                                <div class="unit-icon">
+                                    <i class="fas fa-child"></i>
+                                </div>
+                                <div class="unit-title">Children's Ministry</div>
+                                <div class="members-count">3 members</div>
+                            </div>
+                            <ul class="members-list">
+                                <li class="member-item">
+                                    <div class="member-avatar">MS</div>
+                                    <div class="member-name">Mary Smith</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">DW</div>
+                                    <div class="member-name">David Wilson</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">ES</div>
+                                    <div class="member-name">Emily Stevens</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Unit 3 -->
+                        <div class="unit-card">
+                            <div class="unit-header">
+                                <div class="unit-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="unit-title">Youth Ministry</div>
+                                <div class="members-count">2 members</div>
+                            </div>
+                            <ul class="members-list">
+                                <li class="member-item">
+                                    <div class="member-avatar">RJ</div>
+                                    <div class="member-name">Robert Johnson</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">DW</div>
+                                    <div class="member-name">David Wilson</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Unit 4 -->
+                        <div class="unit-card">
+                            <div class="unit-header">
+                                <div class="unit-icon">
+                                    <i class="fas fa-coffee"></i>
+                                </div>
+                                <div class="unit-title">Hospitality</div>
+                                <div class="members-count">3 members</div>
+                            </div>
+                            <ul class="members-list">
+                                <li class="member-item">
+                                    <div class="member-avatar">ES</div>
+                                    <div class="member-name">Emily Stevens</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">MS</div>
+                                    <div class="member-name">Mary Smith</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                                <li class="member-item">
+                                    <div class="member-avatar">JD</div>
+                                    <div class="member-name">John Doe</div>
+                                    <div class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="assignment-sidebar">
+                <div class="section-title">
+                    <i class="fas fa-chart-pie"></i>
+                    <h2>Assignment Overview</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Active Workers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Ministry Units</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">82%</div>
+                        <div class="stat-label">Assigned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">New This Month</div>
+                    </div>
+                </div>
+                
+                <div class="section-title" style="margin-top: 30px;">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Assignment Tips</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        <span>Balance workloads among volunteers</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        <span>Match skills to ministry needs</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        <span>Consider worker availability</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        <span>Rotate assignments periodically</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        <span>Provide training for new roles</span>
+                    </li>
+                </ul>
+                
+                <div class="section-title" style="margin-top: 30px;">
+                    <i class="fas fa-history"></i>
+                    <h2>Recent Assignments</h2>
+                </div>
+                
+                <ul class="recent-list">
+                    <li class="recent-item">
+                        <div><strong>John Doe</strong> assigned to <strong>Worship Team</strong></div>
+                        <div class="recent-date">Today, 10:30 AM</div>
+                    </li>
+                    <li class="recent-item">
+                        <div><strong>Emily Stevens</strong> assigned to <strong>Hospitality</strong></div>
+                        <div class="recent-date">Yesterday, 4:15 PM</div>
+                    </li>
+                    <li class="recent-item">
+                        <div><strong>David Wilson</strong> assigned to <strong>Youth Ministry</strong></div>
+                        <div class="recent-date">June 28, 2024</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Assignment functionality
+        document.querySelectorAll('.assign-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.worker-card');
+                const select = card.querySelector('.unit-select');
+                const unitName = select.options[select.selectedIndex].text;
+                
+                if (!unitName || unitName === "Select a unit") {
+                    alert('Please select a unit first');
+                    return;
+                }
+                
+                // Create new tag
+                const newTag = document.createElement('div');
+                newTag.className = 'unit-tag';
+                newTag.innerHTML = `
+                    ${unitName} <i class="fas fa-times remove-tag"></i>
+                `;
+                
+                // Add to tags container
+                const tagsContainer = card.querySelector('.worker-units');
+                tagsContainer.appendChild(newTag);
+                
+                // Reset select
+                select.selectedIndex = 0;
+                
+                // Add event listener to new remove button
+                newTag.querySelector('.remove-tag').addEventListener('click', function() {
+                    newTag.remove();
+                });
+                
+                // Show success message
+                const workerName = card.querySelector('.worker-name').textContent;
+                alert(`${workerName} has been assigned to ${unitName}`);
+            });
+        });
+        
+        // Remove tag functionality
+        document.querySelectorAll('.remove-tag').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.unit-tag').remove();
+            });
+        });
+        
+        // Remove from unit functionality
+        document.querySelectorAll('.remove-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const memberItem = this.closest('.member-item');
+                const memberName = memberItem.querySelector('.member-name').textContent;
+                if (confirm(`Remove ${memberName} from this unit?`)) {
+                    memberItem.remove();
+                }
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            document.querySelectorAll('.worker-card').forEach(card => {
+                const workerName = card.querySelector('.worker-name').textContent.toLowerCase();
+                if (workerName.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,9 @@
 from multiprocessing import context
+import re
 from django.shortcuts import render
+
+from .forms import SermonUploadForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def logout_confirm(request):
@@ -12,7 +16,19 @@ def publicity_dashboard(request):
 
 
 def upload_sermon(request):
-    context = {}
+    sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        if sermon_form.is_valid():
+            sermon_form.save()
+            context = {'form': sermon_form, 'success': 'Sermon uploaded successfully!'}
+            return render(request, "account/admin/publicity/upload_sermon_form.html", context)
+        else:
+            sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
+            context = {'form': sermon_form, 'errors': sermon_form.errors}
+            return render(request, "account/admin/publicity/upload_sermon_form.html", context)
+
+    sermon_form = SermonUploadForm()
+    context = {'form': sermon_form}
     return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
 def upload_banners(request):
@@ -26,6 +42,14 @@ def upload_announcements(request):
 def upload_photo_drives(request):
     context = {}
     return render(request, "account/admin/publicity/upload_photo_drives.html", context)
+
+def create_semester_calendar(request):
+    context = {}
+    return render(request, "account/admin/publicity/create_semester_calendar.html", context)
+
+def assign_workers(request):
+    context = {}
+    return render(request, 'account/admin/publicity/assign_workers.html', context)
 
 def technical_dashboard(request):
     context = {}

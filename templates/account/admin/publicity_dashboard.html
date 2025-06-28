@@ -95,16 +95,16 @@
                         </div>
                         <h3 class="card-title">Update Church Calendar</h3>
                         <p class="card-desc">Manage all church events, services, and special programs on the public calendar.</p>
-                        <button class="card-btn">Edit Calendar <i class="fas fa-arrow-right"></i></button>
+                        <a href="{% url "accounts:create_semester_calendar" %}" class="card-btn">Edit Calendar <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
                     <div class="permission-card">
                         <div class="card-icon">
-                            <i class="fas fa-video"></i>
+                            <i class="fas fa-user-cog"></i>
                         </div>
-                        <h3 class="card-title">Livestream Setup</h3>
+                        <h3 class="card-title">Assign Workers</h3>
                         <p class="card-desc">Configure and manage Sunday service livestreams across platforms.</p>
-                        <button class="card-btn">Setup Stream <i class="fas fa-arrow-right"></i></button>
+                        <a href="{% url "accounts:assign_workers" %}" class="card-btn">Assign workers <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

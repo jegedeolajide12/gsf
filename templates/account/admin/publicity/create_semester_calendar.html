@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Semester Calendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --accent: #4cc9f0;
+            --light-blue: #e6f0ff;
+            --gold: #f9c74f;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --light-gray: #f0f2f5;
+            --gray: #6c757d;
+            --dark: #212529;
+            --success: #4caf50;
+            --error: #f44336;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Scoped container for calendar page */
+        .semester-calendar-page {
+            max-width: 1400px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        /* Header Styles */
+        .semester-calendar-page .calendar-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .semester-calendar-page .calendar-header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .semester-calendar-page .calendar-header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .semester-calendar-page .calendar-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .semester-calendar-page .calendar-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .semester-calendar-page .calendar-header-icon {
+            font-size: 5rem;
+            opacity: 0.15;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        /* Main Layout */
+        .semester-calendar-page .calendar-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        /* Form Section */
+        .semester-calendar-page .calendar-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+        }
+
+        .semester-calendar-page .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+            color: var(--primary-dark);
+        }
+
+        .semester-calendar-page .section-title i {
+            font-size: 1.6rem;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        .semester-calendar-page .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .semester-calendar-page .form-group {
+            margin-bottom: 25px;
+        }
+
+        .semester-calendar-page .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+
+        .semester-calendar-page .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e1e5f1;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .semester-calendar-page .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+        }
+
+        textarea.semester-calendar-page .form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.semester-calendar-page .form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234361ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+        }
+
+        .semester-calendar-page .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Buttons */
+        .semester-calendar-page .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-decoration: none;
+        }
+
+        .semester-calendar-page .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .semester-calendar-page .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        .semester-calendar-page .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+
+        .semester-calendar-page .btn-outline:hover {
+            background: rgba(67, 97, 238, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .semester-calendar-page .btn i {
+            margin-right: 10px;
+        }
+
+        .semester-calendar-page .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(67, 97, 238, 0.1);
+        }
+
+        /* Event List */
+        .semester-calendar-page .event-list {
+            margin-top: 30px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .semester-calendar-page .event-item {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .semester-calendar-page .event-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .semester-calendar-page .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .semester-calendar-page .event-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .semester-calendar-page .event-date {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .semester-calendar-page .event-details {
+            color: var(--gray);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .semester-calendar-page .event-details i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+
+        .semester-calendar-page .event-description {
+            color: var(--dark);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        .semester-calendar-page .event-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .semester-calendar-page .event-action-btn {
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--white);
+        }
+
+        .semester-calendar-page .event-action-btn.edit {
+            color: var(--primary);
+        }
+
+        .semester-calendar-page .event-action-btn.delete {
+            color: var(--error);
+        }
+
+        .semester-calendar-page .event-action-btn:hover {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        /* Sidebar */
+        .semester-calendar-page .calendar-sidebar {
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 2px solid rgba(67, 97, 238, 0.1);
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }
+
+        .semester-calendar-page .sidebar-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .semester-calendar-page .sidebar-title i {
+            margin-right: 12px;
+            color: var(--primary);
+        }
+
+        .semester-calendar-page .tips-list {
+            list-style: none;
+        }
+
+        .semester-calendar-page .tips-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(67, 97, 238, 0.08);
+            display: flex;
+        }
+
+        .semester-calendar-page .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        .semester-calendar-page .tip-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(67, 97, 238, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .semester-calendar-page .tip-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .semester-calendar-page .tip-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .semester-calendar-page .progress-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .semester-calendar-page .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .semester-calendar-page .progress-bar {
+            height: 12px;
+            background: #e1e5f1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .semester-calendar-page .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 65%;
+            border-radius: 10px;
+        }
+
+        /* Calendar Preview */
+        .semester-calendar-page .calendar-preview {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+            margin-top: 30px;
+        }
+
+        .semester-calendar-page .month-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .semester-calendar-page .week-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .semester-calendar-page .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .semester-calendar-page .calendar-day {
+            aspect-ratio: 1/1;
+            background: var(--light);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .semester-calendar-page .calendar-day:hover {
+            background: rgba(67, 97, 238, 0.05);
+        }
+
+        .semester-calendar-page .calendar-day.today {
+            background: rgba(67, 97, 238, 0.1);
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .semester-calendar-page .calendar-day.has-event::after {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        .semester-calendar-page .calendar-event {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: var(--radius);
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+        }
+
+        .semester-calendar-page .calendar-event .event-time {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .semester-calendar-page .calendar-event .event-title {
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .semester-calendar-page .calendar-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .semester-calendar-page .calendar-sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .semester-calendar-page .calendar-header {
+                padding: 30px 20px;
+            }
+            
+            .semester-calendar-page .calendar-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .semester-calendar-page .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .semester-calendar-page .btn {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .semester-calendar-page .calendar-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .semester-calendar-page .calendar-header p {
+                font-size: 1rem;
+            }
+            
+            .semester-calendar-page .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="semester-calendar-page">
+        <div class="calendar-header">
+            <i class="fas fa-calendar-alt calendar-header-icon"></i>
+            <h1>Church Semester Calendar</h1>
+            <p>Plan and organize your church programmes for the upcoming semester</p>
+        </div>
+        
+        <div class="calendar-content">
+            <div class="main-content">
+                <form class="calendar-form" id="semesterCalendarForm">
+                    <div class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        <h2>Semester Information</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="semesterName">Semester Name</label>
+                            <input type="text" id="semesterName" name="semesterName" class="form-control" placeholder="Fall 2024 Semester" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="semesterYear">Year</label>
+                            <input type="number" id="semesterYear" name="semesterYear" class="form-control" min="2023" max="2030" value="2024" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="date" id="endDate" name="endDate" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title" style="margin-top: 40px;">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h2>Add Programme Event</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" id="eventTitle" name="eventTitle" class="form-control" placeholder="Youth Bible Study" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventDate">Date</label>
+                            <input type="date" id="eventDate" name="eventDate" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="startTime">Start Time</label>
+                            <input type="time" id="startTime" name="startTime" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endTime">End Time</label>
+                            <input type="time" id="endTime" name="endTime" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventLocation">Location</label>
+                        <input type="text" id="eventLocation" name="eventLocation" class="form-control" placeholder="Main Sanctuary" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" name="eventDescription" class="form-control" placeholder="Describe the event..." rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventCategory">Category</label>
+                        <select id="eventCategory" name="eventCategory" class="form-control">
+                            <option value="worship">Worship Service</option>
+                            <option value="bible">Bible Study</option>
+                            <option value="youth">Youth Programme</option>
+                            <option value="children">Children's Ministry</option>
+                            <option value="community">Community Outreach</option>
+                            <option value="special">Special Event</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="addEventBtn">
+                            <i class="fas fa-plus"></i> Add Event
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Semester Calendar
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="calendar-preview">
+                    <div class="section-title">
+                        <i class="fas fa-list"></i>
+                        <h2>Added Events</h2>
+                    </div>
+                    
+                    <div class="event-list" id="eventList">
+                        <!-- Events will be added here dynamically -->
+                        <div class="event-item">
+                            <div class="event-header">
+                                <div class="event-title">Sunday Worship Service</div>
+                                <div class="event-date">Sep 15, 2024</div>
+                            </div>
+                            <div class="event-details">
+                                <div><i class="fas fa-clock"></i> 10:00 AM - 12:00 PM</div>
+                                <div><i class="fas fa-map-marker-alt"></i> Main Sanctuary</div>
+                            </div>
+                            <div class="event-description">Weekly worship service with communion</div>
+                            <div class="event-actions">
+                                <button class="event-action-btn edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="event-action-btn delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-header">
+                                <div class="event-title">Youth Bible Study</div>
+                                <div class="event-date">Sep 17, 2024</div>
+                            </div>
+                            <div class="event-details">
+                                <div><i class="fas fa-clock"></i> 6:30 PM - 8:00 PM</div>
+                                <div><i class="fas fa-map-marker-alt"></i> Youth Hall</div>
+                            </div>
+                            <div class="event-description">Study on the Book of Romans</div>
+                            <div class="event-actions">
+                                <button class="event-action-btn edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="event-action-btn delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calendar-sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Calendar Tips</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Plan Ahead</h3>
+                            <p>Schedule all major events at least 3 months in advance.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Ministry Balance</h3>
+                            <p>Ensure all ministry areas have adequate programming.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Seasonal Themes</h3>
+                            <p>Align programmes with liturgical seasons and holidays.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Resource Planning</h3>
+                            <p>Note resource needs for each event during planning.</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Current Semester</span>
+                        <span>Fall 2024</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">Semester started 3 weeks ago</p>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Events This Semester</span>
+                        <span>28/120</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 23%; background: var(--accent);"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">92 events remaining to be scheduled</p>
+                </div>
+                
+                <div class="calendar-preview">
+                    <div class="month-header">September 2024</div>
+                    <div class="week-days">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day today">15</div>
+                        <div class="calendar-day has-event">16</div>
+                        <div class="calendar-day has-event">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day"></div>
+                    </div>
+                    
+                    <div class="calendar-event">
+                        <div class="event-time">Sep 16, 6:30 PM</div>
+                        <div class="event-title">Men's Fellowship</div>
+                    </div>
+                    
+                    <div class="calendar-event">
+                        <div class="event-time">Sep 17, 6:30 PM</div>
+                        <div class="event-title">Youth Bible Study</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set default dates
+        document.getElementById('startDate').valueAsDate = new Date();
+        
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 4);
+        document.getElementById('endDate').valueAsDate = endDate;
+        
+        document.getElementById('eventDate').valueAsDate = new Date();
+        
+        // Add event functionality
+        document.getElementById('addEventBtn').addEventListener('click', function() {
+            const eventTitle = document.getElementById('eventTitle').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            const eventLocation = document.getElementById('eventLocation').value;
+            const eventDescription = document.getElementById('eventDescription').value;
+            
+            if (!eventTitle || !eventDate || !startTime || !endTime || !eventLocation) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Format date
+            const dateObj = new Date(eventDate);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+            
+            // Create event HTML
+            const eventHTML = `
+                <div class="event-item">
+                    <div class="event-header">
+                        <div class="event-title">${eventTitle}</div>
+                        <div class="event-date">${formattedDate}</div>
+                    </div>
+                    <div class="event-details">
+                        <div><i class="fas fa-clock"></i> ${formatTime(startTime)} - ${formatTime(endTime)}</div>
+                        <div><i class="fas fa-map-marker-alt"></i> ${eventLocation}</div>
+                    </div>
+                    <div class="event-description">${eventDescription || 'No description provided'}</div>
+                    <div class="event-actions">
+                        <button class="event-action-btn edit"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="event-action-btn delete"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+            `;
+            
+            // Add to event list
+            document.getElementById('eventList').insertAdjacentHTML('afterbegin', eventHTML);
+            
+            // Clear form
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('eventDate').valueAsDate = new Date();
+            document.getElementById('startTime').value = '';
+            document.getElementById('endTime').value = '';
+            document.getElementById('eventLocation').value = '';
+            document.getElementById('eventDescription').value = '';
+            
+            // Add event listeners to new buttons
+            addEventListenersToLastEvent();
+        });
+        
+        // Helper function to format time
+        function formatTime(timeString) {
+            const [hours, minutes] = timeString.split(':');
+            let period = 'AM';
+            let hour = parseInt(hours);
+            
+            if (hour >= 12) {
+                period = 'PM';
+                if (hour > 12) hour -= 12;
+            }
+            
+            if (hour === 0) hour = 12;
+            
+            return `${hour}:${minutes} ${period}`;
+        }
+        
+        // Add event listeners to the last added event
+        function addEventListenersToLastEvent() {
+            const eventItems = document.querySelectorAll('.event-item');
+            const lastEvent = eventItems[0];
+            
+            // Edit button
+            lastEvent.querySelector('.edit').addEventListener('click', function() {
+                alert('Edit functionality would open a form with pre-filled data');
+            });
+            
+            // Delete button
+            lastEvent.querySelector('.delete').addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this event?')) {
+                    lastEvent.style.opacity = '0.7';
+                    lastEvent.style.transform = 'translateX(-20px)';
+                    
+                    setTimeout(() => {
+                        lastEvent.remove();
+                    }, 300);
+                }
+            });
+        }
+        
+        // Form submission
+        document.getElementById('semesterCalendarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.btn-primary');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            submitBtn.disabled = true;
+            
+            // Simulate save process
+            setTimeout(() => {
+                alert('Semester calendar saved successfully!');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+        
+        // Add event listeners to existing events
+        document.querySelectorAll('.event-item').forEach(item => {
+            item.querySelector('.edit').addEventListener('click', function() {
+                alert('Edit functionality would open a form with pre-filled data');
+            });
+            
+            item.querySelector('.delete').addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this event?')) {
+                    const eventItem = this.closest('.event-item');
+                    eventItem.style.opacity = '0.7';
+                    eventItem.style.transform = 'translateX(-20px)';
+                    
+                    setTimeout(() => {
+                        eventItem.remove();
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

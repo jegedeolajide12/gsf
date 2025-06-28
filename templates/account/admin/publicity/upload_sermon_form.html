@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 
-{% block title %}About page{% endblock %}
+{% block title %}Upload Sermon page{% endblock %}
 
 {% block content %}
     <div class="upload-container upload-sermon-form">
@@ -12,156 +12,142 @@
         
         <div class="upload-content">
             <div class="upload-form">
-                <div class="form-section">
-                    <div class="form-section-title">
-                        <i class="fas fa-info-circle"></i>
-                        <h2>Sermon Information</h2>
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Sermon Title <span class="required">*</span></label>
-                            <input type="text" class="form-control" placeholder="Enter sermon title" required>
+                <form method="post" enctype="multipart/form-data" action="{% url "accounts:upload_sermon" %}">
+                    {% csrf_token %}
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-info-circle"></i>
+                            <h2>Sermon Information</h2>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Sermon Title <span class="required">*</span></label>
+                                {{ form.title }}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Preacher <span class="required">*</span></label>
+                                {{ form.preacher }}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Date Preached <span class="required">*</span></label>
+                                {{ form.date_preached }}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Service Type <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    {{ form.service_type }}
+                                </select>
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <label>Preacher <span class="required">*</span></label>
-                            <select class="form-control" required>
-                                <option value="">Select preacher</option>
-                                <option value="1">Pastor James Wilson</option>
-                                <option value="2">Pastor Sarah Johnson</option>
-                                <option value="3">Elder Michael Brown</option>
-                                <option value="4">Guest Speaker</option>
-                            </select>
+                            <label>Bible Reference<span class="required">*</span></label>
+                            {{ form.bible_reference }}
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bible Passage<span class="required">*</span></label>
+                            {{ form.bible_text }}
                         </div>
                         
                         <div class="form-group">
-                            <label>Date Preached <span class="required">*</span></label>
-                            <input type="date" class="form-control" required>
+                            <label>Sermon Description</label>
+                            {{ form.description }}
                         </div>
                         
                         <div class="form-group">
-                            <label>Service Type <span class="required">*</span></label>
-                            <select class="form-control" required>
-                                <option value="">Select service type</option>
-                                <option value="sunday-am">Sunday Morning Service</option>
-                                <option value="sunday-pm">Sunday Evening Service</option>
-                                <option value="wednesday">Wednesday Bible Study</option>
-                                <option value="special">Special Event</option>
-                            </select>
+                            <label>Sermon Series (Optional)</label>
+                            {{ form.sermon_series }}
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Bible Passage (Optional)</label>
-                        <input type="text" class="form-control" placeholder="e.g., John 3:16-18">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Sermon Description</label>
-                        <textarea class="form-control" placeholder="Briefly describe the sermon content..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Sermon Series (Optional)</label>
-                        <input type="text" class="form-control" placeholder="Enter series name">
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <div class="form-section-title">
-                        <i class="fas fa-file-audio"></i>
-                        <h2>Media Files</h2>
-                    </div>
-                    
-                    <div class="form-grid">
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-file-audio"></i>
+                            <h2>Media Files</h2>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Audio File <span class="required">*</span></label>
+                                <div class="file-upload" id="audioUpload">
+                                    <i class="fas fa-file-audio"></i>
+                                    <h3>Upload Audio File</h3>
+                                    <p>MP3, WAV, AAC (Max 500MB)</p>
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-upload"></i> Select File
+                                    </button>
+                                    {{ form.sermon_file }}
+
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
-                            <label>Audio File <span class="required">*</span></label>
-                            <div class="file-upload" id="audioUpload">
-                                <i class="fas fa-file-audio"></i>
-                                <h3>Upload Audio File</h3>
-                                <p>MP3, WAV, AAC (Max 500MB)</p>
+                            <label>Thumbnail Image (Optional)</label>
+                            <div class="file-upload" id="imageUpload">
+                                <i class="fas fa-file-image"></i>
+                                <h3>Upload Thumbnail</h3>
+                                <p>JPG, PNG (Recommended: 1280×720)</p>
                                 <button class="btn btn-outline">
-                                    <i class="fas fa-upload"></i> Select File
+                                    <i class="fas fa-upload"></i> Select Image
                                 </button>
-                                <input type="file" class="file-input" accept="audio/*" required>
+                                <input type="file" class="file-input" accept="image/*">
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label>Video File (Optional)</label>
-                            <div class="file-upload" id="videoUpload">
-                                <i class="fas fa-file-video"></i>
-                                <h3>Upload Video File</h3>
-                                <p>MP4, MOV, AVI (Max 2GB)</p>
-                                <button class="btn btn-outline">
-                                    <i class="fas fa-upload"></i> Select File
-                                </button>
-                                <input type="file" class="file-input" accept="video/*">
+                        <div class="uploaded-files">
+                            <div class="file-item">
+                                <div class="file-icon">
+                                    <i class="fas fa-file-audio"></i>
+                                </div>
+                                <div class="file-details">
+                                    <h4>Finding_Hope.mp3</h4>
+                                    <p>48.7 MB • Uploaded successfully</p>
+                                </div>
+                                <div class="file-actions">
+                                    <button><i class="fas fa-times"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Thumbnail Image (Optional)</label>
-                        <div class="file-upload" id="imageUpload">
-                            <i class="fas fa-file-image"></i>
-                            <h3>Upload Thumbnail</h3>
-                            <p>JPG, PNG (Recommended: 1280×720)</p>
-                            <button class="btn btn-outline">
-                                <i class="fas fa-upload"></i> Select Image
-                            </button>
-                            <input type="file" class="file-input" accept="image/*">
-                        </div>
-                    </div>
-                    
-                    <div class="uploaded-files">
-                        <div class="file-item">
-                            <div class="file-icon">
-                                <i class="fas fa-file-audio"></i>
-                            </div>
-                            <div class="file-details">
-                                <h4>Finding_Hope.mp3</h4>
-                                <p>48.7 MB • Uploaded successfully</p>
-                            </div>
-                            <div class="file-actions">
-                                <button><i class="fas fa-times"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <div class="form-section-title">
-                        <i class="fas fa-eye"></i>
-                        <h2>Visibility Settings</h2>
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Visibility</label>
-                            <select class="form-control">
-                                <option value="published">Published (Visible to everyone)</option>
-                                <option value="members">Members Only</option>
-                                <option value="draft">Draft (Not visible)</option>
-                            </select>
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-eye"></i>
+                            <h2>Visibility Settings</h2>
                         </div>
                         
-                        <div class="form-group">
-                            <label>Publish Date</label>
-                            <input type="datetime-local" class="form-control">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Visibility</label>
+                                <select class="form-control">
+                                    <option value="published">Published (Visible to everyone)</option>
+                                    <option value="members">Members Only</option>
+                                    <option value="draft">Draft (Not visible)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Publish Date</label>
+                                <input type="datetime-local" class="form-control">
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="form-actions">
-                    <button class="btn btn-outline">
-                        <i class="fas fa-times"></i> Cancel
-                    </button>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-cloud-upload-alt"></i> Upload Sermon
-                    </button>
-                </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload Sermon
+                        </button>
+                    </div>
+                </form>
             </div>
             
             <div class="upload-sidebar">

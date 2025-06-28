@@ -19,3 +19,28 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+class UploadSermon(models.Model):
+    class ServiceType(models.TextChoices):
+        SUNDAY_SERVICE = 'SS', 'Sunday Service'
+        BIBLE_STUDY_SERVICE = 'BS', 'Bible Study Service'
+        SPECIAL_EVENT = 'SE', 'Special Event'
+        
+    sermon_file = models.FileField(upload_to='sermons/%Y/%m/%d/')
+    preacher = models.CharField(max_length=100, blank=True, null=True)
+    date_preached = models.DateField(blank=True, null=True)
+    sermon_type = models.CharField(
+        max_length=2,
+        choices=ServiceType.choices,
+        default=ServiceType.SUNDAY_SERVICE,
+    )
+    bible_reference = models.CharField(max_length=255, blank=True, null=True)
+    bible_text = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    sermon_series = models.CharField(max_length=255, blank=True, null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.title} by {self.preacher} on {self.date_preached.strftime('%Y-%m-%d') if self.date_preached else 'Unknown Date'}"
