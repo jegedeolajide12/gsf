@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
-class UploadSermon(models.Model):
+class Sermon(models.Model):
     class ServiceType(models.TextChoices):
         SUNDAY_SERVICE = 'SS', 'Sunday Service'
         BIBLE_STUDY_SERVICE = 'BS', 'Bible Study Service'
@@ -41,6 +41,9 @@ class UploadSermon(models.Model):
     sermon_series = models.CharField(max_length=255, blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['date_preached']
 
     def __str__(self):
         return f"{self.title} by {self.preacher} on {self.date_preached.strftime('%Y-%m-%d') if self.date_preached else 'Unknown Date'}"

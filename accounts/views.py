@@ -1,9 +1,10 @@
 from multiprocessing import context
-import re
 from django.shortcuts import render
+
 
 from .forms import SermonUploadForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 # Create your views here.
 def logout_confirm(request):
@@ -22,8 +23,7 @@ def upload_sermon(request):
         if sermon_form.is_valid():
             print("Accepted service_type:", sermon_form.cleaned_data.get('sermon_type'))
             sermon_form.save()
-            context = {'form': sermon_form, 'success': 'Sermon uploaded successfully!'}
-            return render(request, "account/admin/publicity/upload_sermon_form.html", context)
+            return redirect('accounts:publicity_dashboard') 
         else:
             
             sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)

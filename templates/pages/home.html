@@ -260,76 +260,41 @@
     </section>
 
   <!-- Audio Messages Section -->
-  <section class="audio-section">
-      <div class="container">
-          <div class="section-title">
-              <h2>Sermon Audio</h2>
-              <p>Listen to our latest messages or download for later</p>
-          </div>
-          
-          <div class="audio-grid">
-              <div class="audio-card">
-                  <div class="audio-header">
-                      <i class="fas fa-headphones"></i>
-                      <h3>The Power of Forgiveness</h3>
-                  </div>
-                  <div class="audio-content">
-                      <span class="audio-date">June 16, 2024</span>
-                      <p>Pastor Michael Johnson</p>
-                      <div class="audio-player">
-                          <audio controls style="width: 100%">
-                              <source src="#" type="audio/mpeg">
-                              Your browser does not support the audio element.
-                          </audio>
-                      </div>
-                      <a href="#" class="download-btn">
-                          <i class="fas fa-download"></i> Download MP3
-                      </a>
-                  </div>
-              </div>
-              
-              <div class="audio-card">
-                  <div class="audio-header">
-                      <i class="fas fa-headphones"></i>
-                      <h3>Finding Hope in Darkness</h3>
-                  </div>
-                  <div class="audio-content">
-                      <span class="audio-date">June 9, 2024</span>
-                      <p>Pastor Sarah Williams</p>
-                      <div class="audio-player">
-                          <audio controls style="width: 100%">
-                              <source src="#" type="audio/mpeg">
-                              Your browser does not support the audio element.
-                          </audio>
-                      </div>
-                      <a href="#" class="download-btn">
-                          <i class="fas fa-download"></i> Download MP3
-                      </a>
-                  </div>
-              </div>
-              
-              <div class="audio-card">
-                  <div class="audio-header">
-                      <i class="fas fa-headphones"></i>
-                      <h3>Living with Purpose</h3>
-                  </div>
-                  <div class="audio-content">
-                      <span class="audio-date">June 2, 2024</span>
-                      <p>Pastor Robert Davis</p>
-                      <div class="audio-player">
-                          <audio controls style="width: 100%">
-                              <source src="#" type="audio/mpeg">
-                              Your browser does not support the audio element.
-                          </audio>
-                      </div>
-                      <a href="#" class="download-btn">
-                          <i class="fas fa-download"></i> Download MP3
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+   {% if sermons %}
+    <section class="audio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sermon Audio</h2>
+                <p>Listen to our latest messages or download for later</p>
+            </div>
+            
+            <div class="audio-grid">
+                {% for sermon in sermons|slice:3 %}
+                <div class="audio-card">
+                    <div class="audio-header">
+                        <i class="fas fa-headphones"></i>
+                        <h3>{{ sermon.title }}</h3>
+                    </div>
+                    <div class="audio-content">
+                        <span class="audio-date">{{ sermon.date_preached }}</span>
+                        <p>{{ sermon.preacher }}</p>
+                        <div class="audio-player">
+                            <audio controls style="width: 100%">
+                                <source src="{{ sermon.sermon_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <a href="{{ sermon.sermon_file.url }}" class="download-btn">
+                            <i class="fas fa-download"></i> Download MP3
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
 <div class="container">
     <section class="leadership-section">
         <div class="section-title">

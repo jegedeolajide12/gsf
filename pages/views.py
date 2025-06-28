@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
 
+from accounts.models import Sermon
+
 from .models import Unit, HomePageHero, HomePageBanner
 from django.contrib.auth import get_user_model
 
@@ -16,10 +18,11 @@ def home(request):
 
     hero = HomePageHero.objects.first()
     banner = HomePageBanner.objects.first()
-
+    sermons = Sermon.objects.all()
     context = {'user_unit': user_unit,
                'hero': hero,
                'banner': banner,
+               'sermons': sermons,
                'units': Unit.objects.all(),
                'user_units': user_units if request.user.is_authenticated else None}
     return render(request, 'pages/home.html', context)
@@ -81,7 +84,8 @@ def unit_dashboard(request, unit_slug):
     return render(request, "404.html", status=404)
 
 def sermons(request):
-    context = {}
+    sermons = Sermon.objects.all()
+    context = {'sermons':sermons}
     return render(request, "pages/sermon.html", context)
 
 def events(request):

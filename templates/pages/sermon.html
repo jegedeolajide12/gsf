@@ -29,29 +29,30 @@
     
     <!-- Sermons Grid -->
     <div class="sermons-grid">
+        {% for sermon in sermons %}
         <!-- Sermon 1 -->
         <div class="sermon-card visible">
             <div class="sermon-header">
-                <span class="sermon-series">Faith Journey</span>
-                <h2 class="sermon-title">The Power of Persistent Faith</h2>
+                <span class="sermon-series">{{ sermon.sermon_series }}</span>
+                <h2 class="sermon-title">{{ sermon.title }}</h2>
                 <div class="sermon-meta">
-                    <span><i class="fas fa-user"></i> Pastor Michael Johnson</span>
-                    <span><i class="fas fa-calendar"></i> June 16, 2024</span>
+                    <span><i class="fas fa-user"></i>{{ sermon.preacher }}</span>
+                    <span><i class="fas fa-calendar"></i> {{ sermon.date_preached }}</span>
                     <span><i class="fas fa-clock"></i> 42 min</span>
                 </div>
             </div>
             
             <div class="sermon-content">
                 <div class="sermon-scripture">
-                    "So let's not get tired of doing what is good. At just the right time we will reap a harvest of blessing if we don't give up." - Galatians 6:9
+                    "{{ sermon.bible_text }}" - {{ sermon.bible_reference }}
                 </div>
                 
                 <p class="sermon-description">
-                    In this message, we explore how persistent faith moves mountains and brings breakthroughs even in the most challenging circumstances. Discover the keys to maintaining faith through trials.
+                    {{ bible.description }}
                 </p>
                 
                 <div class="audio-player-container">
-                    <audio id="audio1" class="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+                    <audio id="audio1" class="audio-player" src="{{ bible.sermon_file.url }}"></audio>
                     <div class="player-controls">
                         <div class="play-btn" data-audio="audio1">
                             <i class="fas fa-play"></i>
@@ -71,216 +72,7 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Sermon 2 -->
-        <div class="sermon-card visible">
-            <div class="sermon-header">
-                <span class="sermon-series">Grace Series</span>
-                <h2 class="sermon-title">Unmerited Favor: Understanding Grace</h2>
-                <div class="sermon-meta">
-                    <span><i class="fas fa-user"></i> Pastor Sarah Williams</span>
-                    <span><i class="fas fa-calendar"></i> June 9, 2024</span>
-                    <span><i class="fas fa-clock"></i> 38 min</span>
-                </div>
-            </div>
-            
-            <div class="sermon-content">
-                <div class="sermon-scripture">
-                    "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God." - Ephesians 2:8
-                </div>
-                
-                <p class="sermon-description">
-                    A deep dive into the concept of God's grace - what it means, how it transforms us, and how to live in the freedom of unmerited favor. This message will change how you view God's love.
-                </p>
-                
-                <div class="audio-player-container">
-                    <audio id="audio2" class="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
-                    <div class="player-controls">
-                        <div class="play-btn" data-audio="audio2">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <div class="time-display">12:45 / 38:20</div>
-                    </div>
-                </div>
-                
-                <div class="download-section">
-                    <a href="#" class="download-btn">
-                        <i class="fas fa-download"></i> Download MP3
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sermon 3 -->
-        <div class="sermon-card visible">
-            <div class="sermon-header">
-                <span class="sermon-series">Kingdom Living</span>
-                <h2 class="sermon-title">Building God's Kingdom on Earth</h2>
-                <div class="sermon-meta">
-                    <span><i class="fas fa-user"></i> Pastor Robert Davis</span>
-                    <span><i class="fas fa-calendar"></i> June 2, 2024</span>
-                    <span><i class="fas fa-clock"></i> 45 min</span>
-                </div>
-            </div>
-            
-            <div class="sermon-content">
-                <div class="sermon-scripture">
-                    "But seek first his kingdom and his righteousness, and all these things will be given to you as well." - Matthew 6:33
-                </div>
-                
-                <p class="sermon-description">
-                    How do we actively participate in building God's kingdom here on earth? This sermon explores practical ways to live out our faith and impact our communities for Christ.
-                </p>
-                
-                <div class="audio-player-container">
-                    <audio id="audio3" class="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"></audio>
-                    <div class="player-controls">
-                        <div class="play-btn" data-audio="audio3">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <div class="time-display">30:10 / 45:00</div>
-                    </div>
-                </div>
-                
-                <div class="download-section">
-                    <a href="#" class="download-btn">
-                        <i class="fas fa-download"></i> Download MP3
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sermon 4 -->
-        <div class="sermon-card visible">
-            <div class="sermon-header">
-                <span class="sermon-series">Hope in Hard Times</span>
-                <h2 class="sermon-title">Finding Light in the Darkness</h2>
-                <div class="sermon-meta">
-                    <span><i class="fas fa-user"></i> Pastor Michael Johnson</span>
-                    <span><i class="fas fa-calendar"></i> May 26, 2024</span>
-                    <span><i class="fas fa-clock"></i> 40 min</span>
-                </div>
-            </div>
-            
-            <div class="sermon-content">
-                <div class="sermon-scripture">
-                    "The Lord is close to the brokenhearted and saves those who are crushed in spirit." - Psalm 34:18
-                </div>
-                
-                <p class="sermon-description">
-                    When life brings challenges, where do we find hope? This message explores biblical principles for maintaining faith and finding God's presence in difficult seasons.
-                </p>
-                
-                <div class="audio-player-container">
-                    <audio id="audio4" class="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"></audio>
-                    <div class="player-controls">
-                        <div class="play-btn" data-audio="audio4">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <div class="time-display">18:22 / 40:05</div>
-                    </div>
-                </div>
-                
-                <div class="download-section">
-                    <a href="#" class="download-btn">
-                        <i class="fas fa-download"></i> Download MP3
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sermon 5 -->
-        <div class="sermon-card visible">
-            <div class="sermon-header">
-                <span class="sermon-series">Spiritual Growth</span>
-                <h2 class="sermon-title">The Disciplines of a Growing Believer</h2>
-                <div class="sermon-meta">
-                    <span><i class="fas fa-user"></i> Pastor Sarah Williams</span>
-                    <span><i class="fas fa-calendar"></i> May 19, 2024</span>
-                    <span><i class="fas fa-clock"></i> 35 min</span>
-                </div>
-            </div>
-            
-            <div class="sermon-content">
-                <div class="sermon-scripture">
-                    "Like newborn babies, crave pure spiritual milk, so that by it you may grow up in your salvation." - 1 Peter 2:2
-                </div>
-                
-                <p class="sermon-description">
-                    Explore the essential spiritual disciplines that help believers grow in their faith and deepen their relationship with God. Practical guidance for your spiritual journey.
-                </p>
-                
-                <div class="audio-player-container">
-                    <audio id="audio5" class="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"></audio>
-                    <div class="player-controls">
-                        <div class="play-btn" data-audio="audio5">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <div class="time-display">00:00 / 35:15</div>
-                    </div>
-                </div>
-                
-                <div class="download-section">
-                    <a href="#" class="download-btn">
-                        <i class="fas fa-download"></i> Download MP3
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sermon 6 -->
-        <div class="sermon-card visible">
-            <div class="sermon-header">
-                <span class="sermon-series">Relationships</span>
-                <h2 class="sermon-title">Building God-Honoring Relationships</h2>
-                <div class="sermon-meta">
-                    <span><i class="fas fa-user"></i> Pastor Robert Davis</span>
-                    <span><i class="fas fa-calendar"></i> May 12, 2024</span>
-                    <span><i class="fas fa-clock"></i> 37 min</span>
-                </div>
-            </div>
-            
-            <div class="sermon-content">
-                <div class="sermon-scripture">
-                    "Above all, love each other deeply, because love covers over a multitude of sins." - 1 Peter 4:8
-                </div>
-                
-                <p class="sermon-description">
-                    Discover biblical principles for building healthy, God-honoring relationships in every area of life - marriage, family, friendships, and community.
-                </p>
-                
-                <div class="audio-player-container">
-                    <audio id="audio6" class="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"></audio>
-                    <div class="player-controls">
-                        <div class="play-btn" data-audio="audio6">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <div class="time-display">25:40 / 37:10</div>
-                    </div>
-                </div>
-                
-                <div class="download-section">
-                    <a href="#" class="download-btn">
-                        <i class="fas fa-download"></i> Download MP3
-                    </a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}        
     </div>
     
     <!-- Featured Series -->
