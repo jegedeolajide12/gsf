@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.shortcuts import render
 
 
-from .forms import SermonUploadForm
+from .forms import SermonUploadForm, HeroCreationForm, BannerCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
@@ -35,8 +35,23 @@ def upload_sermon(request):
     context = {'form': sermon_form}
     return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
-def upload_banners(request):
+def upload_heroes(request):
+
     context = {}
+    return render(request, "account/admin/publicity/upload_hero.html", context)
+
+def upload_banners(request):
+    form = BannerCreationForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:publicity_dashboard')
+        else:
+            form = BannerCreationForm(request.POST or None, request.FILES or None)
+            context = {'form': form, 'errors': form.errors}
+            return render(request, "account/admin/publicity/upload_banner.html", context)
+    form = BannerCreationForm()
+    context = {'form': form}
     return render(request, "account/admin/publicity/upload_banner.html", context)
 
 def upload_announcements(request):

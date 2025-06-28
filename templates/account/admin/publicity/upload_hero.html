@@ -12,125 +12,128 @@
         
         <div class="upload-content">
             <div class="upload-form">
-                <form enctype="multipart/form-data" method="post" action="{% url 'accounts:upload_banners' %}">
-                    {% csrf_token %}
-                    <div class="form-section">
-                        <div class="form-section-title">
-                            <i class="fas fa-info-circle"></i>
-                            <h2>Banner Information</h2>
-                        </div>
-                        
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Banner Title <span class="required">*</span></label>
-                                {{ form.title }}
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Call to Action</label>
-                                {{ form.action }}
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Subtitle or Tagline</label>
-                            {{ form.description }}
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Associated Event(Optional)</label>
-                            {{ form.event }}
-                        </div>
-                        
-                        <!-- <div class="form-group">
-                            <label>Link URL</label>
-                            <input type="url" class="form-control" placeholder="https://">
-                        </div> -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-info-circle"></i>
+                        <h2>Banner Information</h2>
                     </div>
                     
-                    <div class="form-section">
-                        <div class="form-section-title">
-                            <i class="fas fa-image"></i>
-                            <h2>Upload Images</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Banner Title <span class="required">*</span></label>
+                            <input type="text" class="form-control" placeholder="Enter banner title" required>
                         </div>
                         
                         <div class="form-group">
-                            <label>Hero Image <span class="required">*</span></label>
-                            <div class="file-upload" id="heroUpload">
-                                <i class="fas fa-image"></i>
-                                <h3>Upload Hero Image</h3>
-                                <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
-                                <button class="btn btn-outline">
-                                    <i class="fas fa-upload"></i> Select File
-                                </button>
-                                {{ form.image }}
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Mobile Optimized Image (Optional)</label>
-                            <div class="file-upload" id="mobileUpload">
-                                <i class="fas fa-mobile-alt"></i>
-                                <h3>Upload Mobile Image</h3>
-                                <p>JPG, PNG (Recommended: 800×1200)</p>
-                                <button class="btn btn-outline">
-                                    <i class="fas fa-upload"></i> Select File
-                                </button>
-                                {{ form.mobile_image }}
-                            </div>
-                        </div>
-                        
-                        <div class="preview-section">
-                            <div class="preview-title">
-                                <i class="fas fa-eye"></i>
-                                <h3>Image Preview</h3>
-                            </div>
-                            <div class="preview-container">
-                                <div class="preview-placeholder">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>Upload an image to see the preview</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-section">
-                        <div class="form-section-title">
-                            <i class="fas fa-calendar-alt"></i>
-                            <h2>Scheduling</h2>
-                        </div>
-                        
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Start Date <span class="required">*</span></label>
-                                {{ form.start_date }}
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>End Date <span class="required">*</span></label>
-                                {{ form.end_date }}
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Visibility</label>
+                            <label>Associated Event</label>
                             <select class="form-control">
-                                <option value="published">Published (Visible to everyone)</option>
-                                <option value="members">Members Only</option>
-                                <option value="draft">Draft (Not visible)</option>
+                                <option value="">Select event</option>
+                                <option value="1">Sunday Service</option>
+                                <option value="2">Youth Retreat</option>
+                                <option value="3">Baptism Ceremony</option>
+                                <option value="4">Community Outreach</option>
                             </select>
                         </div>
                     </div>
                     
-                    <div class="form-actions">
-                        <button class="btn btn-outline">
-                            <i class="fas fa-times"></i> Cancel
-                        </button>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-save"></i> Save Banner
-                        </button>
+                    <div class="form-group">
+                        <label>Subtitle or Tagline</label>
+                        <input type="text" class="form-control" placeholder="Enter a short description">
                     </div>
-                </form>
+                    
+                    <div class="form-group">
+                        <label>Call to Action</label>
+                        <input type="text" class="form-control" placeholder="e.g., Register Now, Learn More">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Link URL</label>
+                        <input type="url" class="form-control" placeholder="https://">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-image"></i>
+                        <h2>Upload Images</h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hero Image <span class="required">*</span></label>
+                        <div class="file-upload" id="heroUpload">
+                            <i class="fas fa-image"></i>
+                            <h3>Upload Hero Image</h3>
+                            <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-upload"></i> Select File
+                            </button>
+                            <input type="file" class="file-input" accept="image/*" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mobile Optimized Image (Optional)</label>
+                        <div class="file-upload" id="mobileUpload">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Upload Mobile Image</h3>
+                            <p>JPG, PNG (Recommended: 800×1200)</p>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-upload"></i> Select File
+                            </button>
+                            <input type="file" class="file-input" accept="image/*">
+                        </div>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <div class="preview-title">
+                            <i class="fas fa-eye"></i>
+                            <h3>Image Preview</h3>
+                        </div>
+                        <div class="preview-container">
+                            <div class="preview-placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Upload an image to see the preview</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Scheduling</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Start Date <span class="required">*</span></label>
+                            <input type="datetime-local" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>End Date <span class="required">*</span></label>
+                            <input type="datetime-local" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Visibility</label>
+                        <select class="form-control">
+                            <option value="published">Published (Visible to everyone)</option>
+                            <option value="members">Members Only</option>
+                            <option value="draft">Draft (Not visible)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Banner
+                    </button>
+                </div>
             </div>
             
             <div class="upload-sidebar">
@@ -277,7 +280,12 @@
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
             this.disabled = true;
             
-            
+            // Simulate save process
+            setTimeout(() => {
+                alert('Banner saved successfully! It will be visible according to your schedule.');
+                this.innerHTML = originalText;
+                this.disabled = false;
+            }, 1500);
         });
     </script>
 {% endblock %}

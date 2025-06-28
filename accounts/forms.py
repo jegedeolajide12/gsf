@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, Sermon
 
+from pages.models import HomePageBanner, HomePageHero
+
 class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
@@ -48,3 +50,35 @@ class SermonUploadForm(forms.ModelForm):
                 if not sermon_file.name.endswith('.mp3'):
                     raise forms.ValidationError("Only MP3 files are allowed.")
             return sermon_file
+
+class BannerCreationForm(forms.ModelForm):
+    class Meta:
+        model = HomePageBanner
+        fields = ['image', 'title', 'description', 'event', 'action', 'start_date', 'end_date', 'mobile_image']
+        widgets = {
+            'image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': True}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter banner title'}),
+            'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': False, 'placeholder': 'Enter a brief description of the banner'}),
+            'event': forms.TextInput(attrs={'class': 'form-control', 'required': False, 'placeholder': 'Enter event name if applicable'}),
+            'action': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                   choices=HomePageBanner.ActionChoices.choices),
+            'action_url': forms.URLInput(attrs={'class': 'form-control', 'required': False, 'placeholder': 'Enter URL for action'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': False, 'placeholder': 'Select start date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': False, 'placeholder': 'Select end date'}),
+            'mobile_image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': False, 'placeholder': 'Upload mobile image (optional)'}),
+            }
+        def clean_image(self):
+            image = self.cleaned_data.get('image')
+            if image:
+                if not image.name.endswith(('.png', '.jpg', '.jpeg')):
+                    raise forms.ValidationError("Only PNG, JPG, and JPEG files are allowed.")
+            return image
+
+class HeroCreationForm(forms.ModelForm):
+    class Meta:
+        model = HomePageHero
+        fields = ['image', 'description']
+        widgets = {
+            'image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': True}),
+            'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': False, 'placeholder': 'Enter a brief description of the banner'}),
+            }
