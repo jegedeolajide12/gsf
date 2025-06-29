@@ -79,8 +79,11 @@ class BannerCreationForm(forms.ModelForm):
 class HeroCreationForm(forms.ModelForm):
     class Meta:
         model = HomePageHero
-        fields = ['image', 'description']
+        fields = ['title','image', 'description', 'event', 'mobile_image']
         widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter hero title'}),
             'image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': True}),
             'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': False, 'placeholder': 'Enter a brief description of the banner'}),
+            'event': forms.TextInput(attrs={'class': 'form-control', 'required': False, 'placeholder': 'Enter event name if applicable'}),
+            'mobile_image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': False, 'placeholder': 'Upload mobile image (optional)'}),
             }

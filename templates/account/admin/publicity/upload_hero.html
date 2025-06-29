@@ -6,134 +6,173 @@
     <div class="banner-hero-upload upload-banner-hero">
         <div class="upload-header">
             <i class="fas fa-images header-icon"></i>
-            <h1>Banner & Hero Management</h1>
+            <h1>Hero Management</h1>
             <p>Create impactful visuals for your church website. Upload banners and hero images to engage your congregation.</p>
         </div>
         
         <div class="upload-content">
             <div class="upload-form">
-                <div class="form-section">
-                    <div class="form-section-title">
-                        <i class="fas fa-info-circle"></i>
-                        <h2>Banner Information</h2>
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Banner Title <span class="required">*</span></label>
-                            <input type="text" class="form-control" placeholder="Enter banner title" required>
+                <form enctype="multipart/form-data" method="post" action="{% url 'accounts:upload_heroes' %}">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="form-errors non-field-errors">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-info-circle"></i>
+                            <h2>Hero Information</h2>
                         </div>
                         
                         <div class="form-group">
-                            <label>Associated Event</label>
-                            <select class="form-control">
-                                <option value="">Select event</option>
-                                <option value="1">Sunday Service</option>
-                                <option value="2">Youth Retreat</option>
-                                <option value="3">Baptism Ceremony</option>
-                                <option value="4">Community Outreach</option>
-                            </select>
+                            <label>Hero Title <span class="required">*</span></label>
+                            {{ form.title }}
+                            {% if form.title.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.title.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.description.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Event</label>
+                            {{ form.event }}
+                            {% if form.event.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.event.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Subtitle or Tagline</label>
-                        <input type="text" class="form-control" placeholder="Enter a short description">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Call to Action</label>
-                        <input type="text" class="form-control" placeholder="e.g., Register Now, Learn More">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Link URL</label>
-                        <input type="url" class="form-control" placeholder="https://">
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <div class="form-section-title">
-                        <i class="fas fa-image"></i>
-                        <h2>Upload Images</h2>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Hero Image <span class="required">*</span></label>
-                        <div class="file-upload" id="heroUpload">
+                    <div class="form-section">
+                        <div class="form-section-title">
                             <i class="fas fa-image"></i>
-                            <h3>Upload Hero Image</h3>
-                            <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
-                            <button class="btn btn-outline">
-                                <i class="fas fa-upload"></i> Select File
-                            </button>
-                            <input type="file" class="file-input" accept="image/*" required>
+                            <h2>Upload Images</h2>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Mobile Optimized Image (Optional)</label>
-                        <div class="file-upload" id="mobileUpload">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h3>Upload Mobile Image</h3>
-                            <p>JPG, PNG (Recommended: 800×1200)</p>
-                            <button class="btn btn-outline">
-                                <i class="fas fa-upload"></i> Select File
-                            </button>
-                            <input type="file" class="file-input" accept="image/*">
+                        
+                        <div class="form-group">
+                            <label>Hero Image <span class="required">*</span></label>
+                            <div class="file-upload" id="heroUpload">
+                                <i class="fas fa-image"></i>
+                                <h3>Upload Hero Image</h3>
+                                <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
+                                <button class="btn btn-outline" type="button">
+                                    <i class="fas fa-upload"></i> Select File
+                                </button>
+                                {{ form.image }}
+                                {% if form.image.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.image.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="preview-section">
-                        <div class="preview-title">
-                            <i class="fas fa-eye"></i>
-                            <h3>Image Preview</h3>
+                        
+                        <div class="form-group">
+                            <label>Mobile Optimized Image (Optional)</label>
+                            <div class="file-upload" id="mobileUpload">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h3>Upload Mobile Image</h3>
+                                <p>JPG, PNG (Recommended: 800×1200)</p>
+                                <button class="btn btn-outline" type="button">
+                                    <i class="fas fa-upload"></i> Select File
+                                </button>
+                                {{ form.mobile_image }}
+                                {% if form.mobile_image.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.mobile_image.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="preview-container">
-                            <div class="preview-placeholder">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Upload an image to see the preview</p>
+                        
+                        <div class="preview-section">
+                            <div class="preview-title">
+                                <i class="fas fa-eye"></i>
+                                <h3>Image Preview</h3>
+                            </div>
+                            <div class="preview-container">
+                                <div class="preview-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Upload an image to see the preview</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="form-section">
-                    <div class="form-section-title">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h2>Scheduling</h2>
-                    </div>
                     
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Start Date <span class="required">*</span></label>
-                            <input type="datetime-local" class="form-control" required>
+                    <!-- <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h2>Scheduling</h2>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Start Date <span class="required">*</span></label>
+                                <input type="datetime-local" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>End Date <span class="required">*</span></label>
+                                <input type="datetime-local" class="form-control" required>
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <label>End Date <span class="required">*</span></label>
-                            <input type="datetime-local" class="form-control" required>
+                            <label>Visibility</label>
+                            <select class="form-control">
+                                <option value="published">Published (Visible to everyone)</option>
+                                <option value="members">Members Only</option>
+                                <option value="draft">Draft (Not visible)</option>
+                            </select>
                         </div>
-                    </div>
+                    </div> -->
                     
-                    <div class="form-group">
-                        <label>Visibility</label>
-                        <select class="form-control">
-                            <option value="published">Published (Visible to everyone)</option>
-                            <option value="members">Members Only</option>
-                            <option value="draft">Draft (Not visible)</option>
-                        </select>
+                    <div class="form-actions">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-save"></i> Save Banner
+                        </button>
                     </div>
-                </div>
-                
-                <div class="form-actions">
-                    <button class="btn btn-outline">
-                        <i class="fas fa-times"></i> Cancel
-                    </button>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-save"></i> Save Banner
-                    </button>
-                </div>
+                </form>
             </div>
             
             <div class="upload-sidebar">
@@ -271,21 +310,5 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
         
-        // Form submission
-        document.querySelector('.btn-primary').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-            this.disabled = true;
-            
-            // Simulate save process
-            setTimeout(() => {
-                alert('Banner saved successfully! It will be visible according to your schedule.');
-                this.innerHTML = originalText;
-                this.disabled = false;
-            }, 1500);
-        });
     </script>
 {% endblock %}

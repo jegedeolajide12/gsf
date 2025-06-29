@@ -6,7 +6,7 @@
     <div class="banner-hero-upload upload-banner-hero">
         <div class="upload-header">
             <i class="fas fa-images header-icon"></i>
-            <h1>Banner & Hero Management</h1>
+            <h1>Banner Management</h1>
             <p>Create impactful visuals for your church website. Upload banners and hero images to engage your congregation.</p>
         </div>
         
@@ -60,7 +60,7 @@
                                 <i class="fas fa-image"></i>
                                 <h3>Upload Hero Image</h3>
                                 <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline" type="button">
                                     <i class="fas fa-upload"></i> Select File
                                 </button>
                                 {{ form.image }}
@@ -73,7 +73,7 @@
                                 <i class="fas fa-mobile-alt"></i>
                                 <h3>Upload Mobile Image</h3>
                                 <p>JPG, PNG (Recommended: 800×1200)</p>
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline" type="button">
                                     <i class="fas fa-upload"></i> Select File
                                 </button>
                                 {{ form.mobile_image }}
@@ -122,7 +122,7 @@
                         <button class="btn btn-outline">
                             <i class="fas fa-times"></i> Cancel
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" type="submit">
                             <i class="fas fa-save"></i> Save Banner
                         </button>
                     </div>
@@ -264,16 +264,5 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
         
-        // Form submission
-        document.querySelector('.btn-primary').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-            this.disabled = true;
-            
-            
-        });
     </script>
 {% endblock %}

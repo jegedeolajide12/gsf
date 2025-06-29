@@ -3,8 +3,11 @@ from turtle import mode
 from venv import create
 from django.db import models
 
+
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+import datetime
+
 
 # Create your models here.
 
@@ -22,7 +25,7 @@ class WorkersManager(models.Manager):
 
 class HomePageBanner(models.Model):
     class VisibilityChoices(models.TextChoices):
-        PUBLISHED = 'published', 'Pulished (Visible to everyone)'
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
         WORKERS = 'workers', 'Workers Only'
         DRAFT = 'draft', 'Draft (Not visible to anyone)'
     class ActionChoices(models.TextChoices):
@@ -55,16 +58,42 @@ class HomePageBanner(models.Model):
     class Meta:
         verbose_name_plural = "Home Page Banners"
         ordering = ['-created_at']
+    
+    def save(self, *args, **kwargs):
+        if visibility := self.visibility:
+            if visibility == self.VisibilityChoices.PUBLISHED:
+                self.is_published = True
+                self.for_workers = False
+            elif visibility == self.VisibilityChoices.WORKERS:
+                self.is_published = False
+                self.for_workers = True
+            elif visibility == self.VisibilityChoices.DRAFT:
+                self.is_published = False
+                self.for_workers = False
+        super().save(*args, **kwargs)
+    
+    def delete(self, *args, **kwargs):
+        if end_date := self.end_date:
+            if end_date < datetime.date.today():
+                self.is_published = False
+                self.for_workers = False
+                self.end_date = None
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} - {self.description}"
 
 class HomePageHero(models.Model):
+    title = models.CharField(max_length=150, null=True, blank=True)
     image = models.ImageField(upload_to='hero/images/')
+    mobile_image = models.ImageField(upload_to='hero/mobile_images', null=True, blank=True)
+    event = models.CharField(max_length=250, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
 
     def __str__(self):
-        return self.description
+        return f"{self.title} - {self.description}"
 
     class Meta:
         verbose_name_plural = "Home Page Heroes"

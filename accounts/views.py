@@ -36,7 +36,16 @@ def upload_sermon(request):
     return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
 def upload_heroes(request):
-
+    form = HeroCreationForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:publicity_dashboard')
+        else:
+            form = HeroCreationForm(request.POST or None, request.FILES or None)
+            context = {'form': form, 'errors': form.errors}
+            return render(request, "account/admin/publicity/upload_hero.html", context)
+    form = HeroCreationForm()
     context = {}
     return render(request, "account/admin/publicity/upload_hero.html", context)
 
