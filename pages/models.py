@@ -1,3 +1,4 @@
+from email.mime import image
 from operator import is_
 from turtle import mode
 from venv import create
@@ -98,6 +99,51 @@ class HomePageHero(models.Model):
     class Meta:
         verbose_name_plural = "Home Page Heroes"
         ordering = ['-id']
+    
+class Announcement(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    class CategoryChoices(models.TextChoices):
+        GENERAL = 'general', 'General'
+        EVENT = 'event', 'Event'
+        NEWS = 'news', 'News'
+        ALERT = 'alert', 'Alert'
+        REMINDER = 'reminder', 'Reminder'
+    
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    image = models.ImageField(upload_to='announcements/images/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+    for_website = models.BooleanField(default=True)
+    for_email = models.BooleanField(default=False)
+    objects = PublishedManager()
+    all_objects = models.Manager()
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this announcement?"
+    )
+    category = models.CharField(
+        max_length=20,
+        choices=CategoryChoices.choices,
+        default=CategoryChoices.GENERAL,
+        help_text="Category of the announcement"
+    )
+
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Announcements"
+        ordering = ['-created_at']
 
 class UnitCodeOfConduct(models.Model):
     unit = models.ForeignKey('Unit', on_delete=models.CASCADE, related_name='codes_of_conduct')

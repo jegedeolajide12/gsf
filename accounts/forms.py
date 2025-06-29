@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, Sermon
 
-from pages.models import HomePageBanner, HomePageHero
+from pages.models import HomePageBanner, HomePageHero, Announcement
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -87,3 +87,29 @@ class HeroCreationForm(forms.ModelForm):
             'event': forms.TextInput(attrs={'class': 'form-control', 'required': False, 'placeholder': 'Enter event name if applicable'}),
             'mobile_image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': False, 'placeholder': 'Upload mobile image (optional)'}),
             }
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            if not image.name.endswith(('.png', '.jpg', '.jpeg')):
+                raise forms.ValidationError("Only PNG, JPG, and JPEG files are allowed.")
+        return image
+
+
+class AnnouncementForm(forms.ModelForm):
+    class Meta:
+        model = Announcement
+        fields = ['title', 'content', 'image', 'start_date', 'end_date', 'visibility', 'for_website', 'for_email', 'category']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter announcement title'}),
+            'content': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': True, 'placeholder': 'Enter announcement content'}),
+            'image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'announcement-file-input', 'required': False}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': True, 'placeholder': 'Select start date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': True, 'placeholder': 'Select end date'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                       choices=Announcement.VisibilityChoices.choices),
+            'for_website': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'for_email': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'category': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                     choices=Announcement.CategoryChoices.choices),
+        }

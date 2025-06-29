@@ -12,158 +12,205 @@
         
         <div class="announcement-content">
             <div class="announcement-form">
-                <div class="announcement-section">
-                    <div class="announcement-section-title">
-                        <i class="fas fa-info-circle"></i>
-                        <h2>Announcement Details</h2>
-                    </div>
-                    
-                    <div class="announcement-grid">
-                        <div class="announcement-group">
-                            <label>Title <span class="required">*</span></label>
-                            <input type="text" class="announcement-control" placeholder="Enter announcement title" required>
+                <form method="post" enctype="multipart/form-data" action="{% url 'accounts:upload_announcements' %}">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="form-errors non-field-errors">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="announcement-section">
+                        <div class="announcement-section-title">
+                            <i class="fas fa-info-circle"></i>
+                            <h2>Announcement Details</h2>
+                        </div>
+                        
+                        <div class="announcement-grid">
+                            <div class="announcement-group">
+                                <label>Title <span class="required">*</span></label>
+                                {{ form.title }}
+                                {% if form.title.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.title.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="announcement-group">
+                                <label>Category</label>
+                                {{ form.category }}                            
+                            </div>
                         </div>
                         
                         <div class="announcement-group">
-                            <label>Category</label>
-                            <select class="announcement-control">
-                                <option value="">Select category</option>
-                                <option value="event">Event Announcement</option>
-                                <option value="news">Church News</option>
-                                <option value="update">Ministry Update</option>
-                                <option value="urgent">Urgent Notice</option>
-                            </select>
+                            <label>Content <span class="required">*</span></label>
+                            {{ form.content }}
+                            {% if form.content.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.content.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- <div class="announcement-group">
+                            <label>Link URL (Optional)</label>
+                            <input type="url" class="announcement-control" placeholder="https://">
+                        </div> -->
+                    </div>
+                    
+                    <div class="announcement-section">
+                        <div class="announcement-section-title">
+                            <i class="fas fa-image"></i>
+                            <h2>Add Visual</h2>
+                        </div>
+                        
+                        <div class="image-upload-area" id="imageUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Upload Announcement Image</h3>
+                            <p>JPG, PNG (Recommended: 1200×630)</p>
+                            <button class="announcement-btn announcement-btn-outline" type="button">
+                                <i class="fas fa-upload"></i> Select Image
+                            </button>
+                            {{ form.image }}
+                            {% if form.image.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.image.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     
-                    <div class="announcement-group">
-                        <label>Content <span class="required">*</span></label>
-                        <textarea class="announcement-control" placeholder="Write your announcement content here..." required></textarea>
+                    <div class="announcement-section">
+                        <div class="announcement-section-title">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <h2>Distribution Channels</h2>
+                        </div>
+                        
+                        <div class="channels-section">
+                            <div class="channel-options">
+                                <div class="channel-option selected">
+                                    <i class="fas fa-globe"></i>
+                                    <div class="channel-info">
+                                        <h3>Website</h3>
+                                        <p>Homepage & announcements page</p>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <!-- <div class="channel-option selected">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <div class="channel-info">
+                                        <h3>Mobile App</h3>
+                                        <p>Push notification & in-app</p>
+                                    </div>
+                                </div> -->
+                                
+                                <!-- <div class="channel-option">
+                                    <i class="fab fa-facebook"></i>
+                                    <div class="channel-info">
+                                        <h3>Facebook</h3>
+                                        <p>Church Facebook page</p>
+                                    </div>
+                                </div> -->
+                                
+                                <div class="channel-option">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="channel-info">
+                                        <h3>Email</h3>
+                                        <p>Congregation mailing list</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="announcement-group">
-                        <label>Link URL (Optional)</label>
-                        <input type="url" class="announcement-control" placeholder="https://">
+                    <div class="announcement-section">
+                        <div class="announcement-section-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h2>Scheduling</h2>
+                        </div>
+                        
+                        <div class="announcement-grid">
+                            <div class="announcement-group">
+                                <label>Publish Date</label>
+                                {{ form.start_date }}
+                                {% if form.start_date.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.start_date.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="announcement-group">
+                                <label>Expiration Date</label>
+                                {{ form.end_date }}
+                                {% if form.end_date.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.end_date.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="announcement-group">
+                            <label>Visibility</label>
+                            {{ form.visibility }}
+                        </div>
                     </div>
-                </div>
-                
-                <div class="announcement-section">
-                    <div class="announcement-section-title">
-                        <i class="fas fa-image"></i>
-                        <h2>Add Visual</h2>
+                    <div class="announcement-preview">
+                        <div class="announcement-preview-title">
+                            <i class="fas fa-eye"></i>
+                            <h3>Preview</h3>
+                        </div>
+                        <div class="announcement-preview-card">
+                            <h3>Summer Youth Retreat Registration</h3>
+                            <div class="date">
+                                <i class="far fa-clock"></i>
+                                <span>Posted on: July 15, 2024</span>
+                            </div>
+                            <p>Join us for an unforgettable weekend at Lakeview Retreat Center from August 15-17. Registration is now open for all youth ages 12-18. Early bird discount available until July 30th!</p>
+                            <div class="channel-tags">
+                                <span class="channel-tag">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    Mobile App
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="image-upload-area" id="imageUpload">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>Upload Announcement Image</h3>
-                        <p>JPG, PNG (Recommended: 1200×630)</p>
+                    <div class="announcement-form-actions">
                         <button class="announcement-btn announcement-btn-outline">
-                            <i class="fas fa-upload"></i> Select Image
+                            <i class="fas fa-times"></i> Cancel
                         </button>
-                        <input type="file" class="announcement-file-input" accept="image/*">
+                        <button class="announcement-btn announcement-btn-primary" type="submit">
+                            <i class="fas fa-paper-plane"></i> Publish Announcement
+                        </button>
                     </div>
-                </div>
-                
-                <div class="announcement-section">
-                    <div class="announcement-section-title">
-                        <i class="fas fa-broadcast-tower"></i>
-                        <h2>Distribution Channels</h2>
-                    </div>
-                    
-                    <div class="channels-section">
-                        <div class="channel-options">
-                            <div class="channel-option">
-                                <i class="fas fa-globe"></i>
-                                <div class="channel-info">
-                                    <h3>Website</h3>
-                                    <p>Homepage & announcements page</p>
-                                </div>
-                            </div>
-                            
-                            <div class="channel-option selected">
-                                <i class="fas fa-mobile-alt"></i>
-                                <div class="channel-info">
-                                    <h3>Mobile App</h3>
-                                    <p>Push notification & in-app</p>
-                                </div>
-                            </div>
-                            
-                            <div class="channel-option">
-                                <i class="fab fa-facebook"></i>
-                                <div class="channel-info">
-                                    <h3>Facebook</h3>
-                                    <p>Church Facebook page</p>
-                                </div>
-                            </div>
-                            
-                            <div class="channel-option">
-                                <i class="fas fa-envelope"></i>
-                                <div class="channel-info">
-                                    <h3>Email</h3>
-                                    <p>Congregation mailing list</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="announcement-section">
-                    <div class="announcement-section-title">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h2>Scheduling</h2>
-                    </div>
-                    
-                    <div class="announcement-grid">
-                        <div class="announcement-group">
-                            <label>Publish Date</label>
-                            <input type="datetime-local" class="announcement-control">
-                        </div>
-                        
-                        <div class="announcement-group">
-                            <label>Expiration Date</label>
-                            <input type="datetime-local" class="announcement-control">
-                        </div>
-                    </div>
-                    
-                    <div class="announcement-group">
-                        <label>Visibility</label>
-                        <select class="announcement-control">
-                            <option value="published">Published (Visible to everyone)</option>
-                            <option value="members">Members Only</option>
-                            <option value="draft">Draft (Not visible)</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="announcement-preview">
-                    <div class="announcement-preview-title">
-                        <i class="fas fa-eye"></i>
-                        <h3>Preview</h3>
-                    </div>
-                    <div class="announcement-preview-card">
-                        <h3>Summer Youth Retreat Registration</h3>
-                        <div class="date">
-                            <i class="far fa-clock"></i>
-                            <span>Posted on: July 15, 2024</span>
-                        </div>
-                        <p>Join us for an unforgettable weekend at Lakeview Retreat Center from August 15-17. Registration is now open for all youth ages 12-18. Early bird discount available until July 30th!</p>
-                        <div class="channel-tags">
-                            <span class="channel-tag">
-                                <i class="fas fa-mobile-alt"></i>
-                                Mobile App
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="announcement-form-actions">
-                    <button class="announcement-btn announcement-btn-outline">
-                        <i class="fas fa-times"></i> Cancel
-                    </button>
-                    <button class="announcement-btn announcement-btn-primary">
-                        <i class="fas fa-paper-plane"></i> Publish Announcement
-                    </button>
-                </div>
+                </form>
             </div>
             
             <div class="announcement-sidebar">
@@ -281,28 +328,5 @@
             });
         });
         
-        // Form submission
-        document.querySelector('.announcement-btn-primary').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
-            this.disabled = true;
-            
-            // Simulate publishing process
-            setTimeout(() => {
-                alert('Announcement published successfully!');
-                this.innerHTML = originalText;
-                this.disabled = false;
-                
-                // Reset form
-                document.querySelector('.announcement-form').reset();
-                document.querySelectorAll('.channel-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                document.querySelector('.channel-option:nth-child(2)').classList.add('selected');
-            }, 1500);
-        });
     </script>
 {% endblock %}
