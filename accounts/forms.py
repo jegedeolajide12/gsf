@@ -54,7 +54,7 @@ class SermonUploadForm(forms.ModelForm):
 class BannerCreationForm(forms.ModelForm):
     class Meta:
         model = HomePageBanner
-        fields = ['image', 'title', 'description', 'event', 'action', 'start_date', 'end_date', 'mobile_image']
+        fields = ['image', 'title', 'description', 'event', 'action', 'start_date', 'end_date', 'mobile_image', 'visibility']
         widgets = {
             'image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': True}),
             'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter banner title'}),
@@ -66,6 +66,8 @@ class BannerCreationForm(forms.ModelForm):
             'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': False, 'placeholder': 'Select start date'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': False, 'placeholder': 'Select end date'}),
             'mobile_image': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'file-input', 'required': False, 'placeholder': 'Upload mobile image (optional)'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                       choices=HomePageBanner.VisibilityChoices.choices),
             }
         def clean_image(self):
             image = self.cleaned_data.get('image')

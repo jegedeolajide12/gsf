@@ -21,6 +21,10 @@ class WorkersManager(models.Manager):
 
 
 class HomePageBanner(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Pulished (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
     class ActionChoices(models.TextChoices):
         LEARN_MORE = 'learn_more', 'Learn More'
         SIGN_UP = 'sign_up', 'Sign Up'
@@ -39,6 +43,12 @@ class HomePageBanner(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this banner?"
+    )
     is_published = models.BooleanField(default=True)
     for_workers = models.BooleanField(default=False)
 
