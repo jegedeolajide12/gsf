@@ -19,7 +19,7 @@ class PublishedManager(models.Manager):
 
 class WorkersManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_worker=True)
+        return super().get_queryset().filter(for_workers=True)
 #MY MANGERS END 
 
 
@@ -143,6 +143,36 @@ class Announcement(models.Model):
 
     class Meta:
         verbose_name_plural = "Announcements"
+        ordering = ['-created_at']
+
+class DriveLink(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    title = models.CharField(max_length=200)
+    url = models.URLField(max_length=500)
+    description = models.TextField(blank=True, null=True)
+    event = models.CharField(max_length=250, blank=True, null=True)
+    event_date = models.DateField(blank=True, null=True, help_text="Date of the event related to this drive link")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this drive link?"
+    )
+    is_published = models.BooleanField(default=True)
+    for_workers = models.BooleanField(default=False)
+    objects = PublishedManager()
+    all_objects = models.Manager()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Drive Links"
         ordering = ['-created_at']
 
 class UnitCodeOfConduct(models.Model):

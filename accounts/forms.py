@@ -2,7 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, Sermon
 
-from pages.models import HomePageBanner, HomePageHero, Announcement
+from pages.models import (
+    HomePageBanner, HomePageHero, Announcement, DriveLink
+)
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -113,3 +115,36 @@ class AnnouncementForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control', 'required': True},
                                      choices=Announcement.CategoryChoices.choices),
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get('start_date')
+        end_date = cleaned_data.get('end_date')
+
+        if start_date and end_date and start_date > end_date:
+            raise forms.ValidationError("End date must be after start date.")
+
+        return cleaned_data
+    
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            if not image.name.endswith(('.png', '.jpg', '.jpeg')):
+                raise forms.ValidationError("Only PNG, JPG, and JPEG files are allowed.")
+        return image
+
+class DriveLinkForm(forms.ModelForm):
+    class Meta:
+        model = DriveLink
+        fields = ['title', 'description', 'url', 'event', 'visibility', 'event_date']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter link title'}),
+            'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': False, 'placeholder': 'Enter a brief description of the link'}),
+            'url': forms.URLInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter the link URL'}),
+            'event': forms.TextInput(attrs={'class': 'form-control', 'required': False, 'placeholder': 'Enter event name if applicable'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                       choices=DriveLink.VisibilityChoices.choices),
+            'event_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': False, 'placeholder': 'Select event date'}),
+        }
+    
+    

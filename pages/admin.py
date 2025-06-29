@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from .models import HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement
-
+from .models import (
+    HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement,
+    DriveLink
+)
 # Register your models here.
 admin.site.register(HomePageHero)
 admin.site.register(UnitCodeOfConduct)
@@ -38,6 +40,17 @@ class AnnouncementAdmin(admin.ModelAdmin):
     list_display = ('title', 'created_at', 'updated_at', 'is_published', 'for_email', 'category')
     list_filter = ('is_published', 'for_email', 'category')
     search_fields = ('title', 'content')
+    ordering = ('-created_at',)
+
+    def get_queryset(self, request):
+        """Override the get_queryset method to use all_objects manager."""
+        return self.model.all_objects.all()
+
+@admin.register(DriveLink)
+class DriveLinkAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at', 'updated_at', 'is_published', 'for_workers', 'visibility')
+    list_filter = ('is_published', 'for_workers', 'visibility')
+    search_fields = ('title', 'description')
     ordering = ('-created_at',)
 
     def get_queryset(self, request):

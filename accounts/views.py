@@ -2,7 +2,10 @@ from multiprocessing import context
 from django.shortcuts import render
 
 
-from .forms import SermonUploadForm, HeroCreationForm, BannerCreationForm, AnnouncementForm
+from .forms import (
+    SermonUploadForm, HeroCreationForm, BannerCreationForm, AnnouncementForm,
+    DriveLinkForm
+)
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
@@ -46,7 +49,7 @@ def upload_heroes(request):
             context = {'form': form, 'errors': form.errors}
             return render(request, "account/admin/publicity/upload_hero.html", context)
     form = HeroCreationForm()
-    context = {}
+    context = {'form': form}
     return render(request, "account/admin/publicity/upload_hero.html", context)
 
 def upload_banners(request):
@@ -78,7 +81,17 @@ def upload_announcements(request):
     return render(request, "account/admin/publicity/upload_announcement_form.html", context)
 
 def upload_photo_drives(request):
-    context = {}
+    form = DriveLinkForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:publicity_dashboard')
+        else:
+            form = DriveLinkForm(request.POST or None, request.FILES or None)
+            context = {'form': form, 'errors': form.errors}
+            return render(request, "account/admin/publicity/upload_photo_drives.html", context)
+    form = DriveLinkForm()
+    context = {'form': form}
     return render(request, "account/admin/publicity/upload_photo_drives.html", context)
 
 def create_semester_calendar(request):

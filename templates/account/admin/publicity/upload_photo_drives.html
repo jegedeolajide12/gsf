@@ -1,495 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Church Publicity - Photo Drive Manager</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #4361ee;
-            --primary-dark: #3a0ca3;
-            --accent: #4cc9f0;
-            --light-blue: #e6f0ff;
-            --gold: #f9c74f;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --light-gray: #f0f2f5;
-            --gray: #6c757d;
-            --dark: #212529;
-            --success: #4caf50;
-            --error: #f44336;
-            --transition: all 0.3s ease;
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-            --radius: 12px;
-        }
+{% extends '_base.html' %}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% block title %}Drive Link Upload page{% endblock %}
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
-            color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* Scoped container */
-        .photo-drive-page {
-            max-width: 1400px;
-            margin: 40px auto;
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-        }
-
-        /* Header Styles */
-        .photo-drive-page .drive-header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--white);
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-drive-page .drive-header::before {
-            content: "";
-            position: absolute;
-            top: -50px;
-            left: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-
-        .photo-drive-page .drive-header::after {
-            content: "";
-            position: absolute;
-            bottom: -80px;
-            right: -50px;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-
-        .photo-drive-page .drive-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .photo-drive-page .drive-header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
-        }
-
-        .photo-drive-page .drive-header-icon {
-            font-size: 5rem;
-            opacity: 0.15;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-        }
-
-        /* Main Layout */
-        .photo-drive-page .drive-content {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 30px;
-            padding: 40px;
-        }
-
-        /* Form Section */
-        .photo-drive-page .drive-form-section {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 30px;
-        }
-
-        .photo-drive-page .section-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
-            color: var(--primary-dark);
-        }
-
-        .photo-drive-page .section-title i {
-            font-size: 1.6rem;
-            margin-right: 15px;
-            color: var(--primary);
-        }
-
-        .photo-drive-page .section-title h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.5rem;
-        }
-
-        .photo-drive-page .form-group {
-            margin-bottom: 25px;
-        }
-
-        .photo-drive-page .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1.05rem;
-        }
-
-        .photo-drive-page .form-control {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e1e5f1;
-            border-radius: 10px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--light);
-        }
-
-        .photo-drive-page .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
-        }
-
-        textarea.photo-drive-page .form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        select.photo-drive-page .form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234361ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.2em;
-        }
-
-        .photo-drive-page .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        /* Buttons */
-        .photo-drive-page .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 32px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.05rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            text-decoration: none;
-        }
-
-        .photo-drive-page .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .photo-drive-page .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
-        }
-
-        .photo-drive-page .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            margin-left: 15px;
-        }
-
-        .photo-drive-page .btn-outline:hover {
-            background: rgba(67, 97, 238, 0.05);
-            transform: translateY(-3px);
-        }
-
-        .photo-drive-page .btn i {
-            margin-right: 10px;
-        }
-
-        .photo-drive-page .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(67, 97, 238, 0.1);
-        }
-
-        /* Links Section */
-        .photo-drive-page .links-section {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .photo-drive-page .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .photo-drive-page .link-card {
-            background: var(--light-gray);
-            border-radius: var(--radius);
-            padding: 25px;
-            border-left: 4px solid var(--primary);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .photo-drive-page .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .photo-drive-page .link-card .link-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .photo-drive-page .link-card .link-description {
-            color: var(--gray);
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .photo-drive-page .link-card .link-url {
-            display: block;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            word-break: break-all;
-        }
-
-        .photo-drive-page .link-card .link-url:hover {
-            text-decoration: underline;
-        }
-
-        .photo-drive-page .link-card .link-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .photo-drive-page .link-card .link-event {
-            background: rgba(249, 199, 79, 0.1);
-            color: var(--gold);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            display: inline-block;
-        }
-
-        .photo-drive-page .link-actions {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .photo-drive-page .link-action-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .photo-drive-page .link-action-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        /* Sidebar */
-        .photo-drive-page .drive-sidebar {
-            background: var(--light-blue);
-            border-radius: var(--radius);
-            padding: 30px;
-            border: 2px solid rgba(67, 97, 238, 0.1);
-            align-self: start;
-            position: sticky;
-            top: 20px;
-        }
-
-        .photo-drive-page .sidebar-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            color: var(--primary-dark);
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
-            display: flex;
-            align-items: center;
-        }
-
-        .photo-drive-page .sidebar-title i {
-            margin-right: 12px;
-            color: var(--primary);
-        }
-
-        .photo-drive-page .tips-list {
-            list-style: none;
-        }
-
-        .photo-drive-page .tips-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(67, 97, 238, 0.08);
-            display: flex;
-        }
-
-        .photo-drive-page .tips-list li:last-child {
-            border-bottom: none;
-        }
-
-        .photo-drive-page .tip-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(67, 97, 238, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .photo-drive-page .tip-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .photo-drive-page .tip-content p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        .photo-drive-page .progress-section {
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 2px solid rgba(67, 97, 238, 0.1);
-        }
-
-        .photo-drive-page .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .photo-drive-page .progress-bar {
-            height: 12px;
-            background: #e1e5f1;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .photo-drive-page .progress-fill {
-            height: 100%;
-            background: var(--primary);
-            width: 42%;
-            border-radius: 10px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .photo-drive-page .drive-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .photo-drive-page .drive-sidebar {
-                position: static;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .photo-drive-page .drive-header {
-                padding: 30px 20px;
-            }
-            
-            .photo-drive-page .drive-header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .photo-drive-page .form-actions {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .photo-drive-page .btn {
-                width: 100%;
-                margin-left: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .photo-drive-page .drive-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .photo-drive-page .drive-header p {
-                font-size: 1rem;
-            }
-            
-            .photo-drive-page .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
+{% block content %}
     <div class="photo-drive-page">
         <div class="drive-header">
             <i class="fas fa-cloud drive-header-icon"></i>
@@ -499,7 +12,17 @@
         
         <div class="drive-content">
             <div class="main-content">
-                <form class="drive-form-section" id="photoDriveForm">
+                <form class="drive-form-section" id="photoDriveForm" method="post" action="{% url 'accounts:upload_photo_drives' %}">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="form-errors non-field-errors">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
                     <div class="section-title">
                         <i class="fas fa-link"></i>
                         <h2>Add New Photo Drive Link</h2>
@@ -507,38 +30,87 @@
                     
                     <div class="form-group">
                         <label for="linkTitle">Link Title</label>
-                        <input type="text" id="linkTitle" name="linkTitle" class="form-control" placeholder="E.g. Summer Retreat 2024 Photos" required>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="form-errors">
+                                <ul>
+                                    {% for error in form.title.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
                     
                     <div class="form-group">
                         <label for="driveLink">Google Drive Link</label>
-                        <input type="url" id="driveLink" name="driveLink" class="form-control" placeholder="https://drive.google.com/drive/folders/..." required>
+                        {{ form.url }}
+                        {% if form.url.errors %}
+                            <div class="form-errors">
+                                <ul>
+                                    {% for error in form.url.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
                     
                     <div class="form-group">
                         <label for="linkDescription">Description</label>
-                        <textarea id="linkDescription" name="linkDescription" class="form-control" placeholder="Add a brief description of these photos..."></textarea>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="form-errors">
+                                <ul>
+                                    {% for error in form.description.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
                     
+                    <div class="form-group">
+                        <label for="associatedEvent">Event (Optional)</label>
+                        {{ form.event }}
+                        {% if form.event.errors %}
+                            <div class="form-errors">
+                                <ul>
+                                    {% for error in form.event.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div>
+
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="associatedEvent">Associated Event</label>
-                            <select id="associatedEvent" name="associatedEvent" class="form-control">
-                                <option value="">Select event</option>
-                                <option value="1">Summer Youth Retreat</option>
-                                <option value="2">Baptism Sunday</option>
-                                <option value="3">Easter Service</option>
-                                <option value="4">Christmas Celebration</option>
-                            </select>
+                            <label for="associatedEvent">Event Date</label>
+                            {{ form.event_date }}
+                            {% if form.event_date.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.event_date.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                         
                         <div class="form-group">
                             <label for="visibility">Visibility</label>
-                            <select id="visibility" name="visibility" class="form-control">
-                                <option value="public">Public (Anyone with link)</option>
-                                <option value="members">Church Members Only</option>
-                                <option value="private">Private (Specific people)</option>
-                            </select>
+                            {{ form.visibility }}
+                            {% if form.visibility.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.visibility.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     
@@ -672,24 +244,14 @@
                     <p style="margin-top: 10px; color: var(--gray);">8.2 GB of 19 GB used</p>
                 </div>
                 
-                <div class="drive-stats">
-                    <div class="stats-card">
-                        <div class="stat-icon">
+                <div class="drive-stats" style="display: flex; gap: 16px;">
+                    <div class="stats-card" style="display: flex; align-items: center;">
+                        <div class="stat-icon" style="margin-right: 10px;">
                             <i class="fas fa-link"></i>
                         </div>
                         <div class="stat-content">
                             <div class="stat-number">24</div>
                             <div class="stat-label">Active Links</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stats-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-calendar"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">12</div>
-                            <div class="stat-label">Events Covered</div>
                         </div>
                     </div>
                 </div>
@@ -698,54 +260,6 @@
     </div>
 
     <script>
-        // Form submission
-        document.getElementById('photoDriveForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const title = document.getElementById('linkTitle').value;
-            const url = document.getElementById('driveLink').value;
-            const description = document.getElementById('linkDescription').value;
-            const event = document.getElementById('associatedEvent').value;
-            const eventText = document.getElementById('associatedEvent').options[document.getElementById('associatedEvent').selectedIndex].text;
-            
-            // Create new card
-            const linksGrid = document.getElementById('linksGrid');
-            const newCard = document.createElement('div');
-            newCard.className = 'link-card';
-            newCard.innerHTML = `
-                <div class="link-actions">
-                    <button class="link-action-btn" title="Edit">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="link-action-btn" title="Copy">
-                        <i class="fas fa-copy"></i>
-                    </button>
-                    <button class="link-action-btn" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-                <div class="link-title">${title}</div>
-                <div class="link-description">${description || 'No description provided'}</div>
-                <a href="${url}" class="link-url">${url}</a>
-                <div class="link-meta">
-                    <div class="link-event">${eventText || 'No event'}</div>
-                    <div class="link-date">Today</div>
-                </div>
-            `;
-            
-            // Add to top of grid
-            linksGrid.insertBefore(newCard, linksGrid.firstChild);
-            
-            // Add event listeners to new buttons
-            addActionListeners(newCard);
-            
-            // Reset form
-            this.reset();
-            
-            // Show success message
-            showSuccessToast('Photo Drive link added successfully!');
-        });
         
         // Function to add action listeners to a card
         function addActionListeners(card) {
@@ -841,5 +355,4 @@
         `;
         document.head.appendChild(toastStyle);
     </script>
-</body>
-</html>
+{% endblock %}
