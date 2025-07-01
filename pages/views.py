@@ -3,28 +3,24 @@ from django.shortcuts import render
 
 from accounts.models import Sermon
 
-from .models import Unit, HomePageHero, HomePageBanner
+from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 def home(request):
-    user_unit = None
-    if request.user.is_authenticated:
-        units = Unit.objects.all()
-        user_units = request.user.units.all()
-        if user_units:
-            user_unit = user_units[0]
-
-    hero = HomePageHero.objects.first()
-    banner = HomePageBanner.objects.first()
+    announcements = Announcement.objects.all()
+    heroes = HomePageHero.objects.all()
+    banners = HomePageBanner.objects.all()
+    drives = DriveLink.objects.all()
     sermons = Sermon.objects.all()
-    context = {'user_unit': user_unit,
-               'hero': hero,
-               'banner': banner,
+    context = {
+               'announcements': announcements,
+               'heroes': heroes,
+               'banners': banners,
+               'drives': drives,
                'sermons': sermons,
-               'units': Unit.objects.all(),
-               'user_units': user_units if request.user.is_authenticated else None}
+               'units': Unit.objects.all(),}
     return render(request, 'pages/home.html', context)
 
 
@@ -89,7 +85,8 @@ def sermons(request):
     return render(request, "pages/sermon.html", context)
 
 def events(request):
-    context = {}
+    events = Announcement.objects.all()
+    context = {'events': events}
     return render(request, "pages/events.html", context)
 
 def give(request):

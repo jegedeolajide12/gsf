@@ -5,19 +5,12 @@
 <section class="hero-carousel">
     <div class="hero-slides">
         <!-- Slide 1 -->
-        <div class="hero-slide active" style="background-image: url('{% static "images/image2.jpg" %}')">
-            
-        </div>
+        {% for hero in heroes %}
+            <div class="hero-slide active" style="background-image: url('{{ hero.image.url }}')">
+                
+            </div>
+        {% endfor %}
         
-        <!-- Slide 2 -->
-        <div class="hero-slide" style="background-image: url('{% static "images/image4.jpg" %}')">
-            
-        </div>
-        
-        <!-- Slide 3 -->
-        <div class="hero-slide" style="background-image: url('{% static "images/image6.jpg" %}')">
-            
-        </div>
     </div>
     
     <!-- Hero Indicators -->
@@ -29,46 +22,34 @@
 </section>
 
   <!-- Banner Slider Section -->
-  <section class="banner-section">
-      <div class="container">
-          <div class="section-title">
-              <h2>Upcoming Events</h2>
-              <p>Join us for these special gatherings and experiences</p>
-          </div>
-          
-          <div class="banner-container">
-              <div class="banner-slider">
-                  <div class="banner-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80');">
-                      <div class="slide-content">
-                          <h3>Night of Exploits</h3>
-                          <p>Join us every Friday evening in July for special outdoor worship experiences under the stars.</p>
-                          <a href="#" class="slide-btn">Learn More</a>
-                      </div>
-                  </div>
-                  <div class="banner-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80');">
-                      <div class="slide-content">
-                          <h3>Drama Drive</h3>
-                          <p>An unforgettable week of adventure, friendship, and spiritual growth for teens.</p>
-                          <a href="#" class="slide-btn">Register Now</a>
-                      </div>
-                  </div>
-                  <div class="banner-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80');">
-                      <div class="slide-content">
-                          <h3>Evangelism Sunday</h3>
-                          <p>Join us as we serve our local community through various outreach projects.</p>
-                          <a href="#" class="slide-btn">Volunteer</a>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="banner-indicators">
-                  <div class="indicator active" data-slide="0"></div>
-                  <div class="indicator" data-slide="1"></div>
-                  <div class="indicator" data-slide="2"></div>
-              </div>
-          </div>
-      </div>
-  </section>
+<section class="banner-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Upcoming Events</h2>
+            <p>Join us for these special gatherings and experiences</p>
+        </div>
+        
+        <div class="banner-container">
+            <div class="banner-slider">
+                {% for banner in banners %}
+                <div class="banner-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ banner.image.url }}');">
+                    <div class="slide-content">
+                        <h3>{{ banner.title }}</h3>
+                        <p>{{ banner.description|linebreaks|truncatewords:30 }}</p>
+                        <a href="#" class="slide-btn">{{ banner.get_action_display }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="banner-indicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
   <!-- Devotion Section -->
   <section class="devotion-section">
@@ -105,56 +86,32 @@
       </div>
   </section>
 
-  <!-- Announcements Section -->
-  <section class="home-announcements-section">
-      <div class="container">
-          <div class="section-title">
-              <h2>Church Announcements</h2>
-              <p>Latest news and updates from our community</p>
-          </div>
-          
-          <div class="home-announcements-grid">
-              <div class="home-announcement-card">
-                  <div class="home-announcement-badge">New</div>
-                  <div class="home-announcement-img">
-                      <img src="{% static "images/image5.jpg" %}" style="height: 200px; width: 400px;" alt="Summer Picnic">
-                  </div>
-                  <div class="home-announcement-content">
-                      <span class="home-announcement-date">June 20, 2024</span>
-                      <h3>Vote Your Next Executives</h3>
-                      <p>We're launching a new initiative to support local families in need. Join us this Saturday for our first volunteer orientation.</p>
-                      <a href="#" class="home-announcement-link">Vote now <i class="fas fa-arrow-right"></i></a>
-                  </div>
-              </div>
-              
-              <div class="home-announcement-card">
-                  <div class="home-announcement-badge">Update</div>
-                  <div class="home-announcement-img">
-                      <img src="{% static "images/image2.jpg" %}" style="height: 200px; width: 400px;" alt="Summer Picnic">
-                  </div>
-                  <div class="home-announcement-content">
-                      <span class="home-announcement-date">June 18, 2024</span>
-                      <h3>Renovation Progress</h3>
-                      <p>Our sanctuary renovation is ahead of schedule! Take a virtual tour of the transformed space.</p>
-                      <a href="#" class="home-announcement-link">View Photos <i class="fas fa-arrow-right"></i></a>
-                  </div>
-              </div>
-              
-              <div class="home-announcement-card">
-                  <div class="home-announcement-badge">Reminder</div>
-                  <div class="home-announcement-img">
-                        <img src="{% static "images/image6.jpg" %}" style="height: 200px; width: 400px;" alt="Summer Picnic">
-                  </div>
-                  <div class="home-announcement-content">
-                      <span class="home-announcement-date">June 15, 2024</span>
-                      <h3>Annual Member Meeting</h3>
-                      <p>Join us next Sunday after service for our yearly gathering. Lunch will be provided and childcare available.</p>
-                      <a href="#" class="home-announcement-link">RSVP Now <i class="fas fa-arrow-right"></i></a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+    <!-- Announcements Section -->
+    <section class="home-announcements-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Church Announcements</h2>
+                <p>Latest news and updates from our community</p>
+            </div>
+            
+            <div class="home-announcements-grid">
+                {% for announcement in announcements|slice:3 %}
+                <div class="home-announcement-card">
+                    <div class="home-announcement-badge">{{ announcement.get_category_display }}</div>
+                    <div class="home-announcement-img">
+                        <img src="{{ announcement.image.url }}" style="height: 200px; width: 400px;" alt="{{ announcement.title }}">
+                    </div>
+                    <div class="home-announcement-content">
+                        <span class="home-announcement-date">{{ announcement.start_date }}</span>
+                        <h3>{{ announcement.title }}</h3>
+                        <p>{{ announcement.content }}</p>
+                        <a href="#" class="home-announcement-link">Vote now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
   
 
@@ -206,47 +163,22 @@
             
             <div class="picture-links-container">
                 <div class="link-grid">
+                    {% for drive in drives|slice:4 %}
                     <div class="link-card">
                         <div class="link-content">
                             <div class="link-date">
-                                <i class="fas fa-calendar-alt"></i> June 23, 2024
+                                <i class="fas fa-calendar-alt"></i> {{ drive.event_date }}
                             </div>
-                            <h3 class="link-title">Pentecost Sunday Celebration</h3>
-                            <p class="link-description">Photos from our special Pentecost service with guest choir and baptism ceremony</p>
+                            <h3 class="link-title">{{ drive.title }}</h3>
+                            <p class="link-description">{{ drive.description|truncatewords:15 }}</p>
                             <a href="#" class="link-url">
                                 <i class="fas fa-link"></i>
-                                <span class="link-url-text">https://drive.google.com/drive/folders/1234567890abcdef</span>
+                                <span class="link-url-text">{{ drive.url }}</span>
                             </a>
                         </div>
                     </div>
+                    {% endfor %}
                     
-                    <div class="link-card">
-                        <div class="link-content">
-                            <div class="link-date">
-                                <i class="fas fa-calendar-alt"></i> June 16, 2024
-                            </div>
-                            <h3 class="link-title">Father's Day Service</h3>
-                            <p class="link-description">Special moments honoring our fathers with the men's choir performance</p>
-                            <a href="#" class="link-url">
-                                <i class="fas fa-link"></i>
-                                <span class="link-url-text">https://drive.google.com/drive/folders/0987654321zyxwvu</span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="link-card">
-                        <div class="link-content">
-                            <div class="link-date">
-                                <i class="fas fa-calendar-alt"></i> June 9, 2024
-                            </div>
-                            <h3 class="link-title">Youth Sunday</h3>
-                            <p class="link-description">Our youth-led service with special performances and activities</p>
-                            <a href="#" class="link-url">
-                                <i class="fas fa-link"></i>
-                                <span class="link-url-text">https://drive.google.com/drive/folders/abcdef1234567890</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="view-all-links">

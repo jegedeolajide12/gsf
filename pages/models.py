@@ -4,6 +4,7 @@ from turtle import mode
 from venv import create
 from django.db import models
 
+from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -30,10 +31,10 @@ class HomePageBanner(models.Model):
         WORKERS = 'workers', 'Workers Only'
         DRAFT = 'draft', 'Draft (Not visible to anyone)'
     class ActionChoices(models.TextChoices):
-        LEARN_MORE = 'learn_more', 'Learn More'
-        SIGN_UP = 'sign_up', 'Sign Up'
-        FILL_FORM = 'fill_form', 'Fill Form'
-        CONTACT_US = 'contact_us', 'Contact Us'
+        LEARN_MORE = 'learn_more', _('Learn More')
+        SIGN_UP = 'sign_up', _('Sign Up')
+        FILL_FORM = 'fill_form', _('Fill Form')
+        CONTACT_US = 'contact_us', _('Contact Us')
     image = models.ImageField(upload_to='banner/images')
     mobile_image = models.ImageField(upload_to='banner/mobile_images', null=True, blank=True)
     title = models.CharField(max_length=150, null=True, blank=True)
@@ -137,6 +138,18 @@ class Announcement(models.Model):
         help_text="Category of the announcement"
     )
 
+    def save(self, *args, **kwargs):
+        if visibility := self.visibility:
+            if visibility == self.VisibilityChoices.PUBLISHED:
+                self.is_published = True
+                self.for_workers = False
+            elif visibility == self.VisibilityChoices.WORKERS:
+                self.is_published = False
+                self.for_workers = True
+            elif visibility == self.VisibilityChoices.DRAFT:
+                self.is_published = False
+                self.for_workers = False
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

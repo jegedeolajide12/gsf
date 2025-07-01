@@ -147,4 +147,6 @@ class DriveLinkForm(forms.ModelForm):
             'event_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': False, 'placeholder': 'Select event date'}),
         }
     
-    
+
+class WorkerUnitsForm():
+    pass
