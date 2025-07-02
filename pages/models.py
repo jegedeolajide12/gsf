@@ -254,6 +254,7 @@ class Event(models.Model):
     image = models.ImageField(upload_to='events/images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_default = models.BooleanField(default=False, help_text="Is this a default event that recurs every semester?")
 
     def __str__(self):
         return self.title

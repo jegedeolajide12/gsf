@@ -7,9 +7,10 @@ from django.forms import inlineformset_factory
 from django.urls import reverse_lazy
 
 from accounts.models import Sermon
+from .utils import create_recurring_events
 
 
-from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event
+from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event, Semester
 from .forms import SemesterForm, EventForm, EventOccurrenceForm
 
 User = get_user_model()
@@ -106,6 +107,19 @@ def create_semester(request):
         form = SemesterForm(request.POST)
         if form.is_valid():
             form.save()
+            # Create recurring events for the semester
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            create_recurring_events(start_date, end_date)
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                # Prepare semester data for JSON response
+                semester_data = {
+                    'id': form.instance.id,
+                    'name': form.instance.name,
+                    'start_date': form.instance.start_date.strftime('%Y-%m-%d'),
+                    'end_date': form.instance.end_date.strftime('%Y-%m-%d'),
+                }
+                return JsonResponse({'success': True, 'semester': semester_data})
             return redirect('pages:calendar_preview')
         else:
             form = SemesterForm(request.POST)

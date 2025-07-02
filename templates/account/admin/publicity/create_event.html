@@ -37,14 +37,18 @@
                     <!-- Drag & Drop Image Field -->
                     <div class="form-group">
                         <label>Event Image</label>
-                        <div class="file-upload id="dragDropArea">
-                            <i class="fas fa-image"></i>
-                            <h3>Upload Thumbnail</h3>
-                            <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
-                            <button class="btn btn-outline" type="button">
-                                <i class="fas fa-upload"></i> Select File
-                            </button>
+                        <div class="drag-drop-area" id="dragDropArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop your image here</p>
+                            <p class="text-muted">or click to browse</p>
                             {{ event_form.image }}
+                            <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
+                            <div class="preview-container" id="imagePreview" style="display:none;">
+                                <img id="previewImage" src="#" alt="Preview" />
+                                <button type="button" class="btn btn-outline" id="removeImage">
+                                    <i class="fas fa-upload"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -119,7 +123,127 @@
             </div>
             
             <div class="calendar-sidebar">
-                <!-- ... (your existing sidebar content) ... -->
+                <div class="sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Calendar Tips</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Plan Ahead</h3>
+                            <p>Schedule all major events at least 3 months in advance.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Ministry Balance</h3>
+                            <p>Ensure all ministry areas have adequate programming.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Seasonal Themes</h3>
+                            <p>Align programmes with liturgical seasons and holidays.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Resource Planning</h3>
+                            <p>Note resource needs for each event during planning.</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Current Semester</span>
+                        <span>Fall 2024</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">Semester started 3 weeks ago</p>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Events This Semester</span>
+                        <span>28/120</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 23%; background: var(--accent);"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--gray);">92 events remaining to be scheduled</p>
+                </div>
+                
+                <div class="calendar-preview">
+                    <div class="month-header">September 2024</div>
+                    <div class="week-days">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day today">15</div>
+                        <div class="calendar-day has-event">16</div>
+                        <div class="calendar-day has-event">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day"></div>
+                    </div>
+                    
+                    <div class="calendar-event">
+                        <div class="event-time">Sep 16, 6:30 PM</div>
+                        <div class="event-title">Men's Fellowship</div>
+                    </div>
+                    
+                    <div class="calendar-event">
+                        <div class="event-time">Sep 17, 6:30 PM</div>
+                        <div class="event-title">Youth Bible Study</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -160,27 +284,28 @@
             
             // Add new occurrence form
             addOccurrenceBtn.addEventListener('click', function() {
-                const newForm = template.replace(/__prefix__/g, formCount);
-                const div = document.createElement('div');
-                div.innerHTML = newForm;
-                occurrencesContainer.appendChild(div.firstChild);
-                
+                const newFormHtml = template.replace(/__prefix__/g, formCount);
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = newFormHtml;
+                const newFormElem = wrapper.firstElementChild;
+                occurrencesContainer.appendChild(newFormElem);
+
                 // Set default date to today
-                const dateInput = div.querySelector('input[type="date"]');
+                const dateInput = newFormElem.querySelector('input[type="date"]');
                 if (dateInput) {
                     dateInput.valueAsDate = new Date();
                 }
-                
+
                 // Add delete event listener
-                const deleteBtn = div.querySelector('.delete-occurrence');
+                const deleteBtn = newFormElem.querySelector('.delete-occurrence');
                 if (deleteBtn) {
                     deleteBtn.addEventListener('click', function() {
-                        div.firstChild.remove();
+                        newFormElem.remove();
                         formCount--;
                         updateTotalForms();
                     });
                 }
-                
+
                 formCount++;
                 updateTotalForms();
             });

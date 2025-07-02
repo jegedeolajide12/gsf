@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement,
-    DriveLink
+    DriveLink, Event, EventOccurence,  Semester
 )
 # Register your models here.
 admin.site.register(HomePageHero)
@@ -56,3 +56,17 @@ class DriveLinkAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         """Override the get_queryset method to use all_objects manager."""
         return self.model.all_objects.all()
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('semester', 'title', 'location')
+    list_filter = ('semester',)
+    search_fields = ('title', 'description')
+    ordering = ('-semester',)
+
+@admin.register(EventOccurence)
+class EventOccurenceAdmin(admin.ModelAdmin):
+    list_display = ('event', 'time', 'date')
+    list_filter = ('event__semester',)
+    search_fields = ('event__title', 'location')
+    ordering = ('-time',)

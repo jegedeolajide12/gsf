@@ -10190,37 +10190,153 @@ select.semester-calendar-page .form-control {
     color: var(--primary);
 }
 
-.semester-calendar-page .file-upload {
-    border: 2px dashed #d1d8e9;
-    border-radius: 12px;
+/* Drag & Drop Styles */
+.semester-calendar-page .drag-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
     padding: 30px;
     text-align: center;
-    background: rgba(241, 243, 249, 0.5);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s;
+    position: relative;
 }
 
-.semester-calendar-page .file-upload:hover {
+.semester-calendar-page .drag-drop-area.highlight {
     border-color: var(--primary);
-    background: rgba(67, 97, 238, 0.03);
+    background-color: rgba(66, 153, 225, 0.1);
 }
 
-.semester-calendar-page .file-upload i {
-    font-size: 3rem;
-    color: var(--primary);
-    margin-bottom: 15px;
+.semester-calendar-page .drag-drop-area .file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
 }
 
-.semester-calendar-page .file-upload h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.3rem;
-    color: var(--primary-dark);
+.semester-calendar-page .drag-drop-area i {
+    font-size: 48px;
+    color: #ccc;
     margin-bottom: 10px;
 }
 
-.semester-calendar-page .file-upload p {
-    color: var(--gray);
-    margin-bottom: 20px;
+.semester-calendar-page .preview-container {
+    position: relative;
+    margin-top: 15px;
+}
+
+.semester-calendar-page #previewImage {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+}
+
+.semester-calendar-page #removeImage {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Occurrence Form Styles */
+.semester-calendar-page .occurrence-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: flex-end;
+}
+
+.semester-calendar-page .occurrence-form .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.semester-calendar-page .delete-occurrence {
+    height: 38px;
+}
+
+/* Notification Styles */
+.semester-calendar-page .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.semester-calendar-page .notification.success {
+    background-color: #4CAF50;
+}
+
+.semester-calendar-page .notification.error {
+    background-color: #F44336;
+}
+
+.semester-calendar-page .notification.info {
+    background-color: #2196F3;
+}
+
+/* Event List Styles */
+.semester-calendar-page .event-occurrences {
+    margin-top: 10px;
+}
+
+.semester-calendar-page .event-occurrence {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.semester-calendar-page .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.semester-calendar-page .event-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.semester-calendar-page .event-action-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #6c757d;
+    transition: color 0.3s;
+}
+
+.semester-calendar-page .event-action-btn.edit:hover {
+    color: #ffc107;
+}
+
+.semester-calendar-page .event-action-btn.delete:hover {
+    color: #dc3545;
+}
+
+.semester-calendar-page .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.semester-calendar-page .empty-state i {
+    font-size: 48px;
+    margin-bottom: 15px;
 }
 
 .semester-calendar-page .file-input{
