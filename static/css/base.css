@@ -10190,6 +10190,43 @@ select.semester-calendar-page .form-control {
     color: var(--primary);
 }
 
+.semester-calendar-page .file-upload {
+    border: 2px dashed #d1d8e9;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    background: rgba(241, 243, 249, 0.5);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.semester-calendar-page .file-upload:hover {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.03);
+}
+
+.semester-calendar-page .file-upload i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.semester-calendar-page .file-upload h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+
+.semester-calendar-page .file-upload p {
+    color: var(--gray);
+    margin-bottom: 20px;
+}
+
+.semester-calendar-page .file-input{
+    display: none;
+}
+
 .semester-calendar-page .tips-list {
     list-style: none;
 }

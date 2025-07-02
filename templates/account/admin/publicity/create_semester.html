@@ -11,7 +11,17 @@
         
         <div class="calendar-content">
             <div class="main-content">
-                <form class="calendar-form" id="semesterCalendarForm">
+                <form class="calendar-form" id="semesterCalendarForm" method="post" action="{% url 'pages:create_semester' %}">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="form-errors non-field-errors">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
                     <div class="section-title">
                         <i class="fas fa-info-circle"></i>
                         <h2>Semester Information</h2>
@@ -20,24 +30,46 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="semesterName">Semester Name</label>
-                            <input type="text" id="semesterName" name="semesterName" class="form-control" placeholder="Fall 2024 Semester" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="semesterYear">Year</label>
-                            <input type="number" id="semesterYear" name="semesterYear" class="form-control" min="2023" max="2030" value="2024" required>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.name.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="startDate">Start Date</label>
-                            <input type="date" id="startDate" name="startDate" class="form-control" required>
+                            {{ form.start_date }}
+                            {% if form.start_date.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.start_date.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                         
                         <div class="form-group">
                             <label for="endDate">End Date</label>
-                            <input type="date" id="endDate" name="endDate" class="form-control" required>
+                            {{ form.end_date }}
+                            {% if form.end_date.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.end_date.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     

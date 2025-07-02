@@ -417,5 +417,75 @@
     });
 </script>
 
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- MOBILE MENU (Single Instance) ---
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+        // --- HERO CAROUSEL ---
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroIndicators = document.querySelectorAll('.hero-indicator');
+        let heroCurrent = 0;
+        
+        const showHeroSlide = (index) => {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroIndicators.forEach(indicator => indicator.classList.remove('active'));
+            heroSlides[index].classList.add('active');
+            heroIndicators[index].classList.add('active');
+            heroCurrent = index;
+        };
+        
+        heroIndicators.forEach((indicator, i) => {
+            indicator.addEventListener('click', () => showHeroSlide(i));
+        });
+        
+        showHeroSlide(0); // Initialize first slide
+        setInterval(() => showHeroSlide((heroCurrent + 1) % heroSlides.length), 6000);
+
+        // --- BANNER CAROUSEL ---
+        const bannerSlides = document.querySelectorAll('.banner-slide');
+        const bannerIndicators = document.querySelectorAll('.indicator');
+        let bannerCurrent = 0;
+        
+        const showBannerSlide = (index) => {
+            bannerSlides.forEach(slide => slide.classList.remove('active'));
+            bannerIndicators.forEach(indicator => indicator.classList.remove('active'));
+            bannerSlides[index].classList.add('active');
+            bannerIndicators[index].classList.add('active');
+            bannerCurrent = index;
+        };
+        
+        bannerIndicators.forEach((indicator, i) => {
+            indicator.addEventListener('click', () => showBannerSlide(i));
+        });
+        
+        showBannerSlide(0); // Initialize first slide
+        setInterval(() => showBannerSlide((bannerCurrent + 1) % bannerSlides.length), 5000);
+
+        // --- SCROLL ANIMATIONS (Single Observer) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeUp 0.8s forwards';
+            }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all elements at once
+        document.querySelectorAll(
+            '.section-title, .devotion-card, .announcement-card, .audio-card, .executive-card, .link-card, .visitors-content, .visitors-image'
+        ).forEach(el => observer.observe(el));
+
+        // --- HEADER SCROLL EFFECT ---
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+        });
+</script>
 {% endblock content %}
 

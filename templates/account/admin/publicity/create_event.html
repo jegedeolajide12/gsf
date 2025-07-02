@@ -1,0 +1,438 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="semester-calendar-page">
+        <div class="calendar-header">
+            <i class="fas fa-calendar-alt calendar-header-icon"></i>
+            <h1>Church Semester Calendar</h1>
+            <p>Plan and organize your church programmes for the upcoming semester</p>
+        </div>
+        
+        <div class="calendar-content">
+            <div class="main-content">
+                <form method="post" enctype="multipart/form-data" class="calendar-form" id="eventForm">
+                    {% csrf_token %}
+                    <div class="section-title">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h2>Add Programme Event</h2>
+                    </div>
+                    
+                    <!-- Event Form Fields -->
+                    <div class="form-group">
+                        <label for="{{ event_form.title.id_for_label }}">Event Title</label>
+                        {{ event_form.title }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ event_form.location.id_for_label }}">Location</label>
+                        {{ event_form.location }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ event_form.description.id_for_label }}">Description</label>
+                        {{ event_form.description }}
+                    </div>
+                    
+                    <!-- Drag & Drop Image Field -->
+                    <div class="form-group">
+                        <label>Event Image</label>
+                        <div class="file-upload id="dragDropArea">
+                            <i class="fas fa-image"></i>
+                            <h3>Upload Thumbnail</h3>
+                            <p>JPG, PNG, SVG (Recommended: 1920×1080)</p>
+                            <button class="btn btn-outline" type="button">
+                                <i class="fas fa-upload"></i> Select File
+                            </button>
+                            {{ event_form.image }}
+                        </div>
+                    </div>
+                    
+                    <!-- Occurrences Section -->
+                    <div class="section-title" style="margin-top: 30px;">
+                        <i class="fas fa-history"></i>
+                        <h3>Occurrences</h3>
+                        <button type="button" id="add-occurrence" class="btn btn-sm btn-outline">
+                            <i class="fas fa-plus"></i> Add Occurrence
+                        </button>
+                    </div>
+                    
+                    {{ formset.management_form }}
+                    <div id="occurrences-container">
+                        {% for form in formset %}
+                            <div class="occurrence-form form-grid">
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                                
+                                <div class="form-group">
+                                    <label for="{{ form.date.id_for_label }}">Date</label>
+                                    {{ form.date }}
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="{{ form.time.id_for_label }}">Time</label>
+                                    {{ form.time }}
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button type="button" class="btn btn-danger btn-block delete-occurrence">
+                                        <i class="fas fa-trash" style="background: #2196F3;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Semester Selection -->
+                    <div class="form-group">
+                        <label for="{{ event_form.semester.id_for_label }}">Semester</label>
+                        {{ event_form.semester }}
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="add-event-btn" class="btn btn-outline">
+                            <i class="fas fa-plus"></i> Add Event
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save All Events
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Events Preview Section -->
+                <div class="calendar-preview">
+                    <div class="section-title">
+                        <i class="fas fa-list"></i>
+                        <h2>Added Events</h2>
+                    </div>
+                    
+                    <div class="event-list" id="eventList">
+                        <!-- Events will be added here dynamically via AJAX -->
+                        <div class="empty-state" id="emptyState">
+                            <i class="fas fa-calendar-plus"></i>
+                            <p>No events added yet. Create your first event!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calendar-sidebar">
+                <!-- ... (your existing sidebar content) ... -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Occurrence Form Template -->
+    <template id="occurrence-template">
+        <div class="occurrence-form form-grid">
+            <input type="hidden" name="occurrences-__prefix__-id" id="id_occurrences-__prefix__-id">
+            <input type="hidden" name="occurrences-__prefix__-event" id="id_occurrences-__prefix__-event">
+            
+            <div class="form-group">
+                <label for="id_occurrences-__prefix__-date">Date</label>
+                <input type="date" name="occurrences-__prefix__-date" class="form-control" id="id_occurrences-__prefix__-date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_occurrences-__prefix__-time">Time</label>
+                <input type="time" name="occurrences-__prefix__-time" class="form-control" id="id_occurrences-__prefix__-time" required>
+            </div>
+            
+            <div class="form-group">
+                <label>&nbsp;</label>
+                <button type="button" class="btn btn-danger btn-block delete-occurrence">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ========== Occurrence Form Management ==========
+            const addOccurrenceBtn = document.getElementById('add-occurrence');
+            const occurrencesContainer = document.getElementById('occurrences-container');
+            const template = document.getElementById('occurrence-template').innerHTML;
+            const totalForms = document.getElementById('id_occurrences-TOTAL_FORMS');
+            let formCount = parseInt(totalForms.value);
+            
+            // Add new occurrence form
+            addOccurrenceBtn.addEventListener('click', function() {
+                const newForm = template.replace(/__prefix__/g, formCount);
+                const div = document.createElement('div');
+                div.innerHTML = newForm;
+                occurrencesContainer.appendChild(div.firstChild);
+                
+                // Set default date to today
+                const dateInput = div.querySelector('input[type="date"]');
+                if (dateInput) {
+                    dateInput.valueAsDate = new Date();
+                }
+                
+                // Add delete event listener
+                const deleteBtn = div.querySelector('.delete-occurrence');
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', function() {
+                        div.firstChild.remove();
+                        formCount--;
+                        updateTotalForms();
+                    });
+                }
+                
+                formCount++;
+                updateTotalForms();
+            });
+            
+            // Add delete listeners to existing occurrence forms
+            document.querySelectorAll('.delete-occurrence').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const formDiv = this.closest('.occurrence-form');
+                    formDiv.remove();
+                    formCount--;
+                    updateTotalForms();
+                });
+            });
+            
+            function updateTotalForms() {
+                totalForms.value = formCount;
+            }
+            
+            // ========== Drag & Drop Image Upload ==========
+            const dragDropArea = document.getElementById('dragDropArea');
+            const imageInput = document.querySelector('#dragDropArea input[type="file"]');
+            const imagePreview = document.getElementById('imagePreview');
+            const previewImage = document.getElementById('previewImage');
+            const removeImageBtn = document.getElementById('removeImage');
+            
+            // Open file dialog when clicking the drop area
+            dragDropArea.addEventListener('click', () => {
+                imageInput.click();
+            });
+            
+            // Handle file selection
+            imageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                        dragDropArea.querySelector('p').style.display = 'none';
+                        dragDropArea.querySelector('.fa-cloud-upload-alt').style.display = 'none';
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+            
+            // Remove image
+            removeImageBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                imageInput.value = '';
+                previewImage.src = '';
+                imagePreview.style.display = 'none';
+                dragDropArea.querySelector('p').style.display = 'block';
+                dragDropArea.querySelector('.fa-cloud-upload-alt').style.display = 'block';
+            });
+            
+            // Drag and drop functionality
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dragDropArea.classList.add('highlight');
+            }
+            
+            function unhighlight() {
+                dragDropArea.classList.remove('highlight');
+            }
+            
+            // Handle dropped files
+            dragDropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                imageInput.files = files;
+                
+                // Trigger change event
+                const event = new Event('change');
+                imageInput.dispatchEvent(event);
+            }
+            
+            // ========== AJAX Event Creation ==========
+            const addEventBtn = document.getElementById('add-event-btn');
+            const eventForm = document.getElementById('eventForm');
+            const eventList = document.getElementById('eventList');
+            const emptyState = document.getElementById('emptyState');
+            
+            addEventBtn.addEventListener('click', function() {
+                const formData = new FormData(eventForm);
+                
+                // Add CSRF token
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                
+                fetch('{% url "pages:create_event" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': csrfToken,
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Add new event to the list
+                        addEventToList(data.event);
+                        
+                        // Reset form
+                        eventForm.reset();
+                        
+                        // Reset image preview
+                        imageInput.value = '';
+                        imagePreview.style.display = 'none';
+                        dragDropArea.querySelector('p').style.display = 'block';
+                        dragDropArea.querySelector('.fa-cloud-upload-alt').style.display = 'block';
+                        
+                        // Reset occurrences
+                        document.querySelectorAll('.occurrence-form').forEach(form => form.remove());
+                        formCount = 0;
+                        updateTotalForms();
+                        
+                        // Show success message
+                        showNotification('Event added successfully!', 'success');
+                    } else {
+                        showNotification('Error: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    showNotification('An error occurred: ' + error, 'error');
+                });
+            });
+            
+            function addEventToList(eventData) {
+                if (emptyState) emptyState.style.display = 'none';
+                
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event-item';
+                eventElement.dataset.id = eventData.id;
+                
+                // Format occurrences
+                let occurrencesHtml = '';
+                eventData.occurrences.forEach(occ => {
+                    const date = new Date(occ.date);
+                    const formattedDate = date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                    
+                    const time = new Date('1970-01-01T' + occ.time + 'Z');
+                    const formattedTime = time.toLocaleTimeString('en-US', {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+                    
+                    occurrencesHtml += `<div class="event-occurrence">
+                        <i class="fas fa-calendar-day"></i>
+                        ${formattedDate} at ${formattedTime}
+                    </div>`;
+                });
+                
+                eventElement.innerHTML = `
+                    <div class="event-header">
+                        <div class="event-title">${eventData.title}</div>
+                        <div class="event-actions">
+                            <button class="event-action-btn edit" data-id="${eventData.id}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="event-action-btn delete" data-id="${eventData.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="event-details">
+                        <div><i class="fas fa-map-marker-alt"></i> ${eventData.location}</div>
+                    </div>
+                    <div class="event-description">${eventData.description}</div>
+                    <div class="event-occurrences">
+                        ${occurrencesHtml}
+                    </div>
+                `;
+                
+                eventList.prepend(eventElement);
+                
+                // Add event listeners to the new buttons
+                eventElement.querySelector('.edit').addEventListener('click', function() {
+                    editEvent(this.dataset.id);
+                });
+                
+                eventElement.querySelector('.delete').addEventListener('click', function() {
+                    deleteEvent(this.dataset.id);
+                });
+            }
+            
+            function editEvent(eventId) {
+                // Implementation for edit functionality
+                showNotification('Edit functionality would open a form with pre-filled data', 'info');
+            }
+            
+            function deleteEvent(eventId) {
+                if (confirm('Are you sure you want to delete this event?')) {
+                    fetch(`/events/delete/${eventId}/`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.querySelector(`.event-item[data-id="${eventId}"]`).remove();
+                            showNotification('Event deleted successfully', 'success');
+                            
+                            // Show empty state if no events left
+                            if (document.querySelectorAll('.event-item').length === 0) {
+                                emptyState.style.display = 'block';
+                            }
+                        } else {
+                            showNotification('Error deleting event', 'error');
+                        }
+                    });
+                }
+            }
+            
+            function showNotification(message, type) {
+                // Simple notification implementation
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.innerHTML = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        });
+    </script>
+{% endblock %}

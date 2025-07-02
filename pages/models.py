@@ -229,8 +229,18 @@ class Semester(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def start_year(self):
+        return self.start_date.year
+    @property
+    def end_year(self):
+        return self.end_date.year
+
     def __str__(self):
-        return self.name
+        if self.start_year == self.end_year:
+            return f"{self.name} ({self.start_year})"
+        else:
+            return f"{self.name} ({self.start_year} - {self.end_year})"
 
     class Meta:
         verbose_name_plural = "Semesters"

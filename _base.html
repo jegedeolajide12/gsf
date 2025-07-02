@@ -1,99 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Church | Modern Spiritual Community</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>GSF Futa | Modern Navbar</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon floating">
-                    <i class="fas fa-church"></i>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-gsf fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="gsf-logo">
+                    <img src="https://via.placeholder.com/50x50/4361ee/ffffff?text=GSF" alt="GSF Logo">
+                    <div class="logo-text">GSF<span>Futa</span></div>
                 </div>
-                <div class="logo-text">Lumi<span>na</span></div>
             </a>
             
-            <div class="menu-toggle" id="menuToggle">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
             
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Sermons</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Ministries</a></li>
-                    <li><a href="#">Connect</a></li>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Units</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sermons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connect</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Give</a>
+                    </li>
                 </ul>
-            </nav>
-            
-            <button class="nav-btn">Give</button>
+                
+                <div class="auth-buttons">
+                    <a href="#" class="btn nav-btn">Log In</a>
+                    <a href="#" class="btn nav-btn">Sign up</a>
+                </div>
+            </div>
         </div>
-    </header>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Welcome to GSF FUTA</h1>
+                        <p class="hero-subtitle">A modern spiritual community exploring faith in the 21st century. Where tradition meets innovation.</p>
+                        <div class="hero-btns">
+                            <a href="#" class="btn btn-lg btn-primary me-3">Learn More</a>
+                            <a href="#" class="btn btn-lg btn-outline-light">Connect With Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     {% block content %}
-    {% endblock content %}
+
+    {% endblock %}
+
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Lumina Church</h3>
-                    <p>A modern spiritual community exploring faith in the 21st century. Where tradition meets innovation.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-spotify"></i></a>
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-col">
+                        <h3>Gofamint Students' Fellowship</h3>
+                        <p>A modern spiritual community exploring faith in the 21st century. Where tradition meets innovation.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-spotify"></i></a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Sermons</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Events</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ministries</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Give</a></li>
-                    </ul>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-col">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>About Us</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Sermons</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Events</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Ministries</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Give</a></li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Spiritual Way, City, ST 12345</li>
-                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@luminachurch.org</li>
-                        <li><i class="fas fa-clock"></i> Office Hours: Mon-Thu 9AM-5PM</li>
-                    </ul>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-col">
+                        <h3>Contact Us</h3>
+                        <ul class="footer-links footer-contact">
+                            <li><i class="fas fa-map-marker-alt me-2"></i>123 Spiritual Way, City, ST 12345</li>
+                            <li><i class="fas fa-phone me-2"></i>(555) 123-4567</li>
+                            <li><i class="fas fa-envelope me-2"></i>info@divinegrace.org</li>
+                            <li><i class="fas fa-clock me-2"></i>Office Hours: Mon-Thu 9AM-5PM</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Service Times</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-church"></i> Sunday Worship: 9:00 & 11:00 AM</li>
-                        <li><i class="fas fa-bible"></i> Wednesday Study: 7:00 PM</li>
-                        <li><i class="fas fa-users"></i> Youth Gathering: Friday 7:00 PM</li>
-                        <li><i class="fas fa-child"></i> Children's Program: Sunday 10:00 AM</li>
-                    </ul>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-col">
+                        <h3>Service Times</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-church me-2"></i>Sunday Worship: 9:00 & 11:00 AM</li>
+                            <li><i class="fas fa-bible me-2"></i>Wednesday Study: 7:00 PM</li>
+                            <li><i class="fas fa-users me-2"></i>Youth Gathering: Friday 7:00 PM</li>
+                            <li><i class="fas fa-child me-2"></i>Children's Program: Sunday 10:00 AM</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Lumina Church. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--gold);"></i></p>
+                <p>&copy; 2024 GSF FUTA. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--gold);"></i></p>
             </div>
         </div>
     </footer>
 
-    
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.navbar-gsf');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Initialize tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    </script>
 </body>
 </html>

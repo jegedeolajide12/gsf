@@ -1,12 +1,16 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.forms import inlineformset_factory
+from django.urls import reverse_lazy
 
 from accounts.models import Sermon
 
-from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement
-from .forms import SemesterForm
+
+from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event
+from .forms import SemesterForm, EventForm, EventOccurrenceForm
 
 User = get_user_model()
 
@@ -102,10 +106,70 @@ def create_semester(request):
         form = SemesterForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'account/admin/publicity/create_semester.html')
+            return redirect('pages:calendar_preview')
         else:
             form = SemesterForm(request.POST)
 
     context = {'form': form}
     return render(request, 'account/admin/publicity/create_semester.html', context)
 
+
+def create_event(request):
+    OccurrenceFormSet = inlineformset_factory(Event, EventOccurence, form=EventOccurrenceForm, extra=1, can_delete=True)
+    if request.method == 'POST':
+        event_form = EventForm(request.POST, request.FILES)
+        formset = OccurrenceFormSet(request.POST)
+        if event_form.is_valid() and formset.is_valid():
+            event = event_form.save()
+            formset.instance = event
+            formset.save()
+
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                # Prepare event data for JSON response
+                event_data = {
+                    'id': event.id,
+                    'title': event.title,
+                    'description': event.description,
+                    'location': event.location,
+                    'image_url': event.image.url if event.image else '',
+                    'occurrences': [
+                        {
+                            'date': occ.date.strftime('%Y-%m-%d'),
+                            'time': occ.time.strftime('%H:%M:%S')
+                        } for occ in event.occurrences.all()
+                    ]
+                }
+                return JsonResponse({'success': True, 'event': event_data})
+            return redirect('pages:calendar_preview')
+    else:
+        event_form = EventForm()
+        formset = OccurrenceFormSet()
+    context = {
+        'event_form': event_form,
+        'formset': formset,
+    }
+    return render(request, 'account/admin/publicity/create_event.html', context)
+
+def event_occurrences_json(request):
+    occurrences = EventOccurence.objects.select_related('event')
+
+    data = []
+    for occ in occurrences:
+        data.append({
+            "title": occ.event.title,
+            "start": f"{occ.date}T{occ.time}",
+            "id": occ.event.id,
+            "url": f"/event/{occ.event.id}/"  # optional
+        })
+    return JsonResponse(data, safe=False)
+
+
+
+
+def calendar_preview(request):
+    # semesters = Semester.objects.all()
+    # events = EventOccurence.objects.all()
+    context = {
+        
+    }
+    return render(request, 'account/admin/publicity/calendar_preview.html', context)

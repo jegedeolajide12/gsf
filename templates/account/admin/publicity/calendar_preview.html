@@ -1,0 +1,88 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="semester-calendar-page">
+        <div class="calendar-header">
+            <i class="fas fa-calendar-alt calendar-header-icon"></i>
+            <h1>Church Semester Calendar</h1>
+            <p>Plan and organize your church programmes for the upcoming semester</p>
+        </div>
+        
+        <div class="calendar-content">
+            <div class="main-content">
+                <div id="calendar"></div>
+                <div class="form-actions">
+                    <a href="{% url "pages:create_event" %}" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Add Events
+                    </a>
+                </div>            
+            </div>
+            
+            <div class="calendar-sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Calendar Tips</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Plan Ahead</h3>
+                            <p>Schedule all major events at least 3 months in advance.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Ministry Balance</h3>
+                            <p>Ensure all ministry areas have adequate programming.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Seasonal Themes</h3>
+                            <p>Align programmes with liturgical seasons and holidays.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Resource Planning</h3>
+                            <p>Note resource needs for each event during planning.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let calendarEl = document.getElementById('calendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        themeSystem: 'bootstrap',
+        initialView: 'dayGridMonth',
+        events: '/api/events/', // you'll create this endpoint
+        eventColor: '#4361ee',
+        eventClick: function(info) {
+            alert(info.event.title + "\n" + info.event.start.toLocaleString());
+            // Optional: window.location.href = '/event/' + info.event.id;
+        }
+    });
+    calendar.render();
+});
+</script>
+{% endblock %}
