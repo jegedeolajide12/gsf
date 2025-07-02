@@ -42,8 +42,47 @@ class Sermon(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        if not self.title:
+            self.title = f"Sermon by {self.preacher} on {self.date_preached.strftime('%Y-%m-%d') if self.date_preached else 'Unknown Date'}"
+        RecentActivity.objects.create(
+            title=f"{self.title} - {self.preacher}",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.SERMON_UPLOAD,
+            icon = 'fas fa-microphone-alt'
+        )
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['date_preached']
 
     def __str__(self):
         return f"{self.title} by {self.preacher} on {self.date_preached.strftime('%Y-%m-%d') if self.date_preached else 'Unknown Date'}"
+
+class RecentActivity(models.Model):
+    class ActivityType(models.TextChoices):
+        SERMON_UPLOAD = 'SERMON_UPLOAD', 'Added New Sermon'
+        EVENT_UPLOAD = 'EVENT_UPLOAD', 'Added New Event'
+        BANNER_UPDATE = 'BANNER_UPDATE', 'Updated the Homepage Banner'
+        HERO_UPDATE = 'HERO_UPDATE', 'Updated the Homepage Hero Section'
+        DRIVE_UPLOAD = 'DRIVE_UPLOAD', 'Uploaded New Photo Drive Link'
+        SEMESTER_CREATE = 'SEMESTER_CREATE', 'Created New Semester'
+        CALENDAR_CREATE = 'CALENDAR_CREATE', 'Created New Calendar'
+        ANNOUNCEMENT_PUBLISH = 'ANNOUNCEMENT_PUBLISH', 'Published New Announcement'
+        UNIT_LEAVE = 'UNIT_LEAVE', 'Unit Leave'
+    title = models.CharField(max_length=255)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, related_name='recent_activities')
+    icon = models.CharField(max_length=50, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    activity_type = models.CharField(
+        max_length=20,
+        choices=ActivityType.choices,
+        default=ActivityType.SERMON_UPLOAD,
+    )
+
+
+    class Meta:
+        ordering = ['-timestamp']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.activity_type} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"

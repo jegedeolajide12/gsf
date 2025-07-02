@@ -1,7 +1,3 @@
-from email.mime import image
-from operator import is_
-from turtle import mode
-from venv import create
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
@@ -9,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 import datetime
+
 
 
 # Create your models here.
@@ -72,6 +69,13 @@ class HomePageBanner(models.Model):
             elif visibility == self.VisibilityChoices.DRAFT:
                 self.is_published = False
                 self.for_workers = False
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.title} - ({self.start_date}-{self.end_date})",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.BANNER_UPDATE,
+            icon='fas fa-images'
+        )
         super().save(*args, **kwargs)
     
     def delete(self, *args, **kwargs):
@@ -93,6 +97,16 @@ class HomePageHero(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
+
+    def save(self, *args, **kwargs):
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.HERO_UPDATE,
+            icon='fas fa-images'
+        )
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} - {self.description}"
@@ -149,6 +163,13 @@ class Announcement(models.Model):
             elif visibility == self.VisibilityChoices.DRAFT:
                 self.is_published = False
                 self.for_workers = False
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.title} - ({self.start_date}-{self.end_date})",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.ANNOUNCEMENT_PUBLISH,
+            icon='fas fa-bullhorn'
+        )
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -180,6 +201,26 @@ class DriveLink(models.Model):
     for_workers = models.BooleanField(default=False)
     objects = PublishedManager()
     all_objects = models.Manager()
+
+    def save(self, *args, **kwargs):
+        if visibility := self.visibility:
+            if visibility == self.VisibilityChoices.PUBLISHED:
+                self.is_published = True
+                self.for_workers = False
+            elif visibility == self.VisibilityChoices.WORKERS:
+                self.is_published = False
+                self.for_workers = True
+            elif visibility == self.VisibilityChoices.DRAFT:
+                self.is_published = False
+                self.for_workers = False
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.DRIVE_UPLOAD,
+            icon='fas fa-link'
+        )
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -241,6 +282,21 @@ class Semester(models.Model):
             return f"{self.name} ({self.start_year})"
         else:
             return f"{self.name} ({self.start_year} - {self.end_year})"
+    
+    def save(self, *args, **kwargs):
+        if not self.name:
+            if self.start_year == self.end_year:
+                self.name = f"Semester {self.start_year}"
+            else:
+                self.name = f"Semester {self.start_year} - {self.end_year}"
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.name} - ({self.start_date.strftime('%Y-%m-%d')} to {self.end_date.strftime('%Y-%m-%d')})",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.SEMESTER_CREATE,
+            icon='fas fa-calendar-alt'
+        )
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Semesters"
@@ -255,6 +311,18 @@ class Event(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_default = models.BooleanField(default=False, help_text="Is this a default event that recurs every semester?")
+
+    def save(self, *args, **kwargs):
+        if not self.semester:
+            self.semester = Semester.objects.filter(start_date__lte=datetime.date.today(), end_date__gte=datetime.date.today()).first()
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
+            unit='publicity_unit',
+            activity_type=RecentActivity.ActivityType.EVENT_CREATE,
+            icon='fas fa-calendar'
+        )
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -276,3 +344,4 @@ class EventOccurence(models.Model):
     class Meta:
         verbose_name_plural = "Event Occurrences"
         ordering = ['-date', '-time']
+    
