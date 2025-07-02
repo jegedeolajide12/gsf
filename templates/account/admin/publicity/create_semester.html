@@ -1,0 +1,131 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="semester-calendar-page">
+        <div class="calendar-header">
+            <i class="fas fa-calendar-alt calendar-header-icon"></i>
+            <h1>Church Semester Calendar</h1>
+            <p>Plan and organize your church programmes for the upcoming semester</p>
+        </div>
+        
+        <div class="calendar-content">
+            <div class="main-content">
+                <form class="calendar-form" id="semesterCalendarForm">
+                    <div class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        <h2>Semester Information</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="semesterName">Semester Name</label>
+                            <input type="text" id="semesterName" name="semesterName" class="form-control" placeholder="Fall 2024 Semester" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="semesterYear">Year</label>
+                            <input type="number" id="semesterYear" name="semesterYear" class="form-control" min="2023" max="2030" value="2024" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="date" id="endDate" name="endDate" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Semester Calendar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="calendar-sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Calendar Tips</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Plan Ahead</h3>
+                            <p>Schedule all major events at least 3 months in advance.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Ministry Balance</h3>
+                            <p>Ensure all ministry areas have adequate programming.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Seasonal Themes</h3>
+                            <p>Align programmes with liturgical seasons and holidays.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tip-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Resource Planning</h3>
+                            <p>Note resource needs for each event during planning.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set default dates
+        document.getElementById('startDate').valueAsDate = new Date();
+        
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 4);
+        document.getElementById('endDate').valueAsDate = endDate;
+        
+        document.getElementById('eventDate').valueAsDate = new Date();
+        
+        
+        
+        // Form submission
+        document.getElementById('semesterCalendarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.btn-primary');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            submitBtn.disabled = true;
+            
+            // Simulate save process
+            setTimeout(() => {
+                alert('Semester calendar saved successfully!');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+        
+    </script>
+{% endblock %}

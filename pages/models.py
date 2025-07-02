@@ -221,3 +221,47 @@ class Unit(models.Model):
         verbose_name_plural = "Units"
         ordering = ['name']
 
+
+class Semester(models.Model):
+    name = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Semesters"
+        ordering = ['-start_date']
+
+class Event(models.Model):
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='events', null=True, blank=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    location = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to='events/images/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Events"
+        ordering = ['created_at']
+
+class EventOccurence(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='occurrences')
+    date = models.DateField()
+    time = models.TimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.event.title} on {self.date} at {self.time}"
+
+    class Meta:
+        verbose_name_plural = "Event Occurrences"
+        ordering = ['-date', '-time']

@@ -1,10 +1,12 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 
 from accounts.models import Sermon
 
 from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement
-from django.contrib.auth import get_user_model
+from .forms import SemesterForm
 
 User = get_user_model()
 
@@ -92,3 +94,18 @@ def events(request):
 def give(request):
     context = {}
     return render(request, "pages/give.html", context)
+
+
+def create_semester(request):
+    form = SemesterForm()
+    if request.method == 'POST':
+        form = SemesterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'account/admin/publicity/create_semester.html')
+        else:
+            form = SemesterForm(request.POST)
+
+    context = {'form': form}
+    return render(request, 'account/admin/publicity/create_semester.html', context)
+
