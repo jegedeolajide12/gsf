@@ -1,6 +1,12 @@
+from logging import PlaceHolder
+import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Sermon
+
+from pages.views import units
+from .models import CustomUser, Sermon, Profile
+
+from allauth.account.forms import SignupForm
 
 from pages.models import (
     HomePageBanner, HomePageHero, Announcement, DriveLink
@@ -17,6 +23,66 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'username',)
+
+
+class CustomSignupForm(SignupForm):
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'placeholder': 'Enter Email', 'class': 'form-control'}),
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password', 'class': 'form-control'}),
+        label='Password',
+        help_text='Enter a strong password.',
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'class': 'form-control'}),
+        label='Confirm Password',
+        help_text='Re-enter your password for confirmation.',
+    )
+    first_name = forms.CharField(
+        max_length=30,
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter First Name', 'class': 'form-control'}),
+        )
+    last_name = forms.CharField(
+        max_length=30, 
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter Last Name', 'class': 'form-control'}),
+        )
+    phone_number = forms.CharField(
+        max_length=15,
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter Phone Number', 'class': 'form-control'}),
+        )
+    address = forms.CharField(
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter Lodge Address', 'class': 'form-control'}),
+        )
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Force widget for password1
+        self.fields['password1'].widget = forms.PasswordInput(
+            attrs={'placeholder': 'Enter Password', 'class': 'form-control'}
+        )
+
+    def save(self, request):
+        user = super().save(request)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
+        user.phone_number = self.cleaned_data.get('phone_number', '')
+        user.address = self.cleaned_data.get('address', '')
+        user.save()
+
+        Profile.objects.create(
+            user=user,
+            phone_number=self.cleaned_data.get('phone', ''),
+            address=self.cleaned_data.get('address', ''),
+        )
+        return user
+
 
 class SermonUploadForm(forms.ModelForm):
     class Meta:

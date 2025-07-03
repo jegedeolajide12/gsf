@@ -202,3 +202,6 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*"]
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignupForm',
+}

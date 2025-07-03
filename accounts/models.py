@@ -6,11 +6,9 @@ from pages.models import Unit
 
 
 class CustomUser(AbstractUser):
-    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     first_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    units = models.ManyToManyField(Unit, related_name='user_units', null=True, blank=True)
 
     def get_unit_dashboard_url(self):
         if self.units.exists():
@@ -19,6 +17,19 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+class Profile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField(blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    units = models.ManyToManyField(Unit, related_name='user_units', null=True, blank=True)
+
+
+    def __str__(self):
+        return f"Profile of {self.user.username}"
 
 class Sermon(models.Model):
     class ServiceType(models.TextChoices):
