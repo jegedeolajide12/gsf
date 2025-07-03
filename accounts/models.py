@@ -44,10 +44,10 @@ class Sermon(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.title:
-            self.title = f"Sermon by {self.preacher} on {self.date_preached.strftime('%Y-%m-%d') if self.date_preached else 'Unknown Date'}"
+            self.title = f"Sermon by {self.preacher} on {self.date_preached}"
         RecentActivity.objects.create(
             title=f"{self.title} - {self.preacher}",
-            unit='publicity_unit',
+            unit=Unit.objects.filter(slug__in=['publicity-unit', 'technical-unit']).first(),
             activity_type=RecentActivity.ActivityType.SERMON_UPLOAD,
             icon = 'fas fa-microphone-alt'
         )
@@ -82,7 +82,10 @@ class RecentActivity(models.Model):
 
 
     class Meta:
+        verbose_name = 'Recent Activity'
+        verbose_name_plural = 'Recent Activities'
         ordering = ['-timestamp']
 
+
     def __str__(self):
-        return f"{self.user.username} - {self.activity_type} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
+        return f"{self.unit} - {self.activity_type} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"

@@ -1,13 +1,17 @@
 from multiprocessing import context
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
+from .models import RecentActivity
 
 from .forms import (
     SermonUploadForm, HeroCreationForm, BannerCreationForm, AnnouncementForm,
     DriveLinkForm
 )
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+
+from pages.models import Unit
+
 
 # Create your views here.
 def logout_confirm(request):
@@ -15,7 +19,9 @@ def logout_confirm(request):
     return render(request, 'account/logout_confirm.html', context)
 
 def publicity_dashboard(request):
-    context = {}
+    publicity_unit = Unit.objects.get(slug='publicity-unit')
+    recent_activities = RecentActivity.objects.filter(unit=publicity_unit)
+    context = {'recent_activities': recent_activities}
     return render(request, 'account/admin/publicity_dashboard.html', context)
 
 

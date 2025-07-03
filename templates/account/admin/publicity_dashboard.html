@@ -46,6 +46,56 @@
                 </div>
             </div>
 
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Publication Metrics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(74, 184, 255, 0.1); color: #4ab8ff;">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">12.4K</div>
+                            <div class="stat-label">Monthly Views</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255, 209, 102, 0.1); color: var(--gold);">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">843</div>
+                            <div class="stat-label">Sermon Downloads</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(76, 201, 240, 0.1); color: var(--accent);">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">327</div>
+                            <div class="stat-label">Social Shares</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(67, 97, 238, 0.1); color: var(--primary);">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">28</div>
+                            <div class="stat-label">Upcoming Events</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Permissions Section -->
             <div class="permissions-section">
                 <div class="section-title">
@@ -118,55 +168,7 @@
                 </div>
             </div>
 
-            <!-- Stats Section -->
-            <div class="stats-section">
-                <div class="section-title">
-                    <i class="fas fa-chart-line"></i>
-                    <h2>Publication Metrics</h2>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: rgba(74, 184, 255, 0.1); color: #4ab8ff;">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">12.4K</div>
-                            <div class="stat-label">Monthly Views</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: rgba(255, 209, 102, 0.1); color: var(--gold);">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">843</div>
-                            <div class="stat-label">Sermon Downloads</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: rgba(76, 201, 240, 0.1); color: var(--accent);">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">327</div>
-                            <div class="stat-label">Social Shares</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: rgba(67, 97, 238, 0.1); color: var(--primary);">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">28</div>
-                            <div class="stat-label">Upcoming Events</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
             <!-- Activity Section -->
             <div class="activity-section">
                 <div class="section-title">
@@ -174,49 +176,18 @@
                     <h2>Recent Activity</h2>
                 </div>
                 <div class="activity-list">
+                    {% for activity in recent_activities|slice:5 %}
                     <div class="activity-item">
                         <div class="activity-icon">
-                            <i class="fas fa-microphone-alt"></i>
+                            <i class="{{ activity.icon }}"></i>
                         </div>
                         <div class="activity-details">
-                            <div class="activity-title">Uploaded Sunday Sermon</div>
-                            <div class="activity-desc">"Finding Hope in Difficult Times" - Pastor James Wilson</div>
-                            <div class="activity-time">Today, 3:42 PM</div>
+                            <div class="activity-title">{{ activity.get_activity_type_display }}</div>
+                            <div class="activity-desc">{{ activity.title }}</div>
+                            <div class="activity-time">{{ activity.timestamp|timesince }} ago</div>
                         </div>
                     </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="activity-details">
-                            <div class="activity-title">Added New Event</div>
-                            <div class="activity-desc">Summer Youth Retreat - August 15-17</div>
-                            <div class="activity-time">Yesterday, 11:23 AM</div>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-images"></i>
-                        </div>
-                        <div class="activity-details">
-                            <div class="activity-title">Updated Homepage Banner</div>
-                            <div class="activity-desc">Baptism Sunday Promotion</div>
-                            <div class="activity-time">June 28, 2024</div>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="activity-details">
-                            <div class="activity-title">Published Announcement</div>
-                            <div class="activity-desc">Vacation Bible School Registration Now Open</div>
-                            <div class="activity-time">June 26, 2024</div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

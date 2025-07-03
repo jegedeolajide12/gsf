@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser, Sermon
+from .models import CustomUser, Sermon, RecentActivity
 
 
 class CustomUserAdmin(UserAdmin):
@@ -37,3 +37,14 @@ class SermonAdmin(admin.ModelAdmin):
     search_fields = ('title', 'preacher', 'bible_reference')
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+@admin.register(RecentActivity)
+class RecentActivityAdmin(admin.ModelAdmin):
+    list_display = ('title', 'unit', 'activity_type', 'timestamp')
+    list_filter = ('unit', 'activity_type', 'timestamp')
+    search_fields = ('title', 'unit__name')
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('unit')

@@ -6,6 +6,8 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 import datetime
 
+import accounts
+
 
 
 # Create your models here.
@@ -72,7 +74,7 @@ class HomePageBanner(models.Model):
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
             title=f"{self.title} - ({self.start_date}-{self.end_date})",
-            unit='publicity_unit',
+            unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.BANNER_UPDATE,
             icon='fas fa-images'
         )
@@ -102,7 +104,7 @@ class HomePageHero(models.Model):
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
             title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
-            unit='publicity_unit',
+            unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.HERO_UPDATE,
             icon='fas fa-images'
         )
@@ -166,7 +168,7 @@ class Announcement(models.Model):
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
             title=f"{self.title} - ({self.start_date}-{self.end_date})",
-            unit='publicity_unit',
+            unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.ANNOUNCEMENT_PUBLISH,
             icon='fas fa-bullhorn'
         )
@@ -215,8 +217,8 @@ class DriveLink(models.Model):
                 self.for_workers = False
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
-            title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
-            unit='publicity_unit',
+            title=f"{self.title} - ({self.created_at})",
+            unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.DRIVE_UPLOAD,
             icon='fas fa-link'
         )
@@ -255,6 +257,7 @@ class Unit(models.Model):
         return reverse('pages:unit_dashboard', kwargs={'unit_slug': self.slug})
 
 
+
     def __str__(self):
         return self.name
     
@@ -291,8 +294,8 @@ class Semester(models.Model):
                 self.name = f"Semester {self.start_year} - {self.end_year}"
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
-            title=f"{self.name} - ({self.start_date.strftime('%Y-%m-%d')} to {self.end_date.strftime('%Y-%m-%d')})",
-            unit='publicity_unit',
+            title=f"{self.name} - ({self.start_date} to {self.end_date})",
+            unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.SEMESTER_CREATE,
             icon='fas fa-calendar-alt'
         )
@@ -317,8 +320,8 @@ class Event(models.Model):
             self.semester = Semester.objects.filter(start_date__lte=datetime.date.today(), end_date__gte=datetime.date.today()).first()
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
-            title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
-            unit='publicity_unit',
+            title=f"{self.title} - ({self.created_at})",
+            unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.EVENT_CREATE,
             icon='fas fa-calendar'
         )
