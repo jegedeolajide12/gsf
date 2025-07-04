@@ -1,17 +1,18 @@
+from multiprocessing import context
 from django.views.generic import TemplateView
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.http import JsonResponse
 from django.forms import inlineformset_factory
 from django.urls import reverse_lazy
 
-from accounts.models import Sermon
+from accounts.models import Sermon, RecentActivity
 from .utils import create_recurring_events
 
 
 from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event, Semester
-from .forms import SemesterForm, EventForm, EventOccurrenceForm
+from .forms import SemesterForm, EventForm, EventOccurrenceForm, UnitAnnouncementForm
 
 User = get_user_model()
 
@@ -51,17 +52,21 @@ def unit_dashboard(request, unit_slug):
         unit = Unit.objects.get(slug=unit_slug)
     except Unit.DoesNotExist:
         return render(request, "404.html", status=404)
-
+    
+    if hasattr(request.user, 'profile') and request.user.profile:
+        user_units = request.user.profile.units.all()
+            
     context = {
         'unit': unit,
         'codes_of_conduct': unit.codes_of_conduct.all(),
         'coordinator': unit.coordinator,
         'assistant_coordinator': unit.assistant_coordinator,
-        'user_units': request.user.units.all() if request.user.is_authenticated else None,
+        'user_units': user_units,
     }
-    user_units = request.user.units.all() if request.user.is_authenticated else None
     user_unit = user_units[0] if user_units else None
     if user_unit.slug == 'academic-unit':
+        unit = Unit.objects.get(slug='academic-unit')
+        context = {'unit': unit}
         return render(request, "account/admin/academic_dashboard.html", context)
     if user_unit.slug == 'bible-study-unit':
         return render(request, "account/admin/bible_study_dashboard.html", context)
@@ -74,8 +79,13 @@ def unit_dashboard(request, unit_slug):
     if user_unit.slug == 'prayer-unit':
         return render(request, "account/admin/prayer_dashboard.html", context)
     if user_unit.slug == 'publicity-unit':
+        unit = Unit.objects.get(slug='publicity-unit')
+        recent_activities = RecentActivity.objects.filter(unit=unit)
+        context = {'recent_activities': recent_activities, 'unit': unit}
         return render(request, "account/admin/publicity_dashboard.html", context)
     if user_unit.slug == 'technical-unit':
+        unit = Unit.objects.get(slug='technical-unit')
+        context = {'unit': unit}
         return render(request, "account/admin/technical_dashboard.html", context)
     if user_unit.slug == 'ushering-and-organizing-unit':
         return render(request, "account/admin/ushering_dashboard.html", context)
@@ -187,3 +197,21 @@ def calendar_preview(request):
         
     }
     return render(request, 'account/admin/publicity/calendar_preview.html', context)
+
+def create_unit_announcements(request, unit_slug):
+    unit = get_object_or_404(Unit, slug=unit_slug)
+    form = UnitAnnouncementForm()
+    if request.method == 'POST':
+        form = UnitAnnouncementForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.unit = unit
+            new_form.save()
+            
+            return redirect('accounts:technical_dashboard')
+        else:
+            form = UnitAnnouncementForm(request.POST or None, request.FILES or None)
+            context = {'form': form, 'errors': form.errors}
+            return render(request, "pages/units/unit_announcement", context)
+    context = {'form': form, 'unit':unit}
+    return render(request, 'pages/units/unit_announcement.html', context)

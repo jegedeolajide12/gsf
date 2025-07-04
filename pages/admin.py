@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement,
-    DriveLink, Event, EventOccurence,  Semester
+    DriveLink, Event, EventOccurence,  Semester, UnitAnnouncement
 )
 # Register your models here.
 admin.site.register(HomePageHero)
@@ -33,6 +33,18 @@ class HomePageBannerAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         """Override the get_queryset method to use all_objects manager."""
         return self.model.all_objects.all()
+
+@admin.register(UnitAnnouncement)
+class UnitAnnouncementAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at', 'updated_at', 'is_published', 'for_email', 'category')
+    list_filter = ('is_published', 'for_email', 'category')
+    search_fields = ('title', 'content')
+    ordering = ('-created_at',)
+
+    def get_queryset(self, request):
+        """Override the get_queryset method to use all_objects manager."""
+        return self.model.all_objects.all()
+
 
 
 @admin.register(Announcement)

@@ -1,4 +1,4 @@
-{% extends "admin_base.html" %}
+{% extends "_base.html" %}
 {% load static %}
 {% block content %}
 <div class="container">
@@ -42,98 +42,6 @@
                 </div>
                 <div class="banner-icon">
                     <i class="fas fa-sliders-h"></i>
-                </div>
-            </div>
-
-            <!-- Permissions Section -->
-            <div class="permissions-section">
-                <div class="section-title">
-                    <i class="fas fa-key"></i>
-                    <h2>Technical Permissions</h2>
-                </div>
-                <div class="permissions-grid">
-                    <div class="permission-card">
-                        <div class="card-icon">
-                            <i class="fas fa-file-audio"></i>
-                        </div>
-                        <h3 class="card-title">Upload Audio Sermons</h3>
-                        <p class="card-desc">Upload and manage high-quality audio recordings of sermons and special messages.</p>
-                        <button class="card-btn">Upload Sermon <i class="fas fa-upload"></i></button>
-                    </div>
-                    
-                    <div class="permission-card">
-                        <div class="card-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <h3 class="card-title">Publish Announcements</h3>
-                        <p class="card-desc">Create and publish technical announcements and service updates for the congregation.</p>
-                        <button class="card-btn">Create Announcement <i class="fas fa-edit"></i></button>
-                    </div>
-                    
-                    <div class="permission-card">
-                        <div class="card-icon">
-                            <i class="fas fa-sliders-h"></i>
-                        </div>
-                        <h3 class="card-title">Manage Audio Systems</h3>
-                        <p class="card-desc">Configure and maintain sanctuary audio equipment and mixing consoles.</p>
-                        <button class="card-btn">System Settings <i class="fas fa-cog"></i></button>
-                    </div>
-                    
-                    <div class="permission-card">
-                        <div class="card-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3 class="card-title">Livestream Management</h3>
-                        <p class="card-desc">Control and monitor live streaming services for worship services and events.</p>
-                        <button class="card-btn">Stream Dashboard <i class="fas fa-broadcast-tower"></i></button>
-                    </div>
-                    
-                    <div class="permission-card">
-                        <div class="card-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3 class="card-title">Lighting Control</h3>
-                        <p class="card-desc">Manage sanctuary lighting systems and create presets for different services.</p>
-                        <button class="card-btn">Lighting Console <i class="fas fa-lightbulb"></i></button>
-                    </div>
-                    
-                    <div class="permission-card">
-                        <div class="card-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3 class="card-title">Equipment Maintenance</h3>
-                        <p class="card-desc">Track equipment status, schedule maintenance, and manage inventory.</p>
-                        <button class="card-btn">Maintenance Log <i class="fas fa-wrench"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Upload Panel -->
-            <div class="upload-panel">
-                <div class="panel-header">
-                    <div class="section-title">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h2>Quick Upload</h2>
-                    </div>
-                </div>
-                <div class="upload-options">
-                    <div class="upload-card" id="audioUploadCard">
-                        <div class="upload-icon">
-                            <i class="fas fa-file-audio"></i>
-                        </div>
-                        <div class="upload-title">Upload Audio Sermon</div>
-                        <div class="upload-desc">Upload MP3 or WAV files of recorded sermons</div>
-                        <button class="card-btn">Select Files <i class="fas fa-upload"></i></button>
-                    </div>
-                    
-                    <div class="upload-card" id="announcementUploadCard">
-                        <div class="upload-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="upload-title">Create Announcement</div>
-                        <div class="upload-desc">Publish technical updates and service notices</div>
-                        <button class="card-btn">Create Now <i class="fas fa-edit"></i></button>
-                    </div>
                 </div>
             </div>
 
@@ -186,6 +94,100 @@
                 </div>
             </div>
 
+
+            <!-- Permissions Section -->
+            <div class="permissions-section">
+                <div class="section-title">
+                    <i class="fas fa-key"></i>
+                    <h2>Technical Permissions</h2>
+                </div>
+                <div class="permissions-grid">
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-audio"></i>
+                        </div>
+                        <h3 class="card-title">Upload Audio Sermons</h3>
+                        <p class="card-desc">Upload and manage high-quality audio recordings of sermons and special messages.</p>
+                        <a href="{% url "accounts:upload_sermon" %}" class="card-btn">Upload Sermon <i class="fas fa-upload"></i></a>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="card-title">Publish Announcements</h3>
+                        <p class="card-desc">Create and publish technical announcements and service updates for the congregation.</p>
+                        <a href="{% url "pages:create_unit_announcements" unit.slug %}" class="card-btn">Create Announcement <i class="fas fa-edit"></i></a>
+                    </div>
+                    
+                    <!-- <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3 class="card-title">Manage Audio Systems</h3>
+                        <p class="card-desc">Configure and maintain sanctuary audio equipment and mixing consoles.</p>
+                        <button class="card-btn">System Settings <i class="fas fa-cog"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="card-title">Livestream Management</h3>
+                        <p class="card-desc">Control and monitor live streaming services for worship services and events.</p>
+                        <button class="card-btn">Stream Dashboard <i class="fas fa-broadcast-tower"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="card-title">Lighting Control</h3>
+                        <p class="card-desc">Manage sanctuary lighting systems and create presets for different services.</p>
+                        <button class="card-btn">Lighting Console <i class="fas fa-lightbulb"></i></button>
+                    </div>
+                    
+                    <div class="permission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="card-title">Equipment Maintenance</h3>
+                        <p class="card-desc">Track equipment status, schedule maintenance, and manage inventory.</p>
+                        <button class="card-btn">Maintenance Log <i class="fas fa-wrench"></i></button>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Quick Upload Panel -->
+            <!-- <div class="upload-panel">
+                <div class="panel-header">
+                    <div class="section-title">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h2>Quick Upload</h2>
+                    </div>
+                </div>
+                <div class="upload-options">
+                    <div class="upload-card" id="audioUploadCard">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-audio"></i>
+                        </div>
+                        <div class="upload-title">Upload Audio Sermon</div>
+                        <div class="upload-desc">Upload MP3 or WAV files of recorded sermons</div>
+                        <button class="card-btn">Select Files <i class="fas fa-upload"></i></button>
+                    </div>
+                    
+                    <div class="upload-card" id="announcementUploadCard">
+                        <div class="upload-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="upload-title">Create Announcement</div>
+                        <div class="upload-desc">Publish technical updates and service notices</div>
+                        <button class="card-btn">Create Now <i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div> -->
+
+            
             <!-- Activity Section -->
             <div class="activity-section">
                 <div class="section-title">
@@ -246,23 +248,6 @@
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="admin-footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="copyright">
-                &copy; 2024 Grace Community Church. All rights reserved.
-            </div>
-            <div class="footer-links">
-                <a href="#">Technical Support</a>
-                <a href="#">Equipment Manuals</a>
-                <a href="#">Training Resources</a>
-                <a href="#">Contact Pastoral Staff</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
 <script>
     // Button interactions
     document.querySelectorAll('.card-btn').forEach(button => {
@@ -282,14 +267,6 @@
                 alert(`Opening ${title} interface...`);
                 this.innerHTML = originalText;
                 this.disabled = false;
-                
-                // Special handling for audio upload
-                if (title.includes("Audio Sermon")) {
-                    document.getElementById('audioUploadCard').classList.add('highlight');
-                    setTimeout(() => {
-                        document.getElementById('audioUploadCard').classList.remove('highlight');
-                    }, 2000);
-                }
             }, 1000);
         });
     });

@@ -348,3 +348,73 @@ class EventOccurence(models.Model):
         verbose_name_plural = "Event Occurrences"
         ordering = ['-date', '-time']
     
+
+class UnitAnnouncement(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone, Pending approval from the General Secretary)'
+        UNIT_MEMBERS = 'unit_members', 'Unit Members (Visible to only your unit members)'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    class CategoryChoices(models.TextChoices):
+        GENERAL = 'general', 'General'
+        EVENT = 'event', 'Event'
+        NEWS = 'news', 'News'
+        ALERT = 'alert', 'Alert'
+        REMINDER = 'reminder', 'Reminder'
+    
+    unit = models.ForeignKey(Unit, related_name='unit_announcements', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    image = models.ImageField(upload_to='unit-announcements/images/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+    for_website = models.BooleanField(default=True)
+    for_email = models.BooleanField(default=False)
+    objects = PublishedManager()
+    is_approved = models.BooleanField(default=False)
+    all_objects = models.Manager()
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this announcement?"
+    )
+    category = models.CharField(
+        max_length=20,
+        choices=CategoryChoices.choices,
+        default=CategoryChoices.GENERAL,
+        help_text="Category of the announcement"
+    )
+
+    def save(self, *args, **kwargs):
+        if visibility := self.visibility:
+            if visibility == self.VisibilityChoices.PUBLISHED:
+                self.is_published = True
+                self.for_workers = False
+            elif visibility == self.VisibilityChoices.UNIT_MEMBERS:
+                self.is_published = False
+                self.for_workers = True
+            elif visibility == self.VisibilityChoices.DRAFT:
+                self.is_published = False
+                self.for_workers = False
+        from accounts.models import RecentActivity
+        RecentActivity.objects.create(
+            title=f"{self.title} - ({self.start_date}-{self.end_date})",
+            unit=Unit.objects.get(slug=f"{self.unit.slug}"),
+            activity_type=RecentActivity.ActivityType.ANNOUNCEMENT_PUBLISH,
+            icon='fas fa-bullhorn'
+        )
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Unit Announcements"
+        ordering = ['-created_at']
+
+
+
+# TECHNICAL UNIT PERMISSIONS

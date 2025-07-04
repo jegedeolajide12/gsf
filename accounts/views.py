@@ -18,21 +18,14 @@ def logout_confirm(request):
     context = {}
     return render(request, 'account/logout_confirm.html', context)
 
-def publicity_dashboard(request):
-    publicity_unit = Unit.objects.get(slug='publicity-unit')
-    recent_activities = RecentActivity.objects.filter(unit=publicity_unit)
-    context = {'recent_activities': recent_activities}
-    return render(request, 'account/admin/publicity_dashboard.html', context)
-
-
 def upload_sermon(request):
     sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
-
+    unit = request.user.profile.units.first()
     if request.method == 'POST':
         if sermon_form.is_valid():
             print("Accepted service_type:", sermon_form.cleaned_data.get('sermon_type'))
             sermon_form.save()
-            return redirect('accounts:publicity_dashboard') 
+            return redirect('pages:unit_dashboard', unit_slug=unit.slug) 
         else:
             
             sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
@@ -108,49 +101,6 @@ def assign_workers(request):
     context = {}
     return render(request, 'account/admin/publicity/assign_workers.html', context)
 
-def technical_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/technical_dashboard.html', context)
-
-def bible_study_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/bible_study_dashboard.html', context)
-
-def kpt_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/kpt_dashboard.html', context)
-
-
-def evangelism_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/evangelism_dashboard.html', context)
-
-
-
-def ushering_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/ushering_dashboard.html', context)
-
-
-def prayer_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/prayer_dashboard.html', context)
-
-def academic_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/academic_dashboard.html', context)
-
-def follow_up_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/follow_up_dashboard.html', context)
-
-def welfare_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/welfare_dashboard.html', context)
-
-def drama_dashboard(request):
-    context = {}
-    return render(request, 'account/admin/drama_dashboard.html', context)
 
 def gen_sec_dashboard(request):
     context = {}

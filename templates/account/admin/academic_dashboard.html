@@ -49,6 +49,56 @@
 
             <!-- Permissions Section -->
             <div class="permissions-section">
+
+                <!-- Stats Section -->
+                <div class="stats-section academic-stats">
+                    <div class="section-title">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>Academic Impact</h2>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">84</div>
+                                <div class="stat-label">Academic Articles</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">127</div>
+                                <div class="stat-label">Learning Materials</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">243</div>
+                                <div class="stat-label">Students Enrolled</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">18</div>
+                                <div class="stat-label">Active Courses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="section-title">
                     <i class="fas fa-key"></i>
                     <h2>Academic Permissions</h2>
@@ -60,7 +110,7 @@
                         </div>
                         <h3 class="card-title">Academic Posts & Articles</h3>
                         <p class="card-desc">Create and publish scholarly articles, research papers, and educational content.</p>
-                        <button class="card-btn">Create Content <i class="fas fa-pen"></i></button>
+                        <a href="#" class="card-btn">Create Content <i class="fas fa-pen"></i></a>
                     </div>
                     
                     <div class="permission-card academic-card">
@@ -69,7 +119,7 @@
                         </div>
                         <h3 class="card-title">Academic Announcements</h3>
                         <p class="card-desc">Share important updates, deadlines, and news for the academic community.</p>
-                        <button class="card-btn">Post Announcements <i class="fas fa-megaphone"></i></button>
+                        <a href="{% url "pages:create_unit_announcements" unit.slug %}" class="card-btn">Post Announcements <i class="fas fa-megaphone"></i></a>
                     </div>
                     
                     <div class="permission-card academic-card">
@@ -102,7 +152,7 @@
             </div>
 
             <!-- Content Manager -->
-            <div class="content-manager">
+            <!-- <div class="content-manager">
                 <div class="panel-header">
                     <div class="section-title">
                         <i class="fas fa-edit"></i>
@@ -145,10 +195,10 @@
                     <button class="cancel-btn">Save Draft</button>
                     <button class="submit-btn">Publish Content <i class="fas fa-paper-plane"></i></button>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Material Upload Section -->
-            <div class="content-manager">
+            <!-- <div class="content-manager">
                 <div class="panel-header">
                     <div class="section-title">
                         <i class="fas fa-file-upload"></i>
@@ -187,7 +237,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Timetable Management -->
             <div class="content-manager">
@@ -296,54 +346,7 @@
                 </div>
             </div>
 
-            <!-- Stats Section -->
-            <div class="stats-section academic-stats">
-                <div class="section-title">
-                    <i class="fas fa-chart-line"></i>
-                    <h2>Academic Impact</h2>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">84</div>
-                            <div class="stat-label">Academic Articles</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">127</div>
-                            <div class="stat-label">Learning Materials</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">243</div>
-                            <div class="stat-label">Students Enrolled</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number">18</div>
-                            <div class="stat-label">Active Courses</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
