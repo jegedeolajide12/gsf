@@ -1,4 +1,5 @@
 from multiprocessing import context
+from re import A
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
@@ -12,7 +13,11 @@ from .utils import create_recurring_events
 
 
 from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event, Semester
-from .forms import SemesterForm, EventForm, EventOccurrenceForm, UnitAnnouncementForm
+from .forms import (
+            SemesterForm, EventForm, EventOccurrenceForm, UnitAnnouncementForm, 
+            AcademicArticleForm, EducationalMaterialForm, MotivationalWriteupForm
+            )
+
 
 User = get_user_model()
 
@@ -53,6 +58,7 @@ def unit_dashboard(request, unit_slug):
     except Unit.DoesNotExist:
         return render(request, "404.html", status=404)
     
+
     if hasattr(request.user, 'profile') and request.user.profile:
         user_units = request.user.profile.units.all()
             
@@ -208,10 +214,69 @@ def create_unit_announcements(request, unit_slug):
             new_form.unit = unit
             new_form.save()
             
-            return redirect('accounts:technical_dashboard')
+            return redirect('pages:unit_dashboard', unit.slug)
         else:
             form = UnitAnnouncementForm(request.POST or None, request.FILES or None)
             context = {'form': form, 'errors': form.errors}
             return render(request, "pages/units/unit_announcement", context)
     context = {'form': form, 'unit':unit}
     return render(request, 'pages/units/unit_announcement.html', context)
+
+# ACADEMIC UNIT LOGICS
+def create_academic_article(request):
+    form = AcademicArticleForm()
+    unit = Unit.objects.get(slug='academic-unit')
+    if request.method == 'POST':
+        print("DEBUG: STARTING, SUBMITTING FORM...")
+        form = AcademicArticleForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            print("DEBUG: FORM IS VALID, SAVING...")
+            article = form.save(commit=False)
+            article.author = request.user
+            print("DEBUG: " + str(article.author))
+            article.save()
+            print("DEBUG: FORM SUCCESSFULLY SAVED")
+            return redirect('pages:unit_dashboard', unit.slug)
+    else:
+        print("DEBUG: FORM IS INVALID")
+        form = AcademicArticleForm()
+    
+    context = {'form': form}
+    return render(request, 'account/admin/academic/create_article.html', context)
+
+def upload_materials(request):
+    form = EducationalMaterialForm()
+    unit = Unit.objects.get(slug='academic-unit')
+    if request.method == 'POST':
+        form = EducationalMaterialForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            material = form.save(commit=False)
+            material.user = request.user
+            material.save()
+            return redirect('pages:unit_dashboard', unit.slug)
+        else:
+            form = EducationalMaterialForm(request.POST or None, request.FILES or None)
+    
+    context = {'form':form}
+    return render(request, 'account/admin/academic/post_materials.html', context)
+
+def post_writeup(request):
+    form = MotivationalWriteupForm()
+    unit = Unit.objects.get(slug='academic-unit')
+    if request.method == 'POST':
+        print("DEBUG: STARTING, SUBMITTING FORM...")
+        form = MotivationalWriteupForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            print("DEBUG: FORM IS VALID, SAVING...")
+            writeup = form.save(commit=False)
+            writeup.author = request.user
+            print("DEBUG: " + str(writeup.author))
+            writeup.save()
+            print("DEBUG: FORM SUCCESSFULLY SAVED")
+            return redirect('pages:unit_dashboard', unit.slug)
+        else:
+            print("DEBUG: FORM IS INVALID")
+            form = MotivationalWriteupForm(request.POST or None, request.FILES or None)
+    
+    context = {'form':form}
+    return render(request, 'account/admin/academic/post_writeup.html', context)

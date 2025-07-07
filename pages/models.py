@@ -8,6 +8,8 @@ import datetime
 
 import accounts
 
+from taggit.managers import TaggableManager
+
 
 
 # Create your models here.
@@ -417,4 +419,76 @@ class UnitAnnouncement(models.Model):
 
 
 
-# TECHNICAL UNIT PERMISSIONS
+#  ACADEMIC UNIT PERMISSIONS
+class AcademicArticle(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, max_length=200, null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='academic-articles/thumbnails/', null=True, blank=True, help_text="Thumbnail image for the article")
+    tags = TaggableManager(blank=True, help_text="Tags for the article, e.g., 'Book, God, Faith'")
+    content = models.TextField(help_text="Content of the article in Markdown format")
+    author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name='academic_articles')
+    created_at = models.DateTimeField(auto_now_add=True)
+    publication_date = models.DateTimeField(null=True, blank=True, help_text="Date of publication")
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+    for_workers = models.BooleanField(default=False)
+    objects = PublishedManager()
+    all_objects = models.Manager()
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this article?"
+    )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Academic Articles"
+        ordering = ['-created_at']
+
+
+class EducationalMaterial(models.Model):
+    title = models.CharField(max_length=200)
+    course = models.CharField(max_length=200)
+    file = models.FileField(upload_to='course/materials')
+    user = models.ForeignKey('accounts.CustomUser', on_delete=models.SET_NULL, related_name='materials_posted', null=True, blank=True)
+    description = models.TextField()
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-uploaded_at', 'title']
+        verbose_name_plural = 'Educational Materials'
+        verbose_name = 'Educational Material'
+    
+    def __str__(self):
+        return f"{self.course}'s material - {self.title}"
+
+class MotivationalWriteup(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    title = models.CharField(max_length=200)
+    quote = models.TextField()
+    author = models.ForeignKey('accounts.CustomUser', related_name='writeups', on_delete=models.CASCADE)
+    upload_date = models.DateTimeField(null=True, blank=True, help_text="Date of upload")
+    is_published = models.BooleanField(default=False)
+    for_workers = models.BooleanField(default=False)
+    objects = PublishedManager()
+    all_objects = models.Manager()
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this article?"
+    )

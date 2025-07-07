@@ -110,7 +110,7 @@
                         </div>
                         <h3 class="card-title">Academic Posts & Articles</h3>
                         <p class="card-desc">Create and publish scholarly articles, research papers, and educational content.</p>
-                        <a href="#" class="card-btn">Create Content <i class="fas fa-pen"></i></a>
+                        <a href="{% url "pages:create_academic_article" %}" class="card-btn">Create Content <i class="fas fa-pen"></i></a>
                     </div>
                     
                     <div class="permission-card academic-card">
@@ -128,7 +128,7 @@
                         </div>
                         <h3 class="card-title">Motivational Write-ups</h3>
                         <p class="card-desc">Create inspiring content to encourage students in their academic journey.</p>
-                        <button class="card-btn">Write Inspiration <i class="fas fa-feather-alt"></i></button>
+                        <a href="{% url 'pages:create_motivational_writeup' %}" class="card-btn">Write Inspiration <i class="fas fa-feather-alt"></i></a>
                     </div>
                     
                     <div class="permission-card academic-card">
@@ -137,17 +137,36 @@
                         </div>
                         <h3 class="card-title">Educational Materials</h3>
                         <p class="card-desc">Upload study guides, lecture notes, and learning resources for students.</p>
-                        <button class="card-btn">Upload Resources <i class="fas fa-cloud-upload-alt"></i></button>
+                        <a href="{% url "pages:upload_material" %}" class="card-btn">Upload Resources <i class="fas fa-cloud-upload-alt"></i></a>
                     </div>
                     
                     <div class="permission-card academic-card">
                         <div class="card-icon">
                             <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <h3 class="card-title">Tutorial Timetables</h3>
+                        <h3 class="card-title">Upload Scholarships</h3>
                         <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
-                        <button class="card-btn">Manage Schedules <i class="fas fa-clock"></i></button>
+                        <button class="card-btn">Manage Schedules <i class="fas fas fa-graduation-cap"></i></button>
                     </div>
+
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="card-title">Update Countdowns</h3>
+                        <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
+                        <button class="card-btn">Manage Schedules <i class="far fa-clock"></i></button>
+                    </div>
+
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-pen-alt"></i>
+                        </div>
+                        <h3 class="card-title">Upload Tests & Assessments</h3>
+                        <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
+                        <button class="card-btn">Manage Schedules <i class="fas fa-pen-alt"></i></button>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -369,6 +388,24 @@
 </footer>
 
 <script>
+    // Button interactions
+    document.querySelectorAll('.card-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const cardTitle = this.closest('.permission-card').querySelector('.card-title').textContent;
+            
+            // Add a loading effect
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+            }, 1000);
+        });
+    });
+    
     // Tab functionality
     document.querySelectorAll('.content-tab').forEach(tab => {
         tab.addEventListener('click', function() {

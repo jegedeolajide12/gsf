@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
+    "django_summernote",
+    "taggit",
     # Local
     "accounts",
     "pages",
@@ -204,4 +206,13 @@ ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*"]
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm',
+}
+
+# MARKDOWN
+SUMMERNOTE_CONFIG = {
+    'iframe': True,
+    'summernote': {
+        'width': '100%',
+        'height': '400px',
+    },
 }

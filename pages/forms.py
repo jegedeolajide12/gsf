@@ -1,8 +1,11 @@
 from django import forms
 from .models import (
-    Event, Semester, EventOccurence, UnitAnnouncement
+    Event, Semester, EventOccurence, UnitAnnouncement, AcademicArticle, EducationalMaterial,
+    MotivationalWriteup
     )
 
+from django_summernote.widgets import SummernoteWidget
+from taggit.forms import TagWidget
 
 class SemesterForm(forms.ModelForm):
     class Meta:
@@ -86,3 +89,41 @@ class UnitAnnouncementForm(forms.ModelForm):
             if not image.name.endswith(('.png', '.jpg', '.jpeg')):
                 raise forms.ValidationError("Only PNG, JPG, and JPEG files are allowed.")
         return image 
+
+
+class AcademicArticleForm(forms.ModelForm):
+    class Meta:
+        model = AcademicArticle
+        fields = ['title', 'thumbnail', 'content', 'tags', 'publication_date', 'visibility']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter article title'}),
+            'thumbnail': forms.ClearableFileInput(attrs={'class': 'announcement-file-input', 'required': False, 'placeholder': 'Upload thumbnail image'}),
+            'tags': TagWidget(attrs={'class': 'form-control', 'placeholder': 'Add tags (e.g., Book, God, Faith)'}),
+            'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}),
+            'publication_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': True, 'placeholder': 'Select publication date'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                       choices=AcademicArticle.VisibilityChoices.choices),
+        }
+
+class EducationalMaterialForm(forms.ModelForm):
+    class Meta:
+        model = EducationalMaterial
+        fields = ['title', 'course', 'description', 'file']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'e.g MTS101 Material...'}),
+            'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': True, 'placeholder': 'Enter Material content'}),
+            'file': forms.ClearableFileInput(attrs={'multiple': False, 'class': 'announcement-file-input', 'required': False}),
+            'course': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter the Course name.'})
+        }
+
+
+class MotivationalWriteupForm(forms.ModelForm):
+    class Meta:
+        fields = ['title', 'quote', 'upload_date', 'visibility']
+        model = MotivationalWriteup
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter Writeup Title'}),
+            'quote': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': True, 'placeholder': 'Enter Material content'}),
+            'upload_date': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control', 'required': True, 'placeholder': 'Select upload date'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True})
+        }

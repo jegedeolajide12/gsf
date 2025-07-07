@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
     <!-- Full Calendar plugin -->
-     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet" />
-    
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@4.1.4/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
     <!-- Header -->
@@ -127,6 +128,8 @@
     </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@4.1.4/js/froala_editor.pkgd.min.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -140,41 +143,45 @@ document.addEventListener('DOMContentLoaded', function() {
   const heroIndicators = document.querySelectorAll('.hero-indicator');
   let heroCurrent = 0;
   
-  const showHeroSlide = (index) => {
-    heroSlides.forEach(slide => slide.classList.remove('active'));
-    heroIndicators.forEach(indicator => indicator.classList.remove('active'));
-    heroSlides[index].classList.add('active');
-    heroIndicators[index].classList.add('active');
-    heroCurrent = index;
-  };
-  
-  heroIndicators.forEach((indicator, i) => {
-    indicator.addEventListener('click', () => showHeroSlide(i));
-  });
-  
-  showHeroSlide(0); // Initialize first slide
-  setInterval(() => showHeroSlide((heroCurrent + 1) % heroSlides.length), 6000);
+  if (heroSlides.length && heroIndicators.length) {
+    const showHeroSlide = (index) => {
+        heroSlides.forEach(slide => slide.classList.remove('active'));
+        heroIndicators.forEach(indicator => indicator.classList.remove('active'));
+        heroSlides[index].classList.add('active');
+        heroIndicators[index].classList.add('active');
+        heroCurrent = index;
+    };
+    
+    heroIndicators.forEach((indicator, i) => {
+        indicator.addEventListener('click', () => showHeroSlide(i));
+    });
+    
+    showHeroSlide(0); // Initialize first slide
+    setInterval(() => showHeroSlide((heroCurrent + 1) % heroSlides.length), 6000);
+
+    }
 
   // --- BANNER CAROUSEL ---
   const bannerSlides = document.querySelectorAll('.banner-slide');
   const bannerIndicators = document.querySelectorAll('.indicator');
   let bannerCurrent = 0;
-  
-  const showBannerSlide = (index) => {
-    bannerSlides.forEach(slide => slide.classList.remove('active'));
-    bannerIndicators.forEach(indicator => indicator.classList.remove('active'));
-    bannerSlides[index].classList.add('active');
-    bannerIndicators[index].classList.add('active');
-    bannerCurrent = index;
-  };
-  
-  bannerIndicators.forEach((indicator, i) => {
-    indicator.addEventListener('click', () => showBannerSlide(i));
-  });
-  
-  showBannerSlide(0); // Initialize first slide
-  setInterval(() => showBannerSlide((bannerCurrent + 1) % bannerSlides.length), 5000);
 
+  if (bannerSlides.length && bannerIndicators.length) {
+    const showBannerSlide = (index) => {
+        bannerSlides.forEach(slide => slide.classList.remove('active'));
+        bannerIndicators.forEach(indicator => indicator.classList.remove('active'));
+        bannerSlides[index].classList.add('active');
+        bannerIndicators[index].classList.add('active');
+        bannerCurrent = index;
+    };
+
+    bannerIndicators.forEach((indicator, i) => {
+        indicator.addEventListener('click', () => showBannerSlide(i));
+    });
+
+    showBannerSlide(0); // Initialize first slide
+    setInterval(() => showBannerSlide((bannerCurrent + 1) % bannerSlides.length), 5000);
+  }
   // --- SCROLL ANIMATIONS (Single Observer) ---
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -196,5 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+{{ form.media }}
 </body>
 </html>
