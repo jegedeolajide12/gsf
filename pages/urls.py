@@ -31,4 +31,6 @@ urlpatterns = [
     path('course/materials/upload', views.upload_materials, name="upload_material"),
     path('academic-articles/writeups/create/', views.post_writeup, name='create_motivational_writeup'),
     path('scholarships/create/', views.upload_scholarship, name='upload_scholarship'),
+    path('academic-unit/countdown/create/', views.create_countdown, name='create_countdown'),
+    path('academic-unit/countdown/update/<int:countdown_id>/', views.update_countdown, name='update_countdown'),
 ]

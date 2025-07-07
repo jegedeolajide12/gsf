@@ -13,11 +13,14 @@ from accounts.models import Sermon, RecentActivity
 from .utils import create_recurring_events
 
 
-from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event, Semester
+from .models import (
+            Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, 
+            Event, Semester, Countdown
+            )
 from .forms import (
             SemesterForm, EventForm, EventOccurrenceForm, UnitAnnouncementForm, 
             AcademicArticleForm, EducationalMaterialForm, MotivationalWriteupForm,
-            ScholarshipForm
+            ScholarshipForm, CountdownForm
             )
 
 
@@ -199,9 +202,11 @@ def event_occurrences_json(request):
 
 
 def calendar_preview(request):
-    # semesters = Semester.objects.all()
-    # events = EventOccurence.objects.all()
+    semesters = Semester.objects.all()
+    events = EventOccurence.objects.all()
+    unit = Unit.objects.get(slug='publicity-unit')
     context = {
+        'unit': unit
         
     }
     return render(request, 'account/admin/publicity/calendar_preview.html', context)
@@ -292,3 +297,41 @@ def upload_scholarship(request):
     
     context = {'form':form}
     return render(request, 'account/admin/academic/post_scholarship.html', context)
+
+def create_countdown(request):
+    countdown = Countdown.objects.first()
+    unit = Unit.objects.get(slug='academic-unit')
+    if countdown:
+        # Redirect to the update form for the existing countdown
+        return redirect('pages:update_countdown', countdown_id=countdown.id)
+    else:
+        # No countdown exists, show the create form
+        if request.method == 'POST':
+            form = CountdownForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Countdown created successfully!")
+                return redirect('pages:unit_dashboard', unit.slug)
+            else:
+                messages.error(request, "There was an error creating the countdown. Please check the form.")
+                form = CountdownForm(request.POST)
+        else:
+            form = CountdownForm()
+        return render(request, 'account/admin/academic/create_countdown.html', {'form': form})
+
+def update_countdown(request, countdown_id):
+    countdown = get_object_or_404(Countdown, id=countdown_id)
+    unit = Unit.objects.get(slug='academic-unit')
+
+    if request.method == 'POST':
+        form = CountdownForm(request.POST, instance=countdown)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Countdown updated successfully!")
+            return redirect('pages:unit_dashboard', unit.slug)
+        else:
+            messages.error(request, "There was an error updating the countdown. Please check the form.")
+            form = CountdownForm(request.POST, instance=countdown)
+    else:
+        form = CountdownForm(instance=countdown)
+    return render(request, 'account/admin/academic/update_countdown.html', {'form': form, 'countdown': countdown})

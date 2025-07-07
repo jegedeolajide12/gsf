@@ -105,7 +105,7 @@ class HomePageHero(models.Model):
     def save(self, *args, **kwargs):
         from accounts.models import RecentActivity
         RecentActivity.objects.create(
-            title=f"{self.title} - ({self.created_at.strftime('%Y-%m-%d')})",
+            title=f"{self.title} - ({self.created_at})",
             unit=Unit.objects.get(slug='publicity-unit'),
             activity_type=RecentActivity.ActivityType.HERO_UPDATE,
             icon='fas fa-images'
@@ -324,7 +324,7 @@ class Event(models.Model):
         RecentActivity.objects.create(
             title=f"{self.title} - ({self.created_at})",
             unit=Unit.objects.get(slug='publicity-unit'),
-            activity_type=RecentActivity.ActivityType.EVENT_CREATE,
+            activity_type=RecentActivity.ActivityType.EVENT_UPLOAD,
             icon='fas fa-calendar'
         )
         super().save(*args, **kwargs)
@@ -521,3 +521,17 @@ class Scholarship(models.Model):
 
     def __str__(self):
         return self.title
+
+class Countdown(models.Model):
+    title = models.CharField(max_length=200, help_text="Title of the countdown")
+    description = models.TextField(help_text="Description of the countdown")
+    target_date = models.DateField(help_text="Target date for the countdown")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.target_date}"
+    
+    class Meta:
+        verbose_name_plural = "Countdowns"
+        ordering = ['-created_at']

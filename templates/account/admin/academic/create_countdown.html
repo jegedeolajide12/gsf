@@ -1,0 +1,236 @@
+{% extends '_base.html' %}
+
+{% block title %}About page{% endblock %}
+
+{% block content %}
+    <div class="announcement-form-container">
+        <div class="announcement-header">
+            <i class="fas fa-bullhorn announcement-header-icon"></i>
+            <h1>Create/Update Exam Countdown</h1>
+            <p>Share important news and updates with your congregation across multiple channels</p>
+        </div>
+        
+        <div class="announcement-content">
+            <div class="announcement-form">
+                <form method="post" action="{% url 'pages:create_countdown' %}">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="form-errors non-field-errors">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="announcement-section">
+                        <div class="announcement-section-title">
+                            <i class="fas fa-info-circle"></i>
+                            <h2>Countdown Details</h2>
+                        </div>
+                        
+                        <div class="announcement-grid">
+                            <div class="announcement-group">
+                                <label>Title <span class="required">*</span></label>
+                                {{ form.title }}
+                                {% if form.title.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.title.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="announcement-group">
+                            <label>Content <span class="required">*</span></label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="form-errors">
+                                    <ul>
+                                        {% for error in form.description.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    <div class="announcement-section">
+                        <div class="announcement-section-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h2>Targeting</h2>
+                        </div>
+                        
+                        <div class="announcement-grid">
+                            <div class="announcement-group">
+                                <label>Target Date</label>
+                                {{ form.target_date }}
+                                {% if form.target_date.errors %}
+                                    <div class="form-errors">
+                                        <ul>
+                                            {% for error in form.target_date.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- <div class="announcement-preview">
+                        <div class="announcement-preview-title">
+                            <i class="fas fa-eye"></i>
+                            <h3>Preview</h3>
+                        </div>
+                        <div class="announcement-preview-card">
+                            <h3>Summer Youth Retreat Registration</h3>
+                            <div class="date">
+                                <i class="far fa-clock"></i>
+                                <span>Posted on: July 15, 2024</span>
+                            </div>
+                            <p>Join us for an unforgettable weekend at Lakeview Retreat Center from August 15-17. Registration is now open for all youth ages 12-18. Early bird discount available until July 30th!</p>
+                            <div class="channel-tags">
+                                <span class="channel-tag">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    Mobile App
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="announcement-form-actions">
+                        <button class="announcement-btn announcement-btn-outline">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="announcement-btn announcement-btn-primary" type="submit">
+                            <i class="fas fa-paper-plane"></i> Create Countdown
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="announcement-sidebar">
+                <div class="announcement-sidebar-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Announcement Tips</h2>
+                </div>
+                
+                <ul class="announcement-tips-list">
+                    <li>
+                        <div class="announcement-tip-icon">
+                            <i class="fas fa-text-height"></i>
+                        </div>
+                        <div class="announcement-tip-content">
+                            <h3>Clear & Concise</h3>
+                            <p>Keep announcements brief and focused on essential information.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="announcement-tip-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="announcement-tip-content">
+                            <h3>Use Visuals</h3>
+                            <p>Images increase engagement by up to 65% across platforms.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="announcement-tip-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="announcement-tip-content">
+                            <h3>Multi-Channel</h3>
+                            <p>Reach more people by publishing across multiple platforms.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="announcement-tip-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="announcement-tip-content">
+                            <h3>Timing Matters</h3>
+                            <p>Schedule announcements for when your audience is most active.</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="announcement-progress-section">
+                    <div class="announcement-progress-label">
+                        <span>This Month's Announcements</span>
+                        <span>8/15</span>
+                    </div>
+                    <div class="announcement-progress-bar">
+                        <div class="announcement-progress-fill" style="width: 53%;"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--text-gray);">You have 7 announcements remaining this month</p>
+                </div>
+                
+                <div class="announcement-progress-section">
+                    <div class="announcement-progress-label">
+                        <span>Engagement Rate</span>
+                        <span>72%</span>
+                    </div>
+                    <div class="announcement-progress-bar">
+                        <div class="announcement-progress-fill" style="width: 72%; background: var(--gold);"></div>
+                    </div>
+                    <p style="margin-top: 10px; color: var(--text-gray);">Higher than last month's average of 68%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload interactions
+        const uploadArea = document.getElementById('imageUpload');
+        const fileInput = uploadArea.querySelector('.announcement-file-input');
+        const uploadButton = uploadArea.querySelector('.announcement-btn');
+        
+        // Trigger file input when clicking anywhere in the upload area
+        uploadArea.addEventListener('click', function(e) {
+            if (e.target !== uploadButton) {
+                fileInput.click();
+            }
+        });
+        
+        // Trigger file input when clicking the button
+        uploadButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            fileInput.click();
+        });
+        
+        // Handle file selection
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                uploadArea.style.borderColor = '#4caf50';
+                uploadArea.style.backgroundColor = 'rgba(76, 175, 80, 0.05)';
+                uploadArea.querySelector('h3').textContent = this.files[0].name;
+                uploadArea.querySelector('p').textContent = formatFileSize(this.files[0].size);
+            }
+        });
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Channel selection
+        document.querySelectorAll('.channel-option').forEach(option => {
+            option.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+        
+    </script>
+{% endblock %}

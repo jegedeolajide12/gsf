@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 from .models import (
     Event, Semester, EventOccurence, UnitAnnouncement, AcademicArticle, EducationalMaterial,
-    MotivationalWriteup, Scholarship
+    MotivationalWriteup, Scholarship, Countdown
     )
 
 from django_summernote.widgets import SummernoteWidget
@@ -165,3 +165,19 @@ class ScholarshipForm(forms.ModelForm):
             raise forms.ValidationError("The deadline cannot be in the past.")
         
         return cleaned_data
+
+class CountdownForm(forms.ModelForm):
+    class Meta:
+        model = Countdown
+        fields = ['title', 'target_date', 'description']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter countdown title'}),
+            'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'placeholder': 'Enter countdown description'}),
+            'target_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': True, 'placeholder': 'Select target date'}),
+        }
+    
+    def clean_target_date(self):
+        target_date = self.cleaned_data.get('target_date')
+        if target_date and target_date < timezone.now().date():
+            raise ValidationError("The target date cannot be in the past.")
+        return target_date

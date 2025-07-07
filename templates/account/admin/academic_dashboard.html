@@ -142,11 +142,11 @@
                     
                     <div class="permission-card academic-card">
                         <div class="card-icon">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
                         <h3 class="card-title">Upload Scholarships</h3>
                         <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
-                        <a href="{% url 'pages:upload_scholarship' %}" class="card-btn">Manage Schedules <i class="fas fas fa-graduation-cap"></i></a>
+                        <a href="{% url 'pages:upload_scholarship' %}" class="card-btn">Manage Schedules <i class="fas fa-graduation-cap"></i></a>
                     </div>
 
                     <div class="permission-card academic-card">
@@ -155,7 +155,7 @@
                         </div>
                         <h3 class="card-title">Update Countdowns</h3>
                         <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
-                        <button class="card-btn">Manage Schedules <i class="far fa-clock"></i></button>
+                        <a href="{% url 'pages:create_countdown' %}" class="card-btn">Update Countdown <i class="far fa-clock"></i></a>
                     </div>
 
                     <div class="permission-card academic-card">
@@ -167,6 +167,15 @@
                         <button class="card-btn">Manage Schedules <i class="fas fa-pen-alt"></i></button>
                     </div>
                     
+                    <div class="permission-card academic-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="card-title">Update Timetable</h3>
+                        <p class="card-desc">Create and manage schedules for tutoring sessions and academic workshops.</p>
+                        <a href="#" class="card-btn">Manage Schedules <i class="fas fa-calendar-alt"></i></a>
+                    </div>
+
                 </div>
             </div>
 

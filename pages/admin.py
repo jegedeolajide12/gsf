@@ -5,7 +5,8 @@ from pages.forms import AcademicArticleForm
 from .models import (
     HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement,
     DriveLink, Event, EventOccurence,  Semester, UnitAnnouncement,
-    AcademicArticle, EducationalMaterial, MotivationalWriteup, Scholarship
+    AcademicArticle, EducationalMaterial, MotivationalWriteup, Scholarship, Countdown
+
 )
 # Register your models here.
 admin.site.register(HomePageHero)
@@ -126,3 +127,10 @@ class ScholarshipAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         """Override the get_queryset method to use all_objects manager."""
         return self.model.all_objects.all()
+
+@admin.register(Countdown)
+class CountdownAdmin(admin.ModelAdmin):
+    list_display = ['title', 'target_date']
+    list_filter = ['target_date']
+    search_fields = ['title']
+    ordering = ['-target_date']
