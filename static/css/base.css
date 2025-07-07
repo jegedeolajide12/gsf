@@ -51,6 +51,117 @@ h1, h2, h3, h4, h5 {
     padding: 0 20px;
 }
 
+/* NOTIFICATION CONTAINER */
+/* Notification System */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 350px;
+    width: 100%;
+}
+
+.notification {
+    position: relative;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.4s forwards, fadeOut 0.4s forwards 4s;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.notification.success {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border-left: 4px solid #2E7D32;
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #f44336, #c62828);
+    border-left: 4px solid #c62828;
+}
+
+.notification.warning {
+    background: linear-gradient(135deg, #FF9800, #EF6C00);
+    border-left: 4px solid #EF6C00;
+}
+
+.notification.info {
+    background: linear-gradient(135deg, #2196F3, #1565C0);
+    border-left: 4px solid #1565C0;
+}
+
+.notification-icon {
+    margin-right: 12px;
+    font-size: 20px;
+    padding-top: 2px;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.notification-message {
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.notification-close:hover {
+    color: white;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+}
+
+/* Make notifications responsive */
+@media (max-width: 768px) {
+    .notification-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: 100%;
+    }
+    
+    .notification {
+        max-width: 100%;
+    }
+}
+
 /* General form error styling */
 .form-errors,
 .errorlist {

@@ -5,7 +5,7 @@ from pages.forms import AcademicArticleForm
 from .models import (
     HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement,
     DriveLink, Event, EventOccurence,  Semester, UnitAnnouncement,
-    AcademicArticle, EducationalMaterial, MotivationalWriteup
+    AcademicArticle, EducationalMaterial, MotivationalWriteup, Scholarship
 )
 # Register your models here.
 admin.site.register(HomePageHero)
@@ -111,6 +111,17 @@ class WriteupAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'quote']
     list_filter = ['title', 'author', 'upload_date', 'visibility']
     ordering = ['-upload_date']
+
+    def get_queryset(self, request):
+        """Override the get_queryset method to use all_objects manager."""
+        return self.model.all_objects.all()
+
+@admin.register(Scholarship)
+class ScholarshipAdmin(admin.ModelAdmin):
+    list_display = ['title', 'eligibility_criteria', 'deadline', 'amount', 'visibility']
+    list_filter = ['eligibility_criteria', 'deadline', 'amount', 'visibility']
+    search_fields = ['title', 'eligibility_criteria']
+    ordering = ['-deadline']
 
     def get_queryset(self, request):
         """Override the get_queryset method to use all_objects manager."""

@@ -30,4 +30,5 @@ urlpatterns = [
     path('academic-articles/create/', views.create_academic_article, name='create_academic_article'),
     path('course/materials/upload', views.upload_materials, name="upload_material"),
     path('academic-articles/writeups/create/', views.post_writeup, name='create_motivational_writeup'),
+    path('scholarships/create/', views.upload_scholarship, name='upload_scholarship'),
 ]

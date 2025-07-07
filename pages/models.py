@@ -492,3 +492,32 @@ class MotivationalWriteup(models.Model):
         default=VisibilityChoices.PUBLISHED,
         help_text="Who can see this article?"
     )
+
+class Scholarship(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    url = models.URLField(max_length=500, help_text="Link to the scholarship application")
+    amount = models.DecimalField(max_digits=10, decimal_places=2, help_text="Amount of the scholarship")
+    eligibility_criteria = models.TextField(help_text="Eligibility criteria for the scholarship")
+    deadline = models.DateTimeField(null=True, blank=True, help_text="Application deadline")
+    image = models.ImageField(upload_to='scholarships/images/', null=True, blank=True, help_text="Image related to the scholarship")
+    tags = TaggableManager(blank=True, help_text="Tags for the scholarship, e.g., 'Undergraduate, Scholarship, Funding'")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+    for_workers = models.BooleanField(default=False)
+    objects = PublishedManager()
+    all_objects = models.Manager()
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this scholarship?"
+    )
+
+    def __str__(self):
+        return self.title

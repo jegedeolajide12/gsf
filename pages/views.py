@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group
 from django.http import JsonResponse
 from django.forms import inlineformset_factory
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 from accounts.models import Sermon, RecentActivity
 from .utils import create_recurring_events
@@ -15,7 +16,8 @@ from .utils import create_recurring_events
 from .models import Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, Event, Semester
 from .forms import (
             SemesterForm, EventForm, EventOccurrenceForm, UnitAnnouncementForm, 
-            AcademicArticleForm, EducationalMaterialForm, MotivationalWriteupForm
+            AcademicArticleForm, EducationalMaterialForm, MotivationalWriteupForm,
+            ScholarshipForm
             )
 
 
@@ -227,18 +229,13 @@ def create_academic_article(request):
     form = AcademicArticleForm()
     unit = Unit.objects.get(slug='academic-unit')
     if request.method == 'POST':
-        print("DEBUG: STARTING, SUBMITTING FORM...")
         form = AcademicArticleForm(request.POST or None, request.FILES or None)
         if form.is_valid():
-            print("DEBUG: FORM IS VALID, SAVING...")
             article = form.save(commit=False)
             article.author = request.user
-            print("DEBUG: " + str(article.author))
             article.save()
-            print("DEBUG: FORM SUCCESSFULLY SAVED")
             return redirect('pages:unit_dashboard', unit.slug)
     else:
-        print("DEBUG: FORM IS INVALID")
         form = AcademicArticleForm()
     
     context = {'form': form}
@@ -264,19 +261,34 @@ def post_writeup(request):
     form = MotivationalWriteupForm()
     unit = Unit.objects.get(slug='academic-unit')
     if request.method == 'POST':
-        print("DEBUG: STARTING, SUBMITTING FORM...")
         form = MotivationalWriteupForm(request.POST or None, request.FILES or None)
         if form.is_valid():
-            print("DEBUG: FORM IS VALID, SAVING...")
             writeup = form.save(commit=False)
             writeup.author = request.user
-            print("DEBUG: " + str(writeup.author))
             writeup.save()
-            print("DEBUG: FORM SUCCESSFULLY SAVED")
+            messages.success(request, "Writeup posted successfully!")
             return redirect('pages:unit_dashboard', unit.slug)
         else:
-            print("DEBUG: FORM IS INVALID")
+            messages.error(request, "There was an error posting the writeup. Please check the form.")
             form = MotivationalWriteupForm(request.POST or None, request.FILES or None)
     
     context = {'form':form}
     return render(request, 'account/admin/academic/post_writeup.html', context)
+
+def upload_scholarship(request):
+    form = ScholarshipForm()
+    unit = Unit.objects.get(slug='academic-unit')
+    if request.method == 'POST':
+        form = ScholarshipForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            scholarship = form.save(commit=False)
+            scholarship.author = request.user
+            scholarship.save()
+            messages.success(request, "Scholarship posted successfully!")
+            return redirect('pages:unit_dashboard', unit.slug)
+        else:
+            messages.error(request, "There was an error posting the scholarship. Please check the form.")
+            form = ScholarshipForm(request.POST or None, request.FILES or None)
+    
+    context = {'form':form}
+    return render(request, 'account/admin/academic/post_scholarship.html', context)

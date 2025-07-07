@@ -1,11 +1,15 @@
 from django import forms
+from django.utils import timezone
+from django.core.exceptions import ValidationError
+
 from .models import (
     Event, Semester, EventOccurence, UnitAnnouncement, AcademicArticle, EducationalMaterial,
-    MotivationalWriteup
+    MotivationalWriteup, Scholarship
     )
 
 from django_summernote.widgets import SummernoteWidget
 from taggit.forms import TagWidget
+
 
 class SemesterForm(forms.ModelForm):
     class Meta:
@@ -127,3 +131,37 @@ class MotivationalWriteupForm(forms.ModelForm):
             'upload_date': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control', 'required': True, 'placeholder': 'Select upload date'}),
             'visibility': forms.Select(attrs={'class': 'form-control', 'required': True})
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        upload_date = cleaned_data.get('upload_date')
+
+        if upload_date and upload_date < timezone.now():
+            raise forms.ValidationError("The upload date cannot be in the past.")
+        
+        return cleaned_data
+
+class ScholarshipForm(forms.ModelForm):
+    class Meta:
+        model = Scholarship
+        fields = ['title', 'description', 'eligibility_criteria', 'deadline', 'amount', 'image', 'url', 'tags', 'visibility']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter scholarship title'}),
+            'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': True, 'placeholder': 'Enter scholarship description'}),
+            'eligibility_criteria': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'required': True, 'placeholder': 'Enter eligibility criteria'}),
+            'deadline': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control', 'required': True, 'placeholder': 'Select application deadline'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter scholarship amount'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'announcement-file-input', 'required': False}),
+            'url': forms.URLInput(attrs={'class': 'form-control', 'required': False, 'placeholder': 'Enter scholarship URL (if any)'}),
+            'tags': TagWidget(attrs={'class': 'form-control', 'placeholder': 'Add tags (e.g., Education, Scholarship, Funding)'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True}),
+        }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        deadline = cleaned_data.get('deadline')
+
+        if deadline and deadline < timezone.now():
+            raise forms.ValidationError("The deadline cannot be in the past.")
+        
+        return cleaned_data

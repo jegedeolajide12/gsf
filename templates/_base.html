@@ -68,6 +68,10 @@
             </div>
         </div>
     </header>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer">
+        <!-- Notifications will be inserted here dynamically -->
+    </div>
 
     
 
@@ -201,6 +205,65 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 100);
   });
+  
+  // --- DYNAMIC NOTIFICATION SYSTEM ---
+  const notificationContainer = document.getElementById('notificationContainer');
+  
+  // Function to create a notification
+  function createNotification(type, title, message) {
+    const icons = {
+      success: 'fa-circle-check',
+      error: 'fa-circle-exclamation',
+      warning: 'fa-triangle-exclamation',
+      info: 'fa-circle-info'
+    };
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+      <i class="fas ${icons[type]} notification-icon"></i>
+      <div class="notification-content">
+        <div class="notification-title">${title}</div>
+        <div class="notification-message">${message}</div>
+      </div>
+      <button class="notification-close">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+    
+    notificationContainer.appendChild(notification);
+    
+    // Auto-remove after animation completes
+    setTimeout(() => {
+      notification.style.animation = 'fadeOut 0.4s forwards';
+      notification.addEventListener('animationend', () => {
+        notification.remove();
+      });
+    }, 4000);
+    
+    // Close button functionality
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+      notification.style.animation = 'fadeOut 0.4s forwards';
+      notification.addEventListener('animationend', () => {
+        notification.remove();
+      });
+    });
+  }
+  
+  // Check for Django messages
+  {% if messages %}
+    {% for message in messages %}
+      createNotification(
+        '{{ message.tags }}', 
+        '{{ message.tags|capfirst }}', 
+        '{{ message }}'
+      );
+    {% endfor %}
+  {% endif %}
+  
+  // Make the notification function available globally
+  window.showNotification = createNotification;
+
 });
 </script>
 
