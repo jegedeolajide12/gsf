@@ -33,4 +33,11 @@ urlpatterns = [
     path('scholarships/create/', views.upload_scholarship, name='upload_scholarship'),
     path('academic-unit/countdown/create/', views.create_countdown, name='create_countdown'),
     path('academic-unit/countdown/update/<int:countdown_id>/', views.update_countdown, name='update_countdown'),
+    path('academic-unit/timetable/create/', views.create_timetable, name='create_timetable'),
+    path('academic-unit/timetable/update/<int:timetable_id>/', views.update_timetable, name='update_timetable'),
+
+
+
+    # Bible Study Unit URLs
+    path('bible-study-unit/create/study-guide/', views.create_study_guides, name='create_study_guide'),
 ]

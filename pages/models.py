@@ -535,3 +535,65 @@ class Countdown(models.Model):
     class Meta:
         verbose_name_plural = "Countdowns"
         ordering = ['-created_at']
+
+
+class Timetable(models.Model):
+    class DayChoices(models.TextChoices):
+        MONDAY = 'monday', 'Monday'
+        TUESDAY = 'tuesday', 'Tuesday'
+        WEDNESDAY = 'wednesday', 'Wednesday'
+        THURSDAY = 'thursday', 'Thursday'
+        FRIDAY = 'friday', 'Friday'
+        SATURDAY = 'saturday', 'Saturday'
+        SUNDAY = 'sunday', 'Sunday'
+    course = models.CharField(max_length=200)
+    day = models.CharField(
+        max_length=20,
+        choices=DayChoices.choices,
+        default=DayChoices.MONDAY,
+        help_text='Select the day of the week for this course'
+    )
+    start_time = models.TimeField(null=True, blank=True, help_text='Select the tutorial starting time for this course')
+    end_time = models.TimeField(null=True, blank=True, help_text='Select the tutorial starting time for this course')
+    tutor = models.ForeignKey('accounts.CustomUser', related_name='timetables', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'timetables'
+
+
+
+# BIBLE STUDY UNIT PERMISSIONS
+class StudyGuides(models.Model):
+    class VisibilityChoices(models.TextChoices):
+        PUBLISHED = 'published', 'Published (Visible to everyone)'
+        WORKERS = 'workers', 'Workers Only'
+        DRAFT = 'draft', 'Draft (Not visible to anyone)'
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, max_length=200, null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='study-guides/thumbnails/', null=True, blank=True, help_text="Thumbnail image for the study guide")
+    tags = TaggableManager(blank=True, help_text="Tags for the study guide, e.g., 'Bible Study, Faith'")
+    content = models.TextField(help_text="Content of the study guide in Markdown format")
+    author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name='study_guides')
+    created_at = models.DateTimeField(auto_now_add=True)
+    publication_date = models.DateTimeField(null=True, blank=True, help_text="Date of publication")
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+    for_workers = models.BooleanField(default=False)
+    objects = PublishedManager()
+    all_objects = models.Manager()
+    visibility = models.CharField(
+        max_length=20,
+        choices=VisibilityChoices.choices,
+        default=VisibilityChoices.PUBLISHED,
+        help_text="Who can see this study guide?"
+    )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Study Guides"
+        ordering = ['-created_at']

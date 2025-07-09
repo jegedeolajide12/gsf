@@ -15,12 +15,12 @@ from .utils import create_recurring_events
 
 from .models import (
             Unit, HomePageHero, HomePageBanner, DriveLink, Announcement, EventOccurence, 
-            Event, Semester, Countdown
+            Event, Semester, Countdown, Timetable
             )
 from .forms import (
             SemesterForm, EventForm, EventOccurrenceForm, UnitAnnouncementForm, 
             AcademicArticleForm, EducationalMaterialForm, MotivationalWriteupForm,
-            ScholarshipForm, CountdownForm
+            ScholarshipForm, CountdownForm, TimetableForm, StudyGuidesForm
             )
 
 
@@ -47,7 +47,7 @@ def about_page(request):
         'hero': HomePageHero.objects.first(),
         'banner': HomePageBanner.objects.first(),
         'units': Unit.objects.all(),
-        'user_units': request.user.units.all() if request.user.is_authenticated else None,
+        'user_units': request.user.unit,
     }
     return render(request, "pages/about.html", context)
 
@@ -62,19 +62,15 @@ def unit_dashboard(request, unit_slug):
         unit = Unit.objects.get(slug=unit_slug)
     except Unit.DoesNotExist:
         return render(request, "404.html", status=404)
-    
-
-    if hasattr(request.user, 'profile') and request.user.profile:
-        user_units = request.user.profile.units.all()
+    user_unit = request.user.profile.unit
             
     context = {
         'unit': unit,
         'codes_of_conduct': unit.codes_of_conduct.all(),
         'coordinator': unit.coordinator,
         'assistant_coordinator': unit.assistant_coordinator,
-        'user_units': user_units,
+        'user_unit': user_unit,
     }
-    user_unit = user_units[0] if user_units else None
     if user_unit.slug == 'academic-unit':
         unit = Unit.objects.get(slug='academic-unit')
         context = {'unit': unit}
@@ -335,3 +331,63 @@ def update_countdown(request, countdown_id):
     else:
         form = CountdownForm(instance=countdown)
     return render(request, 'account/admin/academic/update_countdown.html', {'form': form, 'countdown': countdown})
+
+def create_timetable(request):
+    timetable = Timetable.objects.get.first()
+    unit = Unit.objects.get(slug='academic-unit')
+    tutor = 'accounts.CustomUser'.objects.filter(unit)  # Assuming you want the first tutor
+    if timetable:
+        return redirect('pages:update_timetable', timetable_id=timetable.id)
+    
+    else:
+        if request.method == 'POST':
+            form = TimetableForm(request.POST, instance=timetable)
+            form['tutor'].get_queryset = tutor
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Timetable updated successfully!")
+                return redirect('pages:unit-dashboard', unit.slug)
+            else:
+                messages.error(request, "There was an error creating the countdown. Please check the form.")
+                form = TimetableForm(request.POST)
+        else:
+            form = TimetableForm(instance=timetable)
+        return render(request, 'account/admin/academic/create_timetable.html', {'form': form})
+
+def update_timetable(request, timetable_id):
+    timetable = get_object_or_404(Timetable, id=timetable_id)
+    unit = Unit.objects.get(slug='academic-unit')
+
+    if request.method == 'POST':
+        form = TimetableForm(request.POST, instance=timetable)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Timetable updated successfully!")
+            return redirect('pages:unit_dashboard', unit.slug)
+        else:
+            messages.error(request, "There was an error updating the timetable. Please check the form.")
+            form = TimetableForm(request.POST, instance=timetable)
+    else:
+        form = TimetableForm(instance=timetable)
+    return render(request, 'account/admin/academic/update_timetable.html', {'form': form, 'timetable': timetable})
+        
+
+# Bible Study Unit Logics
+def create_study_guides(request):
+    form = StudyGuidesForm()
+    unit = Unit.objects.get(slug='bible-study-unit')
+    if request.method == 'POST':
+        form = StudyGuidesForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            study_guide = form.save(commit=False)
+            study_guide.author = request.user
+            study_guide.save()
+            messages.success(request, "Study guide posted successfully!")
+            return redirect('pages:unit_dashboard', unit.slug)
+        else:
+            messages.error(request, "There was an error posting the study guide. Please check the form.")
+            form = StudyGuidesForm(request.POST or None, request.FILES or None)
+    
+    context = {'form':form}
+    return render(request, 'account/admin/bible_study/create_study_guide.html', context)

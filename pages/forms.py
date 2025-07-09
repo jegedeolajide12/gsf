@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 from .models import (
     Event, Semester, EventOccurence, UnitAnnouncement, AcademicArticle, EducationalMaterial,
-    MotivationalWriteup, Scholarship, Countdown
+    MotivationalWriteup, Scholarship, Countdown, Timetable, Unit, StudyGuides
     )
 
 from django_summernote.widgets import SummernoteWidget
@@ -181,3 +181,46 @@ class CountdownForm(forms.ModelForm):
         if target_date and target_date < timezone.now().date():
             raise ValidationError("The target date cannot be in the past.")
         return target_date
+
+class TimetableForm(forms.ModelForm):
+    class Meta:
+        model = Timetable
+        fields = '__all__'
+        widgets = {
+            'course': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter Course name.'}),
+            'day': forms.Select(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Select day of the week'}),
+            'start_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'required': True, 'placeholder': 'Select tutorial start time'}),
+            'end_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'required': True, 'placeholder': 'Select tutorial end time'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Expecting 'semester' to be passed in kwargs to link timetable to the semester being created
+        user = Unit.objects.get(slug='academic-unit')
+        self.fields['tutor'].queryset = user.members.all()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_time = cleaned_data.get('start_time')
+        end_time = cleaned_data.get('end_time')
+
+        if start_time and end_time and start_time >= end_time:
+            raise forms.ValidationError("Start time must be before end time.")
+        
+        return cleaned_data
+    
+
+# BIBLE STUDY UNIT FORMS
+class StudyGuidesForm(forms.ModelForm):
+    class Meta:
+        model = AcademicArticle
+        fields = ['title', 'thumbnail', 'content', 'tags', 'publication_date', 'visibility']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': True, 'placeholder': 'Enter article title'}),
+            'thumbnail': forms.ClearableFileInput(attrs={'class': 'announcement-file-input', 'required': False, 'placeholder': 'Upload thumbnail image'}),
+            'tags': TagWidget(attrs={'class': 'form-control', 'placeholder': 'Add tags (e.g., Book, God, Faith)'}),
+            'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}),
+            'publication_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': True, 'placeholder': 'Select publication date'}),
+            'visibility': forms.Select(attrs={'class': 'form-control', 'required': True},
+                                       choices=AcademicArticle.VisibilityChoices.choices),
+        }

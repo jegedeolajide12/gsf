@@ -58,7 +58,7 @@
                         </div>
                         <h3 class="card-title">Post Study Guides</h3>
                         <p class="card-desc">Create and publish in-depth Bible study guides for small groups and individual study.</p>
-                        <button class="card-btn">Create Guide <i class="fas fa-edit"></i></button>
+                        <a href="{% url "pages:create_study_guide" %}" class="card-btn">Create Guide <i class="fas fa-edit"></i></a>
                     </div>
                     
                     <div class="permission-card bible-card">
@@ -336,9 +336,6 @@
             
             // Simulate loading
             setTimeout(() => {
-                alert(`Taking you to the ${title} management page...`);
-                this.innerHTML = originalText;
-                this.disabled = false;
                 
                 // Special handling for discussion permission
                 if (title.includes("Participate")) {

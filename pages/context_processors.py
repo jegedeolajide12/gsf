@@ -1,13 +1,10 @@
+from enum import member
 from .models import Unit
 
-def user_unit_url(request):
-    user_unit = None
+def user_has_unit(request):
     if request.user.is_authenticated:
-        if hasattr(request.user, 'profile') and request.user.profile:
-            user_units = request.user.profile.units.all()
-            if user_units:
-                user_unit = user_units[0]
-        return {
-            'user_unit': user_unit
-        }
-    return {}
+        unit = getattr(getattr(request.user, 'profile', None), 'unit', None)
+        if unit and unit.slug:
+            return {'user_has_unit': True, 'unit': unit}
+        return {'user_has_unit': False, 'unit': None}
+    return {'user_has_unit': False, 'unit': None}

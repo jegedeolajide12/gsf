@@ -25,7 +25,8 @@ class Profile(models.Model):
     address = models.CharField(max_length=255, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    units = models.ManyToManyField(Unit, related_name='user_units', null=True, blank=True)
+    unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True, blank=True, related_name='members')
+    other_units = models.ManyToManyField(Unit, blank=True, related_name='other_members')
 
 
     def __str__(self):

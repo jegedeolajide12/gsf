@@ -5,7 +5,8 @@ from pages.forms import AcademicArticleForm
 from .models import (
     HomePageBanner, HomePageHero, Unit, UnitCodeOfConduct, Announcement,
     DriveLink, Event, EventOccurence,  Semester, UnitAnnouncement,
-    AcademicArticle, EducationalMaterial, MotivationalWriteup, Scholarship, Countdown
+    AcademicArticle, EducationalMaterial, MotivationalWriteup, Scholarship, Countdown,
+    StudyGuides
 
 )
 # Register your models here.
@@ -134,3 +135,16 @@ class CountdownAdmin(admin.ModelAdmin):
     list_filter = ['target_date']
     search_fields = ['title']
     ordering = ['-target_date']
+
+
+@admin.register(StudyGuides)
+class StudyGuidesAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'publication_date', 'visibility')
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('visibility', 'publication_date')
+    search_fields = ('title', 'content', 'author__username')
+    ordering = ('-publication_date',)
+
+    def get_queryset(self, request):
+        """Override the get_queryset method to use all_objects manager."""
+        return self.model.all_objects.all()
