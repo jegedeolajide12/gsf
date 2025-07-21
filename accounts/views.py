@@ -3,10 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from .models import RecentActivity
 
 from .forms import (
-    SermonUploadForm, HeroCreationForm, BannerCreationForm, AnnouncementForm,
+    HeroCreationForm, BannerCreationForm,
     DriveLinkForm
 )
 
@@ -18,24 +17,24 @@ def logout_confirm(request):
     context = {}
     return render(request, 'account/logout_confirm.html', context)
 
-def upload_sermon(request):
-    sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
-    unit = request.user.profile.units.first()
-    if request.method == 'POST':
-        if sermon_form.is_valid():
-            print("Accepted service_type:", sermon_form.cleaned_data.get('sermon_type'))
-            sermon_form.save()
-            return redirect('pages:unit_dashboard', unit_slug=unit.slug) 
-        else:
+# def upload_sermon(request):
+#     sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
+#     unit = request.user.profile.units.first()
+#     if request.method == 'POST':
+#         if sermon_form.is_valid():
+#             print("Accepted service_type:", sermon_form.cleaned_data.get('sermon_type'))
+#             sermon_form.save()
+#             return redirect('pages:unit_dashboard', unit_slug=unit.slug) 
+#         else:
             
-            sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
-            context = {'form': sermon_form, 'errors': sermon_form.errors}
-            print("Form errors:", sermon_form.errors)
-            return render(request, "account/admin/publicity/upload_sermon_form.html", context)
+#             sermon_form = SermonUploadForm(request.POST or None, request.FILES or None)
+#             context = {'form': sermon_form, 'errors': sermon_form.errors}
+#             print("Form errors:", sermon_form.errors)
+#             return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
-    sermon_form = SermonUploadForm()
-    context = {'form': sermon_form}
-    return render(request, "account/admin/publicity/upload_sermon_form.html", context)
+#     sermon_form = SermonUploadForm()
+#     context = {'form': sermon_form}
+#     return render(request, "account/admin/publicity/upload_sermon_form.html", context)
 
 def upload_heroes(request):
     unit = request.user.profile.units.first()

@@ -1,272 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gofamint Students' Fellowship | Futa Chapter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>GOFAMINT STUDENTS' FELLOWSHIP</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Full Calendar plugin -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@4.1.4/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.min.css" rel="stylesheet" />
+
+    <!-- ...existing code... -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:600,700&display=swap" rel="stylesheet">
+    <!-- ...existing code... -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+
 
 </head>
-<body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <a href="{% url "pages:home" %}" class="logo">
-                <div class="logo-img" style="display: flex; align-items: center; gap: 8px; margin-left: -24px; padding-left: 40px;">
-                      <img src="{% static "images/logo.png" %}" style="height: 50px; width: 50px;" alt="Summer Picnic">
-                      <div class="logo-text">GSF<span>Futa</span></div>
+<body id="body">
+    <header>
+        <!-- Floating Give Button -->
+        <a href="{% url "pages:give" %}" class="give-btn bg-primary" data-aos="fade-left" data-aos-delay="300">
+            <i class="fas fa-donate"></i>
+        </a>
+
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static "images/logo.png" %}" class="me-2" height="40" alt="MDB Logo" loading="lazy" />
+                    <span style="color: rgb(143, 143, 245); font-weight: 600; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="h1 mt-2">GSF<span class="text-primary">FUTA</span></span>
+                </a>
+                <button
+                data-mdb-collapse-init
+                class="navbar-toggler"
+                type="button"
+                data-mdb-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <i class="fas fa-bars" id="navbar-hamburger"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url "pages:home" %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:events" %}" class="nav-link">Events</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:about_page" %}" class="nav-link">About Us</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:alumni" %}" class="nav-link">Alumni</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:give" %}" class="nav-link">Give</a>
+                        </li>
+                    </ul>
                 </div>
-            </a>
-            
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
             </div>
-            
-            <nav>
-                <ul id="navMenu">
-                    <li>
-                        <a href="{% url 'pages:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'pages:units' %}" class="{% if request.resolver_match.url_name == 'units' %}active{% endif %}">Units</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'pages:sermons' %}" class="{% if request.resolver_match.url_name == 'sermons' %}active{% endif %}">Sermons</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'pages:events' %}" class="{% if request.resolver_match.url_name == 'events' %}active{% endif %}">Events</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'pages:about_page' %}" class="{% if request.resolver_match.url_name == 'about_page' %}active{% endif %}">About Us</a>
-                    </li>
-                    <li>
-                        <a href="#" class="{% if request.resolver_match.url_name == 'connect' %}active{% endif %}">Connect</a>
-                    </li>
-                    <li>
-                        <a href="{% url "pages:give" %}" class="{% if request.resolver_match.url_name == 'give' %}active{% endif %}">Give</a>
-                    </li>
-                </ul>
             </nav>
-            
-            <div style="display: flex; gap: 12px; align-items: center;">
-                {% if request.user.is_authenticated %}
-                    <a href="{% url "account_logout" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Logout</a>
-                    {% if user_has_unit %}
-                      <a href="{% url "pages:unit_dashboard" unit.slug %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Dashboard</a>
-                    {% endif %}
-                {% else %}
-                    <a href="{% url "account_login" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Log In</a>
-                    <a href="{% url "account_signup" %}" class="btn nav-btn" style="display: flex; align-items: center; justify-content: center; padding: 0 18px; height: 36px;">Sign up</a>
-                {% endif %}
+
+             <!-- Notification Container -->
+            <div class="notification-container" id="notificationContainer">
+                <!-- Notifications will be inserted here dynamically -->
             </div>
-        </div>
-    </header>
-    <!-- Notification Container -->
-    <div class="notification-container" id="notificationContainer">
-        <!-- Notifications will be inserted here dynamically -->
-    </div>
+        </header>
 
-    
+        {% block content %}
 
-    {% block content %}
+        {% endblock %}
 
-    {% endblock content %}
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Gofamint Students' Fellowship</h3>
-                    <p>A modern spiritual community exploring faith in the 21st century. Where tradition meets innovation.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-spotify"></i></a>
+
+        <!-- FOOTER  -->
+        <section class="footer">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">GSFFUTA Fellowship</h4>
+                            <p>Growing in Faith, Serving in Love, Building God's Kingdom on the campus of FUTA.</p>
+                            <div class="social-links mt-3">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">Quick Links</h4>
+                            <div class="footer-links">
+                                <a href="#">Home</a>
+                                <a href="#about">About Us</a>
+                                <a href="#events">Events</a>
+                                <a href="#gallery">Gallery</a>
+                                <a href="#executives">Our Leaders</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">Contact Us</h4>
+                            <p><i class="fas fa-map-marker-alt me-2"></i> Chapel of Peace, FUTA Campus</p>
+                            <p><i class="fas fa-phone me-2"></i> +234 812 345 6789</p>
+                            <p><i class="fas fa-envelope me-2"></i> info@gsffuta.org</p>
+                            <p><i class="fas fa-clock me-2"></i> Sunday Service: 8AM & 10:30AM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="copyright">
+                        <p>&copy; 2023 GSFFUTA Church Fellowship. All Rights Reserved.</p>
                     </div>
                 </div>
-                
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Sermons</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Events</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ministries</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Give</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Spiritual Way, City, ST 12345</li>
-                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@divinegrace.org</li>
-                        <li><i class="fas fa-clock"></i> Office Hours: Mon-Thu 9AM-5PM</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Service Times</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-church"></i> Sunday Worship: 9:00 & 11:00 AM</li>
-                        <li><i class="fas fa-bible"></i> Wednesday Study: 7:00 PM</li>
-                        <li><i class="fas fa-users"></i> Youth Gathering: Friday 7:00 PM</li>
-                        <li><i class="fas fa-child"></i> Children's Program: Sunday 10:00 AM</li>
-                    </ul>
-                </div>
-            </div>
+            </footer>
+        </section>
+
+    <script src="{% static "js/mdb.umd.min.js" %}"></script>
+        <!-- Animate on Scroll JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // --- DYNAMIC NOTIFICATION SYSTEM ---
+        const notificationContainer = document.getElementById('notificationContainer');
+        
+        // Function to create a notification
+        function createNotification(type, title, message) {
+            const icons = {
+            success: 'fa-circle-check',
+            error: 'fa-circle-exclamation',
+            warning: 'fa-triangle-exclamation',
+            info: 'fa-circle-info'
+            };
             
-            <div class="footer-bottom">
-                <p>&copy; 2024 Divine Grace Church. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--gold);"></i></p>
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+            <i class="fas ${icons[type]} notification-icon"></i>
+            <div class="notification-content">
+                <div class="notification-title">${title}</div>
+                <div class="notification-message">${message}</div>
             </div>
-        </div>
-    </footer>
+            <button class="notification-close">
+                <i class="fas fa-times"></i>
+            </button>
+            `;
+            
+            notificationContainer.appendChild(notification);
+            
+            // Auto-remove after animation completes
+            setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.4s forwards';
+            notification.addEventListener('animationend', () => {
+                notification.remove();
+            });
+            }, 4000);
+            
+            // Close button functionality
+            notification.querySelector('.notification-close').addEventListener('click', () => {
+            notification.style.animation = 'fadeOut 0.4s forwards';
+            notification.addEventListener('animationend', () => {
+                notification.remove();
+            });
+            });
+        }
+        
+        // Check for Django messages
+        {% if messages %}
+            {% for message in messages %}
+            createNotification(
+                '{{ message.tags }}', 
+                '{{ message.tags|capfirst }}', 
+                '{{ message }}'
+            );
+            {% endfor %}
+        {% endif %}
+        
+        // Make the notification function available globally
+        window.showNotification = createNotification;
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@4.1.4/js/froala_editor.pkgd.min.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // --- MOBILE MENU (Single Instance) ---
-  const menuToggle = document.getElementById('menuToggle');
-  const navMenu = document.getElementById('navMenu');
-  menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
-
-  // --- HERO CAROUSEL ---
-  const heroSlides = document.querySelectorAll('.hero-slide');
-  const heroIndicators = document.querySelectorAll('.hero-indicator');
-  let heroCurrent = 0;
-  
-  if (heroSlides.length && heroIndicators.length) {
-    const showHeroSlide = (index) => {
-        heroSlides.forEach(slide => slide.classList.remove('active'));
-        heroIndicators.forEach(indicator => indicator.classList.remove('active'));
-        heroSlides[index].classList.add('active');
-        heroIndicators[index].classList.add('active');
-        heroCurrent = index;
-    };
-    
-    heroIndicators.forEach((indicator, i) => {
-        indicator.addEventListener('click', () => showHeroSlide(i));
-    });
-    
-    showHeroSlide(0); // Initialize first slide
-    setInterval(() => showHeroSlide((heroCurrent + 1) % heroSlides.length), 6000);
-
-    }
-
-  // --- BANNER CAROUSEL ---
-  const bannerSlides = document.querySelectorAll('.banner-slide');
-  const bannerIndicators = document.querySelectorAll('.indicator');
-  let bannerCurrent = 0;
-
-  if (bannerSlides.length && bannerIndicators.length) {
-    const showBannerSlide = (index) => {
-        bannerSlides.forEach(slide => slide.classList.remove('active'));
-        bannerIndicators.forEach(indicator => indicator.classList.remove('active'));
-        bannerSlides[index].classList.add('active');
-        bannerIndicators[index].classList.add('active');
-        bannerCurrent = index;
-    };
-
-    bannerIndicators.forEach((indicator, i) => {
-        indicator.addEventListener('click', () => showBannerSlide(i));
-    });
-
-    showBannerSlide(0); // Initialize first slide
-    setInterval(() => showBannerSlide((bannerCurrent + 1) % bannerSlides.length), 5000);
-  }
-  // --- SCROLL ANIMATIONS (Single Observer) ---
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animation = 'fadeUp 0.8s forwards';
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  // Observe all elements at once
-  document.querySelectorAll(
-    '.section-title, .devotion-card, .announcement-card, .audio-card, .executive-card, .link-card, .visitors-content, .visitors-image'
-  ).forEach(el => observer.observe(el));
-
-  // --- HEADER SCROLL EFFECT ---
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 100);
-  });
-  
-  // --- DYNAMIC NOTIFICATION SYSTEM ---
-  const notificationContainer = document.getElementById('notificationContainer');
-  
-  // Function to create a notification
-  function createNotification(type, title, message) {
-    const icons = {
-      success: 'fa-circle-check',
-      error: 'fa-circle-exclamation',
-      warning: 'fa-triangle-exclamation',
-      info: 'fa-circle-info'
-    };
-    
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.innerHTML = `
-      <i class="fas ${icons[type]} notification-icon"></i>
-      <div class="notification-content">
-        <div class="notification-title">${title}</div>
-        <div class="notification-message">${message}</div>
-      </div>
-      <button class="notification-close">
-        <i class="fas fa-times"></i>
-      </button>
-    `;
-    
-    notificationContainer.appendChild(notification);
-    
-    // Auto-remove after animation completes
-    setTimeout(() => {
-      notification.style.animation = 'fadeOut 0.4s forwards';
-      notification.addEventListener('animationend', () => {
-        notification.remove();
-      });
-    }, 4000);
-    
-    // Close button functionality
-    notification.querySelector('.notification-close').addEventListener('click', () => {
-      notification.style.animation = 'fadeOut 0.4s forwards';
-      notification.addEventListener('animationend', () => {
-        notification.remove();
-      });
-    });
-  }
-  
-  // Check for Django messages
-  {% if messages %}
-    {% for message in messages %}
-      createNotification(
-        '{{ message.tags }}', 
-        '{{ message.tags|capfirst }}', 
-        '{{ message }}'
-      );
-    {% endfor %}
-  {% endif %}
-  
-  // Make the notification function available globally
-  window.showNotification = createNotification;
-
-});
-</script>
-
-{{ form.media }}
+    </script>
 </body>
 </html>

@@ -1,0 +1,206 @@
+{% extends "_base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% load static %}
+
+{% block content %}
+    <!-- Sidebar -->
+<section class="dashboard" style="padding-top: 80px; display: flex;">
+    <nav id="sidebar" class="rounded" style="margin-top: 80px; overflow-y: hidden;">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-church me-2"></i>Gofamint Students' Fellowship</h3>
+            <p class="mb-0">Administration Dashboard</p>
+        </div>
+        
+        <ul class="list-unstyled sidebar-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url "dashboard:testimonies" %}" class="nav-link">
+                    <i class="fas fa-users"></i> Testimonies
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i> Events
+                </a>
+            </li>
+            <li class="nav-item mt-4">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navbar -->
+        <nav class="dashboard-topbar d-flex justify-content-between align-items-center">
+            <button type="button" id="sidebarCollapse" class="btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-4">
+                    <a href="#" class="text-dark dropdown-toggle" id="notificationsDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                        <li><a class="dropdown-item" href="#">New member registered</a></li>
+                        <li><a class="dropdown-item" href="#">Upcoming event reminder</a></li>
+                        <li><a class="dropdown-item" href="#">Donation received</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="userDropdown" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="Admin" width="40" height="40" class="rounded-circle me-2">
+                        <span>Admin User</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-header mb-5">
+            <h1>Administration Dashboard</h1>
+            <p>Welcome back! Here's what's happening with your church today.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="drive-link">
+                    <i class="fab fa-google-drive"></i>
+                    <strong>2023 Annual Convention Photos</strong>
+                    <div class="form-check form-switch my-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Activate FDS form</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="drive-link">
+                    <i class="fab fa-google-drive"></i>
+                    <strong>2023 Annual Convention Photos</strong>
+                    <div class="form-check form-switch my-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Activate FDS form</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="drive-link">
+                    <i class="fab fa-google-drive"></i>
+                    <strong>2023 Annual Convention Photos</strong>
+                    <div class="form-check form-switch my-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Activate FDS form</label>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="admin-card p-4 text-center">
+                    <div class="card-icon members">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="card-title">Upload Sermon</h4>
+                    <p class="card-description">Manage all church members, track attendance, and update member profiles.</p>
+                    <a class="btn btn-card" href="{% url "dashboard:upload_sermon" %}">Upload Page</a>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="admin-card p-4 text-center">
+                    <div class="card-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h4 class="card-title">Announcements/Events Management</h4>
+                    <p class="card-description">Schedule and manage church events, services, and special gatherings.</p>
+                    <a href="{% url "dashboard:upload_announcement" %}" class="btn btn-card">Manage Events</a>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="admin-card p-4 text-center">
+                    <div class="card-icon finance">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h4 class="card-title">Manage/Upload Hero</h4>
+                    <p class="card-description">Upload and manage hero images for your church website homepage.</p>
+                    <a class="btn btn-card" href="{% url "dashboard:create_hero" %}">Manage Hero</a>
+                </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="admin-card p-4 text-center">
+                    <div class="card-icon communication">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h4 class="card-title">Upload Photo Drives</h4>
+                    <p class="card-description">Send announcements, emails, and messages to members and groups.</p>
+                    <a href="{% url "dashboard:upload_drive" %}" class="btn btn-card">Manage Drives</a>
+                </div>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="admin-card p-4 text-center">
+                    <div class="card-icon volunteers">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h4 class="card-title">Volunteer Coordination</h4>
+                    <p class="card-description">Organize volunteer schedules and assign roles for church activities.</p>
+                    <button class="btn btn-card">Manage Volunteers</button>
+                </div>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="admin-card p-4 text-center">
+                    <div class="card-icon settings">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h4 class="card-title">System Settings</h4>
+                    <p class="card-description">Configure church information, user roles, and system preferences.</p>
+                    <button class="btn btn-card">Update Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebarCollapse = document.getElementById('sidebarCollapse');
+    const sidebar = document.getElementById('sidebar');
+    if (sidebarCollapse && sidebar) {
+        sidebarCollapse.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load i18n %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOFAMINT STUDENTS' FELLOWSHIP</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet" />
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.min.css" rel="stylesheet" />
+
+    <!-- ...existing code... -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:600,700&display=swap" rel="stylesheet">
+    <!-- ...existing code... -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+
+
+</head>
+<body id="body">
+    <header>
+        <!-- Floating Give Button -->
+        <a href="{% url "pages:give" %}" class="give-btn bg-primary" data-aos="fade-left" data-aos-delay="300">
+            <i class="fas fa-donate"></i>
+        </a>
+
+        <nav class="dashboard-navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static "images/logo.png" %}" class="me-2" height="40" alt="MDB Logo" loading="lazy" />
+                    <span style="color: rgb(143, 143, 245); font-weight: 600; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="h1 mt-2">GSF<span class="text-primary">FUTA</span></span>
+                </a>
+                <button
+                data-mdb-collapse-init
+                class="navbar-toggler"
+                type="button"
+                data-mdb-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <i class="fas fa-bars" id="navbar-hamburger"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url "pages:home" %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:events" %}" class="nav-link">Events</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:about_page" %}" class="nav-link">About Us</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:alumni" %}" class="nav-link">Alumni</a>
+                        </li>
+                        <li>
+                            <a href="{% url "pages:give" %}" class="nav-link">Give</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </nav>
+
+            
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
+
+
+        <!-- FOOTER  -->
+        <section class="footer">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">GSFFUTA Fellowship</h4>
+                            <p>Growing in Faith, Serving in Love, Building God's Kingdom on the campus of FUTA.</p>
+                            <div class="social-links mt-3">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">Quick Links</h4>
+                            <div class="footer-links">
+                                <a href="#">Home</a>
+                                <a href="#about">About Us</a>
+                                <a href="#events">Events</a>
+                                <a href="#gallery">Gallery</a>
+                                <a href="#executives">Our Leaders</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">Contact Us</h4>
+                            <p><i class="fas fa-map-marker-alt me-2"></i> Chapel of Peace, FUTA Campus</p>
+                            <p><i class="fas fa-phone me-2"></i> +234 812 345 6789</p>
+                            <p><i class="fas fa-envelope me-2"></i> info@gsffuta.org</p>
+                            <p><i class="fas fa-clock me-2"></i> Sunday Service: 8AM & 10:30AM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="copyright">
+                        <p>&copy; 2023 GSFFUTA Church Fellowship. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+    <script src="{% static "js/mdb.umd.min.js" %}"></script>
+        <!-- Animate on Scroll JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out'
+        });
+    </script>
+</body>
+</html>

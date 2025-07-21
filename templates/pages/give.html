@@ -1,420 +1,353 @@
 {% extends '_base.html' %}
-
-{% block title %}About page{% endblock %}
+{% load static %}
+{% block title %}Give to the Church{% endblock %}
 
 {% block content %}
-
-    <!-- Hero Section -->
-    <section class="give-hero">
-        <div class="container">
-            <h1>Support Our Mission</h1>
-            <p>Your generous donations enable us to continue our important work and make a meaningful impact in our community and beyond.</p>
-            <div class="hero-breadcrumb">
-                <a href="#">Home</a>
-                <span>/</span>
-                <span>Give</span>
+<div class="p-5 text-center bg-image" style="background-image: url('{% static "images/image8.avif" %}'); height: 300px;">
+    <div class="mask" style="background-color: rgba(0, 10, 26, 0.7);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-3 h1" data-aos="fade-down">Events & Announcements</h1>
+                <h5 class="mb-3" data-aos="fade-down" data-aos-delay="100">Stay updated with our upcoming programs and important notices</h5>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Bank Accounts Section -->
-    <section class="bank-section">
-        <div class="container">
+    <main>
+        <!-- WHY WE GIVE SECTION -->
+        <div class="container my-5">
             <div class="section-header">
-                <h2>Bank Transfer Options</h2>
-                <p>We've established dedicated bank accounts for specific purposes to ensure transparency and effective use of your donations</p>
-            </div>
-            
-            <div class="bank-cards">
-                <!-- Account 1 -->
-                <div class="bank-card">
-                    <div class="bank-card-header">
-                        <div class="bank-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3 class="bank-name">Community Support Fund</h3>
-                        <div class="bank-account-type">General Donations</div>
-                    </div>
-                    <div class="bank-card-body">
-                        <div class="bank-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Bank Name:</span>
-                                <span class="detail-value">Global Trust Bank</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Account Name:</span>
-                                <span class="detail-value">Hope Foundation</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Account Number:</span>
-                                <span class="detail-value">0123 4567 8910 1112</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">SWIFT Code:</span>
-                                <span class="detail-value">GTBKUS33</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Routing Number:</span>
-                                <span class="detail-value">021000021</span>
-                            </div>
-                        </div>
-                        
-                        <div class="purpose-section">
-                            <h4 class="purpose-title">
-                                <i class="fas fa-bullseye"></i> Funds Will Be Used For:
-                            </h4>
-                            <ul class="purpose-list">
-                                <li>Community outreach programs</li>
-                                <li>Emergency relief efforts</li>
-                                <li>Administrative operations</li>
-                                <li>General organizational support</li>
-                                <li>Flexible funding for urgent needs</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Account 2 -->
-                <div class="bank-card">
-                    <div class="bank-card-header">
-                        <div class="bank-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="bank-name">Education Initiative</h3>
-                        <div class="bank-account-type">Scholarships & Programs</div>
-                    </div>
-                    <div class="bank-card-body">
-                        <div class="bank-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Bank Name:</span>
-                                <span class="detail-value">National Education Bank</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Account Name:</span>
-                                <span class="detail-value">Hope Foundation - Education</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Account Number:</span>
-                                <span class="detail-value">5555 8888 2222 0000</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">SWIFT Code:</span>
-                                <span class="detail-value">NEBKUS44</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Routing Number:</span>
-                                <span class="detail-value">026009593</span>
-                            </div>
-                        </div>
-                        
-                        <div class="purpose-section">
-                            <h4 class="purpose-title">
-                                <i class="fas fa-bullseye"></i> Funds Will Be Used For:
-                            </h4>
-                            <ul class="purpose-list">
-                                <li>Scholarships for underprivileged students</li>
-                                <li>School supplies and educational materials</li>
-                                <li>Teacher training programs</li>
-                                <li>After-school enrichment activities</li>
-                                <li>Digital learning resources</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Account 3 -->
-                <div class="bank-card">
-                    <div class="bank-card-header">
-                        <div class="bank-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3 class="bank-name">Healthcare Mission</h3>
-                        <div class="bank-account-type">Medical Assistance</div>
-                    </div>
-                    <div class="bank-card-body">
-                        <div class="bank-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Bank Name:</span>
-                                <span class="detail-value">Metropolitan Health Bank</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Account Name:</span>
-                                <span class="detail-value">Hope Foundation - Healthcare</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Account Number:</span>
-                                <span class="detail-value">7777 9999 1111 3333</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">SWIFT Code:</span>
-                                <span class="detail-value">MHBKUS55</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Routing Number:</span>
-                                <span class="detail-value">054001725</span>
-                            </div>
-                        </div>
-                        
-                        <div class="purpose-section">
-                            <h4 class="purpose-title">
-                                <i class="fas fa-bullseye"></i> Funds Will Be Used For:
-                            </h4>
-                            <ul class="purpose-list">
-                                <li>Medical camps in underserved areas</li>
-                                <li>Purchase of medicines and equipment</li>
-                                <li>Health awareness programs</li>
-                                <li>Support for patients with critical illnesses</li>
-                                <li>Mental health initiatives</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="section-title pt-2" data-aos="fade-up">Why We Give</h2>
+                <p class="section-subtitle pt-2" data-aos="fade-up" data-aos-delay="100">Stay updated with our upcoming events and important announcements</p>
             </div>
         </div>
-    </section>
 
-    <!-- Other Giving Options -->
-    <section class="giving-options">
-        <div class="container">
-            <div class="section-header">
-                <h2>Other Ways to Give</h2>
-                <p>We offer multiple convenient options for your generous support</p>
-            </div>
-            
-            <div class="options-grid">
-                <div class="option-card">
-                    <div class="option-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <h3 class="option-title">Online Donation</h3>
-                    <p class="option-description">Make a secure donation using your credit or debit card through our payment gateway.</p>
-                    <a href="#" class="option-btn">Donate Now</a>
-                </div>
-                
-                <div class="option-card">
-                    <div class="option-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="option-title">Mobile Payment</h3>
-                    <p class="option-description">Use popular mobile payment platforms for quick and easy donations.</p>
-                    <a href="#" class="option-btn">Donate Now</a>
-                </div>
-                
-                <div class="option-card">
-                    <div class="option-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="option-title">Mail a Check</h3>
-                    <p class="option-description">Send your donation by mail. Please make checks payable to Hope Foundation.</p>
-                    <a href="#" class="option-btn">Get Address</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section class="impact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Your Impact</h2>
-                <p>See how your generous contributions are making a difference</p>
-            </div>
-            
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <div class="impact-number">1,250+</div>
-                    <div class="impact-text">Students supported through scholarships</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-number">45,000+</div>
-                    <div class="impact-text">People received medical assistance</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-number">$2.8M</div>
-                    <div class="impact-text">Distributed in community grants</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-number">78</div>
-                    <div class="impact-text">Communities transformed worldwide</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about donating</p>
-            </div>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        How do I get a receipt for my donation?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>We automatically send a donation receipt to the email address provided at the time of donation. For bank transfers, please email finance@hopefoundation.org with your transaction details, and we'll send you a receipt within 3-5 business days.</p>
+        <section class="why-give" id="why-give">
+            <div class="why-pattern"></div>
+            <div class="container why-content">
+                <div class="row">
+                    <div class="col-md-4 my-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="benefit-card">
+                            <div class="row d-flex flex-column p-4">
+                                <div class="benefit-icon ms-4">
+                                    <i class="fas fa-bible"></i>
+                                </div>
+                                <h3 class="text-white">Biblical Principle</h3>
+                                <p class="text-white">Giving is a fundamental biblical principle. "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." - 2 Corinthians 9:7</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Can I set up recurring donations?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes! We offer monthly recurring donation options through our online portal. You can choose the amount, frequency, and which fund you'd like to support. You can modify or cancel your recurring donation at any time.</p>
+                    
+                    <div class="col-md-4 my-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="benefit-card">
+                            <div class="row d-inline-flex flex-column p-4">
+                                <div class="benefit-icon ms-4">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <h3 class="text-white">Support Ministry</h3>
+                                <p class="text-white">Your gifts support our local and global ministry efforts, enabling us to spread the Gospel, disciple believers, and serve our community.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        How much of my donation goes directly to programs?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>We're proud that 89% of every dollar donated goes directly to program activities. Only 8% is used for administrative costs and 3% for fundraising expenses. We maintain the highest standards of financial accountability and transparency.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Can I donate securities or stocks?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes, we accept donations of stocks and securities. This can be a tax-efficient way to give. Please contact our finance department at investments@hopefoundation.org for transfer instructions and to notify us of your incoming donation.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Is my donation tax-deductible?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Hope Foundation is a registered 501(c)(3) nonprofit organization. Donations from U.S. taxpayers are tax-deductible to the extent allowed by law. Please consult with your tax advisor regarding specific deductibility.</p>
+                    
+                    <div class="col-md-4 my-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="benefit-card">
+                            <div class="row d-flex flex-column p-4">
+                                <div class="benefit-icon ms-4">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <h3 class="text-white">Spiritual Growth</h3>
+                                <p class="text-white">Generosity breaks the grip of materialism and cultivates a spirit of trust in God. It's an essential part of our spiritual development.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Make a Difference?</h2>
-                <p>Your support enables us to continue our vital work and create lasting change in communities around the world.</p>
-                <a href="#" class="cta-button">Make a Donation Today</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>About Hope Foundation</h3>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">We're a nonprofit organization dedicated to creating positive change through education, healthcare, and community development initiatives.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Our Programs</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Get Involved</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Financial Info</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Financial Statements</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tax Information</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Donor Privacy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Charity Avenue, Hope City, HC 10001</p>
-                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> info@hopefoundation.org</p>
-                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 5PM</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 Hope Foundation. All Rights Reserved. | EIN: 12-3456789 | Registered 501(c)(3) Nonprofit Organization</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // FAQ toggle functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                faqItem.classList.toggle('active');
-                
-                const icon = question.querySelector('i');
-                if (faqItem.classList.contains('active')) {
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                } else {
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                }
-            });
-        });
+        </section>
         
-        // Card hover effect
-        const cards = document.querySelectorAll('.bank-card, .option-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+        <!-- WAYS TO GIVE SECTION -->
+        <section id="ways-to-give">
+            <div class="container my-5">
+                <div class="section-header">
+                    <h2 class="section-title pt-2" data-aos="fade-up">Ways To Give</h2>
+                    <p class="section-subtitle pt-2" data-aos="fade-up" data-aos-delay="100">Stay updated with our upcoming events and important announcements</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="option-card">
+                            <div class="option-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="option-title">Online Giving</h3>
+                            <p>Give securely through our website using credit/debit card or bank transfer. One-time or recurring options available.</p>
+                            <a href="#give-now" id="give-option-button" class="btn btn-outline-primary mt-3">Give Online</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="option-card">
+                            <div class="option-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h3 class="option-title">Bank Transfer</h3>
+                            <p>Transfer funds directly to our bank account. Contact us for our banking details and remember to include your name as reference.</p>
+                            <a href="#bank-details" id="give-option-button" class="btn btn-outline-primary mt-3">Bank Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="option-card">
+                            <div class="option-icon">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <h3 class="option-title">In Person</h3>
+                            <p>Give during our worship services using the offering baskets. Cash and checks are accepted. Envelopes are available for tithes.</p>
+                            <a href="events.html" id="give-option-button" class="btn btn-outline-primary mt-3">Service Times</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLEDGE SECTION -->
+        <section id="pledge">
+            <div class="container my-5">
+                <div class="section-header">
+                    <h2 class="section-title pt-2" data-aos="fade-up">Make a Pledge</h2>
+                    <p class="section-subtitle pt-2" data-aos="fade-up" data-aos-delay="100">Stay updated with our upcoming events and important announcements</p>
+                </div>
+            </div>
+            <div class="container my-3">
+                <div class="row">
+                    <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                        <div class="give-form">
+                            <h2 class="section-title mb-4">Give Online</h2>
+                            <p class="mb-4">Your secure donation helps advance the kingdom work at GSFFUTA and beyond.</p>
+                            
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Select Fund</label>
+                                    <select class="form-select form-control">
+                                        <option selected>General Fund</option>
+                                        <option>Missions Support</option>
+                                        <option>Building Fund</option>
+                                        <option>Benevolence Fund</option>
+                                        <option>Youth Ministry</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Donation Amount</label>
+                                    <div class="amount-options">
+                                        <div class="amount-option active">₦1,000</div>
+                                        <div class="amount-option">₦2,500</div>
+                                        <div class="amount-option">₦5,000</div>
+                                        <div class="amount-option">₦10,000</div>
+                                    </div>
+                                    
+                                    <div class="custom-amount">
+                                        <span>Or enter custom amount:</span>
+                                        <input type="number" class="form-control" placeholder="₦ Amount" style="max-width: 150px;">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Frequency</label>
+                                    <div class="d-flex gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="frequency" id="one-time" checked>
+                                            <label class="form-check-label" for="one-time">One Time</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="frequency" id="weekly">
+                                            <label class="form-check-label" for="weekly">Weekly</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="frequency" id="monthly">
+                                            <label class="form-check-label" for="monthly">Monthly</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Personal Information</label>
+                                    <input type="text" class="form-control mb-3" placeholder="Full Name">
+                                    <input type="email" class="form-control mb-3" placeholder="Email Address">
+                                    <input type="tel" class="form-control" placeholder="Phone Number">
+                                </div>
+                                
+                                <button class="btn-give">
+                                    <i class="fas fa-lock me-2"></i> Give Securely
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="section-header text-start">
+                            <h2 class="section-title">Your Giving Impact</h2>
+                            <p class="section-subtitle">See how your generosity makes a difference</p>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="impact-card">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="impact-number">850+</div>
+                                    <p>Students impacted weekly through campus ministry</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="impact-card">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="impact-number">120</div>
+                                    <p>Bibles distributed to new believers this year</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="impact-card">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <div class="impact-number">2,500</div>
+                                    <p>Meals provided to community members in need</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="impact-card">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-globe-africa"></i>
+                                    </div>
+                                    <div class="impact-number">15</div>
+                                    <p>Missionaries supported globally</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Giving to GSFFUTA has been a blessing to my spiritual life. Knowing that my contributions help students grow in their faith gives me great joy and fulfillment."</p>
+                                <div class="testimonial-author">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sarah K.">
+                                    <div>
+                                        <h5 class="mb-0">Sarah K.</h5>
+                                        <p class="mb-0">Monthly Donor since 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANK TRANSFER DETAILS -->
+        <section id="accounts">
+            <div class="container my-5">
+                <div class="section-header">
+                    <h2 class="section-title pt-2" data-aos="fade-up">Make a Pledge</h2>
+                    <p class="section-subtitle pt-2" data-aos="fade-up" data-aos-delay="100">Stay updated with our upcoming events and important announcements</p>
+                </div>
+            </div>
+            <div class="container my-3">
+                <div class="row">
+                    <div class="col-md-6 mb-4" data-aos="fade-right">
+                        <div class="give-form">
+                            <h3 class="mb-4">GSFFUTA Fellowship Account</h3>
+                            <div class="mb-4">
+                                <h5>Account Name</h5>
+                                <p>Gospel Students Fellowship FUTA</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5>Bank Name</h5>
+                                <p>First Bank of Nigeria</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5>Account Number</h5>
+                                <p>312 456 7890</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5>Sort Code</h5>
+                                <p>011 151 012</p>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i> Please include your name as reference when making transfers
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6" data-aos="fade-left">
+                        <div class="give-form">
+                            <h3 class="mb-4">Frequently Asked Questions</h3>
+                            
+                            <div class="accordion" id="faqAccordion">
+                                <div class="faq-item">
+                                    <div class="faq-question" id="headingOne" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        <span>Is online giving secure?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-bs-parent="#faqAccordion">
+                                        <div class="faq-answer">
+                                            <p>Yes, we use industry-standard encryption to protect your personal and financial information. All transactions are processed through secure payment gateways.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item">
+                                    <div class="faq-question collapsed" id="headingTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        <span>Can I get a receipt for my donation?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" data-bs-parent="#faqAccordion">
+                                        <div class="faq-answer">
+                                            <p>Yes, all donations receive an automatic email receipt. For bank transfers, please email finance@gsffuta.org with your transfer details to request a receipt.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item">
+                                    <div class="faq-question collapsed" id="headingThree" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        <span>How do I update my recurring donation?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" data-bs-parent="#faqAccordion">
+                                        <div class="faq-answer">
+                                            <p>Please contact our finance team at finance@gsffuta.org or call +234 812 345 6789 to update your recurring donation settings.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item">
+                                    <div class="faq-question collapsed" id="headingFour" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        <span>Are donations tax-deductible?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" data-bs-parent="#faqAccordion">
+                                        <div class="faq-answer">
+                                            <p>Yes, GSFFUTA is a registered non-profit organization. All donations are tax-deductible, and we provide annual contribution statements for tax purposes.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
 {% endblock %}

@@ -1,0 +1,152 @@
+{% extends "_base.html" %}
+{% block title %}Manage Hero{% endblock %}
+{% block content %}
+<section class="form-container">
+    <div class="container">
+        <div class="row d-flex justify-content-center" data-aos="fade-up">
+            <div class="col col-md-6">
+                <form action="{% url "dashboard:create_hero" %}" method="post" id="churchForm" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-section">
+                        <h4 class="section-title">Manage Hero Image</h4>
+                        <div>
+                            <label for="title" class="form-label">Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="pt-3">
+                            <label for="date_preached" class="pb-2">Hero Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="pt-3">
+                                <div class="upload-area" id="dropZone">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h5>Drag & Drop to Upload</h5>
+                                <p class="text-muted">or click to browse files</p>
+                                <p class="small">Supports JPG, PNG, GIF up to 5MB</p>
+                                {{ form.image }}
+                            </div>
+                            <div id="previewContainer" class="preview-container"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="d-flex justify-content-end gap-3 mt-4">
+                        <button type="reset" class="btn btn-outline-primary">Reset Form</button>
+                        <button type="submit" class="btn btn-primary">Submit Registration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+    // Drag and drop functionality
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const previewContainer = document.getElementById('previewContainer');
+    
+    // Click to upload
+    dropZone.addEventListener('click', () => {
+        fileInput.click();
+    });
+    
+    // Handle file selection
+    fileInput.addEventListener('change', handleFiles);
+    
+    // Drag and drop events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+    });
+    
+    function highlight() {
+        dropZone.classList.add('dragover');
+    }
+    
+    function unhighlight() {
+        dropZone.classList.remove('dragover');
+    }
+    
+    // Handle dropped files
+    dropZone.addEventListener('drop', handleDrop, false);
+    
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles({ target: { files } });
+    }
+    
+    // Process selected files
+    function handleFiles(e) {
+        const files = e.target.files || e.dataTransfer.files;
+        
+        if (files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Check if file is an image
+                if (!file.type.match('image.*')) {
+                    alert('Please upload only image files');
+                    continue;
+                }
+                
+                // Check file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size exceeds 5MB limit');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+
+                        // Display file name
+                    const fileName = document.createElement('div');
+                    fileName.className = 'file-name';
+                    fileName.textContent = file.name;
+
+                    
+                    const removeBtn = document.createElement('div');
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    removeBtn.addEventListener('click', function() {
+                        previewItem.remove();
+                    });
+                    
+                    previewItem.appendChild(img);
+                    previewItem.appendChild(fileName);
+                    previewItem.appendChild(removeBtn);
+                    previewContainer.appendChild(previewItem);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+    
+</script>
+{% endblock %}

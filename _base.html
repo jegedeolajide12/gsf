@@ -1,169 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
-{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSF Futa | Modern Navbar</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <title>GOFAMINT STUDENTS' FELLOWSHIP</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet" />
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.min.css" rel="stylesheet" />
+
+    <!-- ...existing code... -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:600,700&display=swap" rel="stylesheet">
+    <!-- ...existing code... -->
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+
 </head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-gsf fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <div class="gsf-logo">
-                    <img src="https://via.placeholder.com/50x50/4361ee/ffffff?text=GSF" alt="GSF Logo">
-                    <div class="logo-text">GSF<span>Futa</span></div>
-                </div>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+<body id="body">
+    <header>
+        <!-- Floating Give Button -->
+        <a href="/give.html" class="give-btn bg-primary" data-aos="fade-left" data-aos-delay="300">
+            <i class="fas fa-donate"></i>
+        </a>
+
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/logo.png" class="me-2" height="40" alt="MDB Logo" loading="lazy" />
+                    <span style="color: rgb(143, 143, 245); font-weight: 600; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="h1 mt-2">GSF<span class="text-primary">FUTA</span></span>
+                </a>
+                <button
+                data-mdb-collapse-init
+                class="navbar-toggler"
+                type="button"
+                data-mdb-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
                 <i class="fas fa-bars"></i>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Units</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sermons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Connect</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Give</a>
-                    </li>
-                </ul>
-                
-                <div class="auth-buttons">
-                    <a href="#" class="btn nav-btn">Log In</a>
-                    <a href="#" class="btn nav-btn">Sign up</a>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="/events.html" class="nav-link">Events</a>
+                        </li>
+                        <li>
+                            <a href="/about.html" class="nav-link">About Us</a>
+                        </li>
+                        <li>
+                            <a href="/alumni.html" class="nav-link">Alumni</a>
+                        </li>
+                        <li>
+                            <a href="/give.html" class="nav-link">Give</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </nav>
+            </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="hero-content">
-                        <h1 class="hero-title">Welcome to GSF FUTA</h1>
-                        <p class="hero-subtitle">A modern spiritual community exploring faith in the 21st century. Where tradition meets innovation.</p>
-                        <div class="hero-btns">
-                            <a href="#" class="btn btn-lg btn-primary me-3">Learn More</a>
-                            <a href="#" class="btn btn-lg btn-outline-light">Connect With Us</a>
+            <!-- HERO SECTION -->
+            <div class="p-5 text-center bg-image" style="background-image: url('assets/images/image5.jpg'); height: 850px;">
+                <div class="mask" style="background-color: rgba(0, 10, 26, 0.7);">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white">
+                            <h1 class="mb-3" data-aos="fade-down" data-aos-delay="100">Gofamint Students' Fellowship</h1>
+                            <h4 class="mb-3" data-aos="fade-down" data-aos-delay="200">God's own fellowship</h4>
+                            <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2 rounded-pill" href="#!" role="button" data-aos="fade-up" data-aos-delay="300">GET DIRECTION</a>
+                            <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2 rounded-pill" href="#!" role="button" data-aos="fade-up" data-aos-delay="300">OUR SERMONS</a>    
                         </div>
                     </div>
                 </div>
+
+                <!-- Circular Countdown -->
+                <div class="countdown-container text-white me-0">
+                    <div class="countdown" data-aos="fade-right" data-aos-delay="400">
+                        <div class="countdown-title">DAYS TO EXAM</div>
+                        <div class="countdown-timer" id="countdown">03:14:58</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+            <!-- Background image -->
+        </header>
 
-    {% block content %}
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-col">
-                        <h3>Gofamint Students' Fellowship</h3>
-                        <p>A modern spiritual community exploring faith in the 21st century. Where tradition meets innovation.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-spotify"></i></a>
+
+        <!-- FOOTER  -->
+        <section class="footer">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">GSFFUTA Fellowship</h4>
+                            <p>Growing in Faith, Serving in Love, Building God's Kingdom on the campus of FUTA.</p>
+                            <div class="social-links mt-3">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">Quick Links</h4>
+                            <div class="footer-links">
+                                <a href="#">Home</a>
+                                <a href="#about">About Us</a>
+                                <a href="#events">Events</a>
+                                <a href="#gallery">Gallery</a>
+                                <a href="#executives">Our Leaders</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <h4 class="footer-title">Contact Us</h4>
+                            <p><i class="fas fa-map-marker-alt me-2"></i> Chapel of Peace, FUTA Campus</p>
+                            <p><i class="fas fa-phone me-2"></i> +234 812 345 6789</p>
+                            <p><i class="fas fa-envelope me-2"></i> info@gsffuta.org</p>
+                            <p><i class="fas fa-clock me-2"></i> Sunday Service: 8AM & 10:30AM</p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-col">
-                        <h3>Quick Links</h3>
-                        <ul class="footer-links">
-                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>About Us</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Sermons</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Events</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Ministries</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Give</a></li>
-                        </ul>
+                    
+                    <div class="copyright">
+                        <p>&copy; 2023 GSFFUTA Church Fellowship. All Rights Reserved.</p>
                     </div>
                 </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-col">
-                        <h3>Contact Us</h3>
-                        <ul class="footer-links footer-contact">
-                            <li><i class="fas fa-map-marker-alt me-2"></i>123 Spiritual Way, City, ST 12345</li>
-                            <li><i class="fas fa-phone me-2"></i>(555) 123-4567</li>
-                            <li><i class="fas fa-envelope me-2"></i>info@divinegrace.org</li>
-                            <li><i class="fas fa-clock me-2"></i>Office Hours: Mon-Thu 9AM-5PM</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-col">
-                        <h3>Service Times</h3>
-                        <ul class="footer-links">
-                            <li><i class="fas fa-church me-2"></i>Sunday Worship: 9:00 & 11:00 AM</li>
-                            <li><i class="fas fa-bible me-2"></i>Wednesday Study: 7:00 PM</li>
-                            <li><i class="fas fa-users me-2"></i>Youth Gathering: Friday 7:00 PM</li>
-                            <li><i class="fas fa-child me-2"></i>Children's Program: Sunday 10:00 AM</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 GSF FUTA. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--gold);"></i></p>
-            </div>
-        </div>
-    </footer>
+            </footer>
+        </section>
 
-    <!-- Bootstrap JS -->
-    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
+    <script src="assets/js/mdb.umd.min.js"></script>
+        <!-- Animate on Scroll JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.navbar-gsf');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out'
         });
         
-        // Initialize tooltips
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        // Countdown Timer
+        function updateCountdown() {
+            // Set the next Sunday at 10:30 AM
+            const now = new Date();
+            let nextSunday = new Date();
+            
+            // Calculate days until next Sunday (0 is Sunday, 1 is Monday, etc.)
+            const daysUntilSunday = 7 - now.getDay();
+            nextSunday.setDate(now.getDate() + daysUntilSunday);
+            nextSunday.setHours(10, 30, 0, 0); // 10:30 AM
+            
+            // If today is Sunday and time is before 10:30 AM
+            if (now.getDay() === 0 && now < nextSunday) {
+                // Do nothing, nextSunday is already today
+            } else if (now > nextSunday) {
+                // If we passed the time today, set to next Sunday
+                nextSunday.setDate(nextSunday.getDate() + 7);
+            }
+            
+            const diff = nextSunday - now;
+            
+            // Calculate hours, minutes and seconds
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Format the time
+            const formatted = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Update the countdown element
+            document.getElementById('countdown').textContent = formatted;
+        }
+        
+        // Update every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.92)';
+            }
+        });
     </script>
 </body>
 </html>

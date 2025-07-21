@@ -1,3 +1,4 @@
+from os import name
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
@@ -10,6 +11,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('account/', include("accounts.urls", namespace='accounts')),
     path("", include("pages.urls", namespace='pages')),
+    path("dashboard/", include("dashboard.urls", namespace='dashboard'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -1,0 +1,207 @@
+{% extends "_base.html" %}
+{% block title %}Testimony Requests{% endblock %}
+{% load static %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+        <div class="row d-flex justify-content-center">
+            <div class="col col-md-10">
+                <!-- Testimonies Page -->
+                <div class="testimonies-header" data-aos="fade-down">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1><i class="fas fa-book-open me-3"></i>Member Testimonies</h1>
+                            <p class="mb-0">View and manage all testimonies shared by church members</p>
+                        </div>
+                        <button class="btn btn-light">
+                            <i class="fas fa-plus me-2"></i> Add New
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Search and Filter -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <div class="search-bar" data-aos="fade-right">
+                            <i class="fas fa-search text-muted me-2"></i>
+                            <input type="text" placeholder="Search testimonies...">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="filter-bar" data-aos="fade-left">
+                            <button class="filter-btn active">All</button>
+                            <button class="filter-btn">Published</button>
+                            <button class="filter-btn">Pending</button>
+                            <button class="filter-btn">Archived</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonies List -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Testimony 1 -->
+                        <div class="testimony-card" data-aos="fade-up">
+                            <div class="testimony-meta">
+                                <div class="testimony-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Sarah Johnson</h5>
+                                    <p class="mb-0 text-muted">Member since 2019</p>
+                                </div>
+                            </div>
+                            
+                            <div class="testimony-content">
+                                This church has been a blessing to me and my family. When I was going through a difficult time last year, the support and prayers from the community helped me overcome my challenges. The sermons have given me new perspectives on life and strengthened my faith.
+                            </div>
+                            
+                            <div class="testimony-footer">
+                                <div>
+                                    <span class="testimony-status status-published">Published</span>
+                                    <span class="ms-3 text-muted"><i class="far fa-calendar me-1"></i> Mar 12, 2023</span>
+                                </div>
+                                <div class="testimony-actions">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimony 2 -->
+                        <div class="testimony-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="testimony-meta">
+                                <div class="testimony-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Michael Thompson</h5>
+                                    <p class="mb-0 text-muted">Member since 2020</p>
+                                </div>
+                            </div>
+                            
+                            <div class="testimony-content">
+                                I've been attending GracePoint for two years now, and it's transformed my spiritual journey. The community outreach programs allowed me to serve others in meaningful ways. The Bible study groups have deepened my understanding of scripture.
+                            </div>
+                            
+                            <div class="testimony-footer">
+                                <div>
+                                    <span class="testimony-status status-pending">Pending Review</span>
+                                    <span class="ms-3 text-muted"><i class="far fa-calendar me-1"></i> Apr 5, 2023</span>
+                                </div>
+                                <div class="testimony-actions">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimony 3 -->
+                        <div class="testimony-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="testimony-meta">
+                                <div class="testimony-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Rebecca Martinez</h5>
+                                    <p class="mb-0 text-muted">Member since 2018</p>
+                                </div>
+                            </div>
+                            
+                            <div class="testimony-content">
+                                GracePoint Church welcomed my family with open arms when we moved to this city. The children's ministry has been wonderful for my kids - they actually look forward to Sunday school! The recent marriage retreat strengthened our relationship in ways we didn't expect.
+                            </div>
+                            
+                            <div class="testimony-footer">
+                                <div>
+                                    <span class="testimony-status status-published">Published</span>
+                                    <span class="ms-3 text-muted"><i class="far fa-calendar me-1"></i> Feb 28, 2023</span>
+                                </div>
+                                <div class="testimony-actions">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimony 4 -->
+                        <div class="testimony-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="testimony-meta">
+                                <div class="testimony-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">David Wilson</h5>
+                                    <p class="mb-0 text-muted">New Member</p>
+                                </div>
+                            </div>
+                            
+                            <div class="testimony-content">
+                                As a new member, I was nervous about joining a church community, but everyone has been so welcoming. The sermon on forgiveness last month spoke directly to a situation I was struggling with. I've started volunteering with the homeless outreach and it's been life-changing.
+                            </div>
+                            
+                            <div class="testimony-footer">
+                                <div>
+                                    <span class="testimony-status status-archived">Archived</span>
+                                    <span class="ms-3 text-muted"><i class="far fa-calendar me-1"></i> Jan 15, 2023</span>
+                                </div>
+                                <div class="testimony-actions">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimony 5 -->
+                        <div class="testimony-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="testimony-meta">
+                                <div class="testimony-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Jennifer Adams</h5>
+                                    <p class="mb-0 text-muted">Member since 2015</p>
+                                </div>
+                            </div>
+                            
+                            <div class="testimony-content">
+                                Through the financial stewardship program at GracePoint, I learned to manage my resources in a way that honors God. This knowledge helped me get out of debt and start saving for my children's education. I'm so grateful for the practical biblical teaching here.
+                            </div>
+                            
+                            <div class="testimony-footer">
+                                <div>
+                                    <span class="testimony-status status-published">Published</span>
+                                    <span class="ms-3 text-muted"><i class="far fa-calendar me-1"></i> May 20, 2023</span>
+                                </div>
+                                <div class="testimony-actions">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

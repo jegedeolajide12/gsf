@@ -1,0 +1,103 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!-- Background image -->
+    <div class="p-5 text-center bg-image" style="background-image: url('{% static "images/image2.jpg" %}'); height: 400px;">
+        <div class="mask" style="background-color: rgba(0, 10, 26, 0.7);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="text-white">
+                    <h1 class="mb-3" data-aos="fade-down" data-aos-delay="100">Our Story & Mission</h1>
+                    <h4 class="mb-3" data-aos="fade-down" data-aos-delay="200">Discover the journey, values, and purpose of GSFFUTA</h4>
+                    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2 rounded-pill" href="#history" role="button"  data-aos="fade-up" data-aos-delay="300">Our History</a>
+                    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2 rounded-pill href="#!" role="button" data-aos="fade-up" data-aos-delay="300">Call to action</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<main>
+    <!-- FEATURED ALUMNI SECTION -->
+    <section>
+        <div class="container my-5">
+            <div class="section-header">
+                <h2 class="section-title pt-2" data-aos="fade-up">Featured Alumni</h2>
+                <p class="section-subtitle pt-2" data-aos="fade-up" data-aos-delay="100">Stay updated with our upcoming events and important announcements</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 my-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="alumni-card">
+                        <img src="{% static "images/jeffery-erhunse-vp9mRauo68c-unsplash.jpg" %}" class="alumni-img img-fluid" alt="David Johnson">
+                        <div class="alumni-body">
+                            <h3 class="alumni-name">David Johnson</h3>
+                            <p class="alumni-class">Class of 2010</p>
+                            <p class="alumni-role">Senior Pastor, Grace Community Church</p>
+                            <p class="text-primary">"GSFFUTA laid the foundation for my ministry through discipleship and mentorship."</p>
+                            <div class="alumni-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 my-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="alumni-card">
+                        <img src="{% static "images/prince-akachi-J1OScm_uHUQ-unsplash.jpg" %}" class="alumni-img img-fluid" alt="David Johnson">
+                        <div class="alumni-body">
+                            <h3 class="alumni-name">David Johnson</h3>
+                            <p class="alumni-class">Class of 2010</p>
+                            <p class="alumni-role">Senior Pastor, Grace Community Church</p>
+                            <p class="text-primary">"GSFFUTA laid the foundation for my ministry through discipleship and mentorship."</p>
+                            <div class="alumni-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 my-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="alumni-card">
+                        <img src="{% static "images/good-faces-xmSWVeGEnJw-unsplash.jpg" %}" class="alumni-img" alt="David Johnson">
+                        <div class="alumni-body">
+                            <h3 class="alumni-name">David Johnson</h3>
+                            <p class="alumni-class">Class of 2010</p>
+                            <p class="alumni-role">Senior Pastor, Grace Community Church</p>
+                            <p class="text-primary">"GSFFUTA laid the foundation for my ministry through discipleship and mentorship."</p>
+                            <div class="alumni-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOTLIGHT SECTION -->
+    <section class="my-5" id="spotlight">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="{% static "images/good-faces-xmSWVeGEnJw-unsplash.jpg" %}" class="spotlight-img" alt="Dr. Amina Okafor">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="spotlight-content">
+                        <h2 class="section-title mb-4">Alumni Spotlight</h2>
+                        <p class="spotlight-quote">"My time at GSFFUTA wasn't just about spiritual growth; it was where I discovered my purpose and developed lifelong relationships that continue to shape my journey."</p>
+                        <h3 class="spotlight-name">Dr. Amina Okafor</h3>
+                        <p class="spotlight-details">Class of 2008 | Medical Director, City General Hospital</p>
+                        <p>Dr. Okafor credits her leadership skills to her time serving as a fellowship coordinator during her university years. Today, she leads a team of 50 medical professionals while volunteering at health missions organized by GSFFUTA alumni.</p>
+                        <a href="#" class="btn btn-primary mt-3">Read Full Story</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

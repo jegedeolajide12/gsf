@@ -1,304 +1,160 @@
 {% extends '_base.html' %}
+{% load static %}
 
-{% block title %}About page{% endblock %}
+{% block title %}About Us{% endblock %}
 
 {% block content %}
-
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <div class="container">
-            <h1>About Gofamints' Students Fellowship Futa Chapter</h1>
-            <p>Discover our journey, values, and the passionate team behind our success. We're committed to innovation, excellence, and creating meaningful impact.</p>
-            <div class="hero-breadcrumb">
-                <a href="#">Home</a>
-                <span>/</span>
-                <span>About Us</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Story Section -->
-    <section class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Story</h2>
-                <p>From humble beginnings to industry leadership - our journey of passion and perseverance</p>
-            </div>
-            
-            <div class="story-content">
-                <div class="story-text">
-                    <h3>Building Dreams Since 2010</h3>
-                    <p>Founded in a small garage with just three employees, our company began with a simple mission: to revolutionize the way businesses leverage technology. Today, we stand as a leader in our industry, serving clients in over 30 countries with a team of 150+ dedicated professionals.</p>
-                    <p>Our journey hasn't been without challenges. Economic downturns, technological shifts, and global events tested our resilience. But through it all, our commitment to innovation and customer satisfaction has remained unwavering.</p>
-                    <p>What started as a passion project has grown into an award-winning organization recognized for excellence in service, innovation, and workplace culture. We've stayed true to our core values while continuously evolving to meet the changing needs of our clients and the market.</p>
-                </div>
-                <div class="story-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Company Office">
-                </div>
-            </div>
-            
-            <div class="milestones">
-                <div class="milestone-card animate-on-scroll">
-                    <div class="milestone-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="milestone-number">13+</div>
-                    <div class="milestone-text">Years of Excellence</div>
-                </div>
-                <div class="milestone-card animate-on-scroll">
-                    <div class="milestone-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="milestone-number">150+</div>
-                    <div class="milestone-text">Team Members</div>
-                </div>
-                <div class="milestone-card animate-on-scroll">
-                    <div class="milestone-icon">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <div class="milestone-number">30+</div>
-                    <div class="milestone-text">Countries Served</div>
-                </div>
-                <div class="milestone-card animate-on-scroll">
-                    <div class="milestone-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="milestone-number">24</div>
-                    <div class="milestone-text">Industry Awards</div>
+    <!-- Background image -->
+    <div class="p-5 text-center bg-image" style="background-image: url('{% static "images/image2.jpg" %}'); height: 400px;">
+        <div class="mask" style="background-color: rgba(0, 10, 26, 0.7);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="text-white">
+                    <h1 class="mb-3" data-aos="fade-down" data-aos-delay="100">Our Story & Mission</h1>
+                    <h4 class="mb-3" data-aos="fade-down" data-aos-delay="200">Discover the journey, values, and purpose of GSFFUTA</h4>
+                    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2 rounded-pill" href="#history" role="button"  data-aos="fade-up" data-aos-delay="300">Our History</a>
+                    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2 rounded-pill href="#!" role="button" data-aos="fade-up" data-aos-delay="300">Call to action</a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Mission Section -->
-    <section class="about-section mission">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Mission & Vision</h2>
-                <p>Guiding principles that drive everything we do</p>
-            </div>
-            
-            <div class="mission-content">
-                <div class="mission-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <p class="mission-text">To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage. We strive to build lasting partnerships by delivering exceptional value and service that exceeds expectations.</p>
-                <div class="mission-author">Sarah Johnson, Founder & CEO</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Values Section -->
-    <section class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Core Values</h2>
-                <p>The foundation of our culture and decision-making</p>
-            </div>
-            
-            <div class="values-grid">
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="value-title">Innovation</h3>
-                    <p class="value-description">We challenge the status quo, embrace new ideas, and continuously seek better ways to solve problems and create value.</p>
-                </div>
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="value-title">Integrity</h3>
-                    <p class="value-description">We do what's right, not what's easy. Honesty, transparency, and ethical conduct guide every decision we make.</p>
-                </div>
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="value-title">Collaboration</h3>
-                    <p class="value-description">We believe that diverse perspectives working together create the best solutions for our clients and our company.</p>
-                </div>
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="value-title">Excellence</h3>
-                    <p class="value-description">We set high standards and continuously push ourselves to deliver exceptional quality in everything we do.</p>
-                </div>
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="value-title">Passion</h3>
-                    <p class="value-description">We love what we do. Our enthusiasm and commitment are contagious and drive our success.</p>
-                </div>
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="value-title">Growth</h3>
-                    <p class="value-description">We foster continuous learning and development for our team and help our clients achieve sustainable growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="about-section team">
-        <div class="container">
-            <div class="section-header">
-                <h2>Meet Our Leadership</h2>
-                <p>The talented individuals driving our vision forward</p>
-            </div>
-            
-            <div class="team-grid">
-                <div class="team-member animate-on-scroll">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Sarah Johnson">
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Sarah Johnson</h3>
-                        <p class="member-position">Founder & CEO</p>
-                        <p>Visionary leader with 20+ years in tech innovation</p>
-                        <div class="member-social">
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
+    </div>
+    <main>
+        <!-- HISTORY SECTION -->
+        <section class="my-5" id="history" style="padding: 100px 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-aos="fade-up">Our History</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A journey of faith, growth, and God's faithfulness</p>
                 </div>
                 
-                <div class="team-member animate-on-scroll">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Michael Chen">
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Michael Chen</h3>
-                        <p class="member-position">CTO</p>
-                        <p>Tech innovator with expertise in AI and cloud solutions</p>
-                        <div class="member-social">
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                <div class="history-content" data-aos="fade-up" data-aos-delay="200">
+                    <p class="lead text-center mb-5">GSFFUTA began as a small gathering of Christian students in 1985, meeting under a tree on the FUTA campus. Today, we've grown into a vibrant community of over 500 members, impacting lives for Christ through fellowship, discipleship, and outreach.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-content">
+                                <div class="timeline-year">1985</div>
+                                <h4>The Beginning</h4>
+                                <p>A small group of 12 students began meeting for prayer and Bible study under a mango tree on campus, led by Brother Samuel Adeyemi.</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="team-member animate-on-scroll">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Emma Rodriguez">
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Emma Rodriguez</h3>
-                        <p class="member-position">VP of Operations</p>
-                        <p>Process optimization expert with global experience</p>
-                        <div class="member-social">
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        
+                        <div class="timeline-item" data-aos="fade-left">
+                            <div class="timeline-content">
+                                <div class="timeline-year">1992</div>
+                                <h4>Official Recognition</h4>
+                                <p>The fellowship was officially recognized by the university as the Gospel Students' Fellowship (GSF) with allocated space in the Chapel of Peace.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2001</div>
+                                <h4>First Building Project</h4>
+                                <p>Construction began on our first permanent structure - a multi-purpose hall that could accommodate 300 worshippers.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-left">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2010</div>
+                                <h4>Expansion to Campuses</h4>
+                                <p>GSF expanded to include satellite fellowships at FUTA's satellite campuses and affiliate institutions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2018</div>
+                                <h4>Current Facility Dedication</h4>
+                                <p>Our new 800-seat auditorium was dedicated, featuring modern facilities for worship and discipleship.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Join Our Growing Team</h2>
-                <p>We're always looking for talented, passionate individuals to join our mission. Explore opportunities to grow your career with us.</p>
-                <a href="#" class="cta-button">View Open Positions</a>
+        <!-- MISSION SECTION -->
+        <section class="mt-0" id="mission">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-aos="fade-up">Our Mission & Vision</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A journey of faith, growth, and God's faithfulness</p>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">We're a passionate team dedicated to creating innovative solutions that transform businesses and industries.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+            <div class="container my-3">
+                <div class="row">
+                    <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <i class="fas fa-heart" style="font-size: 5rem; color: #4B6EF5;"></i>
+                                <h5 class="card-title h2 m-3">Our Core Values</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Case Studies</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Our Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Web Development</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Applications</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cloud Solutions</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Digital Transformation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Tech City, TC 10001</p>
-                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> info@company.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</p>
+                    <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <i class="fas fa-bullseye" style="font-size: 5rem; color: #4B6EF5;"></i>
+                                <h5 class="card-title h2 m-3">Our Vision</h5>
+                                <p class="card-text">To be a Christ-centered community that transforms the FUTA campus and beyond through the power of the Gospel.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <i class="fas fa-eye" style="font-size: 5rem; color: #4B6EF5;"></i>
+                                <h5 class="card-title h2 m-3">Our Mission</h5>
+                                <p class="card-text">To disciple students in their walk with Christ, equip them for service, and send them out as ambassadors of the Kingdom.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 Company Name. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ef476f;"></i> for Innovation</p>
-            </div>
-        </div>
-    </footer>
+        </section>
 
-    <script>
-        // Animation on scroll functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const animateElements = document.querySelectorAll('.animate-on-scroll');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            });
-            
-            animateElements.forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Team member hover effect
-            const teamMembers = document.querySelectorAll('.team-member');
-            teamMembers.forEach(member => {
-                member.addEventListener('mouseenter', () => {
-                    member.style.transform = 'translateY(-10px)';
-                });
-                
-                member.addEventListener('mouseleave', () => {
-                    member.style.transform = 'translateY(0)';
-                });
-            });
-        });
-    </script>
+        <!-- EXECUTIVE SECTION -->
+
+        <section class="mt-5">
+            <div class="container my-5">
+                    <div class="section-header">
+                        <h2 class="section-title pt-2" data-aos="fade-up">Our Executives</h2>
+                        <p class="section-subtitle pt-2" data-aos="fade-up" data-aos-delay="100">Stay updated with our upcoming events and important announcements</p>
+                    </div>
+                </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="executive-card">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" class="executive-img" alt="Pastor John">
+                            <h4 class="executive-name">Pastor John Adebayo</h4>
+                            <p class="executive-role">Senior Pastor</p>
+                            <p>With over 20 years of ministry experience, Pastor John leads our fellowship with wisdom and compassion.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="executive-card">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" class="executive-img" alt="Pastor Sarah">
+                            <h4 class="executive-name">Pastor Sarah Chukwu</h4>
+                            <p class="executive-role">Associate Pastor</p>
+                            <p>Pastor Sarah oversees our youth ministry and discipleship programs with energy and vision.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="executive-card">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" class="executive-img" alt="Deacon Michael">
+                            <h4 class="executive-name">Deacon Michael Okoro</h4>
+                            <p class="executive-role">Head of Deacons</p>
+                            <p>Deacon Michael leads our service teams and community outreach initiatives with dedication.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    </main>
 {% endblock content %}

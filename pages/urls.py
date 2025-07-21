@@ -12,11 +12,12 @@ urlpatterns = [
     path('units/', views.units, name='units'),
     path('unit/<slug:unit_slug>/announcement/', views.create_unit_announcements, name="create_unit_announcements"),
     path('unit/<slug:unit_slug>/dashboard/', views.unit_dashboard, name='unit_dashboard'),
-    path('sermons/', views.sermons, name='sermons'),
+    # path('sermons/', views.sermons, name='sermons'),
     path('events/', views.events, name="events"),
     # path('logout/confirm/', views.logout_confirm, name="confirm_logout"),
     path('about/', views.about_page, name='about_page'),
     path('give/', views.give, name='give'),
+    path('alumni/', views.alumni, name='alumni'),
 
 
     path('create-semester/', views.create_semester, name='create_semester'),

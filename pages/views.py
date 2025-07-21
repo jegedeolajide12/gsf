@@ -9,7 +9,6 @@ from django.forms import inlineformset_factory
 from django.urls import reverse_lazy
 from django.contrib import messages
 
-from accounts.models import Sermon, RecentActivity
 from .utils import create_recurring_events
 
 
@@ -31,13 +30,11 @@ def home(request):
     heroes = HomePageHero.objects.all()
     banners = HomePageBanner.objects.all()
     drives = DriveLink.objects.all()
-    sermons = Sermon.objects.all()
     context = {
                'announcements': announcements,
                'heroes': heroes,
                'banners': banners,
                'drives': drives,
-               'sermons': sermons,
                'units': Unit.objects.all(),}
     return render(request, 'pages/home.html', context)
 
@@ -47,10 +44,12 @@ def about_page(request):
         'hero': HomePageHero.objects.first(),
         'banner': HomePageBanner.objects.first(),
         'units': Unit.objects.all(),
-        'user_units': request.user.unit,
     }
     return render(request, "pages/about.html", context)
 
+def alumni(request):
+    context = {}
+    return render(request, "pages/alumni.html", context)
 
 def units(request):
     units = Unit.objects.all()
@@ -58,55 +57,12 @@ def units(request):
     return render(request, "pages/units.html", context)
 
 def unit_dashboard(request, unit_slug):
-    try:
-        unit = Unit.objects.get(slug=unit_slug)
-    except Unit.DoesNotExist:
-        return render(request, "404.html", status=404)
-    user_unit = request.user.profile.unit
-            
-    context = {
-        'unit': unit,
-        'codes_of_conduct': unit.codes_of_conduct.all(),
-        'coordinator': unit.coordinator,
-        'assistant_coordinator': unit.assistant_coordinator,
-        'user_unit': user_unit,
-    }
-    if user_unit.slug == 'academic-unit':
-        unit = Unit.objects.get(slug='academic-unit')
-        context = {'unit': unit}
-        return render(request, "account/admin/academic_dashboard.html", context)
-    if user_unit.slug == 'bible-study-unit':
-        return render(request, "account/admin/bible_study_dashboard.html", context)
-    if user_unit.slug == 'choir-unit':
-        return render(request, "account/admin/kpt_dashboard.html", context)
-    if user_unit.slug == 'drama-unit':
-        return render(request, "account/admin/drama_dashboard.html", context)
-    if user_unit.slug == 'evangelism-unit':
-        return render(request, "account/admin/evangelism_dashboard.html", context)
-    if user_unit.slug == 'prayer-unit':
-        return render(request, "account/admin/prayer_dashboard.html", context)
-    if user_unit.slug == 'publicity-unit':
-        unit = Unit.objects.get(slug='publicity-unit')
-        recent_activities = RecentActivity.objects.filter(unit=unit)
-        context = {'recent_activities': recent_activities, 'unit': unit}
-        return render(request, "account/admin/publicity_dashboard.html", context)
-    if user_unit.slug == 'technical-unit':
-        unit = Unit.objects.get(slug='technical-unit')
-        context = {'unit': unit}
-        return render(request, "account/admin/technical_dashboard.html", context)
-    if user_unit.slug == 'ushering-and-organizing-unit':
-        return render(request, "account/admin/ushering_dashboard.html", context)
-    if user_unit.slug == 'visitation-and-follow-up-unit':
-        return render(request, "account/admin/follow_up_dashboard.html", context)
-    if user_unit.slug == 'welfare-unit':
-        return render(request, "account/admin/welfare-unit_dashboard.html", context)
-    
-    return render(request, "404.html", status=404)
+    pass
 
-def sermons(request):
+'''def sermons(request):
     sermons = Sermon.objects.all()
     context = {'sermons':sermons}
-    return render(request, "pages/sermon.html", context)
+    return render(request, "pages/sermon.html", context)'''
 
 def events(request):
     events = Announcement.objects.all()
